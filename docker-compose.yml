@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  demoweb:
+    image: demoweb
+    build:
+      context: ./src/DemoWeb
+      dockerfile: Dockerfile
+
+  fulldemoweb:
+    image: fulldemoweb
+    build:
+      context: ./../src/FullDemoWeb
+      dockerfile: Dockerfile
+
+  demowebsite:
+    image: demowebsite
+    build:
+      context: ./src/DemoWebsite
+      dockerfile: Dockerfile
+
+  cinema.website:
+    image: cinema.website
+    build:
+      context: ./src/Cinema.Website
+      dockerfile: Dockerfile
+
+  evol.cinema.website:
+    image: evol.cinema.website
+    build:
+      context: ./src/Evol.Cinema.Website
+      dockerfile: Dockerfile
