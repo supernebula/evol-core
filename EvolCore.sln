@@ -45,6 +45,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Cinema.Domain", "src\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Cinema.Website", "src\Evol.Cinema.Website\Evol.Cinema.Website.csproj", "{D8DF13B3-E4FF-4640-BAF0-3AAAB8472FD5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "document", "document", "{4458BF2D-1651-4346-AA76-2D3EC3F8E5EA}"
+	ProjectSection(SolutionItems) = preProject
+		document\aspnet-core.xmind = document\aspnet-core.xmind
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
