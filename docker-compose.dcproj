@@ -4,7 +4,7 @@
     <ProjectGuid>57ec9ff5-d10e-44cd-9e3c-6912ee511d0e</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>demoweb</DockerServiceName>
+    <DockerServiceName>demo</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.ci.build.yml" />

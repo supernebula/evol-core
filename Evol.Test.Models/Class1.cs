@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace Evol.Common
+namespace Evol.Test.Models
 {
     public class Class1
     {
     }
 }
+Description

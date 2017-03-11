@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Evol.Util.Convert
 {
+    [Obsolete("未完成...")]
     public static class StringConvert
     {
         /// <summary>

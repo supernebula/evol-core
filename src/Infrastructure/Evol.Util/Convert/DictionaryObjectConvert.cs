@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System​.ComponentModel;
 using System.Runtime.Serialization;
 
 namespace Evol.Util.Convert
