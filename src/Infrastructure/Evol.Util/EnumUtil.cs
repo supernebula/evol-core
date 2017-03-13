@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Evol.Util.Sys
+namespace Evol.Util
 { 
     [Obsolete("未完成...")]
     public class EnumUtil

@@ -8,6 +8,7 @@
     <Folder Include="Ioc\" />
     <Folder Include="IO\" />
     <Folder Include="Security\" />
+    <Folder Include="Sys\" />
   </ItemGroup>
 
   <ItemGroup>
