@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Ioc\" />
     <Folder Include="IO\" />
     <Folder Include="Security\" />
-    <Folder Include="System\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +17,12 @@
     <PackageReference Include="System.Diagnostics.TraceSource" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Json" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Evol.Common\Evol.Common.csproj" />
   </ItemGroup>
 
 </Project>

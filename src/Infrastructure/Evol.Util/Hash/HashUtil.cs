@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Evol.Util.Hash
 {
-    public static class HashUtility
+    public static class HashUtil
     {
         public static string Md5(string input)
         {

@@ -2,7 +2,7 @@
 
 namespace Evol.Common
 {
-    public class Paged<T> : List<T>, IPaged<T>
+    public class PagedList<T> : List<T>, IPaged<T>
     {
         public int PageTotal { set; get; }
 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Evol.Util.Serialization
 {
-    public class JsonUtility
+    public class JsonUtil
     {
         public static string Serialize(object value)
         {

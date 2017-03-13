@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Evol.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Evol.Util.Ioc
+namespace Evol.Util
 {
-    public class IoCUtility
+    public class IoCUtil
     {
         public static List<InterfaceImplPair> GetInterfaceAndClass(string interfaceNamespace, string classNamespace, params Assembly[] assemblies)
         {

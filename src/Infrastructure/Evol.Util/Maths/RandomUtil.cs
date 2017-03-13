@@ -4,10 +4,10 @@ using System.Security.Cryptography;
 
 namespace Evol.Util.Maths
 {
-    public class RandomUnitily
+    public class RandomUtil
     {
         static RandomNumberGenerator _rng;
-        static RandomUnitily()
+        static RandomUtil()
         {
             _rng = RandomNumberGenerator.Create();
         }

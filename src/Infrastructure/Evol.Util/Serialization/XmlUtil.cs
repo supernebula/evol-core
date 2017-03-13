@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Evol.Util.Serialization
 {
-    public static class XmlUtility
+    public static class XmlUtil
     {
 
         public static T DeSerialize<T>(string xml)

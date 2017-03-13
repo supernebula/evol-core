@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Evol.Utilities.Test.Extension
 {
-    [TestClass]
     public class RegexTest
     {
-        [TestMethod]
+        [Fact]
         public void NotEqualTest()
         {
             var source = "service";
@@ -16,7 +15,7 @@ namespace Evol.Utilities.Test.Extension
             var regex = new Regex(string.Format(@"^(?!{0}$)", str));
             var assert = regex.Match(source).Success;
             Trace.WriteLine("assert:" + assert);
-            Assert.IsTrue(assert == (source != str));
+            Assert.True(assert == (source != str));
         }
     }
 }

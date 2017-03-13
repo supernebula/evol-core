@@ -2,7 +2,7 @@
 
 namespace Evol.Util.Nature
 {
-    public class EarthUtility
+    public class EarthUtil
     {
         private static double Rad(double d)
         {

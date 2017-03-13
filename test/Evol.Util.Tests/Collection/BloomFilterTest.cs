@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Evol.Utilities.Collection;
+using Evol.Util.Collection;
+using Xunit;
 
 namespace Evol.Utilities.Test.Collection
 {
-    [TestClass]
     public class BloomFilterTest
     {
-        [TestMethod]
+        [Fact]
         public void TestMethod1()
         {
             var dateSize = 1000 * 1000;
@@ -31,7 +30,7 @@ namespace Evol.Utilities.Test.Collection
 
             list1.ForEach(l =>
             {
-                Assert.IsTrue(bloom.Contains(l), l + " 必须包含在集合中");
+                Assert.True(bloom.Contains(l), l + " 必须包含在集合中");
             });
 
             var falseNumber = 0;
@@ -40,7 +39,7 @@ namespace Evol.Utilities.Test.Collection
             {
                 if(bloom.Contains(l))
                     falseNumber++;
-                //Assert.IsFalse(bloom.Contains(l), l + " 并不包含在集合中");
+                Assert.False(bloom.Contains(l), l + " 并不包含在集合中");
             });
 
 

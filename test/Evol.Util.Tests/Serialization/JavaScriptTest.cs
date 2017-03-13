@@ -1,13 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using System.Collections.Generic;
 
 namespace Evol.Utilities.Test.Serialization
 {
-    [TestClass]
     public class JavaScriptTest
     {
-        [TestMethod]
+        [Fact]
         public void JavaScriptSerializerTest()
         {
             var dic = new Dictionary<string, string>() {
@@ -18,7 +17,7 @@ namespace Evol.Utilities.Test.Serialization
 
             dic = null;
 
-            var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(dic);
+           // var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(dic);
         }
     }
 }

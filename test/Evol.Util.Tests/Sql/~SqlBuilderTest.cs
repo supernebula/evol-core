@@ -1,13 +1,12 @@
-﻿using Evol.Utilities.Sql;
+﻿using Evol.Util.Sql;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Evol.Utilities.Test.Sql
 {
-    [TestClass]
     public class SqlBuilderTest
     {
-        [TestMethod]
+        [Fact]
         public void SimpleSqlTest()
         {
         //    var sqlWhereBuilder = SqlWhereBuilder.Create("Select * From Product")

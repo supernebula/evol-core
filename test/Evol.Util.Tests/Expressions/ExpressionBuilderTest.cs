@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Nebula.Utilities.Test.Expressions
 {
-    [TestClass]
+   
     public class ExpressionBuilderTest
     {
         public class Product
@@ -18,7 +18,7 @@ namespace Nebula.Utilities.Test.Expressions
             public DateTime CreateDate { get; set; }
         }
 
-        [TestMethod]
+        [Fact]
         public void DynamicExpressionTest()
         {
             var price1 = 1500.00;
@@ -33,7 +33,7 @@ namespace Nebula.Utilities.Test.Expressions
         }
 
 
-        [TestMethod]
+        [Fact]
         public void ExpressionTest()
         {
             Expression<Func<Product, bool>> query = p => p.Price > 1500;

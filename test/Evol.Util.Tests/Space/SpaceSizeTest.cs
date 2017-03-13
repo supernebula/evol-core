@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Evol.Utilities.Test.Space
 {
-    [TestClass]
     public class SpaceSizeTest
     {
-        [TestMethod]
+        [Fact]
         public void SizeOfTest()
         {
             Trace.WriteLine("byte sizeof:" + sizeof(byte));
@@ -24,7 +23,7 @@ namespace Evol.Utilities.Test.Space
             Trace.WriteLine("string str.GetHashCode():‘" + str.GetHashCode() + "’ sizeof:" + sizeof(int));
         }
 
-        [TestMethod]
+        [Fact]
         public void TestMethod1()
         {
             var length = 10000L * 10000L; // 一亿

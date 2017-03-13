@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Practices.Unity;
-using Evol.Common;
+using Evol.Util.Ioc;
 using Evol.Domain.Messaging;
 
 namespace Evol.Domain.Configuration

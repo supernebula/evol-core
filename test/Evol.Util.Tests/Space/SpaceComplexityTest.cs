@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Evol.Utilities.Test.Space
 {
-    [TestClass]
     public class SpaceComplexityTest
     {
-        [TestMethod]
+        [Fact]
         public void GuidAddListTest()
         {
             var count = 1000 * 10000;
@@ -40,7 +39,7 @@ namespace Evol.Utilities.Test.Space
         }
 
 
-        [TestMethod]
+        [Fact]
         public void StringIntAddListTest()
         {
             long gcTotalMemory1 = GC.GetTotalMemory(false);

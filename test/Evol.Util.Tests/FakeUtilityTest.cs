@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Evol.Common;
+using Evol.Util;
 
 namespace Evol.Utilities.Test
 {
-    [TestClass]
     public class FakeUtilityTest
     {
-        [TestMethod]
+        [Fact]
         public void CreatePersonNameTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -17,7 +17,7 @@ namespace Evol.Utilities.Test
             var names = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                var name = FakeUtility.CreatePersonName(GenderType.Female);
+                var name = FakeUtil.CreatePersonName(GenderType.Female);
                 names.Add(name);
             }
             sw.Stop();
@@ -28,7 +28,7 @@ namespace Evol.Utilities.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateEmailTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -36,7 +36,7 @@ namespace Evol.Utilities.Test
             var emails = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                var email = FakeUtility.CreateEmail();
+                var email = FakeUtil.CreateEmail();
                 emails.Add(email);
             }
             sw.Stop();
@@ -47,7 +47,7 @@ namespace Evol.Utilities.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateMobileTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -55,7 +55,7 @@ namespace Evol.Utilities.Test
             var result = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                var item = FakeUtility.CreateMobile();
+                var item = FakeUtil.CreateMobile();
                 result.Add(item);
             }
             sw.Stop();
@@ -66,7 +66,7 @@ namespace Evol.Utilities.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateUsernameTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -74,7 +74,7 @@ namespace Evol.Utilities.Test
             var result = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                var item = FakeUtility.CreateUsername();
+                var item = FakeUtil.CreateUsername();
                 result.Add(item);
             }
             sw.Stop();
@@ -85,7 +85,7 @@ namespace Evol.Utilities.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateGenderTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -93,7 +93,7 @@ namespace Evol.Utilities.Test
             var result = new List<GenderType>();
             for (int i = 0; i < 100; i++)
             {
-                var value = FakeUtility.CreateGender();
+                var value = FakeUtil.CreateGender();
                 result.Add(value);
             }
             sw.Stop();
@@ -104,7 +104,7 @@ namespace Evol.Utilities.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateBirthdayTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -112,7 +112,7 @@ namespace Evol.Utilities.Test
             var result = new List<DateTime>();
             for (int i = 0; i < 100; i++)
             {
-                var date = FakeUtility.CreateBirthday(1970);
+                var date = FakeUtil.CreateBirthday(1970);
                 result.Add(date);
             }
             sw.Stop();
@@ -124,7 +124,7 @@ namespace Evol.Utilities.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void CreatePersonHeightTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -132,7 +132,7 @@ namespace Evol.Utilities.Test
             var result = new List<float>();
             for (int i = 0; i < 100; i++)
             {
-                var value = FakeUtility.CreatePersonHeight();
+                var value = FakeUtil.CreatePersonHeight();
                 result.Add(value);
             }
             sw.Stop();
@@ -143,7 +143,7 @@ namespace Evol.Utilities.Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void RandomBoolTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -151,7 +151,7 @@ namespace Evol.Utilities.Test
             var result = new List<bool>();
             for (int i = 0; i < 100; i++)
             {
-                var value = FakeUtility.RandomBool();
+                var value = FakeUtil.RandomBool();
                 result.Add(value);
             }
             sw.Stop();
@@ -163,7 +163,7 @@ namespace Evol.Utilities.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void CreatePasswordTest()
         {
             Stopwatch sw = new Stopwatch();
@@ -171,7 +171,7 @@ namespace Evol.Utilities.Test
             var result = new List<string>();
             for (int i = 0; i < 100; i++)
             {
-                var value = FakeUtility.CreatePassword();
+                var value = FakeUtil.CreatePassword();
                 result.Add(value);
             }
             sw.Stop();
