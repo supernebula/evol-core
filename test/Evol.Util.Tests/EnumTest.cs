@@ -26,6 +26,18 @@ namespace Demo.Tests
         }
 
         [Fact]
+        public void EnumSpecifyLoopDescriptionTest()
+        {
+            string description = null;
+            TimeMonitor.WatchLoop("获取枚举描述", 100,
+                () => { description = EnumHelper.GetDescription(GenderType.Male); },
+                str => output.WriteLine(str)
+            );
+            output.WriteLine($"{GenderType.Male}：{description}");
+
+        }
+
+        [Fact]
         public void EnumAllDescriptionTest()
         {
             var valueDescriptionDic = EnumHelper.GetValueDescriptionDictionary<GenderType>();

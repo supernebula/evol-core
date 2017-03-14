@@ -36,6 +36,8 @@ namespace Evol.Util
             return valDesDic;
         }
 
+
+
         public static Dictionary<string, string> GetNameDescriptionDictionary<TEnum>() where TEnum : struct
         {
             var type = typeof(TEnum);
@@ -45,7 +47,7 @@ namespace Evol.Util
             foreach (var name in names)
             {
                 var field = fieldInfos.SingleOrDefault(e => e.Name == name);
-                var desAttr = field.GetCustomAttribute<DescriptionAttribute>(); ;
+                var desAttr = field.GetCustomAttribute<DescriptionAttribute>();
                 nameDesDic.Add(name, desAttr?.Description);
             }
             return nameDesDic;
