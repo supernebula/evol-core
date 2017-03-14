@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Evol.EntityFramework.Repository.Test.Core;
 using Evol.EntityFramework.Repository.Test.Repositories;
 using Evol.Test.Model;
-using Evol.Utilities;
+using Evol.Util;
 
 namespace Evol.EntityFramework.Repository.Test
 {

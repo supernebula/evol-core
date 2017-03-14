@@ -7,7 +7,7 @@ using Evol.Common;
 using Evol.MongoDB.Repository;
 using Evol.MongoDB.Test.Entities;
 using Evol.MongoDB.Test.Repository;
-using Evol.Utilities;
+using Evol.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MongoDB.Driver;
 

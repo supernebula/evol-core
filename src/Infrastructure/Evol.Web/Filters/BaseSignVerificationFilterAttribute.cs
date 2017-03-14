@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Evol.Utilities.Hash;
+using Evol.Util.Hash;
 
 namespace Evol.Web.Filters
 {

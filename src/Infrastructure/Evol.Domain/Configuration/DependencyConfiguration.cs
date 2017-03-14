@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Evol.Domain.Messaging;
-using Evol.Utilities;
+using Evol.Util;
 using Unity.Mvc5;
 
 namespace Evol.Domain.Configuration

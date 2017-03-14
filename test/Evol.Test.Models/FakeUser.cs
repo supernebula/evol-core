@@ -1,6 +1,6 @@
 ﻿using System;
 using Evol.Common;
-using Evol.Utilities;
+using Evol.Util;
 
 namespace Evol.Test.Model
 {

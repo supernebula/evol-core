@@ -1,5 +1,5 @@
 ﻿using System;
-using Evol.Utilities;
+using Evol.Util;
 using Evol.Common;
 
 namespace Evol.Test.Model
