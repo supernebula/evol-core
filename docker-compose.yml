@@ -13,3 +13,9 @@ services:
     build:
       context: ./src/Evol.Cinema.Website
       dockerfile: Dockerfile
+
+  demo.website:
+    image: demo.website
+    build:
+      context: ./src/Demo.Website
+      dockerfile: Dockerfile
