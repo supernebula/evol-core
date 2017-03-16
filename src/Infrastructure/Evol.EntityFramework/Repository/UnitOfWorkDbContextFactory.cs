@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.Practices.Unity;
+
 
 namespace Evol.EntityFramework.Repository
 {
     public class DefualtDbContextFactory : IDbContextFactory
     {
-        [Dependency]
-        public IActiveUnitOfWork UnitOfWork
+        //[Dependency]
+        public IEfActiveUnitOfWork UnitOfWork
         {
             get;
             set;

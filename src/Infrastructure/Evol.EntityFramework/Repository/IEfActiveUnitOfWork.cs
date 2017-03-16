@@ -2,7 +2,7 @@
 
 namespace Evol.EntityFramework.Repository
 {
-    public interface IActiveUnitOfWork
+    public interface IEfActiveUnitOfWork
     {
         Dictionary<string, NamedDbContext> ActiveDbContexts { get; }
 

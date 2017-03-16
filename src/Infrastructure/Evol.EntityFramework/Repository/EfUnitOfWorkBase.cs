@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using Microsoft.Practices.ObjectBuilder2;
-using Evol.Common.Repository;
 
 namespace Evol.EntityFramework.Repository
 {
-    public abstract class UnitOfWorkBase : IUnitOfWork, IActiveUnitOfWork
+    public abstract class EfUnitOfWorkBase : IEfUnitOfWork, IEfActiveUnitOfWork
     {
         public bool IsDisposed { get; protected set; }
 
@@ -18,7 +15,7 @@ namespace Evol.EntityFramework.Repository
 
         protected IUnitOfWorkOptions UnitOfWorkOptions { get; set; }
 
-        protected UnitOfWorkBase()
+        protected EfUnitOfWorkBase()
         {
             ActiveDbContexts = new Dictionary<string, NamedDbContext>();
             Transactions = new Dictionary<string, DbContextTransaction>();

@@ -82,7 +82,7 @@ namespace Evol.EntityFramework.Repository
         {
             var total = DbSet.Count();
             var queryable = DbSet.Skip(pageSize * (pageIndex - 1)).Take(pageSize).AsQueryable();
-            var result = new Paged<T>(queryable.ToList(), total, pageIndex, pageSize);
+            var result = new PagedList<T>(queryable.ToList(), total, pageIndex, pageSize);
             return result;
         }
 
@@ -90,7 +90,7 @@ namespace Evol.EntityFramework.Repository
         {
             var total = DbSet.Where(predicate).OrderBy(order).Count();
             var queryable = DbSet.Where(predicate).OrderBy(order).Skip(pageSize * (pageIndex - 1)).Take(pageSize).AsQueryable();
-            var result = new Paged<T>(queryable.ToList(), total, pageIndex, pageSize);
+            var result = new PagedList<T>(queryable.ToList(), total, pageIndex, pageSize);
             return result;
         }
 
