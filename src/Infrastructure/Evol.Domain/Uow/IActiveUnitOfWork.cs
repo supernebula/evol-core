@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Evol.Domain.Uow
 {
-    public interface IActiveUnitOfWork
+    public interface IActiveUnitOfWork : IOptionUnitOfWork
     {
-        UnitOfWorkOption Option { get; }
 
         void Commit();
 

@@ -4,10 +4,6 @@ using System.Text;
 
 namespace Evol.Domain.Uow
 {
-    public interface IUnitOfWork<DbContext>
-    {
-    }
-
 
     public interface IUnitOfWork : IActiveUnitOfWork, IUnitOfWorkToComplete
     {
