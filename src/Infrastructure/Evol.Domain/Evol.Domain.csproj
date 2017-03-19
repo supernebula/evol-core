@@ -8,8 +8,4 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Mock.NETStandard2\Mock.NETStandard2.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 
 namespace Evol.Domain.Uow
 {
-    public interface IActiveUnitOfWork
+    public interface IActiveUnitOfWork : IUnitOfWorkToComplete
     {
         UnitOfWorkOption Option { get; }
 
-        void Commit();
-
-        Task CommitAsync();
+        Task SaveChangesAsync();
 
         bool IsDisposed { get; }
     }

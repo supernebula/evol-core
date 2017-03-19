@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace Evol.Domain.Uow
 {
-    public interface IUnitOfWork<DbContext>
-    {
-    }
 
-
-    public interface IUnitOfWork : IActiveUnitOfWork, IUnitOfWorkToComplete
+    public interface IUnitOfWork : IActiveUnitOfWork
     {
         string Id { get; }
 

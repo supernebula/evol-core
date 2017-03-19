@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Evol.Domain.Uow
 {
@@ -9,14 +10,27 @@ namespace Evol.Domain.Uow
         public string Id { get; }
         public IUnitOfWork Outer { get; set; }
 
+        public UnitOfWorkOption Option { get; private set; }
+
+        public bool IsDisposed { get; private set; }
+
         public void Begin(UnitOfWorkOption option)
         {
-            throw new NotImplementedException();
+            Option = option;
         }
 
-        public UnitOfWorkBase()
+        public abstract Task SaveChangesAsync(); 
+
+
+        protected abstract Task CommitUowAsync();
+
+        public async Task CommitAsync()
         {
-
+            await CommitUowAsync();
         }
+
+        public abstract void Dispose();
+
+
     }
 }

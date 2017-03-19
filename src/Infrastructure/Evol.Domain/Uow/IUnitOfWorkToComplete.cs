@@ -5,8 +5,6 @@ namespace Evol.Domain.Uow
 {
     public interface IUnitOfWorkToComplete : IDisposable
     {
-        void Complete();
-
-        Task CompleteAsync();
+        Task CommitAsync();
     }
 }
