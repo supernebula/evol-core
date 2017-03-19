@@ -9,13 +9,6 @@ namespace Evol.Domain.Uow
 
         IUnitOfWorkToComplete Begin();
 
-        /// <summary>
-        /// TransactionScopeOption, Waiting for .NetCore 2.0
-        /// </summary>
-        /// <param name="scope"></param>
-        /// <returns></returns>
-        //IUnitOfWorkToComplete Begin(TransactionScopeOption scope);
-
 
         IUnitOfWorkToComplete Begin(UnitOfWorkOption option);
     }
