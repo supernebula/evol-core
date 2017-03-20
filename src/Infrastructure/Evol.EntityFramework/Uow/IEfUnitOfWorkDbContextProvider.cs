@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Evol.EntityFramework.Repository
 {
-    public interface IEfUnitOfWorkDbContextProvider
+    public interface IEfDbContextProvider
     {
         TDbContext Get<TDbContext>() where TDbContext : NamedDbContext;
     }

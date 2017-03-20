@@ -19,7 +19,7 @@ namespace Evol.EntityFramework.Repository
         private TDbContext _context;
 
         //[Dependency]
-        public IEfUnitOfWorkDbContextProvider DbContextProvider { get; set; }
+        public IEfDbContextProvider DbContextProvider { get; set; }
 
         private NamedDbContext Context
         {
@@ -37,7 +37,7 @@ namespace Evol.EntityFramework.Repository
         { 
         }
 
-        protected BasicEntityFrameworkRepository(IEfUnitOfWorkDbContextProvider dbContextProvider)
+        protected BasicEntityFrameworkRepository(IEfDbContextProvider dbContextProvider)
         {
             DbContextProvider = dbContextProvider;
         }
