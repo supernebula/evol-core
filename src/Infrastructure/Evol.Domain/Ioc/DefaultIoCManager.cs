@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Ioc
 {
     public class DefaultIoCManager : IIoCManager
     {
-        public IUnityContainer Container { get; }
+        public IServiceCollection ServiceCollection { get; }
 
-        public DefaultIoCManager(IUnityContainer container)
+        public DefaultIoCManager(IServiceCollection serviceCollection)
         {
-            Container = container;
+            ServiceCollection = serviceCollection;
         }
     }
 }

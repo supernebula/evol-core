@@ -28,7 +28,8 @@ namespace Evol.Domain.Modules
 
         public bool IsAppModule(Type type)
         {
-            return type.IsPublic && type.IsClass && typeof(AppModule).IsAssignableFrom(type);
+            var tInfo = type.GetTypeInfo();
+            return tInfo.IsPublic && tInfo.IsClass && (typeof(AppModule)).GetTypeInfo().IsAssignableFrom(type);
         }
 
         public List<Type> FindDependModuleTypes(Type moduleType)
@@ -39,9 +40,11 @@ namespace Evol.Domain.Modules
                 throw new ArgumentException($"参数{nameof(moduleType)}的类型{moduleType.FullName}不是{nameof(AppModule)}或其派生类");
 
             var list = new List<Type>();
-            if (!moduleType.IsDefined(typeof(DependOnAttribute), true))
+
+            var mtypeInfo = moduleType.GetTypeInfo();
+            if (!mtypeInfo.IsDefined(typeof(DependOnAttribute), true))
                 return list;
-            var attributes = moduleType.GetCustomAttributes(typeof(DependOnAttribute), true).Cast<DependOnAttribute>();
+            var attributes = mtypeInfo.GetCustomAttributes(typeof(DependOnAttribute), true).Cast<DependOnAttribute>();
 
             foreach (var attr in attributes)
             {
@@ -55,7 +58,7 @@ namespace Evol.Domain.Modules
             var moduleTypes = this.FindDependModuleTypes(typeof(T));
             foreach (var type in moduleTypes)
             {
-                var constructorInfo = type.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, CallingConventions.HasThis, new Type[] { }, null);
+                var constructorInfo = type.GetTypeInfo().GetConstructors(BindingFlags.Instance | BindingFlags.Public).FirstOrDefault();
                 var moduleObj = (AppModule)constructorInfo.Invoke(new object[] { });
                 moduleObj.Initailize();
             }

@@ -14,12 +14,6 @@ namespace Evol.EntityFramework.Uow
 
         public Dictionary<string, NamedDbContext> ActiveDbContexts { get; }
 
-        public EfUnitOfWork(UnitOfWorkOption option) : base(option)
-        {
-            ActiveDbContexts = new Dictionary<string, NamedDbContext>();
-            Transactions = new Dictionary<string, IDbContextTransaction>();
-        }
-
         private delegate void OnDbContextAdded(NamedDbContext context);
 
         private OnDbContextAdded _dbContextAddedEvent = null;

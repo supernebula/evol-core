@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web.Mvc;
-using Microsoft.Practices.Unity;
 using Evol.Domain.Commands;
 using Evol.Domain.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Messaging
 {
@@ -32,26 +28,15 @@ namespace Evol.Domain.Messaging
 
         public class DefaultCommandHandlerActivator : ICommandHandlerActivator
         {
-            //private readonly Func<IDependencyResolver> _resolverThunk;
-
             public DefaultCommandHandlerActivator()
             {
-                //_resolverThunk = () => AppConfiguration.Current.DependencyConfiguration.DependencyResolver;
             }
-
-            //public DefaultCommandHandlerActivator(IDependencyResolver resolver)
-            //{
-            //    if (resolver == null)
-            //        throw new ArgumentNullException(nameof(resolver));
-            //    _resolverThunk = () => resolver;
-            //}
 
             public ICommandHandler<T> Create<T>() where T : Command
             {
-                var result = AppConfiguration.Current.Container.Resolve<ICommandHandler<T>>();
-                //var result = (ICommandHandler<T>)_resolverThunk().GetService(typeof(ICommandHandler<T>));
+                var result = AppConfiguration.Current.Services.BuildServiceProvider().GetService<ICommandHandler<T>>();
                 if (result == null)
-                    throw new NullReferenceException("未找到实现该接口的类，检查是否依赖注册：" + nameof(ICommandHandler<T>));
+                    throw new NullReferenceException($"未找到实现该接口的类，检查是否依赖注册：{nameof(ICommandHandler<T>)}, 类型T定义:{typeof(T).FullName}");
                 return result;
             }
         }

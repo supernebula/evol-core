@@ -10,5 +10,7 @@ namespace Evol.Domain.Uow
         public TimeSpan? Timeout { get; set; }
 
         public IsolationLevel? IsolationLevel { get; set; }
+
+        //public System.Transactions.TransactionScopeOption TransactionScope { get; set; }
     }
 }

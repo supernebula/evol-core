@@ -47,7 +47,7 @@ namespace Evol.Domain.Uow
             var uow = NewUowThunk.Invoke();
 
 
-            uow.Completed += (sender, args) =>
+            uow.Committed += (sender, args) =>
             {
                 Current = null;
             };

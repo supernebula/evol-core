@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Practices.Unity;
 using Evol.Common;
 using Evol.Domain.Messaging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Configuration
 {
@@ -19,41 +19,46 @@ namespace Evol.Domain.Configuration
                 var types = new List<Type>();
                 assemblies.ToList().ForEach(a => types.AddRange(a.GetExportedTypes()));
                 var result = types
-                    .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)))
-                    .Select(t => new InterfaceImplPair { Interface = t.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)), Impl = t });
+                    .Where(t => t.GetTypeInfo().GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)))
+                    .Select(t => new InterfaceImplPair { Interface = t.GetTypeInfo().GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(ICommandHandler<>)), Impl = t });
                 return result.ToList();
             }
         }
 
 
         private readonly Func<IDependencyMapProvider> _eventHandlerTypeProviderThunk;
-        private readonly Func<IUnityContainer> _containerThunk;
+        private readonly Func<IServiceCollection> _containerThunk;
         private readonly Func<Assembly[]> _assembliesThunk;
-        public EventHandlerDependencyRegister(IUnityContainer unityContainer, IDependencyMapProvider commandHandlerTypeProvider, params Assembly[] assemblies)
+        public EventHandlerDependencyRegister(IServiceCollection container, IDependencyMapProvider commandHandlerTypeProvider, params Assembly[] assemblies)
         {
-            if (unityContainer != null)
-                _containerThunk = () => unityContainer;
+            if (container != null)
+                _containerThunk = () => container;
             if (commandHandlerTypeProvider != null)
                 _eventHandlerTypeProviderThunk = () => commandHandlerTypeProvider;
             _assembliesThunk = () => assemblies;
         }
 
-        public EventHandlerDependencyRegister(IUnityContainer unityContainer, params Assembly[] assemblies) : this(unityContainer, null, assemblies)
+        public EventHandlerDependencyRegister(IServiceCollection container, params Assembly[] assemblies) : this(container, null, assemblies)
         {
             _eventHandlerTypeProviderThunk = () => new DefaultEventHandlerTypeProvider();
         }
 
 
-        public void Register(LifetimeManager lifetimeManager = null)
+        public void Register()
         {
             var maps = _eventHandlerTypeProviderThunk().GetDependencyMap(_assembliesThunk()).ToList();
-            maps.ForEach(e => _containerThunk().RegisterType(e.Interface, e.Impl, lifetimeManager ?? new PerResolveLifetimeManager()));
+            maps.ForEach(e => _containerThunk().AddTransient(e.Interface, e.Impl));
         }
 
 
-        public void Register(Type from, Type to, LifetimeManager lifetimeManager = null)
+        public void Register(Type from, Type to, ServiceLifetime lifetime)
         {
-            _containerThunk().RegisterType(from, to, lifetimeManager ?? new PerResolveLifetimeManager());
+            if (lifetime == ServiceLifetime.Scoped)
+                _containerThunk().AddScoped(from, to);
+            else if (lifetime == ServiceLifetime.Singleton)
+                _containerThunk().AddSingleton(from, to);
+            else
+                _containerThunk().AddTransient(from, to);
         }
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Practices.Unity;
-using Evol.Util.Ioc;
 using Evol.Domain.Messaging;
+using Evol.Common;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Configuration
 {
@@ -20,52 +20,55 @@ namespace Evol.Domain.Configuration
                 var types = new List<Type>();
                 assemblies.ToList().ForEach(a => types.AddRange(a.GetExportedTypes()));
                 var result = types
-                    .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandBus)))
-                    .Select(t => new InterfaceImplPair { Interface = t.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(ICommandBus)), Impl = t });
+                    .Where(t => t.GetTypeInfo().GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommandBus)))
+                    .Select(t => new InterfaceImplPair { Interface = t.GetTypeInfo().GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(ICommandBus)), Impl = t });
                 return result.ToList();
             }
         }
 
         private readonly Func<IDependencyMapProvider> _commandBusTypeProviderThunk;
-        private readonly Func<IUnityContainer> _containerThunk;
+        private readonly Func<IServiceCollection> _containerThunk;
         private readonly Func<Assembly[]> _assembliesThunk;
 
-        public CommandBusDependencyRegister(IUnityContainer unityContainer, IDependencyMapProvider commandBusTypeProvider, params Assembly[] assemblies)
+        public CommandBusDependencyRegister(IServiceCollection container, IDependencyMapProvider commandBusTypeProvider, params Assembly[] assemblies)
         {
-            if (unityContainer != null)
-                _containerThunk = () => unityContainer;
+            if (container != null)
+                _containerThunk = () => container;
             if (_commandBusTypeProviderThunk != null)
                 _commandBusTypeProviderThunk = () => commandBusTypeProvider;
             if(assemblies != null)
                 _assembliesThunk = () => assemblies;
         }
 
-        public CommandBusDependencyRegister(IUnityContainer unityContainer, params Assembly[] assemblies) : this(unityContainer, null, assemblies)
+        public CommandBusDependencyRegister(IServiceCollection container, params Assembly[] assemblies) : this(container, null, assemblies)
         {
             _commandBusTypeProviderThunk = () => new DefaultCommandBusTypeProvider();
         }
 
-        public CommandBusDependencyRegister(IUnityContainer unityContainer)
+        public CommandBusDependencyRegister(IServiceCollection container)
         {
-            if (unityContainer != null)
-                _containerThunk = () => unityContainer;
+            if (container != null)
+                _containerThunk = () => container;
             _commandBusTypeProviderThunk = () => new DefaultCommandBusTypeProvider();
         }
 
-        public void Register(LifetimeManager lifetimeManager = null)
+        public void Register()
         {
             var commandBusMap = _commandBusTypeProviderThunk().GetDependencyMap(_assembliesThunk()).FirstOrDefault();
             if(commandBusMap == default(InterfaceImplPair))
                 throw new NotImplementedException("没有找到" + nameof(ICommandBus) + "的实现");
-            _containerThunk()
-                .RegisterType(commandBusMap.Interface, commandBusMap.Impl, lifetimeManager ?? new PerThreadLifetimeManager());
+            _containerThunk().AddScoped(commandBusMap.Interface, commandBusMap.Impl);  
         }
        
 
-        public void Register(Type from, Type to, LifetimeManager lifetimeManager = null)
+        public void Register(Type from, Type to, ServiceLifetime lifetime)
         {
-            _containerThunk()
-               .RegisterType(from, to, lifetimeManager ?? new PerThreadLifetimeManager());
+            if(lifetime == ServiceLifetime.Scoped)
+                _containerThunk().AddScoped(from, to);
+            else if(lifetime == ServiceLifetime.Singleton)
+                _containerThunk().AddSingleton(from, to);
+            else
+                _containerThunk().AddTransient(from, to);
         }
     }
 }

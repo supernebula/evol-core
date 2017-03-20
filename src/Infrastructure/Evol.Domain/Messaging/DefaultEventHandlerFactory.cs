@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using Microsoft.Practices.Unity;
 using Evol.Domain.Events;
 using Evol.Domain.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Messaging
 {
@@ -30,23 +29,13 @@ namespace Evol.Domain.Messaging
 
         public class DefaultEventHandlerActivator : IEventHandlerActivator
         {
-            //private readonly Func<IDependencyResolver> _resolverThunk;
-
-            //public DefaultEventHandlerActivator()
-            //{
-            //    _resolverThunk = () => AppConfiguration.Current.DependencyConfiguration.DependencyResolver;
-            //}
-
-            //public DefaultEventHandlerActivator(IDependencyResolver resolver)
-            //{
-            //    if (resolver == null)
-            //        throw new ArgumentNullException(nameof(resolver));
-            //    _resolverThunk = () => resolver;
-            //}
 
             public IEnumerable<IEventHandler<T>> Create<T>() where T : Event
             {
-                var result = AppConfiguration.Current.Container.ResolveAll<IEventHandler<T>>(new ResolverOverride[0]);
+
+                var result = AppConfiguration.Current.Services.BuildServiceProvider().GetServices<IEventHandler<T>>();
+                if (result == null)
+                    throw new NullReferenceException($"未找到实现该接口的类，检查是否依赖注册：{nameof(IEventHandler<T>)}, 类型T定义:{typeof(T).FullName}");
                 return result;
             }
         }

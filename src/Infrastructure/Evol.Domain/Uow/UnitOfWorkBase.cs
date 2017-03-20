@@ -18,17 +18,23 @@ namespace Evol.Domain.Uow
 
         public event EventHandler Disposed;
 
-        protected UnitOfWorkBase(UnitOfWorkOption option)
-        {
-            Option = option;
-        }
+        private bool _isBeginCalledBefore;
 
+        private bool _successed;
         protected abstract void BeginUow();
+
+        public void Begin(UnitOfWorkOption option)
+        {
+            if (_isBeginCalledBefore)
+                return;
+            Option = option;
+            BeginUow();
+            _isBeginCalledBefore = true;
+        }
 
         public void Begin()
         {
-            BeginUow();
-            _isBeginCalledBefore = true;
+            Begin(new UnitOfWorkOption());
         }
 
         public abstract Task SaveChangesAsync(); 
@@ -65,9 +71,7 @@ namespace Evol.Domain.Uow
             OnDisposed();
         }
 
-        private bool _isBeginCalledBefore;
 
-        private bool _successed;
 
         private Exception _exception;
 

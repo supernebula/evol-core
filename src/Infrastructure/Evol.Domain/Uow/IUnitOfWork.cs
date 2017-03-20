@@ -11,6 +11,8 @@ namespace Evol.Domain.Uow
 
         IUnitOfWork Outer { get; set; }
 
+        void Begin(UnitOfWorkOption option);
+
         void Begin();
 
 
