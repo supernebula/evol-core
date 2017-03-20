@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
 using System.Linq;
 using Evol.EntityFramework.Repository.Test.Core;
-using Evol.Test.Model;
+using Evol.Test.Models;
 
 namespace Evol.EntityFramework.Repository.Test.Repositories
 {

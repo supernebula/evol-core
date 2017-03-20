@@ -1,22 +1,20 @@
 ﻿using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Evol.Dapper.Repository.Test
 {
-    [TestClass]
     public class BatchQueryTest
     {
-        private DbContextFactory<FakeEcDbContext> _dbContextFactory;
+        private DbContextProvider<FakeEcDbContext> _dbContextProvider;
 
-        [TestInitialize()]
         public void MyTestInitialize()
         {
-            _dbContextFactory = new DbContextFactory<FakeEcDbContext>();
+            _dbContextProvider = new DbContextProvider<FakeEcDbContext>();
         }
-        [TestMethod]
+        [Fact]
         public void QueryLargeTest()
         {
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
             var result = fakeUserRepo.Take(1000000);

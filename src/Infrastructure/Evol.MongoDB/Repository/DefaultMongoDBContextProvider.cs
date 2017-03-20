@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Evol.MongoDB.Repository
 {
-    public class DefaultMongoDbContextFactory : IMongoDbContextFactory
+    public class DefaultMongoDbContextProvider : IMongoDbContextProvider
     {
         private readonly ConcurrentDictionary<Type, NamedMongoDbContext> _contextDic = new ConcurrentDictionary<Type, NamedMongoDbContext>();
 

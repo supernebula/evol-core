@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Evol.Test.Model;
+using Evol.Test.Models;
 
 namespace Evol.Dapper.Repository.Test
 {
     public class FakeUserRepository : BasicDapperRepository<FakeUser, FakeEcDbContext>
     {
-        public FakeUserRepository(IDbConnectionFactory<FakeEcDbContext> dbConnectionFactory) : base(dbConnectionFactory)
+        public FakeUserRepository(IDbConnectionProvider<FakeEcDbContext> dbConnectionProvider) : base(dbConnectionProvider)
         {
         }
 

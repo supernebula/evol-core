@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using Evol.EntityFramework.Repository.Test.Core;
 using Evol.EntityFramework.Repository.Test.Repositories;
-using Evol.Test.Model;
+using Evol.Test.Models;
 using Evol.Util;
 
 namespace Evol.EntityFramework.Repository.Test
@@ -13,14 +13,12 @@ namespace Evol.EntityFramework.Repository.Test
     /// <summary>
     /// ConcurrentTest 的摘要说明
     /// </summary>
-    [TestClass]
     public class BatchChangeTest
     {
 
-        private DefualtDbContextFactory _dbContextFactory;
+        private DefualtDbContextProvider _dbContextFactory;
 
-        [TestInitialize()]
-        public void MyTestInitialize()
+        public void BatchChangeTest()
         {
             _dbContextFactory = new DefualtDbContextFactory();
         }
@@ -31,7 +29,6 @@ namespace Evol.EntityFramework.Repository.Test
             
         }
 
-        [TestMethod]
         public void BatchInsertTest()
         {
             var total = 200;

@@ -2,7 +2,7 @@
 using Evol.Common;
 using Evol.Util;
 
-namespace Evol.Test.Model
+namespace Evol.Test.Models
 {
     public class FakeUser : BaseEntity
     {
@@ -24,16 +24,16 @@ namespace Evol.Test.Model
             return new FakeUser()
             {
                 Id = Guid.NewGuid(),
-                Username = FakeUtility.CreateUsername(6, 12),
-                Password = FakeUtility.CreatePassword(6),
-                RealName = FakeUtility.CreatePersonName(GenderType.None),
-                Gender = (GenderType)FakeUtility.RandomInt(0, 2),
-                Mobile = FakeUtility.CreateMobile(),
-                Email = FakeUtility.CreateEmail(),
+                Username = FakeUtil.CreateUsername(6, 12),
+                Password = FakeUtil.CreatePassword(6),
+                RealName = FakeUtil.CreatePersonName(GenderType.None),
+                Gender = (GenderType)FakeUtil.RandomInt(0, 2),
+                Mobile = FakeUtil.CreateMobile(),
+                Email = FakeUtil.CreateEmail(),
                 Address = "测试地址",
-                Points = FakeUtility.RandomInt(1, 200),
-                PersonHeight = FakeUtility.CreatePersonHeight(),
-                Birthday = FakeUtility.CreateBirthday(1980),
+                Points = FakeUtil.RandomInt(1, 200),
+                PersonHeight = FakeUtil.CreatePersonHeight(),
+                Birthday = FakeUtil.CreateBirthday(1980),
                 CreateTime = DateTime.Now
             };
         }

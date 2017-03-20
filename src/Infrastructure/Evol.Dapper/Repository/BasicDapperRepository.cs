@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.Practices.Unity;
 using Dapper;
 using Evol.Common;
 
@@ -12,20 +11,14 @@ namespace Evol.Dapper.Repository
     public class BasicDapperRepository<T, TDbContext> : IDisposable where TDbContext : DapperDbContext, new() where T : class, IPrimaryKey
     {
 
-
-        public BasicDapperRepository()
+        public BasicDapperRepository(IDbConnectionProvider<TDbContext> dbConnectionProvider)
         {
+            DbContextProvider = dbConnectionProvider;
         }
 
-        public BasicDapperRepository(IDbConnectionFactory<TDbContext> dbConnectionFactory)
-        {
-            DbContextFactory = dbConnectionFactory;
-        }
+        public IDbConnectionProvider<TDbContext> DbContextProvider { get; set; }
 
-        [Dependency]
-        public IDbConnectionFactory<TDbContext> DbContextFactory { get; set; }
-
-        public TDbContext DbContext => DbContextFactory.Create();
+        public TDbContext DbContext => DbContextProvider.Create();
 
         public IDbConnection DbConnection => DbContext.DbConnection;
 

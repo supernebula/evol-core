@@ -2,7 +2,7 @@
 using Evol.Util;
 using Evol.Common;
 
-namespace Evol.Test.Model
+namespace Evol.Test.Models
 {
     public class FakeOrder : BaseEntity
     {
@@ -24,10 +24,10 @@ namespace Evol.Test.Model
                 Id = Guid.NewGuid(),
                 UserId = Guid.NewGuid(),
                 ProductId = Guid.NewGuid(),
-                Recipient = FakeUtility.CreatePersonName(GenderType.None),
-                Amount = FakeUtility.RandomDouble(10, 1000),
+                Recipient = FakeUtil.CreatePersonName(GenderType.None),
+                Amount = FakeUtil.RandomDouble(10, 1000),
                 Address = "测试地址",
-                Number = FakeUtility.RandomInt(1, 10),
+                Number = FakeUtil.RandomInt(1, 10),
                 CreateTime = DateTime.Now
             };
         }

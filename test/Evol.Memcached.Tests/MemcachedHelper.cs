@@ -1,4 +1,4 @@
-﻿using Enyim.Caching;
+﻿using FakeUtilEnyim.Caching;
 using Enyim.Caching.Configuration;
 using Enyim.Caching.Memcached;
 

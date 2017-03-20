@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
 
 
 namespace Evol.Dapper.Repository
@@ -8,10 +7,11 @@ namespace Evol.Dapper.Repository
     public abstract class DapperDbContext
     {
 
+        //public IConfigurationRoot Configuration { get; }
         protected DapperDbContext(string connectionStringName)
         {
             ConnectionStringName = connectionStringName;
-            ConnectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+            //ConnectionString = Configuration.GetConnectionString(connectionStringName);
             DbConnection = new SqlConnection(ConnectionString);
         }
 

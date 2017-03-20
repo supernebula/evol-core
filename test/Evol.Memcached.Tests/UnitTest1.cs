@@ -10,10 +10,10 @@ namespace Evol.Cache.Test
 
         static MemcachedHelper()
         {
-            _client = new MemcachedClient(new MemcachedClientConfiguration()
-            {
-                /// init   paramd  
-            });
+            //_client = new MemcachedClient( new MemcachedClientConfiguration()
+            //{
+            //    /// init   paramd  
+            //});
         }
 
 

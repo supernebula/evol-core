@@ -1,7 +1,7 @@
 ﻿using System;
 using Evol.Common;
 
-namespace Evol.Test.Model
+namespace Evol.Test.Models
 { 
     public abstract class BaseEntity : IPrimaryKey, ISoftDelete
     {

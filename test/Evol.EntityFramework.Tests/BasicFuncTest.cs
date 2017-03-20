@@ -1,23 +1,24 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
+using Xunit.Abstractions;
 using Evol.EntityFramework.Repository.Test.Core;
 using Evol.EntityFramework.Repository.Test.Repositories;
-using Evol.Test.Model;
+using Evol.Test.Models;
+using System.ComponentModel;
 
 namespace Evol.EntityFramework.Repository.Test
 {
-    [TestClass]
+    
     public class BasicFuncTest
     {
         private static Guid _id;
 
-        [ClassInitialize]
-        public static void Init(TestContext context)
+        public BasicFuncTest()
         {
             _id = Guid.NewGuid();
         }
 
-        [TestMethod,Description("实体插入测试")]
+        [Fact,Description("实体插入测试")]
         public void InsertEntityTest()
         {
             var articleRepo = new FakeArticleOriginalEfRepository(new FakeEcDbContext());
@@ -36,16 +37,16 @@ namespace Evol.EntityFramework.Repository.Test
             articleRepo.Dispose();
         }
 
-        [TestMethod, Description("实体查找测试")]
+        [Fact, Description("实体查找测试")]
         public void FindEntityTest()
         {
             var articleRepo = new FakeArticleOriginalEfRepository(new FakeEcDbContext());
             var article = articleRepo.Find(_id);
             articleRepo.Dispose();
-            Assert.IsNotNull(article, "指定主键的记录不存在");
+            Assert.NotNull(article); //"指定主键的记录不存在"
         }
 
-        [TestMethod, Description("实体更新测试")]
+        [Fact, Description("实体更新测试")]
         public void UpdateEntityTest()
         {
             var articleRepo = new FakeArticleOriginalEfRepository(new FakeEcDbContext());
@@ -54,10 +55,10 @@ namespace Evol.EntityFramework.Repository.Test
             articleRepo.Update(article);
             var num = articleRepo.SaveChanges();
             articleRepo.Dispose();
-            Assert.IsTrue(num == 1, "更新失败，数量：" + num);
+            Assert.True(num == 1, "更新失败，数量：" + num);
         }
 
-        [TestMethod, Description("实体删除测试")]
+        [Fact, Description("实体删除测试")]
         public void DeleteEntityTest()
         {
             var articleRepo = new FakeArticleOriginalEfRepository(new FakeEcDbContext());
@@ -66,17 +67,17 @@ namespace Evol.EntityFramework.Repository.Test
             articleRepo.Delete(article);
             var num = articleRepo.SaveChanges();
             articleRepo.Dispose();
-            Assert.IsTrue(num == 1, "删除失败，数量：" + num);
+            Assert.True(num == 1, "删除失败，数量：" + num);
         }
 
 
-        [TestMethod, Description("实体查找测试")]
+        [Fact, Description("实体查找测试")]
         public void FindEntityTest2()
         {
             var articleRepo = new FakeArticleOriginalEfRepository(new FakeEcDbContext());
             var article = articleRepo.FindAsync(_id);
             articleRepo.Dispose();
-            Assert.IsNotNull(article, "指定主键的记录不存在");
+            Assert.NotNull(article);//"指定主键的记录不存在"
         }
     }
 }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Threading.Tasks;
 using Evol.Common;
-using Microsoft.Practices.Unity;
-using MongoDB.Driver.Linq;
+
 
 namespace Evol.MongoDB.Repository
 {
     public class BaseMongoDbRepository<T, TMongoDbContext> where TMongoDbContext : NamedMongoDbContext, new() where T : IEntity<string> 
     {
-        private NamedMongoDbContext MongoDbContext => MongoDbContextFactory.Get<TMongoDbContext>();
+        private NamedMongoDbContext MongoDbContext => MongoDbContextProvider.Get<TMongoDbContext>();
 
         protected IMongoDatabase Database => MongoDbContext.Database;
 
@@ -31,16 +31,13 @@ namespace Evol.MongoDB.Repository
             }
         }
 
-        [Dependency]
-        public IMongoDbContextFactory MongoDbContextFactory { get; set; }
 
-        protected BaseMongoDbRepository()
-        {
-        }
+        public IMongoDbContextProvider MongoDbContextProvider { get; set; }
 
-        protected BaseMongoDbRepository(IMongoDbContextFactory mongoDbContextFactory)
+
+        protected BaseMongoDbRepository(IMongoDbContextProvider mongoDbContextProvider)
         {
-            MongoDbContextFactory = mongoDbContextFactory;
+            MongoDbContextProvider = mongoDbContextProvider;
         }
 
         /// <summary>
@@ -190,7 +187,7 @@ namespace Evol.MongoDB.Repository
                 query = query.Skip((pageIndex - 1)*pageSize);
             var records = await query.Take(pageSize).ToListAsync();
 
-            var pagedList = new Paged<T>()
+            var pagedList = new PagedList<T>()
             {
                 PageTotal = pageTotal,
                 RecordTotal = recordTotal,
@@ -222,7 +219,7 @@ namespace Evol.MongoDB.Repository
                 fluent = fluent.Skip((pageIndex - 1) * pageSize);
             var records = await fluent.Limit(pageSize).ToListAsync();
 
-            var pagedList = new Paged<T>()
+            var pagedList = new PagedList<T>()
             {
                 PageTotal = (int)pageTotal,
                 RecordTotal = (int)recordTotal,

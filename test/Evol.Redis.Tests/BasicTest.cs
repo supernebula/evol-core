@@ -1,26 +1,25 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using StackExchange.Redis;
 using System.Diagnostics;
 
 namespace Evol.Redis.Test
 {
-    [TestClass]
     public class BasicTest
     {
-        [TestMethod]
+        [Fact]
         public void ConnectTest()
         {
             var redis = ConnectionMultiplexer.Connect("localhost");
-            Assert.IsTrue(redis.IsConnected);
+            Assert.True(redis.IsConnected);
             redis.Close();
         }
 
-        [TestMethod]
+        [Fact]
         public void DatabaseTest()
         {
             var redis = ConnectionMultiplexer.Connect("localhost");
-            Assert.IsTrue(redis.IsConnected);
+            Assert.True(redis.IsConnected);
 
             var db = redis.GetDatabase();
             var key = "key1";
@@ -30,16 +29,16 @@ namespace Evol.Redis.Test
            
             var success = db.StringSet(key, value);
             var value2 = db.StringGet(key);
-            Assert.IsTrue(value == value2);
+            Assert.True(value == value2);
 
             redis.Close();
         }
 
-        [TestMethod]
+        [Fact]
         public void DeleteTest()
         {
             var redis = ConnectionMultiplexer.Connect("localhost");
-            Assert.IsTrue(redis.IsConnected);
+            Assert.True(redis.IsConnected);
 
             var db = redis.GetDatabase();
 
@@ -49,11 +48,11 @@ namespace Evol.Redis.Test
             redis.Close();
         }
 
-        [TestMethod]
+        [Fact]
         public void BitSetTest()
         {
             var redis = ConnectionMultiplexer.Connect("localhost");
-            Assert.IsTrue(redis.IsConnected);
+            Assert.True(redis.IsConnected);
             var db = redis.GetDatabase();
             db.StringSetBit("bloom", 0, 1 == 1);
             db.StringSetBit("bloom", 1, 1 == 1);

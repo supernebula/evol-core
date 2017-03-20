@@ -1,5 +1,5 @@
 ﻿
-namespace Evol.Test.Model
+namespace Evol.Test.Models
 {
     public class FakeArticle : BaseEntity
     {

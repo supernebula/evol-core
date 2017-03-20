@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Evol.Test.Model
+namespace Evol.Test.Models
 {
     public class FakeProduct : BaseEntity
     {
@@ -33,13 +33,13 @@ namespace Evol.Test.Model
                 Id = Guid.NewGuid(),
                 Title = "商品" + Guid.NewGuid().GetHashCode(),
                 Description = string.Empty,
-                Price = FakeUtility.RandomDouble(1, 1000),
+                Price = FakeUtil.RandomDouble(1, 1000),
                 Picture = string.Empty,
                 SourceUri = string.Empty,
-                Follows = FakeUtility.RandomInt(1, 100),
+                Follows = FakeUtil.RandomInt(1, 100),
                 SourceSite = string.Empty,
-                Status = (ProductStatusType)FakeUtility.RandomInt(0, 3),
-                VisitTotal = FakeUtility.RandomInt(1, 10),
+                Status = (ProductStatusType)FakeUtil.RandomInt(0, 3),
+                VisitTotal = FakeUtil.RandomInt(1, 10),
                 CreateTime = DateTime.Now
             };
         }

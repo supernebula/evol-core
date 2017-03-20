@@ -1,7 +1,7 @@
 ﻿
 namespace Evol.Dapper.Repository
 {
-    public class DbContextFactory<TDbContext> : IDbConnectionFactory<TDbContext> where TDbContext : DapperDbContext, new()
+    public class DbContextProvider<TDbContext> : IDbConnectionProvider<TDbContext> where TDbContext : DapperDbContext, new()
     {
         private TDbContext _dbContext;
         public TDbContext Create()

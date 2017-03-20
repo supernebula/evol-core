@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Evol.Dapper.Repository.Test
 {
-    [TestClass]
+    
     public class BasicFuncTest
     {
-        [TestMethod]
+        [Fact]
         public void TestMethod1()
         {
         }
