@@ -11,6 +11,18 @@ namespace Evol.Domain.Uow
 
         Task SaveChangesAsync();
 
+
+        TDbContext GetDbContext<TDbContext>() where TDbContext : class;
+
+
+        void AddDbContext<TDbContext>(string name, TDbContext dbContext) where TDbContext : class;
+
         bool IsDisposed { get; }
+
+        event EventHandler Committed;
+
+        event EventHandler<UnitOfWorkFailedEventArgs> Failed;
+
+        event EventHandler Disposed;
     }
 }

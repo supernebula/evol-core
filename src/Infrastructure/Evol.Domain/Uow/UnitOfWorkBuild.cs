@@ -1,41 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace Evol.Domain.Uow
 {
     public class UnitOfWorkBuild
     {
-
-        private static IUnitOfWorkManager UowManager
+        public UnitOfWorkBuild(UnitOfWorkOption option)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            OptionArg = option;
         }
 
-        public static IOptionUnitOfWork Create()
+        public UnitOfWorkOption OptionArg { get; }
+
+        public Func<IUnitOfWorkManager> UnitOfWorkManagerThunk = () => { throw new NotImplementedException(); };
+
+        public static UnitOfWorkBuild UnitOfWork()
         {
-            UowManager
+            return new UnitOfWorkBuild(new UnitOfWorkOption());
         }
 
-        public static IOptionUnitOfWork Create(IsolationLevel isolationLevel)
+        public static UnitOfWorkBuild UnitOfWork(UnitOfWorkOption option)
         {
-
+            return new UnitOfWorkBuild(option);
         }
 
-
-        public static Task BeginAsync(Action action)
+        public async Task<TResult> RunAsync<TResult>(Func<TResult> func)
         {
+            var uow = UnitOfWorkManagerThunk.Invoke().Begin(OptionArg);
+            var result = func.Invoke();
+            await uow.CommitAsync();
+            return result;
+        }
+
+        public async Task RunAsync(Action action)
+        {
+            var uow = UnitOfWorkManagerThunk.Invoke().Begin(OptionArg);
             action.Invoke();
-        }
-
-        public static Task<TR> BeginAsyncc<TR>(Func<TR> func)
-        {
-            func.Invoke();
+            await uow.CommitAsync();
         }
     }
 }

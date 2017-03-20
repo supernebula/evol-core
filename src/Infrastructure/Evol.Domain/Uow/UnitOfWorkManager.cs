@@ -6,16 +6,65 @@ namespace Evol.Domain.Uow
 {
     public class UnitOfWorkManager : IUnitOfWorkManager
     {
-        public IActiveUnitOfWork Current { get; }
+        private Func<IUnitOfWork> NewUowThunk = () => { throw new NotImplementedException(); };
+        public UnitOfWorkManager()
+        {
+
+        }
+
+        private IUnitOfWork _current;
+
+
+        public IUnitOfWork Current
+        {
+            get
+            {
+                return _current;
+            }
+
+            set
+            {
+                if (_current != null)
+                {
+                    value.Outer = _current;
+                    _current = value;
+                }
+                else
+                {
+                    _current = _current.Outer;
+                }
+                    
+            }
+        }
 
         public IUnitOfWorkToComplete Begin()
         {
-            throw new NotImplementedException();
+            return Begin(new UnitOfWorkOption());
         }
 
         public IUnitOfWorkToComplete Begin(UnitOfWorkOption option)
         {
-            throw new NotImplementedException();
+            var uow = NewUowThunk.Invoke();
+
+
+            uow.Completed += (sender, args) =>
+            {
+                Current = null;
+            };
+
+            uow.Failed += (sender, args) =>
+            {
+                Current = null;
+            };
+
+            uow.Disposed += (sender, args) =>
+            {
+                //Release the objects in the IOC container
+            };
+
+            uow.Begin(option);
+            return uow;
         }
+
     }
 }

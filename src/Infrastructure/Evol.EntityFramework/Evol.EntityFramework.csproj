@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Evol.Common\Evol.Common.csproj" />
+    <ProjectReference Include="..\Evol.Domain\Evol.Domain.csproj" />
   </ItemGroup>
 
 </Project>

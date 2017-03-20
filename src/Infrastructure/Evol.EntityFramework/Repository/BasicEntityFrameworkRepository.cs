@@ -19,13 +19,13 @@ namespace Evol.EntityFramework.Repository
         private TDbContext _context;
 
         //[Dependency]
-        public IDbContextFactory DbContextFactory { get; set; }
+        public IEfUnitOfWorkDbContextProvider DbContextProvider { get; set; }
 
         private NamedDbContext Context
         {
             get
             {
-                return _context = _context ?? DbContextFactory.Create<TDbContext>();
+                return _context = _context ?? DbContextProvider.Get<TDbContext>();
             }
         }
 
@@ -37,9 +37,9 @@ namespace Evol.EntityFramework.Repository
         { 
         }
 
-        protected BasicEntityFrameworkRepository(IDbContextFactory dbContextFactory)
+        protected BasicEntityFrameworkRepository(IEfUnitOfWorkDbContextProvider dbContextProvider)
         {
-            DbContextFactory = dbContextFactory;
+            DbContextProvider = dbContextProvider;
         }
 
         public void Insert(T item)

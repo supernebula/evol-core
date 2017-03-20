@@ -4,7 +4,7 @@ namespace Evol.Domain.Uow
     public interface IUnitOfWorkManager
     {
 
-        IActiveUnitOfWork Current { get; }
+        IUnitOfWork Current { get; }
 
 
         IUnitOfWorkToComplete Begin();

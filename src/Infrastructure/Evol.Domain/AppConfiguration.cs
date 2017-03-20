@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Practices.Unity;
 using Evol.Domain.Ioc;
 using Evol.Domain.Modules;
 

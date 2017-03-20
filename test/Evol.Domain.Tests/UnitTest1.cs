@@ -21,7 +21,7 @@ namespace Evol.Domain.Tests
         [Fact]
         public async void UowBuildTest()
         {
-            await UnitOfWorkBuild.UseOption().RunAsync(async () =>
+            await UnitOfWorkBuild.UnitOfWork().RunAsync(async () =>
             {
                 await Task.FromResult(0);
             });
