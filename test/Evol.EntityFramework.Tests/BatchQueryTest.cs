@@ -1,25 +1,24 @@
 ﻿using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Evol.EntityFramework.Repository.Test.Core;
 using Evol.EntityFramework.Repository.Test.Repositories;
+using Evol.EntityFramework.Tests;
+using Xunit;
 
 namespace Evol.EntityFramework.Repository.Test
 {
-    [TestClass]
     public class BatchQueryTest
     {
-        private DefualtDbContextFactory _dbContextFactory;
+        private IEfDbContextProvider _dbContextProvider;
 
-        [TestInitialize()]
-        public void MyTestInitialize()
+        public BatchQueryTest()
         {
-            _dbContextFactory = new DefualtDbContextFactory();
+            _dbContextProvider = new SingleEfDbContextProvider();
         }
         //[TestMethod]
         public void QueryLargeTest()
         {
-            var context = _dbContextFactory.Create<FakeEcDbContext>();
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var context = _dbContextProvider.Get<FakeEcDbContext>();
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
             var result = fakeUserRepo.Take(1000000);
@@ -29,11 +28,11 @@ namespace Evol.EntityFramework.Repository.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void SqlQueryLargeTest()
         {
-            var context = _dbContextFactory.Create<FakeEcDbContext>();
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var context = _dbContextProvider.Get<FakeEcDbContext>();
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
             var result = fakeUserRepo.TakeByDbSql(1000000);

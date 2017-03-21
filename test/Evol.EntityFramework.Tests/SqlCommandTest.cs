@@ -3,50 +3,49 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
 using Evol.EntityFramework.Repository.Test.Core;
-using Evol.Test.Model;
-using Evol.Utilities.Sql;
+using Evol.Test.Models;
+using Evol.Util.Sql;
 
 namespace Evol.EntityFramework.Repository.Test
 {
-    [TestClass]
     public class SqlCommandTest
     {
-        [TestMethod]
+        [Fact]
         public void SqlQueryEntitiesTest()
         {
             using (var context = new FakeEcDbContext())
             {
-                var users = context.Set<FakeUser>().SqlQuery("SELECT * TOP 10 FROM [FakeUser]").ToList();
-                var users2 = context.Set<FakeUser>().SqlQuery("SELECT * TOP 10 FROM [FakeUser] WHERE [Username] = @username", new SqlParameter("@username", "zhangsan")).ToList();
+                var users = context.Set<FakeUser>().FromSql("SELECT * TOP 10 FROM [FakeUser]").ToList();
+                var users2 = context.Set<FakeUser>().FromSql("SELECT * TOP 10 FROM [FakeUser] WHERE [Username] = @username", new SqlParameter("@username", "zhangsan")).ToList();
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void StoredProceduleTest()
         {
             using (var context = new FakeEcDbContext())
             {
-                var users = context.Set<FakeUser>().SqlQuery("dbo.GetUsers").ToList();
+                var users = context.Set<FakeUser>().FromSql("dbo.GetUsers").ToList();
                 var userId = 1;
                 //带参数的存储过程
-                var users2 = context.Set<FakeUser>().SqlQuery("dbo.GetUsers @p0", userId).ToList();
+                var users2 = context.Set<FakeUser>().FromSql("dbo.GetUsers @p0", userId).ToList();
             }
         }
 
-        [TestMethod]
+        [Obsolete("未实现。。。")]
         public void SqlQueriesForNoEntityTypeTest()
         {
             using (var context = new FakeEcDbContext())
             {
-                var users =
-                    context.Database.SqlQuery<string>("SELECT [Name] FROM [FakeUser] WHERE [Id] = @id",
-                        new SqlParameter("@id", 1)).FirstOrDefault();
+                //var users = context.Database.FromSql<string>("SELECT [Name] FROM [FakeUser] WHERE [Id] = @id",new SqlParameter("@id", 1)).FirstOrDefault();
+                throw new NotImplementedException();
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void SqlCommandInsertTest()
         {
             using (var context = new FakeEcDbContext())
@@ -66,7 +65,7 @@ namespace Evol.EntityFramework.Repository.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void SqlCommandQueryTest()
         {
             using (var context = new FakeEcDbContext())
@@ -86,31 +85,29 @@ namespace Evol.EntityFramework.Repository.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void SqlCommandConditionQueryTest()
         {
             var result = QueryMethod(Guid.NewGuid(), "zhangsan", "张三", "13422221111", 10, 99, DateTime.Now);
         }
 
-
+        [Obsolete("未实现。。。")]
         private List<FakeUser> QueryMethod(Guid? id, string username, string name, string mobile, int minPoints, int maxPoints, DateTime maxCreateDate)
         {
-            var sqlWhere = SqlWhereBuilder.Create()
-                .And("[Id] = {0}", "@id", id)
-                .AndSub(e => e.And("[Username] = {0}", "@username", username).Or("[Name] = {0}", "@name", name))
-                .And("[Mobile] = {0}", "@mobile", mobile)
-                .AndBetween("[Points] NOT BETWEEN {0} AND {1}", "@minPoints", minPoints, "@maxPoints", maxPoints)
-                .AndSub(e => e.And("[Points] >= {0}", "@minPoints", minPoints).And("[Points] <= {0}", "@maxPoints", maxPoints))
-                .And("[CreateDate] <= @maxCreateDate", "@maxCreateDate", maxCreateDate);
+            throw new NotImplementedException();
 
-            var sql = "SELECT * FROM [FakeUser] " + sqlWhere.ToWhereString();
-            Trace.WriteLine(sql);
+            //var sqlWhere = SqlWhereBuilder.Create()
+            //    .And("[Id] = {0}", "@id", id)
+            //    .AndSub(e => e.And("[Username] = {0}", "@username", username).Or("[Name] = {0}", "@name", name))
+            //    .And("[Mobile] = {0}", "@mobile", mobile)
+            //    .AndBetween("[Points] NOT BETWEEN {0} AND {1}", "@minPoints", minPoints, "@maxPoints", maxPoints)
+            //    .AndSub(e => e.And("[Points] >= {0}", "@minPoints", minPoints).And("[Points] <= {0}", "@maxPoints", maxPoints))
+            //    .And("[CreateDate] <= @maxCreateDate", "@maxCreateDate", maxCreateDate);
+
+            //var sql = "SELECT * FROM [FakeUser] " + sqlWhere.ToWhereString();
+            //Trace.WriteLine(sql);
             return null;
-            //using (var context = new FakeEcDbContext())
-            //{
-            //    var users = context.Database.SqlQuery<FakeUser>(sql, sqlWhere.ToSqlParameters()).ToList();
-            //    return users;
-            //}
+
         }
     }
 }

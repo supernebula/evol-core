@@ -1,11 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace Evol.EntityFramework.Repository.Test
 {
-    [TestClass]
     public class TransactionTest
     {
-        [TestMethod]
         public void TestMethod1()
         {
         }

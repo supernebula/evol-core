@@ -1,51 +1,51 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Evol.Common.Repository;
+using Xunit;
+using Evol.EntityFramework.Uow;
 using Evol.Domain.Data;
 using Evol.EntityFramework.Repository.Test.Repositories;
-using Evol.Test.Model;
+using Evol.Test.Models;
+using System.ComponentModel;
+using Evol.Domain.Uow;
+using Evol.EntityFramework.Tests;
 
 namespace Evol.EntityFramework.Repository.Test
 {
     /// <summary>
     /// UnitOfWorkTest 的摘要说明
     /// </summary>
-    [TestClass]
     public class UnitOfWorkTest
     {
         public IUnitOfWork UnitOfWorkObj;
 
         [ThreadStatic]
-        private static IDbContextFactory _dbContextFactory;
+        private static IEfDbContextProvider _dbContextProvider;
 
-        [TestInitialize]
-        public void Init()
+        public UnitOfWorkTest()
         {
-            _dbContextFactory = new DefualtDbContextFactory();
+            _dbContextProvider = new EfUnitOfWorkDbContextProvider(new EfUnitOfWork());
         }
 
-        [TestMethod,Description("EntityFramework工作单元依赖于事务，关键在于：针对数据库的多个更新统一提交，使用同一个DbContext")]
+        [Fact,Description("EntityFramework工作单元依赖于事务，关键在于：针对数据库的多个更新统一提交，使用同一个DbContext")]
         public void MuiltChangeTest()
         {
             var unitOfWorkObj = new EfUnitOfWork();//{ DbContextFactory = _dbContextFactory };
 
-            var unitOfWorkDbContextFactory = new DefualtDbContextFactory() { UnitOfWork = unitOfWorkObj };
-            var orderRepo = new FakeOrderRepository()  {  DbContextFactory = unitOfWorkDbContextFactory };
-            var productRepo = new FakeProductRepository() { DbContextFactory = unitOfWorkDbContextFactory };
-            var userRepo = new FakeUserRepository() { DbContextFactory = unitOfWorkDbContextFactory }; 
+            var uoWdbContextProvider = new EfUnitOfWorkDbContextProvider(unitOfWorkObj);
+            var orderRepo = new FakeOrderRepository()  {  DbContextProvider = uoWdbContextProvider };
+            var productRepo = new FakeProductRepository() { DbContextProvider = uoWdbContextProvider };
+            var userRepo = new FakeUserRepository() { DbContextProvider = uoWdbContextProvider }; 
 
-            unitOfWorkObj.BeginTransaction(new UnitOfWorkOptions());
+            unitOfWorkObj.Begin(new UnitOfWorkOption());
             try
             {
                 //orderRepo.Insert(FakeOrder.Fake());
                 productRepo.Insert(FakeProduct.Fake());
                 userRepo.Insert(FakeUser.Fake());
-                unitOfWorkObj.Commit();
+                unitOfWorkObj.CommitAsync().GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {
-                unitOfWorkObj.RollBack();
-                Assert.Fail("发生异常：" + ex.Message);
+                //Assert.F("发生异常：" + ex.Message);
             }
             finally
             {
