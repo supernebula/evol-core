@@ -56,24 +56,6 @@ namespace Evol.EntityFramework.Repository.Test
 
         #region template
 
-        private TestContext _testContextInstance;
-
-        /// <summary>
-        ///获取或设置测试上下文，该上下文提供
-        ///有关当前测试运行及其功能的信息。
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return _testContextInstance;
-            }
-            set
-            {
-                _testContextInstance = value;
-            }
-        }
-
         #region 附加测试特性
         //
         // 编写测试时，可以使用以下附加特性: 

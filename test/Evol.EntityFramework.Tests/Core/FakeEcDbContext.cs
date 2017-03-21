@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿
 using System.Reflection;
 using Evol.EntityFramework.Repository.Test.Migrations;
 using Evol.EntityFramework.Repository;
