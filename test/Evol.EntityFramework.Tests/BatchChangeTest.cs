@@ -7,6 +7,7 @@ using Evol.EntityFramework.Repository.Test.Core;
 using Evol.EntityFramework.Repository.Test.Repositories;
 using Evol.Test.Models;
 using Evol.Util;
+using Evol.EntityFramework.Tests;
 
 namespace Evol.EntityFramework.Repository.Test
 {
@@ -16,11 +17,11 @@ namespace Evol.EntityFramework.Repository.Test
     public class BatchChangeTest
     {
 
-        private DefualtDbContextProvider _dbContextFactory;
+        private IEfDbContextProvider _dbContextProvider;
 
-        public void BatchChangeTest()
+        public BatchChangeTest()
         {
-            _dbContextFactory = new DefualtDbContextFactory();
+            _dbContextProvider = new SingleEfDbContextProvider();
         }
 
         public void MyTestCleanup()
@@ -32,8 +33,8 @@ namespace Evol.EntityFramework.Repository.Test
         public void BatchInsertTest()
         {
             var total = 200;
-            var context = _dbContextFactory.Create<FakeEcDbContext>();
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var context = _dbContextProvider.Get<FakeEcDbContext>();
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
 
@@ -50,12 +51,12 @@ namespace Evol.EntityFramework.Repository.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void SqlBatchInsertTest()
         {
             var total = 200;
-            var context = _dbContextFactory.Create<FakeEcDbContext>();
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var context = _dbContextProvider.Get<FakeEcDbContext>();
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
 
@@ -72,11 +73,11 @@ namespace Evol.EntityFramework.Repository.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void InsertOneTest()
         {
-            var context = _dbContextFactory.Create<FakeEcDbContext>();
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var context = _dbContextProvider.Get<FakeEcDbContext>();
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
 
@@ -88,11 +89,11 @@ namespace Evol.EntityFramework.Repository.Test
             context.Dispose();
         }
 
-        [TestMethod]
+        [Fact]
         public void SqlInsertOneTest()
         {
-            var context = _dbContextFactory.Create<FakeEcDbContext>();
-            var fakeUserRepo = new FakeUserRepository(_dbContextFactory);
+            var context = _dbContextProvider.Get<FakeEcDbContext>();
+            var fakeUserRepo = new FakeUserRepository(_dbContextProvider);
             var sw = new Stopwatch();
             sw.Start();
 
@@ -112,19 +113,19 @@ namespace Evol.EntityFramework.Repository.Test
                 return list;
             for (int i = 0; i < total; i++)
             {
-                var gender = FakeUtility.CreateGender();
+                var gender = FakeUtil.CreateGender();
                 var fakeUser = new FakeUser()
                 {
-                    Id = FakeUtility.CreateGuid(),
-                    RealName = FakeUtility.CreatePersonName(gender),
-                    Username = FakeUtility.CreateUsername(),
-                    Password = FakeUtility.CreatePassword(),
+                    Id = FakeUtil.CreateGuid(),
+                    RealName = FakeUtil.CreatePersonName(gender),
+                    Username = FakeUtil.CreateUsername(),
+                    Password = FakeUtil.CreatePassword(),
                     Address = "XXXX路yy号",
-                    Mobile = FakeUtility.CreateMobile(),
-                    Email = FakeUtility.CreateEmail(),
-                    Points = FakeUtility.RandomInt(0, 100),
-                    Birthday = FakeUtility.CreateBirthday(),
-                    PersonHeight = FakeUtility.CreatePersonHeight(),
+                    Mobile = FakeUtil.CreateMobile(),
+                    Email = FakeUtil.CreateEmail(),
+                    Points = FakeUtil.RandomInt(0, 100),
+                    Birthday = FakeUtil.CreateBirthday(),
+                    PersonHeight = FakeUtil.CreatePersonHeight(),
                     CreateTime = DateTime.Now
                 };
 
@@ -136,19 +137,19 @@ namespace Evol.EntityFramework.Repository.Test
 
         private FakeUser CreateOneUser()
         {
-            var gender = FakeUtility.CreateGender();
+            var gender = FakeUtil.CreateGender();
             var fakeUser = new FakeUser()
             {
-                Id = FakeUtility.CreateGuid(),
-                RealName = FakeUtility.CreatePersonName(gender),
-                Username = FakeUtility.CreateUsername(),
-                Password = FakeUtility.CreatePassword(),
+                Id = FakeUtil.CreateGuid(),
+                RealName = FakeUtil.CreatePersonName(gender),
+                Username = FakeUtil.CreateUsername(),
+                Password = FakeUtil.CreatePassword(),
                 Address = "XXXX路yy号",
-                Mobile = FakeUtility.CreateMobile(),
-                Email = FakeUtility.CreateEmail(),
-                Points = FakeUtility.RandomInt(0, 100),
-                Birthday = FakeUtility.CreateBirthday(),
-                PersonHeight = FakeUtility.CreatePersonHeight(),
+                Mobile = FakeUtil.CreateMobile(),
+                Email = FakeUtil.CreateEmail(),
+                Points = FakeUtil.RandomInt(0, 100),
+                Birthday = FakeUtil.CreateBirthday(),
+                PersonHeight = FakeUtil.CreatePersonHeight(),
                 CreateTime = DateTime.Now
             };
             return fakeUser;

@@ -2,6 +2,9 @@
 using System.Linq;
 using Evol.EntityFramework.Repository.Test.Core;
 using Evol.Test.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
+using System;
 
 namespace Evol.EntityFramework.Repository.Test.Repositories
 {
@@ -11,7 +14,7 @@ namespace Evol.EntityFramework.Repository.Test.Repositories
         {
         }
 
-        public FakeUserRepository(IDbContextFactory dbContextFactory) : base(dbContextFactory)
+        public FakeUserRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
         { }
         
 
@@ -45,6 +48,7 @@ namespace Evol.EntityFramework.Repository.Test.Repositories
                            ,@Birthday
                            ,@MarkDelete
                            ,@CreateDate)";
+
             return Database.ExecuteSqlCommand(sql, new SqlParameter("@Id", item.Id)
                 , new SqlParameter("@Username", item.Username)
                 , new SqlParameter("@Password", item.Password)
@@ -68,6 +72,7 @@ namespace Evol.EntityFramework.Repository.Test.Repositories
             return DbSet.Take(1000000).ToList();
         }
 
+        [Obsolete("未实现。。")]
         public List<FakeUser> TakeByDbSql(int num = 0)
         {
             string sql = null;
@@ -75,7 +80,9 @@ namespace Evol.EntityFramework.Repository.Test.Repositories
                 sql = "SELECT * FROM [FakeUser]";
             else
                 sql = "SELECT TOP " + num + " * FROM [FakeUser]";
-            return Database.SqlQuery<FakeUser>(sql).ToList();
+            throw new NotImplementedException();
+            //https://github.com/aspnet/EntityFramework/issues/1862
+            //return Database.ExecuteSqlQueryAsync<FakeUser>(sql).ToList();
         }
     }
 }
