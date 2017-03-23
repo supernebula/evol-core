@@ -1,8 +1,6 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Evol.EntityFramework.Repository.Test.Migrations;
-using Evol.EntityFramework.Repository;
 
 namespace Evol.EntityFramework.Repository.Test.Core
 {
@@ -20,7 +18,7 @@ namespace Evol.EntityFramework.Repository.Test.Core
             Configuration.LazyLoadingEnabled = false;
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //方法一
             //modelBuilder.Configurations.Add(new FakeProductMap());
