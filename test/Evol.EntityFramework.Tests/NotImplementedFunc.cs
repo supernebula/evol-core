@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.ComponentModel;
 
 namespace Evol.EntityFramework.Repository.Test
 {
