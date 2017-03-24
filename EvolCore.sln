@@ -70,6 +70,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Domain.Tests", "test\Evol.Domain.Tests\Evol.Domain.Tests.csproj", "{F30AB82A-ED53-486B-B856-403331E795E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Cinema.Website", "src\Evol.Cinema.Website\Evol.Cinema.Website.csproj", "{28DF4E90-ADE1-4CAB-94D3-05089E6704AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +178,10 @@ Global
 		{F30AB82A-ED53-486B-B856-403331E795E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F30AB82A-ED53-486B-B856-403331E795E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F30AB82A-ED53-486B-B856-403331E795E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28DF4E90-ADE1-4CAB-94D3-05089E6704AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28DF4E90-ADE1-4CAB-94D3-05089E6704AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28DF4E90-ADE1-4CAB-94D3-05089E6704AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28DF4E90-ADE1-4CAB-94D3-05089E6704AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,5 +214,6 @@ Global
 		{3B174BC7-9DFB-41C2-A50D-512F1EF61E34} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
 		{DC97D607-3292-4313-8CED-8AA0B19FF382} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
 		{F30AB82A-ED53-486B-B856-403331E795E8} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
+		{28DF4E90-ADE1-4CAB-94D3-05089E6704AC} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 	EndGlobalSection
 EndGlobal
