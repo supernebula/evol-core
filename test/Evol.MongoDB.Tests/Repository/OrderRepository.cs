@@ -10,11 +10,11 @@ namespace Evol.MongoDB.Test.Repository
 {
     public class OrderRepository : BaseMongoDbRepository<Order, TestMongoContext>
     {
-        public OrderRepository()
+        public OrderRepository() : this(null)
         {
         }
 
-        public OrderRepository(IMongoDbContextFactory mongoDbContextFactory) : base(mongoDbContextFactory)
+        public OrderRepository(IMongoDbContextProvider mongoDbContextProvider) : base(mongoDbContextProvider)
         {
         }
     }

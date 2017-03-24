@@ -1,6 +1,7 @@
-﻿using FakeUtilEnyim.Caching;
-using Enyim.Caching.Configuration;
+﻿using Enyim.Caching.Configuration;
 using Enyim.Caching.Memcached;
+using Enyim.Caching;
+using Microsoft.Extensions.Logging;
 
 namespace Evol.Cache.Test
 {
@@ -10,10 +11,12 @@ namespace Evol.Cache.Test
 
         static MemcachedHelper2()
         {
-            _client = new MemcachedClient(new MemcachedClientConfiguration()
-            {
-                /// init   paramd  
-            });
+            ILogger<MemcachedClient> logger = null;
+
+            //_client = new MemcachedClient(logger, new MemcachedClientConfiguration()
+            //{
+            //    /// init   paramd  
+            //});
         }
 
 

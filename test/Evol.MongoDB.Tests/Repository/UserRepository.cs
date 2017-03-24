@@ -11,11 +11,11 @@ namespace Evol.MongoDB.Test.Repository
 
     public class UserRepository : BaseMongoDbRepository<User, TestMongoContext>
     {
-        public UserRepository()
+        public UserRepository() : this(null)
         {
         }
 
-        public UserRepository(IMongoDbContextFactory mongoDbContextFactory) : base(mongoDbContextFactory)
+        public UserRepository(IMongoDbContextProvider mongoDbContextProvider) : base(mongoDbContextProvider)
         {
         }
     }

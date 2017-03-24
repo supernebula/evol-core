@@ -8,21 +8,19 @@ using Evol.MongoDB.Repository;
 using Evol.MongoDB.Test.Entities;
 using Evol.MongoDB.Test.Repository;
 using Evol.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using MongoDB.Driver;
+using System.ComponentModel;
 
 namespace Evol.MongoDB.Test
 {
-    [TestClass]
     public class FunctionTest
     {
         private static UserRepository _userRepository;
 
-        [ClassInitialize]
-        public static void ClassInit(TestContext context)
+        public FunctionTest()
         {
-
-            _userRepository = new UserRepository(new DefaultMongoDbContextFactory());
+            _userRepository = new UserRepository(new DefaultMongoDbContextProvider());
             InitClear();
             InitData();
         }
@@ -38,20 +36,20 @@ namespace Evol.MongoDB.Test
         {
             for (int i = 0; i < 50; i++)
             {
-                var gender = FakeUtility.CreateGender();
+                var gender = FakeUtil.CreateGender();
                 var item = new User()
                 {
-                    Username = FakeUtility.CreateUsername(5, 10),
-                    Password = FakeUtility.CreatePassword(),
-                    Email = FakeUtility.CreateEmail(),
-                    Name = FakeUtility.CreatePersonName(gender),
+                    Username = FakeUtil.CreateUsername(5, 10),
+                    Password = FakeUtil.CreatePassword(),
+                    Email = FakeUtil.CreateEmail(),
+                    Name = FakeUtil.CreatePersonName(gender),
                     Gender = gender,
-                    Age = FakeUtility.RandomInt(18, 50),
+                    Age = FakeUtil.RandomInt(18, 50),
                     CreateTime = DateTime.Now
                 };
 
                 _userRepository.AddAsync(item).GetAwaiter().GetResult();
-                Assert.IsTrue(true);
+                Assert.True(true);
             }
         }
 
@@ -71,68 +69,68 @@ namespace Evol.MongoDB.Test
             return list;
         }
 
-        [TestMethod,Description("Insert")]
+        [Fact,Description("Insert")]
         public void AddOneTest()
         {
-            var gender = FakeUtility.CreateGender();
+            var gender = FakeUtil.CreateGender();
             var item = new User()
             {
-                Username = FakeUtility.CreateUsername(5, 10),
-                Password = FakeUtility.CreatePassword(),
-                Email = FakeUtility.CreateEmail(),
-                Name = FakeUtility.CreatePersonName(gender),
+                Username = FakeUtil.CreateUsername(5, 10),
+                Password = FakeUtil.CreatePassword(),
+                Email = FakeUtil.CreateEmail(),
+                Name = FakeUtil.CreatePersonName(gender),
                 Gender = gender,
-                Age = FakeUtility.RandomInt(18, 50),
+                Age = FakeUtil.RandomInt(18, 50),
                 CreateTime = DateTime.Now
             };
 
             _userRepository.AddAsync(item).GetAwaiter().GetResult();
-            Assert.IsTrue(true);
+            Assert.True(true);
         }
 
-        [TestMethod, Description("Insert Batch")]
+        [Fact, Description("Insert Batch")]
         public void AddBatchTest()
         {
             var list = new List<User>();
             for (int i = 0; i < 10; i++)
             {
-                var gender = FakeUtility.CreateGender();
+                var gender = FakeUtil.CreateGender();
                 var item = new User()
                 {
-                    Username = FakeUtility.CreateUsername(5, 10),
-                    Password = FakeUtility.CreatePassword(),
-                    Email = FakeUtility.CreateEmail(),
-                    Name = FakeUtility.CreatePersonName(gender),
+                    Username = FakeUtil.CreateUsername(5, 10),
+                    Password = FakeUtil.CreatePassword(),
+                    Email = FakeUtil.CreateEmail(),
+                    Name = FakeUtil.CreatePersonName(gender),
                     Gender = gender,
-                    Age = FakeUtility.RandomInt(18, 50),
+                    Age = FakeUtil.RandomInt(18, 50),
                     CreateTime = DateTime.Now
                 };
                 list.Add(item);
             }
 
             _userRepository.AddBatchAsync(list).GetAwaiter().GetResult();
-            Assert.IsTrue(true);
+            Assert.True(true);
         }
 
 
 
 
 
-        [TestMethod, Description("Update Entity")]
+        [Fact, Description("Update Entity")]
         public void UpdateOneEntityTest()
         {
             var fakeUser = FakeItem();
-            fakeUser.Gender = FakeUtility.CreateGender();
-            fakeUser.Password = FakeUtility.CreatePassword();
-            fakeUser.Email = FakeUtility.CreateEmail();
-            fakeUser.Age = FakeUtility.RandomInt(18, 50);
+            fakeUser.Gender = FakeUtil.CreateGender();
+            fakeUser.Password = FakeUtil.CreatePassword();
+            fakeUser.Email = FakeUtil.CreateEmail();
+            fakeUser.Age = FakeUtil.RandomInt(18, 50);
             fakeUser.UpdateTime = DateTime.Now;
 
             var updated = _userRepository.UpdateAsync(fakeUser).GetAwaiter().GetResult();
-            Assert.IsTrue(updated);
+            Assert.True(updated);
         }
 
-        [TestMethod, Description("Update-Definition")]
+        [Fact, Description("Update-Definition")]
         public void UpdateOneDefinitionTest()
         {
             var fakeUser = FakeItem();
@@ -142,114 +140,114 @@ namespace Evol.MongoDB.Test
                 .Set(e => e.Name, fakeUser.Name + "0001")
                 .Set(e => e.UpdateTime, DateTime.Now);
             var updated = _userRepository.UpdateAsync(fakeUser.Id, updateDef).GetAwaiter().GetResult();
-            Assert.IsTrue(updated);
+            Assert.True(updated);
         }
 
 
-        [TestMethod,Description("Multi-FindOne")]
+        [Fact,Description("Multi-FindOne")]
         public void FindOneTest()
         {
             var fakeUser = FakeItem();
 
             var user = _userRepository.FindAsync(fakeUser.Id).GetAwaiter().GetResult();
-            Assert.IsNotNull(user);
+            Assert.NotNull(user);
 
             var user1 = _userRepository.FindOneAsync(e => e.Email == fakeUser.Email).GetAwaiter().GetResult();
-            Assert.IsNotNull(user1);
+            Assert.NotNull(user1);
 
             Expression<Func<User, bool>> express = u => u.Email == fakeUser.Email;
             FilterDefinition<User> filter = express;
             var user2 = _userRepository.FindOneAsync(filter).GetAwaiter().GetResult();
-            Assert.IsNotNull(user2);
+            Assert.NotNull(user2);
         }
 
-        [TestMethod,Description("Multi-Queryable")]
+        [Fact,Description("Multi-Queryable")]
         public void QueryableTest()
         {
             var all = _userRepository.AsQueryable().ToList();
             Trace.WriteLine($"all user count:{all.Count}");
-            Assert.IsTrue(all.Count > 0);
+            Assert.True(all.Count > 0);
 
             var all1 = _userRepository.Queryable(e => e.Gender == GenderType.Female, e => e.Id).ToList();
             Trace.WriteLine($"all1 user count:{all1.Count}");
-            Assert.IsTrue(all1.Count > 0);
+            Assert.True(all1.Count > 0);
 
             Expression<Func<User, bool>> express = u => u.Email.Contains("@qq.com");
             FilterDefinition<User> filter = express;
             var all2 = _userRepository.FluentQueryable(filter, "CreateTime").ToList();
-            Assert.IsTrue(all2.Count > 0);
+            Assert.True(all2.Count > 0);
             Trace.WriteLine($"all2 user count:{all1.Count}");
 
             foreach (var item in all)
             {
                 Trace.WriteLine($"Id:{item.Id}, Username:{item.Username}, Password:{item.Password}, Email:{item.Email}, Name:{item.Name}, Gender:{item.Gender}, Age:{item.Age}, CreateTime:{item.CreateTime}");
             }
-            Assert.IsNotNull(all);
+            Assert.NotNull(all);
         }
 
-        [TestMethod, Description("Multi-Select")]
+        [Fact, Description("Multi-Select")]
         public void SelectTest()
         {
             var list = _userRepository.SelectAsync(e => e.Gender == GenderType.Female, e => e.CreateTime).GetAwaiter().GetResult();
             Trace.WriteLine($"all user count:{list.Count}");
-            Assert.IsTrue(list.Count > 0);
+            Assert.True(list.Count > 0);
 
             Expression<Func<User, bool>> express = u => u.Email.Contains(".com");
             FilterDefinition<User> filter = express;
             var list1 = _userRepository.SelectAsync(filter, "CreateTime").GetAwaiter().GetResult();
-            Assert.IsTrue(list1.Count > 0);
+            Assert.True(list1.Count > 0);
             Trace.WriteLine($"list1 count:{list1.Count}");
 
         }
 
-        [TestMethod, Description("Multi-PageSelect")]
+        [Fact, Description("Multi-PageSelect")]
         public void PagedTest()
         {
             var paged = _userRepository.PagedSelectAsync(e => e.Gender == GenderType.Male, 2, 10).GetAwaiter().GetResult();
             Trace.WriteLine($"page total:{paged.PageTotal}, record total:{paged.RecordTotal}, page index:{paged.Index}, page size:{paged.Size}");
-            Assert.IsTrue(paged.Any());
+            Assert.True(paged.Any());
 
             Expression<Func<User, bool>> express = u => u.Email.Contains(".com");
             FilterDefinition<User> filter = express;
             var paged1 = _userRepository.PagedSelectAsync(e => e.Gender == GenderType.Female, 2, 10).GetAwaiter().GetResult();
             Trace.WriteLine($"page total:{paged1.PageTotal}, record total:{paged1.RecordTotal}, page index:{paged1.Index}, page size:{paged1.Size}");
-            Assert.IsTrue(paged1.Any());
+            Assert.True(paged1.Any());
             Trace.WriteLine($"paged1 count:{paged1.Count()}");
 
         }
 
 
-        [TestMethod, Description("Delete")]
+        [Fact, Description("Delete")]
         public void DeleteOneTest()
         {
             var fakeUser = FakeItem();
             var deleted = _userRepository.DeleteAsync(fakeUser.Id).GetAwaiter().GetResult();
-            Assert.IsTrue(deleted);
+            Assert.True(deleted);
         }
 
-        [TestMethod, Description("Delete Batch")]
+        [Fact, Description("Delete Batch")]
         public void DeleteBatchTest()
         {
             var fakeUsers = FakeItems(10);
             var ids = fakeUsers.Select(e => e.Id).ToList();
             var deleted = _userRepository.DeleteBatchAsync(ids).GetAwaiter().GetResult();
-            Assert.IsTrue(deleted);
+            Assert.True(deleted);
         }
 
-        [TestMethod, Description("Delete By PredicateTest")]
+        [Fact, Description("Delete By PredicateTest")]
         public void DeleteByPredicateTest()
         {
             var deleted = _userRepository.DeleteByAsync(e => e.Age > 40).GetAwaiter().GetResult();
-            Assert.IsTrue(deleted);
+            Assert.True(deleted);
         }
 
-        [TestMethod, Description("Delete By Filter")]
+        [Fact, Description("Delete By Filter")]
         public void DeleteByFilterTest()
         {
             Expression<Func<User, bool>> express = u => u.Age < 30;
             FilterDefinition<User> filter = express;
             var deleted = _userRepository.DeleteByAsync(filter).GetAwaiter().GetResult();
-            Assert.IsTrue(deleted);
+            Assert.True(deleted);
         }
     }
 }
