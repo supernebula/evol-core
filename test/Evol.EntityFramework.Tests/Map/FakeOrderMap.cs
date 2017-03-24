@@ -1,22 +1,24 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using Evol.Test.Model;
+﻿using Evol.EntityFramework.Configueration;
+using Evol.Test.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Evol.EntityFramework.Repository.Test.Map
 {
-    public class FakeOrderMap : EntityTypeConfiguration<FakeOrder>
+    public class FakeOrderMap : EntityConfigMap<FakeOrder>
     {
-        public FakeOrderMap()
+        public override void Map(ModelBuilder modelBuilder)
         {
-            this.ToTable("TestOrder");
-            this.HasKey(e => e.Id);
-            this.Property(e => e.ProductId).IsRequired();
-            this.Property(e => e.UserId).IsRequired();
-            this.Property(e => e.Recipient).IsRequired().HasMaxLength(100).HasColumnName("Recipient");
-            this.Property(e => e.Address).IsRequired().HasMaxLength(500);
-            this.Property(e => e.Amount).IsRequired();
-            this.Property(e => e.Number).IsRequired();
-            this.Property(e => e.Remark).IsOptional();
-            this.Property(e => e.CreateTime).IsRequired();
+            var builder = EntityBuilder(modelBuilder);
+            builder.ToTable("TestOrder");
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.ProductId).IsRequired();
+            builder.Property(e => e.UserId).IsRequired();
+            builder.Property(e => e.Recipient).IsRequired().HasMaxLength(100).HasColumnName("Recipient");
+            builder.Property(e => e.Address).IsRequired().HasMaxLength(500);
+            builder.Property(e => e.Amount).IsRequired();
+            builder.Property(e => e.Number).IsRequired();
+            builder.Property(e => e.Remark).IsRequired(false);
+            builder.Property(e => e.CreateTime).IsRequired();
         }
     }
 }

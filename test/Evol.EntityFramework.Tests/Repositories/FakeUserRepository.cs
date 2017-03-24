@@ -10,12 +10,15 @@ namespace Evol.EntityFramework.Repository.Test.Repositories
 {
     public class FakeUserRepository : BasicEntityFrameworkRepository<FakeUser, FakeEcDbContext>
     {
-        public FakeUserRepository()
+        public FakeUserRepository() : this(null)
         {
         }
 
         public FakeUserRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
-        { }
+        {
+
+
+        }
         
 
         public int InsertByCommand(FakeUser item)
