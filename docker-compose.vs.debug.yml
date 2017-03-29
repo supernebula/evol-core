@@ -1,38 +1,6 @@
 version: '2'
 
 services:
-
-  demowebsite:
-    image: demowebsite:dev
-    build:
-      args:
-        source: ${DOCKER_BUILD_SOURCE}
-    environment:
-      - DOTNET_USE_POLLING_FILE_WATCHER=1
-    volumes:
-      - ./src/DemoWebsite:/app
-      - ~/.nuget/packages:/root/.nuget/packages:ro
-      - ~/clrdbg:/clrdbg:ro
-    entrypoint: tail -f /dev/null
-    labels:
-      - "com.microsoft.visualstudio.targetoperatingsystem=linux"
-
-
-  evol.cinema.website:
-    image: evol.cinema.website:dev
-    build:
-      args:
-        source: ${DOCKER_BUILD_SOURCE}
-    environment:
-      - DOTNET_USE_POLLING_FILE_WATCHER=1
-    volumes:
-      - ./src/Evol.Cinema.Website:/app
-      - ~/.nuget/packages:/root/.nuget/packages:ro
-      - ~/clrdbg:/clrdbg:ro
-    entrypoint: tail -f /dev/null
-    labels:
-      - "com.microsoft.visualstudio.targetoperatingsystem=linux"
-
   demo.website:
     image: demo.website:dev
     build:

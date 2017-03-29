@@ -1,19 +1,6 @@
 version: '2'
 
 services:
-  demowebsite:
-    image: demowebsite
-    build:
-      context: ./src/DemoWebsite
-      dockerfile: Dockerfile
-
-
-  evol.cinema.website:
-    image: evol.cinema.website
-    build:
-      context: ./src/Evol.Cinema.Website
-      dockerfile: Dockerfile
-
   demo.website:
     image: demo.website
     build:

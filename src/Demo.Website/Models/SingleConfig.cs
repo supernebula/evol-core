@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.Website
+namespace Demo.Website.Models
 {
-    public class Class1
+    public class SingleConfig
     {
-        public void Method1()
-        {
-            
-        }
+        public DateTime Tick { get; set; }
     }
 }

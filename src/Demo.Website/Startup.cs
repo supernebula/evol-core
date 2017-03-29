@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Demo.Website.Data;
 using Demo.Website.Models;
 using Demo.Website.Services;
+using Evol.Util.Configuration;
+
 
 namespace Demo.Website
 {
@@ -32,9 +35,19 @@ namespace Demo.Website
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+
+            //添加自定义配置
+            var strongBuilder = new StrongConfigurationBuilder();
+            strongBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"))
+            .AddJsonFile<DataItem>("dataItem.json", true, true)
+            .AddXmlFile<MoudleShip>("moudleShip.xml", true, true);
+
         }
 
         public IConfigurationRoot Configuration { get; }
+
+        public IStrongConfigurationRoot StrongConfiguration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -50,6 +63,26 @@ namespace Demo.Website
             services.AddMvc();
 
             // Add application services.
+            services.AddScoped(provider => {
+                var value = new SingleConfig() { Tick = DateTime.Now };
+                return value;
+            });
+
+
+            //添加自定义配置到依赖注入
+            foreach (IStrongConfiguration item in StrongConfiguration.Configurations)
+            {
+                services.AddScoped(item.StrongType, provider => {
+                    return StrongConfiguration.GetValue(item.StrongType);
+                });
+            }
+
+
+            services.AddScoped(provider => {
+                var value = new SingleConfig() { Tick = DateTime.Now };
+                return value;
+            });
+
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }

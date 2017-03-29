@@ -1,19 +1,6 @@
 version: '2'
 
 services:
-
-  demowebsite:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
-  evol.cinema.website:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
   demo.website:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
