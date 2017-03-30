@@ -21,7 +21,7 @@ namespace Evol.Util.Serialization
             return obj;
         }
 
-        //new
+        //is new
         public static object Deserialize(string xml, Type type)
         {
             object obj;

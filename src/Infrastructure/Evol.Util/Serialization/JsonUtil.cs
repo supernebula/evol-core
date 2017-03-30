@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
@@ -34,6 +33,7 @@ namespace Evol.Util.Serialization
             }
         }
 
+        //is new
         public static object Deserialize(string str, Type type)
         {
             try

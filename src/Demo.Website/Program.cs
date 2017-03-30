@@ -13,12 +13,14 @@ namespace Demo.Website
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseAzureAppServices()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
 
+            
             host.Run();
         }
     }

@@ -16,6 +16,11 @@ using Demo.Website.Services;
 using Evol.Util.Configuration;
 using Evol.Util.Configuration.Json;
 using Evol.Util.Configuration.Xml;
+using NLog.Web;
+using NLog.Extensions.Logging;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace Demo.Website
 {
@@ -56,6 +61,7 @@ namespace Demo.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDirectoryBrowser();
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -95,8 +101,46 @@ namespace Demo.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".log"] = "text/html";
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), @"log")),
+                RequestPath = new PathString("/log"),
+                ContentTypeProvider = provider
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), @"log")),
+                RequestPath = new PathString("/log")
+            });
+
+
+
+            //app.UseFileServer(new FileServerOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), @"log")),
+            //    RequestPath = new PathString("/log"),
+            //    EnableDirectoryBrowsing = true,
+            //    ContentTypeProvider = 
+            //});
+
+            //add NLog.Web
+            app.AddNLogWeb();
+
+            //needed for non-NETSTANDARD platforms: configure nlog.config in your project root. NB: you need NLog.Web.AspNetCore package for this. 		
+            env.ConfigureNLog("nlog.config");
+
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            loggerFactory
+                .AddConsole()
+                .AddNLog();
 
             if (env.IsDevelopment())
             {
