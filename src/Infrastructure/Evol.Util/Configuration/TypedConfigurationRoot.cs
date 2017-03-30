@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Evol.Util.Configuration
 {
-    public class StrongConfigurationRoot : IStrongConfigurationRoot
+    public class TypedConfigurationRoot : ITypedConfigurationRoot
     {
 
-        public StrongConfigurationRoot(IEnumerable<IStrongConfiguration> strongConfigurations)
+        public TypedConfigurationRoot(IEnumerable<ITypedConfiguration> strongConfigurations)
         {
-            Configurations = new ReadOnlyCollection<IStrongConfiguration>(strongConfigurations.ToList());
+            Configurations = new ReadOnlyCollection<ITypedConfiguration>(strongConfigurations.ToList());
         }
-        public IList<IStrongConfiguration> Configurations { get; private set; }
+        public IList<ITypedConfiguration> Configurations { get; private set; }
 
         public T GetValue<T>()
         {

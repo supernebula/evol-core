@@ -7,11 +7,16 @@ using System.Text;
 
 namespace Evol.Util.Configuration
 {
-    public abstract class FileStrongConfigurationSource : IStrongConfigurationSource
+    public abstract class FileTypedConfigurationSource : ITypedConfigurationSource
     {
-        public abstract Type StrongType { get; }
+        public FileTypedConfigurationSource(Type strongType)
+        {
+            StrongType = strongType;
+        }
 
-        public abstract IStrongConfigurationProvider Build(IStrongConfigurationBuilder builder);
+        public Type StrongType { get; }
+
+        public abstract ITypedConfigurationProvider Build(ITypedConfigurationBuilder builder);
 
 		public IFileProvider FileProvider
         {
@@ -65,18 +70,12 @@ namespace Evol.Util.Configuration
             set;
         }
 
-        /// <summary>
-        /// Builds the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationProvider" /> for this source.
-        /// </summary>
-        /// <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.</param>
-        /// <returns>A <see cref="T:Microsoft.Extensions.Configuration.IConfigurationProvider" /></returns>
-        public abstract IConfigurationProvider Build(IConfigurationBuilder builder);
 
         /// <summary>
         /// Called to use any default settings on the builder like the FileProvider or FileLoadExceptionHandler.
         /// </summary>
         /// <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder" />.</param>
-        public void EnsureDefaults(IStrongConfigurationBuilder builder)
+        public void EnsureDefaults(ITypedConfigurationBuilder builder)
         {
             this.FileProvider = (FileProvider ?? builder.GetFileProvider());
             this.OnLoadException = (OnLoadException ?? builder.GetFileLoadExceptionHandler());
@@ -105,7 +104,7 @@ namespace Evol.Util.Configuration
             }
         }
 
-        protected FileStrongConfigurationSource():base()
+        protected FileTypedConfigurationSource():base()
         {
             ReloadDelay = 250;
         }

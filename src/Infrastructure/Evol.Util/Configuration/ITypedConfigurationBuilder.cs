@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Evol.Util.Configuration
 {
-    public interface IStrongConfigurationBuilder
+    public interface ITypedConfigurationBuilder
     {
         /// <summary>
         /// 共享数据
         /// </summary>
         Dictionary<string, object> Properties { get; }
 
-        IList<IStrongConfigurationSource> Sources { get; }
+        IList<ITypedConfigurationSource> Sources { get; }
 
         IList<Type> StrongTypes { get;}
 
-        void Add(IStrongConfigurationSource source);
+        void Add(ITypedConfigurationSource source);
 
-        IStrongConfigurationRoot Build();
+        ITypedConfigurationRoot Build();
     }
 }

@@ -6,13 +6,13 @@ using System.Text;
 namespace Evol.Util.Configuration
 {
 
-    public interface IStrongConfiguration
+    public interface ITypedConfiguration
     {
         Type StrongType { get; }
 
         object GetValue();
 
-        IStrongConfigurationSource Source { get; }
+        ITypedConfigurationSource Source { get; }
 
         IChangeToken GetReloadToken();
 

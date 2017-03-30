@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Evol.Util.Configuration
 {
-    public interface IStrongConfigurationRoot
+    public interface ITypedConfigurationRoot
     {
-        IList<IStrongConfiguration> Configurations { get; }
+        IList<ITypedConfiguration> Configurations { get; }
 
         T GetValue<T>();
 

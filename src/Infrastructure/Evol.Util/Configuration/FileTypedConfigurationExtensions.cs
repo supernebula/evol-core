@@ -4,19 +4,40 @@ using System;
 
 namespace Evol.Util.Configuration
 {
-    public static class FileStrongConfigurationExtensions
+    public static class FileTypedConfigurationExtensions
     {
 
         private static string FileProviderKey = "FileProvider";
 
         private static string FileLoadExceptionHandlerKey = "FileLoadExceptionHandler";
 
-        public static IStrongConfigurationBuilder SetBasePath(this IStrongConfigurationBuilder builder, string basePath)
+        public static ITypedConfigurationBuilder SetBasePath(this ITypedConfigurationBuilder builder, string basePath)
         {
-            throw new NotImplementedException();
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            if (basePath == null)
+            {
+                throw new ArgumentNullException(nameof(basePath));
+            }
+
+            return builder.SetFileProvider(new PhysicalFileProvider(basePath));
         }
 
-        public static IFileProvider GetFileProvider(this IStrongConfigurationBuilder builder)
+        public static ITypedConfigurationBuilder SetFileProvider(this ITypedConfigurationBuilder builder, IFileProvider fileProvider)
+        {
+            if (builder == null)
+            {
+                throw new ArgumentNullException(nameof(builder));
+            }
+
+            builder.Properties[FileProviderKey] = fileProvider ?? throw new ArgumentNullException(nameof(fileProvider));
+            return builder;
+        }
+
+        public static IFileProvider GetFileProvider(this ITypedConfigurationBuilder builder)
         {
             if (builder == null)
             {
@@ -31,7 +52,7 @@ namespace Evol.Util.Configuration
             return new PhysicalFileProvider(AppContext.BaseDirectory ?? string.Empty);
         }
 
-        public static Action<FileLoadExceptionContext> GetFileLoadExceptionHandler(this IStrongConfigurationBuilder builder)
+        public static Action<FileLoadExceptionContext> GetFileLoadExceptionHandler(this ITypedConfigurationBuilder builder)
         {
             if (builder == null)
             {

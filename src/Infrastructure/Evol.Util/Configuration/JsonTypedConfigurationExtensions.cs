@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Evol.Util.Configuration
 {
-    public static class JsonStrongConfigurationExtensions
+    public static class JsonTypedConfigurationExtensions
     {
-        public static IStrongConfigurationBuilder AddJsonFile<T>(this IStrongConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
+        public static ITypedConfigurationBuilder AddJsonFile<T>(this ITypedConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
         {
             if (builder == null)
             {
@@ -16,9 +16,9 @@ namespace Evol.Util.Configuration
             {
                 throw new ArgumentNullException(nameof(path));
             }
-            JsonConfigurationSource jsonConfigurationSource = new JsonConfigurationSource
+            JsonTypedConfigurationSource jsonConfigurationSource = new JsonTypedConfigurationSource(typeof(T))
             {
-                FileProvider = provider,
+                FileProvider = null,// provider,
                 Path = path,
                 Optional = optional,
                 ReloadOnChange = reloadOnChange

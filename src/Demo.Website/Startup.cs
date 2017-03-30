@@ -14,7 +14,7 @@ using Demo.Website.Data;
 using Demo.Website.Models;
 using Demo.Website.Services;
 using Evol.Util.Configuration;
-
+using Evol.Util.Serialization;
 
 namespace Demo.Website
 {
@@ -38,16 +38,18 @@ namespace Demo.Website
 
 
             //添加自定义配置
-            var strongBuilder = new StrongConfigurationBuilder();
-            strongBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"))
-            .AddJsonFile<DataItem>("dataItem.json", true, true)
-            .AddXmlFile<MoudleShip>("moudleShip.xml", true, true);
+            var typedBuilder = new TypedConfigurationBuilder();
+            typedBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"))
+            .AddJsonFile<ModuleShip>("moudleShip.json", true, true);
+            TypedConfiguration = typedBuilder.Build();
+
+            //var str = JsonUtil.Serialize(new ModuleShip(){ Modules = new List<Module>() { new Module { Name = "一", Count = 1 }, new Module { Name = "二", Count = 2 } }  });
 
         }
 
         public IConfigurationRoot Configuration { get; }
 
-        public IStrongConfigurationRoot StrongConfiguration { get; }
+        public ITypedConfigurationRoot TypedConfiguration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -70,10 +72,11 @@ namespace Demo.Website
 
 
             //添加自定义配置到依赖注入
-            foreach (IStrongConfiguration item in StrongConfiguration.Configurations)
+            foreach (ITypedConfiguration item in TypedConfiguration.Configurations)
             {
                 services.AddScoped(item.StrongType, provider => {
-                    return StrongConfiguration.GetValue(item.StrongType);
+                    var value = TypedConfiguration.GetValue(item.StrongType);
+                    return value;
                 });
             }
 

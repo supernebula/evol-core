@@ -34,6 +34,19 @@ namespace Evol.Util.Serialization
             }
         }
 
+        public static object Deserialize(string str, Type type)
+        {
+            try
+            {
+                var value = Newtonsoft.Json.JsonConvert.DeserializeObject(str, type);
+                return value;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static string SerializeByDataContract(object value)
         {
             var serializer = new DataContractJsonSerializer(value.GetType());

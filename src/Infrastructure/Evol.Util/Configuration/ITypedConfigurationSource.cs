@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Evol.Util.Configuration
 {
-    public interface IStrongConfigurationSource
+    public interface ITypedConfigurationSource
     {
         Type StrongType { get; }
-        IStrongConfigurationProvider Build(IStrongConfigurationBuilder builder);
+        ITypedConfigurationProvider Build(ITypedConfigurationBuilder builder);
     }
 }

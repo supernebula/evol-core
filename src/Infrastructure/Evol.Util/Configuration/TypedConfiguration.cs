@@ -7,13 +7,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace Evol.Util.Configuration
 {
-    public class StrongConfiguration : IStrongConfiguration
+    public class TypedConfiguration : ITypedConfiguration
     {
-        private IStrongConfigurationProvider _configProvider;
+        private ITypedConfigurationProvider _configProvider;
 
         private ConfigurationReloadToken _changeToken = new ConfigurationReloadToken();
 
-        public StrongConfiguration(IStrongConfigurationProvider configurationProvider)
+        public TypedConfiguration(ITypedConfigurationProvider configurationProvider)
         {
             _configProvider = configurationProvider;
             _configProvider.Load();
@@ -21,15 +21,29 @@ namespace Evol.Util.Configuration
 
 
         }
+
+        public Type StrongType
+        {
+            get
+            {
+                return _configProvider.StrongType;
+            }
+        }
+
+        public ITypedConfigurationSource Source { get; private set; }
+
+        public object GetValue()
+        {
+            return _configProvider.GetValue();
+        }
+
+       
+
         public IChangeToken GetReloadToken()
         {
             return this._changeToken;
         }
 
-        public T GetValue<T>()
-        {
-            throw new NotImplementedException();
-        }
 
         public void Reload()
         {

@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace Evol.Util.Configuration
 {
-    public class StrongConfigurationBuilder : IStrongConfigurationBuilder
+    public class TypedConfigurationBuilder : ITypedConfigurationBuilder
     {
         public Dictionary<string, object> Properties { get; }
 
-        public IList<IStrongConfigurationSource> Sources { get; }
+        public IList<ITypedConfigurationSource> Sources { get; }
 
-        public StrongConfigurationBuilder()
+        public TypedConfigurationBuilder()
         {
-            Sources = new List<IStrongConfigurationSource>();
+            Sources = new List<ITypedConfigurationSource>();
             Properties = new Dictionary<string, object>();
         }
 
@@ -24,21 +24,21 @@ namespace Evol.Util.Configuration
             }
         }
 
-        public void Add(IStrongConfigurationSource source)
+        public void Add(ITypedConfigurationSource source)
         {
-            throw new NotImplementedException();
+            Sources.Add(source);
         }
 
-        public IStrongConfigurationRoot Build()
+        public ITypedConfigurationRoot Build()
         {
-            var list = new List<StrongConfiguration>();
+            var list = new List<TypedConfiguration>();
             foreach (var source in Sources)
             {
                 var configProvider = source.Build(this);
-                var config = new StrongConfiguration(configProvider);
+                var config = new TypedConfiguration(configProvider);
                 list.Add(config);
             }
-            return new StrongConfigurationRoot(list);
+            return new TypedConfigurationRoot(list);
         }
     }
 }

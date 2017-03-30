@@ -5,14 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Demo.Website.Models;
+using System.Text;
 
 namespace Demo.Website.Controllers
 {
     public class HomeController : Controller
     {
 
-        private SingleConfig _config;
-        public HomeController(SingleConfig config)
+        private ModuleShip _config;
+        public HomeController(ModuleShip config)
         {
             _config = config;
         }
@@ -43,7 +44,9 @@ namespace Demo.Website.Controllers
 
         public IActionResult Config()
         {
-            return Content(_config.Tick.ToString());
+            var sb = new StringBuilder();
+            _config.Modules.ForEach(e => sb.AppendLine($"{e.Name}:{e.Count}"));
+            return Content(sb.ToString());
         }
     }
 }
