@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Evol.Util.Configuration
+namespace Evol.Util.Configuration.Xml
 {
-    public static class JsonTypedConfigurationExtensions
+    public static class XmlTypedConfigurationExtensions
     {
-        public static ITypedConfigurationBuilder AddJsonFile<T>(this ITypedConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
+        public static ITypedConfigurationBuilder AddXmlFile<T>(this ITypedConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
         {
             if (builder == null)
             {
@@ -16,7 +14,7 @@ namespace Evol.Util.Configuration
             {
                 throw new ArgumentNullException(nameof(path));
             }
-            JsonTypedConfigurationSource jsonConfigurationSource = new JsonTypedConfigurationSource(typeof(T))
+            XmlTypedConfigurationSource jsonConfigurationSource = new XmlTypedConfigurationSource(typeof(T))
             {
                 FileProvider = null,// provider,
                 Path = path,

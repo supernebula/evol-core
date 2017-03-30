@@ -14,7 +14,8 @@ using Demo.Website.Data;
 using Demo.Website.Models;
 using Demo.Website.Services;
 using Evol.Util.Configuration;
-using Evol.Util.Serialization;
+using Evol.Util.Configuration.Json;
+using Evol.Util.Configuration.Xml;
 
 namespace Demo.Website
 {
@@ -40,7 +41,8 @@ namespace Demo.Website
             //添加自定义配置
             var typedBuilder = new TypedConfigurationBuilder();
             typedBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"))
-            .AddJsonFile<ModuleShip>("moudleShip.json", true, true);
+            .AddJsonFile<ModuleShip>("moudleShip.json", true, true)
+            .AddXmlFile<AdminArea>("areaCode.xml", true, true);
             TypedConfiguration = typedBuilder.Build();
 
             //var str = JsonUtil.Serialize(new ModuleShip(){ Modules = new List<Module>() { new Module { Name = "一", Count = 1 }, new Module { Name = "二", Count = 2 } }  });

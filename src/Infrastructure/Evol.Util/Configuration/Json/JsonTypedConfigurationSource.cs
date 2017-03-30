@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Configuration;
 
-namespace Evol.Util.Configuration
+namespace Evol.Util.Configuration.Json
 {
     public class JsonTypedConfigurationSource : FileTypedConfigurationSource
     {
         public JsonTypedConfigurationSource(Type strongType) : base(strongType)
         {
-
         }
 
         public override ITypedConfigurationProvider Build(ITypedConfigurationBuilder builder)

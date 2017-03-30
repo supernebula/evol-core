@@ -1,10 +1,7 @@
 ﻿using Evol.Util.Serialization;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-namespace Evol.Util.Configuration
+namespace Evol.Util.Configuration.Json
 {
     public class JsonTypedConfigurationProvider : FileTypedConfigurationProvider
     {

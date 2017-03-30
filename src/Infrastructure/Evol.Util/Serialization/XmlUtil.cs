@@ -21,6 +21,18 @@ namespace Evol.Util.Serialization
             return obj;
         }
 
+        //new
+        public static object Deserialize(string xml, Type type)
+        {
+            object obj;
+            using (StringReader reader = new StringReader(xml))
+            {
+                var serialize = new XmlSerializer(type);
+                obj = serialize.Deserialize(reader);
+            }
+            return obj;
+        }
+
         public static string Serialize(object obj)
         {
             string str;

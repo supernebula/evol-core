@@ -12,10 +12,12 @@ namespace Demo.Website.Controllers
     public class HomeController : Controller
     {
 
-        private ModuleShip _config;
-        public HomeController(ModuleShip config)
+        private ModuleShip _ship;
+        private AdminArea _area;
+        public HomeController(ModuleShip ship, AdminArea area)
         {
-            _config = config;
+            _ship = ship;
+            _area = area;
         }
 
         public IActionResult Index()
@@ -45,7 +47,9 @@ namespace Demo.Website.Controllers
         public IActionResult Config()
         {
             var sb = new StringBuilder();
-            _config.Modules.ForEach(e => sb.AppendLine($"{e.Name}:{e.Count}"));
+            _ship.Modules.ForEach(e => sb.AppendLine($"{e.Name}:{e.Count}"));
+            sb.AppendLine("-----------------------------------------------------");
+            _area.Areas.ForEach(e => sb.AppendLine($"{e.ParentCode},{e.Code},{e.Name}"));
             return Content(sb.ToString());
         }
     }
