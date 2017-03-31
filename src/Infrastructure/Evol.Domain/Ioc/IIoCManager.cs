@@ -9,6 +9,6 @@ namespace Evol.Domain.Ioc
 {
     public interface IIoCManager
     {
-        IServiceCollection ServiceCollection { get; }
+        IServiceCollection Container { get; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Evol.Domain.Ioc;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Modules
 {

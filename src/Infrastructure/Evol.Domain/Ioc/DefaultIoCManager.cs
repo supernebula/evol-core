@@ -5,11 +5,11 @@ namespace Evol.Domain.Ioc
 {
     public class DefaultIoCManager : IIoCManager
     {
-        public IServiceCollection ServiceCollection { get; }
+        public IServiceCollection Container { get; }
 
         public DefaultIoCManager(IServiceCollection serviceCollection)
         {
-            ServiceCollection = serviceCollection;
+            Container = serviceCollection;
         }
     }
 }

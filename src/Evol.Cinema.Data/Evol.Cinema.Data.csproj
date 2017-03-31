@@ -4,4 +4,13 @@
     <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Evol.Cinema.Domain\Evol.Cinema.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\Evol.EntityFramework\Evol.EntityFramework.csproj" />
+  </ItemGroup>
+
 </Project>
