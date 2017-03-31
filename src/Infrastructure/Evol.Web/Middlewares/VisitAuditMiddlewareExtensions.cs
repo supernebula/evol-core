@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Evol.Web.Middlewares
 {
@@ -12,9 +10,8 @@ namespace Evol.Web.Middlewares
         {
             if (app == null)
                 throw new ArgumentNullException("app");
-
-            //log and database
-            throw new NotImplementedException();
+            app.UseMiddleware<VisitAuditMiddleware>();
+            return app;
         }
     }
 }

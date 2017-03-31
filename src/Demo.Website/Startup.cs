@@ -21,6 +21,7 @@ using NLog.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
+using Evol.Web.Middlewares;
 
 namespace Demo.Website
 {
@@ -101,6 +102,8 @@ namespace Demo.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UserVisitAudit();
+
             var provider = new FileExtensionContentTypeProvider();
             // Add new mappings
             provider.Mappings[".log"] = "text/html";

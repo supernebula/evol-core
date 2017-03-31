@@ -10,6 +10,7 @@
     <Folder Include="Performance\" />
     <Folder Include="Security\" />
     <Folder Include="Sys\" />
+    <Folder Include="Log\" />
   </ItemGroup>
 
   <ItemGroup>
