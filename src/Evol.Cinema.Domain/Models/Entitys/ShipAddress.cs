@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Evol.Cinema.Domain.Models.Entitys
 {
-    public class OrderDetail : BaseEntity
+    public class ShipAddress : BaseEntity
     {
-        public Guid ProductId { get; set; }
     }
 }

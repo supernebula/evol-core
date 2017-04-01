@@ -9,6 +9,7 @@ namespace Evol.Cinema.Domain.Models.AggregateRoots
 {
     public class Order : BaseEntity
     {
+        public string No { get; set; }
         public Guid UserId { get; set; }
 
         public string Name { get; set; }
@@ -20,5 +21,9 @@ namespace Evol.Cinema.Domain.Models.AggregateRoots
         public List<OrderDetail> Items{ get; set; }
 
         public OrderStatusType Status { get; set; }
+
+        public DateTime PayTime { get; set; }
+
+
     }
 }
