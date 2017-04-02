@@ -9,13 +9,16 @@ namespace Evol.Cinema.Domain.Models.AggregateRoots
     /// </summary>
     public class Screening : BaseEntity
     {
+        public Guid MovieId { get; set; }
+
+        public Guid CinemaId { get; set; }
+
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }
 
         public Guid ScreeningRoomId { get; set; }
 
-        public Guid MovieId { get; set; }
 
         public double Price { get; set; }
 

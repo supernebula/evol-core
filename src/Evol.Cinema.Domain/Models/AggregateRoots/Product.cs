@@ -21,7 +21,9 @@ namespace Evol.Cinema.Domain.Models.AggregateRoots
         /// </summary>
         public int QuantityPerUnit { get; set; }
 
-        public float UnitPrice { get; set; }
+        public float FixPrice { get; set; }
+
+        public float SellPrice { get; set; }
 
         public string Stock { get; set; }
 

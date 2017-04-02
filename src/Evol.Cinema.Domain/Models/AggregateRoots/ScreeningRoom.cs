@@ -11,6 +11,7 @@ namespace Evol.Cinema.Domain.Models.AggregateRoots
     /// </summary>
     public class ScreeningRoom : BaseEntity
     {
+        public Guid CinemaId { get; set; }
 
         public string Name { get; set; }
 

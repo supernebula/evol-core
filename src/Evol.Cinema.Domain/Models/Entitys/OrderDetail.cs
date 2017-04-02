@@ -8,5 +8,7 @@ namespace Evol.Cinema.Domain.Models.Entitys
     public class OrderDetail : BaseEntity
     {
         public Guid ProductId { get; set; }
+
+        public Guid ScreeningId { get; set; }
     }
 }
