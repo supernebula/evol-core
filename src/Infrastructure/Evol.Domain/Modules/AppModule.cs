@@ -20,7 +20,7 @@ namespace Evol.Domain.Modules
 
         protected AppModule()
         {
-            IoCManager = AppConfiguration.Current.IoCManager;
+            IoCManager = AppConfig.Current.IoCManager;
         }
 
         public virtual void Initailize()

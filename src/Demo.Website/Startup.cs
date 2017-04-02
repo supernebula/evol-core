@@ -51,8 +51,6 @@ namespace Demo.Website
             .AddXmlFile<AdminArea>("areaCode.xml", true, true);
             TypedConfiguration = typedBuilder.Build();
 
-            //var str = JsonUtil.Serialize(new ModuleShip(){ Modules = new List<Module>() { new Module { Name = "一", Count = 1 }, new Module { Name = "二", Count = 2 } }  });
-
         }
 
         public IConfigurationRoot Configuration { get; }

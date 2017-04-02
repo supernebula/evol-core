@@ -10,6 +10,8 @@ namespace Evol.Cinema.Domain.Models.AggregateRoots
     /// </summary>
     public class Movie : BaseEntity
     {
+        public Guid ProductId { get; set; }
+
         /// <summary>
         /// 名称
         /// </summary>

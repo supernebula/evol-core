@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain
 {
-    public class AppConfiguration
+    public class AppConfig
     {
         private IIoCManager _currentIoCManager;
 
@@ -19,12 +19,12 @@ namespace Evol.Domain
             }
         }
 
-        public static void InitCurrent(IServiceCollection services)
+        public static void InitCurrent(IServiceCollection services, IServiceProvider serviceProvider)
         {
-            _current = new AppConfiguration(services);
+            _current = new AppConfig(services);
         }
 
-        public AppConfiguration(IServiceCollection services)
+        public AppConfig(IServiceCollection services)
         {
             Services = services;
         }
@@ -33,8 +33,8 @@ namespace Evol.Domain
 
         public IServiceCollection Services { get; private set; }
 
-        private static AppConfiguration _current;
-        public static AppConfiguration Current => _current;
+        private static AppConfig _current;
+        public static AppConfig Current => _current;
 
         public void InitModuleFrom<TModule>() where TModule : AppModule, new()
         {

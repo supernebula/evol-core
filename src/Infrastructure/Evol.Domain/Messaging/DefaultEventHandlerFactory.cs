@@ -33,7 +33,7 @@ namespace Evol.Domain.Messaging
             public IEnumerable<IEventHandler<T>> Create<T>() where T : Event
             {
 
-                var result = AppConfiguration.Current.Services.BuildServiceProvider().GetServices<IEventHandler<T>>();
+                var result = AppConfig.Current.Services.BuildServiceProvider().GetServices<IEventHandler<T>>();
                 if (result == null)
                     throw new NullReferenceException($"未找到实现该接口的类，检查是否依赖注册：{nameof(IEventHandler<T>)}, 类型T定义:{typeof(T).FullName}");
                 return result;

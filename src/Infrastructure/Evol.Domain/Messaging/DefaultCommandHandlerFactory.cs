@@ -34,7 +34,7 @@ namespace Evol.Domain.Messaging
 
             public ICommandHandler<T> Create<T>() where T : Command
             {
-                var result = AppConfiguration.Current.Services.BuildServiceProvider().GetService<ICommandHandler<T>>();
+                var result = AppConfig.Current.Services.BuildServiceProvider().GetService<ICommandHandler<T>>();
                 if (result == null)
                     throw new NullReferenceException($"未找到实现该接口的类，检查是否依赖注册：{nameof(ICommandHandler<T>)}, 类型T定义:{typeof(T).FullName}");
                 return result;
