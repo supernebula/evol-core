@@ -2,7 +2,7 @@
 using Evol.Cinema.Domain.Models.Values;
 using Evol.Common;
 
-namespace Evol.Cinema.Domain.Models.Entitys
+namespace Evol.Cinema.Domain.Models.Entities
 {
     /// <summary>
     /// 座位

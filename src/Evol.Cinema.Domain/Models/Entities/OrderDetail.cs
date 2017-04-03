@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Evol.Cinema.Domain.Models.Entitys
+namespace Evol.Cinema.Domain.Models.Entities
 {
     public class OrderDetail : BaseEntity
     {

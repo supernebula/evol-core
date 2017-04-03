@@ -1,35 +1,33 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Evol.EntityFramework.Repository;
+using Evol.EntityFramework;
+using System;
+using Evol.EntityFramework.Configueration;
 
 namespace Evol.Cinema.Data
 {
 
     public class CinemaDbContext : NamedDbContext
     {
-        static CinemaDbContext()
+        public CinemaDbContext() : this(null)
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<CinemaDbContext>());
-        }
-        public CinemaDbContext() : base("name=CinemaConnectionString")
-        {
-            Configuration.LazyLoadingEnabled = false;
-            Name = "cinemaDbContext";
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public CinemaDbContext(DbContextOptions<CinemaDbContext> options) : base(options)
+        {
+            if (options == null)
+                throw new ArgumentNullException(nameof(options));
+            Name = nameof(CinemaDbContext);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //方法一
-            //modelBuilder.Configurations.Add(new ProductMap());
-            //...
-
-            //方法二
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            base.OnModelCreating(modelBuilder);
+            //modelBuilder.AddConfiguration<FakeOrderMap>();
+            //modelBuilder.AddConfiguration<FakeProductMap>();
+            //modelBuilder.AddConfiguration<FakeUserMap>();
+            ////方法二
+            modelBuilder.AddConfigurationFromAssembly(this.GetType().GetTypeInfo().Assembly);
         }
     }
 }

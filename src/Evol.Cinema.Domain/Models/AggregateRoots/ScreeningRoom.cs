@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Evol.Cinema.Domain.Models.Entitys;
+using Evol.Cinema.Domain.Models.Entities;
 using Evol.Cinema.Domain.Models.Values;
 using Evol.Common;
 
