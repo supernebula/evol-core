@@ -34,10 +34,11 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Manage\" />
+    <ProjectReference Include="..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
+    <Folder Include="Areas\Manage\Views\Cinema\" />
+    <Folder Include="Areas\Manage\Views\Home\" />
   </ItemGroup>
 
 </Project>

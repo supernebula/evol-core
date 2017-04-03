@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Evol.Cinema.Website.Manage
+namespace Evol.Cinema.Website.Areas.Manage.Controllers
 {
+
+    [Area("Manage")]
     public class CinemaController : Controller
     {
         // GET: Cinema

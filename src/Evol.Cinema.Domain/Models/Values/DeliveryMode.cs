@@ -11,9 +11,7 @@ namespace Evol.Cinema.Domain.Models.Values
     {
         No,
 
-        Shipping,
-
-        SMS
+        Shipping
 
     }
 }

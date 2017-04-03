@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Evol.Cinema.Website.Manage
+namespace Evol.Cinema.Website.Controllers
 {
-    [Area("Manage")]
-    public class HomeController : Controller
+    public class TestController : Controller
     {
         public IActionResult Index()
         {
