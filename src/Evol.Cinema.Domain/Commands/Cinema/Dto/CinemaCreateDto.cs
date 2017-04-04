@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Evol.Cinema.Domain.Commands.Dto
+namespace Evol.TMovie.Domain.Commands.Dto
 {
     public class CinemaCreateDto : IInputDto
     {

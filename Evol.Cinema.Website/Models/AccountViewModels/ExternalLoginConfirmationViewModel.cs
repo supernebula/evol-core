@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Evol.Cinema.Website.Models.AccountViewModels
+namespace Evol.TMovie.Website.Models.AccountViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

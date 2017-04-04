@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Evol.Cinema.Website.Areas.Manage.Controllers
+namespace Evol.TMovie.Website.Areas.Manage.Controllers
 {
 
     [Area("Manage")]

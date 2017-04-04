@@ -1,8 +1,8 @@
-﻿using Evol.Cinema.Domain.Models.AggregateRoots;
-using Evol.Cinema.Domain.Repositories;
+﻿using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.TMovie.Domain.Repositories;
 using Evol.EntityFramework.Repository;
 
-namespace Evol.Cinema.Data.Repositories
+namespace Evol.TMovie.Data.Repositories
 {
     public class MovieRepository : BasicEntityFrameworkRepository<Movie, CinemaDbContext>, IMovieRepository
     {

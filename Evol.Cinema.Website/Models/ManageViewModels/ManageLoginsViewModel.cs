@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace Evol.Cinema.Website.Models.ManageViewModels
+namespace Evol.TMovie.Website.Models.ManageViewModels
 {
     public class ManageLoginsViewModel
     {

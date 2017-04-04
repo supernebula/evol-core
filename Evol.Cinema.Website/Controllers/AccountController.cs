@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Evol.Cinema.Website.Models;
-using Evol.Cinema.Website.Models.AccountViewModels;
-using Evol.Cinema.Website.Services;
+using Evol.TMovie.Website.Models;
+using Evol.TMovie.Website.Models.AccountViewModels;
+using Evol.TMovie.Website.Services;
 
-namespace Evol.Cinema.Website.Controllers
+namespace Evol.TMovie.Website.Controllers
 {
     [Authorize]
     public class AccountController : Controller

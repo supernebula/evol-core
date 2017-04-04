@@ -1,7 +1,7 @@
 ﻿using System;
 using Evol.Domain.Commands;
 
-namespace Evol.Cinema.Domain.Commands
+namespace Evol.TMovie.Domain.Commands
 {
     public class MovieDeleteCommand : Command
     {

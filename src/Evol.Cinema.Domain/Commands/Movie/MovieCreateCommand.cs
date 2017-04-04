@@ -1,8 +1,8 @@
-﻿using Evol.Cinema.Domain.Commands.Dto;
-using Evol.Cinema.Domain.Models.AggregateRoots;
+﻿using Evol.TMovie.Domain.Commands.Dto;
+using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.Domain.Commands;
 
-namespace Evol.Cinema.Domain.Commands
+namespace Evol.TMovie.Domain.Commands
 {
     public class MovieCreateCommand : Command
     {

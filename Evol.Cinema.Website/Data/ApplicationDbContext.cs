@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Evol.Cinema.Website.Models;
+using Evol.TMovie.Website.Models;
 
-namespace Evol.Cinema.Website.Data
+namespace Evol.TMovie.Website.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

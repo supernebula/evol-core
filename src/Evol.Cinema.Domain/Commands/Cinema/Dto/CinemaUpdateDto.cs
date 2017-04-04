@@ -1,7 +1,7 @@
 ﻿using Evol.Domain.Dto;
 using System.ComponentModel.DataAnnotations;
 
-namespace Evol.Cinema.Domain.Commands.Dto
+namespace Evol.TMovie.Domain.Commands.Dto
 {
     public class CinemaUpdateDto : IInputDto
     {

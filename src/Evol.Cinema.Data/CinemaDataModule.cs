@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using Evol.Cinema.Data.Ioc;
-using Evol.Cinema.Domain;
+using Evol.TMovie.Data.Ioc;
+using Evol.TMovie.Domain;
 using Evol.Domain.Ioc;
 using Evol.Domain.Modules;
 
-namespace Evol.Cinema.Data
+namespace Evol.TMovie.Data
 {
     [DependOn(typeof(CinemaDomainModule))]
     public class CinemaDataModule : AppModule

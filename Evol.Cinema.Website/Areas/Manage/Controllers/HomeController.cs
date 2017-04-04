@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Evol.Cinema.Website.Areas.Manage.Controllers
+namespace Evol.TMovie.Website.Areas.Manage.Controllers
 {
     [Area("Manage")]
     public class HomeController : Controller

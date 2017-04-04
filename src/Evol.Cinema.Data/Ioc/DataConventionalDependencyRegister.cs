@@ -7,7 +7,7 @@ using Evol.Domain.Data;
 using Evol.Domain.Ioc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Evol.Cinema.Data.Ioc
+namespace Evol.TMovie.Data.Ioc
 {
     public class DataConventionalDependencyRegister : IConventionalDependencyRegister
     {

@@ -1,7 +1,7 @@
 ﻿using Evol.Domain.Dto;
 using System;
 
-namespace Evol.Cinema.Website.Models.CinemaViewModels
+namespace Evol.TMovie.Website.Models.CinemaViewModels
 {
     public class CinemaViewModel : IOutputDto
     {

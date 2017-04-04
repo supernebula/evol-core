@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Evol.Cinema.Domain.Models.AggregateRoots
+namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     public class Category : BaseEntity
     {

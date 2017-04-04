@@ -1,5 +1,5 @@
 ﻿
-namespace Evol.Cinema.Domain.Models.Values
+namespace Evol.TMovie.Domain.Models.Values
 {
     public enum OrderStatusType
     {

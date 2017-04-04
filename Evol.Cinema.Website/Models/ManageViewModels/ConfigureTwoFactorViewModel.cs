@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Evol.Cinema.Website.Models.ManageViewModels
+namespace Evol.TMovie.Website.Models.ManageViewModels
 {
     public class ConfigureTwoFactorViewModel
     {

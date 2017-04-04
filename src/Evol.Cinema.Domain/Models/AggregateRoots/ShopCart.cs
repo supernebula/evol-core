@@ -1,7 +1,7 @@
 ﻿using Evol.Common;
 using System;
 
-namespace Evol.Cinema.Domain.Models.AggregateRoots
+namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     public class ShopCart : BaseEntity
     {

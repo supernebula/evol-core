@@ -1,7 +1,7 @@
-﻿using Evol.Cinema.Domain.Models.AggregateRoots;
+﻿using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.Domain.Commands;
 
-namespace Evol.Cinema.Domain.Commands
+namespace Evol.TMovie.Domain.Commands
 {
     public class MovieUpdateCommand : Command
     {

@@ -1,11 +1,11 @@
-﻿using Evol.Cinema.Domain.Models.Entities;
-using Evol.Cinema.Domain.Models.Values;
+﻿using Evol.TMovie.Domain.Models.Entities;
+using Evol.TMovie.Domain.Models.Values;
 using Evol.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Evol.Cinema.Domain.Models.AggregateRoots
+namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     public class Order : BaseEntity
     {

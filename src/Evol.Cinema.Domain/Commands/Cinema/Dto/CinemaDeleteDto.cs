@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Evol.Cinema.Domain.Commands.Dto
+namespace Evol.TMovie.Domain.Commands.Dto
 {
     public class CinemaDeleteDto : IInputDto
     {

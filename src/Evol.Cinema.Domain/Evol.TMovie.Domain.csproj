@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>Evol.TMovie.Domain</AssemblyName>
+    <RootNamespace>Evol.TMovie.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

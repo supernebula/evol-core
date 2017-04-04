@@ -1,9 +1,8 @@
 ﻿using Evol.Common;
+using Evol.TMovie.Domain.Models.Values;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Evol.Cinema.Domain.Models.Entitys
+namespace Evol.TMovie.Domain.Models.Entitys
 {
     /// <summary>
     /// 交付

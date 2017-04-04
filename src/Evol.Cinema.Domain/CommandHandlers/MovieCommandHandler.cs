@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Evol.Cinema.Domain.Commands;
-using Evol.Cinema.Domain.Repositories;
+using Evol.TMovie.Domain.Commands;
+using Evol.TMovie.Domain.Repositories;
 using Evol.Domain.Messaging;
 
-namespace Evol.Cinema.Domain.CommandHandlers
+namespace Evol.TMovie.Domain.CommandHandlers
 {
     public class MovieCommandHandler : ICommandHandler<MovieCreateCommand>, ICommandHandler<MovieUpdateCommand>, ICommandHandler<MovieDeleteCommand>
     {

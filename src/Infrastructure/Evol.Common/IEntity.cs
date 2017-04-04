@@ -7,7 +7,7 @@ namespace Evol.Common
         DateTime CreateTime { get; set; }
     }
 
-    public interface IEntity : IEntity<Guid>
+    public interface IEntity : IEntity<Guid>, IPrimaryKey
     {
 
     }

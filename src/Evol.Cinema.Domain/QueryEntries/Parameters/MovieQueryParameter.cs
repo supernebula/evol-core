@@ -1,7 +1,7 @@
 ﻿using System;
-using Evol.Cinema.Domain.Models.Values;
+using Evol.TMovie.Domain.Models.Values;
 
-namespace Evol.Cinema.Domain.QueryEntries.Parameters
+namespace Evol.TMovie.Domain.QueryEntries.Parameters
 {
     public class MovieQueryParameter
     {

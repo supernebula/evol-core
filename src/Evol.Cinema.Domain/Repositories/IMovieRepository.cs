@@ -1,7 +1,7 @@
-﻿using Evol.Cinema.Domain.Models.AggregateRoots;
+﻿using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.Domain.Data;
 
-namespace Evol.Cinema.Domain.Repositories
+namespace Evol.TMovie.Domain.Repositories
 {
     public interface IMovieRepository : IRepository<Movie>
     {

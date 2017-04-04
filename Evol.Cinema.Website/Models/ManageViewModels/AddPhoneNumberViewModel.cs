@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Evol.Cinema.Website.Models.ManageViewModels
+namespace Evol.TMovie.Website.Models.ManageViewModels
 {
     public class AddPhoneNumberViewModel
     {

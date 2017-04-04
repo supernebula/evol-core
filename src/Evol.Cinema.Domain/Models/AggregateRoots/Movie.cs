@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Evol.Cinema.Domain.Models.Values;
+using Evol.TMovie.Domain.Models.Values;
 using Evol.Common;
 
-namespace Evol.Cinema.Domain.Models.AggregateRoots
+namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     /// <summary>
     /// 电影

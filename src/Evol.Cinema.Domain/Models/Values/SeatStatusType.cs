@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Evol.Cinema.Domain.Models.Values
+namespace Evol.TMovie.Domain.Models.Values
 {
 
     /// <summary>

@@ -1,8 +1,8 @@
 ﻿using System;
-using Evol.Cinema.Domain.Models.Values;
+using Evol.TMovie.Domain.Models.Values;
 using Evol.Common;
 
-namespace Evol.Cinema.Domain.Models.Entities
+namespace Evol.TMovie.Domain.Models.Entities
 {
     /// <summary>
     /// 座位

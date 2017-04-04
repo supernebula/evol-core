@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Evol.Cinema.Domain\Evol.Cinema.Domain.csproj" />
+    <ProjectReference Include="..\Evol.Cinema.Domain\Evol.TMovie.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.EntityFramework\Evol.EntityFramework.csproj" />
   </ItemGroup>
 

@@ -10,6 +10,8 @@
 
   <PropertyGroup>
     <UserSecretsId>aspnet-Evol.Cinema.Website-ae5e8a9f-d541-445f-9414-64f2afe5adaf</UserSecretsId>
+    <AssemblyName>Evol.TMovie.Website</AssemblyName>
+    <RootNamespace>Evol.TMovie.Website</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

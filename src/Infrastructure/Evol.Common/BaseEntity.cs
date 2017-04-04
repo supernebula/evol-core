@@ -9,11 +9,11 @@ namespace Evol.Common
         /// </summary>
         public Guid Id { get; set; }
 
+
         /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
-        
     }
 
     public abstract class BaseEntity<TKey> : IEntity<TKey>
@@ -30,4 +30,5 @@ namespace Evol.Common
         public DateTime CreateTime { get; set; }
 
     }
+
 }

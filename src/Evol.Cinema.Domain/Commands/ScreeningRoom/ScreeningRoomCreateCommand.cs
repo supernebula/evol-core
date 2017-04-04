@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evol.Cinema.Domain.Commands
+namespace Evol.TMovie.Domain.Commands
 {
     class ScreeningRoomCreateCommand
     {

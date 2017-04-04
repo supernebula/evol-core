@@ -2,7 +2,7 @@
 using Evol.Domain.Ioc;
 using Evol.Domain.Modules;
 
-namespace Evol.Cinema.Domain
+namespace Evol.TMovie.Domain
 {
     public class CinemaDomainModule : AppModule
     {

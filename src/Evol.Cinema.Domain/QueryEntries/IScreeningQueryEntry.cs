@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Evol.Cinema.Domain.Models.AggregateRoots;
-using Evol.Cinema.Domain.QueryEntries.Parameters;
+using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
 using Evol.Domain.Data;
 
-namespace Evol.Cinema.Domain.QueryEntries
+namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface IScreeningQueryEntry : IQueryEntry
     {

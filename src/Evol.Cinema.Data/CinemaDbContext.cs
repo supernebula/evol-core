@@ -4,7 +4,7 @@ using Evol.EntityFramework;
 using System;
 using Evol.EntityFramework.Configueration;
 
-namespace Evol.Cinema.Data
+namespace Evol.TMovie.Data
 {
 
     public class CinemaDbContext : NamedDbContext

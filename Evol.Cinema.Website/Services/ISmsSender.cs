@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Evol.Cinema.Website.Services
+namespace Evol.TMovie.Website.Services
 {
     public interface ISmsSender
     {

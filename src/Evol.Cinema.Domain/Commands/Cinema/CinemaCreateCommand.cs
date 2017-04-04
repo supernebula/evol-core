@@ -1,7 +1,7 @@
-﻿using Evol.Cinema.Domain.Commands.Dto;
+﻿using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Commands;
 
-namespace Evol.Cinema.Domain.Commands
+namespace Evol.TMovie.Domain.Commands
 {
     public class CinemaCreateCommand : Command
     {

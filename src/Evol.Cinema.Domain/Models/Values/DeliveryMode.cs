@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Evol.Cinema.Domain.Models.Values
+namespace Evol.TMovie.Domain.Models.Values
 {
     /// <summary>
     /// 交付方式

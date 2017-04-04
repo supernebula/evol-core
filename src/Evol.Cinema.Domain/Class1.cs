@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Evol.Cinema.Domain
+namespace Evol.TMovie.Domain
 {
     public class Class1
     {

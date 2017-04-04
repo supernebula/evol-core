@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Evol.Cinema.Website": {
+    "Evol.TMovie.Website": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

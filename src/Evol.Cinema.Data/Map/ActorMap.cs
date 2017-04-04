@@ -1,8 +1,8 @@
-﻿using Evol.Cinema.Domain.Models.AggregateRoots;
+﻿using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.EntityFramework.Configueration;
 using Microsoft.EntityFrameworkCore;
 
-namespace Evol.Cinema.Data.Map
+namespace Evol.TMovie.Data.Map
 {
     public class ActorMap : EntityConfigMap<Actor>
     {

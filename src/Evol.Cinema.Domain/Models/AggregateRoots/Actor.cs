@@ -1,7 +1,7 @@
 ﻿using System;
 using Evol.Common;
 
-namespace Evol.Cinema.Domain.Models.AggregateRoots
+namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     /// <summary>
     /// 演员

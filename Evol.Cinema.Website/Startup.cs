@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Evol.Cinema.Website.Data;
-using Evol.Cinema.Website.Models;
-using Evol.Cinema.Website.Services;
+using Evol.TMovie.Website.Data;
+using Evol.TMovie.Website.Models;
+using Evol.TMovie.Website.Services;
 
-namespace Evol.Cinema.Website
+namespace Evol.TMovie.Website
 {
     public class Startup
     {

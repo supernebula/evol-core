@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Evol.Cinema.Website.Data.Migrations
+namespace Evol.TMovie.Website.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
