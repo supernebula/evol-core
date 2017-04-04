@@ -6,7 +6,7 @@ namespace Evol.TMovie.Data.Repositories
 {
     public class ActorRepository : BasicEntityFrameworkRepository<Actor, TMovieDbContext>, IActorRepository
     {
-        protected ActorRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public ActorRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

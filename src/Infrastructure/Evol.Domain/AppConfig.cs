@@ -13,20 +13,24 @@ namespace Evol.Domain
         {
             get
             {
-                if(_currentIoCManager == null)
-                    _currentIoCManager = new DefaultIoCManager(Services);
+                if (_currentIoCManager == null)
+                    _currentIoCManager = new DefaultIoCManager(Services, ServiceProvider);
                 return _currentIoCManager;
             }
         }
-
-        public static void InitCurrent(IServiceCollection services, IServiceProvider serviceProvider)
+        public AppConfig(IServiceCollection services, IServiceProvider serviceProvider)
         {
-            _current = new AppConfig();
-            _current.ServiceProvider = serviceProvider;
+            Services = services;
+            ServiceProvider = serviceProvider;
         }
 
 
-        private IServiceCollection _services;
+
+        public static void InitCurrent(IServiceCollection services, IServiceProvider serviceProvider)
+        {
+            _current = new AppConfig(services, serviceProvider);
+        }
+
 
         public IServiceCollection Services { get; private set; }
 
@@ -40,6 +44,9 @@ namespace Evol.Domain
         {
             (new TModule()).Initailize();
         }
+
+
+
 
     }
 }

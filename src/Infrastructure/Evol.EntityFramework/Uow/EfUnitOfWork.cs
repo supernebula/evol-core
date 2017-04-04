@@ -18,6 +18,11 @@ namespace Evol.EntityFramework.Uow
 
         private OnDbContextAdded _dbContextAddedEvent = null;
 
+        public EfUnitOfWork()
+        {
+            ActiveDbContexts = new Dictionary<string, NamedDbContext>();
+        }
+
         protected override void BeginUow()
         {
             _dbContextAddedEvent += context =>

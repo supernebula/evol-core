@@ -7,7 +7,7 @@ namespace Evol.TMovie.Data.Repositories
 {
     public class SeatRepository : BasicEntityFrameworkRepository<Seat, TMovieDbContext>, ISeatRepository
     {
-        protected SeatRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public SeatRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

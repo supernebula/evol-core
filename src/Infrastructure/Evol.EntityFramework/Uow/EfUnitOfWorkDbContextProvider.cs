@@ -1,4 +1,5 @@
-﻿using Evol.Domain.Uow;
+﻿using Evol.Domain;
+using Evol.Domain.Uow;
 using System;
 
 namespace Evol.EntityFramework.Repository
@@ -21,7 +22,7 @@ namespace Evol.EntityFramework.Repository
             var context = UnitOfWork.GetDbContext<TDbContext>();
             if (context != null)
                 return context;
-            context = Activator.CreateInstance<TDbContext>();
+            context = AppConfig.Current.IoCManager.GetService<TDbContext>();
             UnitOfWork.AddDbContext(context.Name, context);
             return context;
         }

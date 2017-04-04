@@ -4,10 +4,11 @@ using Evol.TMovie.Domain.QueryEntries.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Evol.Domain.Data;
 
 namespace Evol.TMovie.Domain.QueryEntries
 {
-    public interface ICinemaQueryEntry
+    public interface ICinemaQueryEntry : IQueryEntry
     {
         Task<Cinema> FetchAsync(Guid id);
 

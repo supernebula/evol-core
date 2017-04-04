@@ -7,9 +7,17 @@ namespace Evol.Domain.Ioc
     {
         public IServiceCollection Container { get; }
 
-        public DefaultIoCManager(IServiceCollection serviceCollection)
+        public IServiceProvider ServiceProvider { get; }
+
+        public DefaultIoCManager(IServiceCollection serviceCollection, IServiceProvider serviceProvider)
         {
             Container = serviceCollection;
+            ServiceProvider = serviceProvider;
+        }
+
+        public T GetService<T>()
+        {
+            return ServiceProvider.GetService<T>();
         }
     }
 }
