@@ -4,11 +4,11 @@ using Evol.Domain.Modules;
 
 namespace Evol.TMovie.Domain
 {
-    public class CinemaDomainModule : AppModule
+    public class TMovieDomainModule : AppModule
     {
         private readonly IConventionalDependencyRegister _domainDependencyRegister;
 
-        public CinemaDomainModule()
+        public TMovieDomainModule()
         {
             _domainDependencyRegister = new DefualtDomainConventionalDependencyRegister();
 

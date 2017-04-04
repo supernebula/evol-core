@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Evol.TMovie.Website.Data;
 using Evol.TMovie.Website.Models;
 using Evol.TMovie.Website.Services;
+using Evol.Domain;
 
 namespace Evol.TMovie.Website
 {
@@ -48,6 +49,8 @@ namespace Evol.TMovie.Website
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            AppConfig.InitCurrent(services, services.BuildServiceProvider());
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

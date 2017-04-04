@@ -6,12 +6,12 @@ using Evol.Domain.Modules;
 
 namespace Evol.TMovie.Data
 {
-    [DependOn(typeof(CinemaDomainModule))]
-    public class CinemaDataModule : AppModule
+    [DependOn(typeof(TMovieDomainModule))]
+    public class TMovieDataModule : AppModule
     {
         private readonly IConventionalDependencyRegister _dataDependencyRegister;
 
-        public CinemaDataModule()
+        public TMovieDataModule()
         {
             _dataDependencyRegister = new DataConventionalDependencyRegister();
         }

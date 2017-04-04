@@ -4,7 +4,7 @@ using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class SeatRepository : BasicEntityFrameworkRepository<Seat, CinemaDbContext>, ISeatRepository
+    public class SeatRepository : BasicEntityFrameworkRepository<Seat, TMovieDbContext>, ISeatRepository
     {
     }
 }

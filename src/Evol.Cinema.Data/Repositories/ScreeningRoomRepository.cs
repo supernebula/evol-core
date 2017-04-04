@@ -4,7 +4,7 @@ using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class ScreeningRoomRepository : BasicEntityFrameworkRepository<ScreeningRoom, CinemaDbContext>, IScreeningRoomRepository
+    public class ScreeningRoomRepository : BasicEntityFrameworkRepository<ScreeningRoom, TMovieDbContext>, IScreeningRoomRepository
     {
     }
 }

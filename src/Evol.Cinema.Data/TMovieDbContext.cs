@@ -7,17 +7,17 @@ using Evol.EntityFramework.Configueration;
 namespace Evol.TMovie.Data
 {
 
-    public class CinemaDbContext : NamedDbContext
+    public class TMovieDbContext : NamedDbContext
     {
-        public CinemaDbContext() : this(null)
+        public TMovieDbContext() : this(null)
         {
         }
 
-        public CinemaDbContext(DbContextOptions<CinemaDbContext> options) : base(options)
+        public TMovieDbContext(DbContextOptions<TMovieDbContext> options) : base(options)
         {
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
-            Name = nameof(CinemaDbContext);
+            Name = nameof(TMovieDbContext);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

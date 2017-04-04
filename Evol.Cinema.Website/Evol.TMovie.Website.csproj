@@ -36,11 +36,16 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\src\Evol.Cinema.Data\Evol.TMovie.Data.csproj" />
+    <ProjectReference Include="..\src\Evol.Cinema.Domain\Evol.TMovie.Domain.csproj" />
     <ProjectReference Include="..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Manage\Views\Cinema\" />
     <Folder Include="Areas\Manage\Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Startup.Module.cs" />
   </ItemGroup>
 
 </Project>

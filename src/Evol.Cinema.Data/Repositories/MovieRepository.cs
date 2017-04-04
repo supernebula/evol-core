@@ -4,7 +4,7 @@ using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class MovieRepository : BasicEntityFrameworkRepository<Movie, CinemaDbContext>, IMovieRepository
+    public class MovieRepository : BasicEntityFrameworkRepository<Movie, TMovieDbContext>, IMovieRepository
     {
     }
 }
