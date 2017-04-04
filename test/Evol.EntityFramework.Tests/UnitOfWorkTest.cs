@@ -31,9 +31,9 @@ namespace Evol.EntityFramework.Repository.Test
             var unitOfWorkObj = new EfUnitOfWork();//{ DbContextFactory = _dbContextFactory };
 
             var uoWdbContextProvider = new EfUnitOfWorkDbContextProvider(unitOfWorkObj);
-            var orderRepo = new FakeOrderRepository()  {  DbContextProvider = uoWdbContextProvider };
-            var productRepo = new FakeProductRepository() { DbContextProvider = uoWdbContextProvider };
-            var userRepo = new FakeUserRepository() { DbContextProvider = uoWdbContextProvider }; 
+            var orderRepo = new FakeOrderRepository(uoWdbContextProvider) ;
+            var productRepo = new FakeProductRepository(uoWdbContextProvider) ;
+            var userRepo = new FakeUserRepository(uoWdbContextProvider) ; 
 
             unitOfWorkObj.Begin(new UnitOfWorkOption());
             try

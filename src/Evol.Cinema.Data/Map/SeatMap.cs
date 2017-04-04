@@ -3,6 +3,7 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.Models.Entitys;
 using Evol.EntityFramework.Configueration;
 using Microsoft.EntityFrameworkCore;
+using Evol.TMovie.Domain.Models.Entities;
 
 namespace Evol.TMovie.Data.Map
 {

@@ -13,10 +13,11 @@ using Evol.TMovie.Website.Data;
 using Evol.TMovie.Website.Models;
 using Evol.TMovie.Website.Services;
 using Evol.Domain;
+using Evol.TMovie.Data;
 
 namespace Evol.TMovie.Website
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IHostingEnvironment env)
         {
@@ -41,20 +42,21 @@ namespace Evol.TMovie.Website
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<TMovieDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<TMovieDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
 
-            AppConfig.InitCurrent(services, services.BuildServiceProvider());
-
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            AppConfig.InitCurrent(services, services.BuildServiceProvider());
+            ConfigureModules(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

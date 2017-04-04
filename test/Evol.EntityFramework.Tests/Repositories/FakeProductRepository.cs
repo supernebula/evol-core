@@ -6,7 +6,8 @@ namespace Evol.EntityFramework.Repository.Test.Repositories
 {
     public class FakeProductRepository : BasicEntityFrameworkRepository<FakeProduct, FakeEcDbContext>
     {
-        public FakeProductRepository()
-        { }
+        public FakeProductRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        {
+        }
     }
 }

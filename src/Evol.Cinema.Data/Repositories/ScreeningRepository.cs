@@ -6,5 +6,8 @@ namespace Evol.TMovie.Data.Repositories
 {
     public class ScreeningRepository : BasicEntityFrameworkRepository<Screening, TMovieDbContext>, IScreeningRepository
     {
+        protected ScreeningRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        {
+        }
     }
 }

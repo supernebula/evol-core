@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Evol.TMovie.Data;
+using Evol.Domain;
 
 namespace Evol.TMovie.Manage
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IHostingEnvironment env)
         {
@@ -28,10 +31,13 @@ namespace Evol.TMovie.Manage
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<TMovieDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
+
+            AppConfig.InitCurrent(services, services.BuildServiceProvider());
+            ConfigureModules(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

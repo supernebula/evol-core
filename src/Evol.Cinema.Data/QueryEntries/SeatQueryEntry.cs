@@ -7,6 +7,7 @@ using Evol.TMovie.Domain.Models.Entitys;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
+using Evol.TMovie.Domain.Models.Entities;
 
 namespace Evol.TMovie.Data.QueryEntries
 {

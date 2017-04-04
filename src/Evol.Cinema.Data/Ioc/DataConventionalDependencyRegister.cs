@@ -24,7 +24,7 @@ namespace Evol.TMovie.Data.Ioc
         {
             Func<Type, bool> filter = type => {
                 var tInfo = type.GetTypeInfo();
-                return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && typeof(IQueryEntry).GetTypeInfo().IsAssignableFrom(type)
+                return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && typeof(IQueryEntry).GetTypeInfo().IsAssignableFrom(type);
             };
             var impls = assembly.GetTypes().Where(filter).ToList();
             var interfaceImpls = new List<InterfaceImplPair>();

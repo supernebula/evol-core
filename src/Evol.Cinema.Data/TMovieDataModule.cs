@@ -18,7 +18,7 @@ namespace Evol.TMovie.Data
 
         public override void Initailize()
         {
-            _dataDependencyRegister.Register(IoCManager.Container, Assembly.GetExecutingAssembly());
+            _dataDependencyRegister.Register(IoCManager.Container, this.GetType().GetTypeInfo().Assembly);
             base.Initailize();
         }
     }

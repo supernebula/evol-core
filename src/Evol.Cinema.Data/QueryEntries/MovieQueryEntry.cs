@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
@@ -15,8 +14,12 @@ namespace Evol.TMovie.Data.QueryEntries
 {
     public class MovieQueryEntry : IMovieQueryEntry
     {
-        [Dependency]
         public IMovieRepository MovieRepository { get; set; }
+
+        public MovieQueryEntry(IMovieRepository movieRepos)
+        {
+            MovieRepository = movieRepos;
+        }
 
         public Movie Fetch(Guid id)
         {

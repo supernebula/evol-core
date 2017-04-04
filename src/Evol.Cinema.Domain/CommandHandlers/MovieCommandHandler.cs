@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Evol.TMovie.Domain.Commands;
 using Evol.TMovie.Domain.Repositories;
 using Evol.Domain.Messaging;
+using Evol.TMovie.Domain.Models.AggregateRoots;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
@@ -18,8 +19,8 @@ namespace Evol.TMovie.Domain.CommandHandlers
 
         public void Execute(MovieCreateCommand command)
         {
-            command.AggregateRoot.Id = Guid.NewGuid();
-            MovieRepository.Insert(command.AggregateRoot);
+            var item = new Movie();
+            MovieRepository.Insert(item);
         }
 
         public void Execute(MovieUpdateCommand command)
@@ -34,8 +35,8 @@ namespace Evol.TMovie.Domain.CommandHandlers
 
         public Task ExecuteAsync(MovieCreateCommand command)
         {
-            command.AggregateRoot.Id = Guid.NewGuid();
-            MovieRepository.Insert(command.AggregateRoot);
+            var item = new Movie();
+            MovieRepository.Insert(item);
             return Task.FromResult(1);
         }
 

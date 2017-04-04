@@ -28,7 +28,6 @@ namespace Demo.Website.Cache
 
         public static void Get<TItem>(object key, TItem value)
         {
-            object value;
             _cache.TryGetValue(key, out value);
         }
     }

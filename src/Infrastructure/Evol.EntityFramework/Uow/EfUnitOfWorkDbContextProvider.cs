@@ -1,5 +1,4 @@
 ﻿using Evol.Domain.Uow;
-using Evol.EntityFramework.Uow;
 using System;
 
 namespace Evol.EntityFramework.Repository
@@ -12,7 +11,7 @@ namespace Evol.EntityFramework.Repository
             set;
         }
 
-        public EfUnitOfWorkDbContextProvider(EfUnitOfWork uow)
+        public EfUnitOfWorkDbContextProvider(IActiveUnitOfWork uow)
         {
             UnitOfWork = uow;
         }

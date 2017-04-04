@@ -21,17 +21,17 @@ namespace Evol.Domain
 
         public static void InitCurrent(IServiceCollection services, IServiceProvider serviceProvider)
         {
-            _current = new AppConfig(services);
+            _current = new AppConfig();
+            _current.ServiceProvider = serviceProvider;
         }
 
-        public AppConfig(IServiceCollection services)
-        {
-            Services = services;
-        }
 
         private IServiceCollection _services;
 
         public IServiceCollection Services { get; private set; }
+
+        public IServiceProvider ServiceProvider { get; private set; }
+
 
         private static AppConfig _current;
         public static AppConfig Current => _current;
@@ -40,20 +40,6 @@ namespace Evol.Domain
         {
             (new TModule()).Initailize();
         }
-
-        //public AppConfiguration Use<TFrom, TTo>(LifetimeManager life) where TTo : TFrom
-        //{
-        //    //throw new NotImplementedException();
-        //    Container.RegisterType<TFrom, TTo>(life);
-        //    return this;
-        //}
-
-        //public AppConfiguration Use(Type from, Type to, LifetimeManager life)
-        //{
-        //    //throw new NotImplementedException();
-        //    Container.RegisterType(from, to, life);
-        //    return this;
-        //}
 
     }
 }

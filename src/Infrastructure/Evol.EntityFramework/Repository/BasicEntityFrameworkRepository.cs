@@ -33,10 +33,6 @@ namespace Evol.EntityFramework.Repository
 
         public DatabaseFacade Database => Context.Database;
 
-        protected BasicEntityFrameworkRepository()
-        { 
-        }
-
         protected BasicEntityFrameworkRepository(IEfDbContextProvider dbContextProvider)
         {
             DbContextProvider = dbContextProvider;
