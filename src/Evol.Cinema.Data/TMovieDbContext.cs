@@ -9,9 +9,6 @@ namespace Evol.TMovie.Data
 
     public class TMovieDbContext : NamedDbContext
     {
-        public TMovieDbContext() : this(null)
-        {
-        }
 
         public TMovieDbContext(DbContextOptions<TMovieDbContext> options) : base(options)
         {

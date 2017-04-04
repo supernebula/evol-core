@@ -44,6 +44,7 @@ namespace Evol.TMovie.Website
             // Add framework services.
             services.AddDbContext<TMovieDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<TMovieDbContext>()
@@ -60,8 +61,9 @@ namespace Evol.TMovie.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, TMovieDbContext context)
         {
+            new DbInitializer().InitializeAsync(context);
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 

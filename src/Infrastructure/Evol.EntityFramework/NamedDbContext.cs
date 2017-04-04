@@ -2,7 +2,7 @@
 
 namespace Evol.EntityFramework
 {
-    public abstract class NamedDbContext : DbContext, INamedDbContext
+    public class NamedDbContext : DbContext, INamedDbContext
     {
         public string Name { get; set; }
 
