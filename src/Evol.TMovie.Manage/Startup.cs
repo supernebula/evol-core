@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Evol.TMovie.Data;
 using Evol.Domain;
+using Evol.TMovie.Manage.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Evol.TMovie.Manage
 {
@@ -31,6 +33,10 @@ namespace Evol.TMovie.Manage
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<TMovieDbContext>()
+                .AddDefaultTokenProviders();
 
             AppConfig.InitCurrent(services, services.BuildServiceProvider());
             ConfigureModules(services);
