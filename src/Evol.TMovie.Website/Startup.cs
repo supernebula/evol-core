@@ -4,16 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Evol.TMovie.Website.Data;
 using Evol.TMovie.Website.Models;
 using Evol.TMovie.Website.Services;
-using Evol.Domain;
+
 using Evol.TMovie.Data;
+using Evol.Domain;
 
 namespace Evol.TMovie.Website
 {
@@ -29,7 +28,7 @@ namespace Evol.TMovie.Website
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets<Startup>();
+                //builder.AddUserSecrets<Startup>();
             }
 
             builder.AddEnvironmentVariables();
@@ -44,11 +43,7 @@ namespace Evol.TMovie.Website
             // Add framework services.
             services.AddDbContext<TMovieDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<TMovieDbContext>()
-                .AddDefaultTokenProviders();
+           
 
             services.AddMvc();
 
@@ -70,7 +65,7 @@ namespace Evol.TMovie.Website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else
@@ -80,7 +75,7 @@ namespace Evol.TMovie.Website
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
+            //app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
