@@ -6,9 +6,9 @@ namespace Evol.EntityFramework.Repository.Test.Core
 
     public class FakeEfDbContextProvider : IEfDbContextProvider
     {
-        private NamedDbContext context;
+        private DbContext context;
 
-        public TDbContext Get<TDbContext>() where TDbContext : NamedDbContext
+        public TDbContext Get<TDbContext>() where TDbContext : DbContext, INamedDbContext
         {
             if (context == null)
                 context = Activator.CreateInstance<TDbContext>();

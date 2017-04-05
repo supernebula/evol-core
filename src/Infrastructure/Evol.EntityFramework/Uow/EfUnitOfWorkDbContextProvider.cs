@@ -1,5 +1,6 @@
 ﻿using Evol.Domain;
 using Evol.Domain.Uow;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Evol.EntityFramework.Repository
@@ -17,7 +18,7 @@ namespace Evol.EntityFramework.Repository
             UnitOfWork = uow;
         }
 
-        public TDbContext Get<TDbContext>() where TDbContext : NamedDbContext
+        public TDbContext Get<TDbContext>() where TDbContext : DbContext, INamedDbContext
         {
             var context = UnitOfWork.GetDbContext<TDbContext>();
             if (context != null)

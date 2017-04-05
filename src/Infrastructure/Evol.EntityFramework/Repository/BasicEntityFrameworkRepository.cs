@@ -14,14 +14,14 @@ namespace Evol.EntityFramework.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
-    public abstract class BasicEntityFrameworkRepository<T, TDbContext> where TDbContext : NamedDbContext where T : class, IPrimaryKey
+    public abstract class BasicEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext, INamedDbContext where T : class, IPrimaryKey
     {
         private TDbContext _context;
 
         //[Dependency]
         public IEfDbContextProvider DbContextProvider { get; set; }
 
-        private NamedDbContext Context
+        private DbContext Context
         {
             get
             {

@@ -18,7 +18,7 @@ namespace Evol.EntityFramework.Configueration
             var entityMapTypes = types.Where(e =>
             {
                 var baseType = e.GetTypeInfo().BaseType;
-                return baseType.GetTypeInfo().IsGenericType && baseType == typeof(EntityConfigMap<>);
+                return baseType.GetTypeInfo().IsGenericType && baseType.GetGenericTypeDefinition() == typeof(EntityConfigMap<>);
             }).ToList();
             entityMapTypes.ForEach(t => {
                 var entityMap = (EntityConfigMap)Activator.CreateInstance(t);

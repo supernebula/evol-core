@@ -72,6 +72,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Manage", "src\E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Website", "src\Evol.TMovie.Website\Evol.TMovie.Website.csproj", "{2AF26149-1643-44D1-8076-133ED57221F7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.ConsoleApp", "src\Evol.TMovie.ConsoleApp\Evol.TMovie.ConsoleApp.csproj", "{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,10 @@ Global
 		{2AF26149-1643-44D1-8076-133ED57221F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AF26149-1643-44D1-8076-133ED57221F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AF26149-1643-44D1-8076-133ED57221F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -216,5 +222,6 @@ Global
 		{B127005D-D1E1-4DD9-A8BF-FAA92B69E19D} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{9BD186C9-15ED-40DA-BCA2-42D4A364C9CA} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{2AF26149-1643-44D1-8076-133ED57221F7} = {8B542B00-87DC-489A-9166-981260EE1AF6}
+		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 	EndGlobalSection
 EndGlobal

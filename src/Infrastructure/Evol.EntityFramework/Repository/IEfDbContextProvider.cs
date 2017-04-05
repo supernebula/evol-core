@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Evol.EntityFramework.Repository
 {
     public interface IEfDbContextProvider
     {
-        TDbContext Get<TDbContext>() where TDbContext : NamedDbContext;
+        TDbContext Get<TDbContext>() where TDbContext : DbContext, INamedDbContext;
     }
 }
