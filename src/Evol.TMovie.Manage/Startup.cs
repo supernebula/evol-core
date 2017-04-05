@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,15 +26,14 @@ namespace Evol.TMovie.Manage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            AppConfig.InitCurrent(services, services.BuildServiceProvider());
-            ConfigureModules(services);
-
             // Add framework services.
             services.AddDbContext<TMovieDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
+
+            AppConfig.InitCurrent(services, services.BuildServiceProvider());
+            ConfigureModules(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
