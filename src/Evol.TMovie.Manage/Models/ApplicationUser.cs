@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Manage.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser// : IdentityUser
     {
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Evol.Web.Middlewares
 {
-    public class ExceptionLogMiddleware
+    public class UnhandledExceptionMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public ExceptionLogMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+        public UnhandledExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<VisitAuditMiddleware>();
+            _logger = loggerFactory.CreateLogger("unHandledException");
             _next = next;
         }
 

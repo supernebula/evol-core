@@ -9,8 +9,8 @@ using Evol.TMovie.Domain.Models.Values;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    [Migration("20170405090847_AddTable04051708")]
-    partial class AddTable04051708
+    [Migration("20170408035523_ReInitDatabase")]
+    partial class ReInitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

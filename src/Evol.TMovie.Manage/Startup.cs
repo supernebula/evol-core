@@ -6,8 +6,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Evol.TMovie.Data;
 using Evol.Domain;
+using Evol.Web.Middlewares;
 using Evol.TMovie.Manage.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using NLog.Web;
+using NLog.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace Evol.TMovie.Manage
 {
@@ -34,9 +38,12 @@ namespace Evol.TMovie.Manage
 
             services.AddMvc();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<TMovieDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<TMovieDbContext>()
+            //    .AddDefaultTokenProviders();
+
+            //needed for NLog.Web
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             AppConfig.InitCurrent(services, services.BuildServiceProvider());
             ConfigureModules(services);
@@ -45,8 +52,21 @@ namespace Evol.TMovie.Manage
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            //add NLog to ASP.NET Core
+            loggerFactory.AddNLog();
+
+            //add NLog.Web
+            app.AddNLogWeb();
+
+            //needed for non-NETSTANDARD platforms: configure nlog.config in your project root. NB: you need NLog.Web.AspNetCore package for this. 		
+            env.ConfigureNLog("nlog.config");
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseStaticFiles();
+            app.UseVisitAudit();
+            app.UseUnhandledException();
 
             if (env.IsDevelopment())
             {
@@ -57,8 +77,6 @@ namespace Evol.TMovie.Manage
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {

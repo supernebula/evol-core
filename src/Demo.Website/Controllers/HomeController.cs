@@ -25,11 +25,12 @@ namespace Demo.Website.Controllers
             _area = area;
             _logger = logger;
             _loggerFactory = loggerFactory;
-            nLogger = NLog.LogManager.GetCurrentClassLogger();
+            nLogger = NLog.LogManager.GetCurrentClassLogger();  
         }
 
         public IActionResult Index()
         {
+            var logger = _loggerFactory.CreateLogger("interf");
             _logger.LogInformation("Test logger info");
             return View();
         }

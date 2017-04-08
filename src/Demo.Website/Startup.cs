@@ -70,7 +70,8 @@ namespace Demo.Website
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
+            //needed for NLog.Web
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Add application services.
             services.AddScoped(provider => {
                 var value = new SingleConfig() { Tick = DateTime.Now };
@@ -101,7 +102,15 @@ namespace Demo.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UserVisitAudit();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory
+                .AddConsole()
+                .AddNLog();
+            env.ConfigureNLog("nlog.config");
+
+            app.UseVisitAudit();
+            //add NLog.Web
+            app.AddNLogWeb();
 
             var provider = new FileExtensionContentTypeProvider();
             // Add new mappings
@@ -132,17 +141,13 @@ namespace Demo.Website
             //    ContentTypeProvider = 
             //});
 
-            //add NLog.Web
-            app.AddNLogWeb();
+
 
             //needed for non-NETSTANDARD platforms: configure nlog.config in your project root. NB: you need NLog.Web.AspNetCore package for this. 		
-            env.ConfigureNLog("nlog.config");
+            
 
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory
-                .AddConsole()
-                .AddNLog();
+
 
             if (env.IsDevelopment())
             {

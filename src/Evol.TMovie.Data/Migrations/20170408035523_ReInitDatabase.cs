@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Evol.TMovie.Data.Migrations
 {
-    public partial class AddTable04051708 : Migration
+    public partial class ReInitDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,20 @@ namespace Evol.TMovie.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Actor", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cinema",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Address = table.Column<string>(maxLength: 500, nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cinema", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,6 +116,9 @@ namespace Evol.TMovie.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Actor");
+
+            migrationBuilder.DropTable(
+                name: "Cinema");
 
             migrationBuilder.DropTable(
                 name: "Movie");

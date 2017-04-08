@@ -14,7 +14,7 @@ namespace Evol.Web.Middlewares
 
         public VisitAuditMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<VisitAuditMiddleware>();
+            _logger = loggerFactory.CreateLogger("visitAudit");
             _next = next;
         }
 
@@ -26,6 +26,8 @@ namespace Evol.Web.Middlewares
             sw.Start();
             await _next.Invoke(context);
             sw.Stop();
+            if (context.Response.ContentType != null && !context.Response.ContentType.StartsWith("text/html"))
+                return;
             var endTime = DateTime.Now.ToLocalTime().ToString("yyyy/MM/dd hh:mm:ss.fff");
             var Elapsed = sw.ElapsedMilliseconds;
 

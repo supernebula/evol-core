@@ -3,14 +3,13 @@ using System;
 
 namespace Evol.Web.Middlewares
 {
-    public static class VisitAuditMiddlewareExtension
+    public static class UnhandledExceptionMiddlewareExtensions
     {
-
-        public static IApplicationBuilder UseVisitAudit(this IApplicationBuilder app)
+        public static IApplicationBuilder UseUnhandledException(this IApplicationBuilder app)
         {
             if (app == null)
                 throw new ArgumentNullException("app");
-            app.UseMiddleware<VisitAuditMiddleware>();
+            app.UseMiddleware<UnhandledExceptionMiddleware>();
             return app;
         }
     }
