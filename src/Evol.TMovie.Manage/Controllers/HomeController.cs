@@ -23,6 +23,7 @@ namespace Evol.TMovie.Manage.Controllers
         {
             ViewData["Message"] = "Your application description page.";
             _logger.LogInformation("Your application description page.");
+            throw new InvalidOperationException("测试未处理异常");
             return View();
         }
 

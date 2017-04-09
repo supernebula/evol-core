@@ -27,6 +27,7 @@ namespace Evol.Web.Middlewares
             catch (Exception ex)
             {
                 _logger.LogError(new EventId(Thread.CurrentThread.ManagedThreadId), ex, ex.Message);
+                throw ex;
             }
         }
     }

@@ -66,7 +66,6 @@ namespace Evol.TMovie.Manage
 
             app.UseStaticFiles();
             app.UseVisitAudit();
-            app.UseUnhandledException();
 
             if (env.IsDevelopment())
             {
@@ -77,6 +76,8 @@ namespace Evol.TMovie.Manage
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseUnhandledException();
 
             app.UseMvc(routes =>
             {
