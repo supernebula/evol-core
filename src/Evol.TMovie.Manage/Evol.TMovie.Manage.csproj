@@ -2436,6 +2436,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="1.1.0" />
     <PackageReference Include="NLog" Version="5.0.0-beta06" />
     <PackageReference Include="NLog.Config" Version="4.5.0-alpha04" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.3.1" />
@@ -2445,6 +2446,12 @@
     <ProjectReference Include="..\Evol.TMovie.Data\Evol.TMovie.Data.csproj" />
     <ProjectReference Include="..\Evol.TMovie.Domain\Evol.TMovie.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
