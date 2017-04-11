@@ -2,7 +2,7 @@
 using Evol.TMovie.Domain.Models.Values;
 using System;
 
-namespace Evol.TMovie.Domain.Models.Entitys
+namespace Evol.TMovie.Domain.Models.Entities
 {
     /// <summary>
     /// 交付

@@ -1,6 +1,6 @@
 ﻿using System;
 using Evol.TMovie.Domain.Models.AggregateRoots;
-using Evol.TMovie.Domain.Models.Entitys;
+using Evol.TMovie.Domain.Models.Entities;
 using Evol.EntityFramework.Configueration;
 using Microsoft.EntityFrameworkCore;
 using Evol.TMovie.Domain.Models.Entities;
