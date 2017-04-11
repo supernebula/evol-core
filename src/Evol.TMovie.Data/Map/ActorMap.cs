@@ -11,8 +11,8 @@ namespace Evol.TMovie.Data.Map
             var builder = EntityBuilder(modelBuilder);
             builder.ToTable("Actor");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Name).IsRequired();
-            builder.Property(e => e.ImagePath).IsRequired(false);
+            builder.Property(e => e.Name).IsRequired().HasMaxLength(100);
+            builder.Property(e => e.ImagePath).IsRequired(false).HasMaxLength(200);
             builder.Property(e => e.CreateTime).IsRequired();
         }
     }
