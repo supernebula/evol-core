@@ -12,11 +12,11 @@ namespace Evol.TMovie.Manage
         public void ConfigureModules(IServiceCollection services)
         {
             AppConfig.Current.InitModuleFrom<TMovieManageModule>();
-            //services.AddScoped<IUnitOfWork, EfUnitOfWork>();
-            //services.AddScoped<IActiveUnitOfWork, EfUnitOfWork>();
-            //services.AddScoped<ICommandBus, CommandBus>();
-            //services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
-            //services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
+            services.AddScoped<IActiveUnitOfWork, EfUnitOfWork>();
+            services.AddScoped<ICommandBus, CommandBus>();
+            services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
+            services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
 
             //AppConfig.Current.Container.RegisterType<IUserSession, UserSession>(new PerThreadLifetimeManager());
             //AppConfig.Current.Container.RegisterType<ICommandHandlerActivator, DefaultCommandHandlerFactory.DefaultCommandHandlerActivator>(new PerThreadLifetimeManager());

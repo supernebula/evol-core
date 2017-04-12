@@ -9,6 +9,8 @@ using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.Commands;
+using Evol.Common;
+using Evol.TMovie.Manage.Models;
 
 namespace Evol.TMovie.Manage.Controllers
 {
@@ -24,21 +26,21 @@ namespace Evol.TMovie.Manage.Controllers
         }
 
         // GET: Cinema
-        public async Task<ActionResult> Index(CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            return View(paged);
+            return View(paged.Convert(CinemaViewModel.From));
         }
 
         // GET: Cinema/Details/5
-        public async Task<ActionResult> Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
             var item = await CinemaQueryEntry.FetchAsync(id);
             return View(item);
         }
 
         // GET: Cinema/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -46,7 +48,7 @@ namespace Evol.TMovie.Manage.Controllers
         // POST: Cinema/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CinemaCreateDto dto)
+        public async Task<IActionResult> Create(CinemaCreateOrUpdateDto dto)
         {
             if (! await TryUpdateModelAsync(dto))
             {
@@ -59,7 +61,7 @@ namespace Evol.TMovie.Manage.Controllers
         }
 
         // GET: Cinema/Edit/5
-        public async Task<ActionResult> Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             var item = await CinemaQueryEntry.FetchAsync(id);
             return View(item);
@@ -68,15 +70,14 @@ namespace Evol.TMovie.Manage.Controllers
         // POST: Cinema/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, CinemaUpdateDto dto)
+        public async Task<IActionResult> Edit(int id, CinemaCreateOrUpdateDto dto)
         {
             if (!await TryUpdateModelAsync(dto))
             {
                 return View(dto);
             }
-
             await CommandBus.SendAsync(new CinemaUpdateCommand() { Input = dto });
-
+            this.ModelState.AddModelError(string.Empty, "Success!");
             return View(dto);
         }
 

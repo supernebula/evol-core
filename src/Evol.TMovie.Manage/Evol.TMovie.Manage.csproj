@@ -2409,7 +2409,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Views\Cinema\" />
     <Folder Include="logs\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
