@@ -43,9 +43,19 @@ namespace Evol.EntityFramework.Repository
             DbSet.Add(item);
         }
 
+        public async Task InsertAsync(T item)
+        {
+            await DbSet.AddAsync(item);
+        }
+
         public void InsertRange(IEnumerable<T> items)
         {
             DbSet.AddRange(items);
+        }
+
+        public async Task InsertRangeAsync(IEnumerable<T> items)
+        {
+            await DbSet.AddRangeAsync(items);
         }
 
         public void Delete(T item)
@@ -91,6 +101,7 @@ namespace Evol.EntityFramework.Repository
             return DbSet.AsQueryable();
         }
 
+
         public IEnumerable<T> Retrieve(Expression<Func<T, bool>> predicate)
         {
             return DbSet.Where(predicate);
@@ -109,6 +120,11 @@ namespace Evol.EntityFramework.Repository
         public bool Any(Expression<Func<T, bool>> predicate)
         {
             return DbSet.Any(predicate);
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await DbSet.AnyAsync(predicate);
         }
 
         public IPaged<T> Paged(int pageIndex, int pageSize)

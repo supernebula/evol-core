@@ -17,17 +17,24 @@ namespace Evol.TMovie.Domain.CommandHandlers
         {
             CinemaRepository = cinemaRepository;
         }
-        public Task ExecuteAsync(CinemaCreateCommand command)
+        public async Task ExecuteAsync(CinemaCreateCommand command)
         {
-            var item = new Cinema();
-            CinemaRepository.Insert(item);
-            return Task.FromResult(1);
+            var item = command.Input.Map<Cinema>();
+            item.Id = Guid.NewGuid();
+            item.Name = item.Name ?? string.Empty;
+            item.Name = item.Address ?? string.Empty;
+            item.CreateTime = DateTime.Now;
+            await CinemaRepository.InsertAsync(item);
         }
 
-        public Task ExecuteAsync(CinemaUpdateCommand command)
+        public async Task ExecuteAsync(CinemaUpdateCommand command)
         {
-            CinemaRepository.Update(command.Input.Map<Cinema>());
-            return Task.FromResult(1);
+            var item = await CinemaRepository.FindAsync(command.Input.Id);
+            if (item == null)
+                throw new KeyNotFoundException();
+            item.Name = command.Input.Name;
+            item.Address = command.Input.Address;
+            CinemaRepository.Update(item);
         }
 
         public Task ExecuteAsync(CinemaDeleteCommand command)

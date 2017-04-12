@@ -13,7 +13,7 @@ namespace Evol.EntityFramework.Repository
             set;
         }
 
-        public EfUnitOfWorkDbContextProvider(IActiveUnitOfWork uow)
+        public EfUnitOfWorkDbContextProvider(IUnitOfWork uow)
         {
             UnitOfWork = uow;
         }

@@ -17,11 +17,10 @@ namespace Evol.TMovie.Domain.CommandHandlers
             MovieRepository = movieRepository;
         }
 
-        public Task ExecuteAsync(MovieCreateCommand command)
+        public async Task ExecuteAsync(MovieCreateCommand command)
         {
             var item = new Movie();
-            MovieRepository.Insert(item);
-            return Task.FromResult(1);
+            await MovieRepository.InsertAsync(item);
         }
 
         public Task ExecuteAsync(MovieUpdateCommand command)

@@ -8,7 +8,7 @@ using System.Reflection;
 namespace Evol.TMovie.Domain.Dto
 {
     /// <summary>
-    /// object-object mapper
+    /// object-object mapper , <see cref="IObjectMapExtensions"/>
     /// </summary>
     public class ObjectToObjectMapInitiator
     {
@@ -64,7 +64,8 @@ namespace Evol.TMovie.Domain.Dto
             {
                 var @interfaces = t.GetTypeInfo().GetInterfaces().Where(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapFrom<>)).ToList();
                 var @interface = @interfaces.First();
-                sourceDestinationPairs.Add(new MapSourceDestinationPair() { Source = @interface.GenericTypeArguments.First(), Destination = t });
+                var source = @interface.GenericTypeArguments.First();
+                sourceDestinationPairs.Add(new MapSourceDestinationPair() { Source = source, Destination = t });
             });
             return sourceDestinationPairs;
         }

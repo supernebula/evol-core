@@ -11,6 +11,7 @@ using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.Commands;
 using Evol.TMovie.Manage.Models;
 using Evol.TMovie.Domain.Dto;
+using Evol.TMovie.Domain.Models.AggregateRoots;
 
 namespace Evol.TMovie.Manage.Controllers
 {
@@ -30,7 +31,7 @@ namespace Evol.TMovie.Manage.Controllers
         public async Task<IActionResult> Index(CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            return View(paged.Map<CinemaViewModel>());
+            return View(paged.MapPaged<CinemaViewModel>());
         }
 
         // GET: Cinema/Details/5

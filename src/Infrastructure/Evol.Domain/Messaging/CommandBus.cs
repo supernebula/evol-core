@@ -12,9 +12,6 @@ namespace Evol.Domain.Messaging
 
         public IUnitOfWork UnitOfWork { get; set; }
 
-        public CommandBus()
-        {
-        }
 
         public CommandBus(IUnitOfWork unitOfWork, ICommandHandlerFactory commandHandlerFactory)
         {
@@ -29,6 +26,7 @@ namespace Evol.Domain.Messaging
             {
                 UnitOfWork.Begin(new UnitOfWorkOption() { IsolationLevel = IsolationLevel.ReadCommitted });
                 await commandHandler.ExecuteAsync(command);
+                await UnitOfWork.SaveChangesAsync();
                 await UnitOfWork.CommitAsync();
             }
             catch (Exception ex)

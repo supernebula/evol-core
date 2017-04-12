@@ -1,4 +1,5 @@
 ﻿using Evol.Domain.Uow;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,16 @@ namespace Evol.EntityFramework.Uow
 
         public Dictionary<string, IDbContextTransaction> Transactions { get; }
 
-        public Dictionary<string, NamedDbContext> ActiveDbContexts { get; }
+        public Dictionary<string, DbContext> ActiveDbContexts { get; }
 
-        private delegate void OnDbContextAdded(NamedDbContext context);
+        private delegate void OnDbContextAdded(DbContext context);
 
         private OnDbContextAdded _dbContextAddedEvent = null;
 
         public EfUnitOfWork()
         {
-            ActiveDbContexts = new Dictionary<string, NamedDbContext>();
+            ActiveDbContexts = new Dictionary<string, DbContext>();
+            Transactions = new Dictionary<string, IDbContextTransaction>();
         }
 
         protected override void BeginUow()
@@ -33,7 +35,7 @@ namespace Evol.EntityFramework.Uow
                 if (Option.IsolationLevel != null)
                 {
                     var trans = context.Database.BeginTransaction(); //为实现事务级别设置
-                    Transactions.Add(context.Name, trans);
+                    Transactions.Add(context.GetType().Name, trans);
                 }
             };
         }
@@ -93,11 +95,11 @@ namespace Evol.EntityFramework.Uow
             _dbContextAddedEvent(dbContext);
         }
 
-        public NamedDbContext GetDbContext(string name)
+        public DbContext GetDbContext(string name)
         {
             if (!ActiveDbContexts.ContainsKey(name))
                 return null;
-            NamedDbContext context;
+            DbContext context;
             ActiveDbContexts.TryGetValue(name, out context);
             return context;
         }
@@ -118,7 +120,7 @@ namespace Evol.EntityFramework.Uow
 
         public override void AddDbContext<TDbContext>(string name, TDbContext dbContext)
         {
-            ActiveDbContexts.Add(name, dbContext as NamedDbContext);
+            ActiveDbContexts.Add(name, dbContext as DbContext);
         }
     }
 }

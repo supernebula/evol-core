@@ -77,16 +77,22 @@ namespace Evol.Domain.Uow
 
         protected virtual void OnCommitted()
         {
+            if (Committed == null)
+                return;
             Committed.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnFailed(Exception ex)
         {
+            if (Failed == null)
+                return;
             Failed.Invoke(this, new UnitOfWorkFailedEventArgs(ex));
         }
 
         protected virtual void OnDisposed()
         {
+            if (Disposed == null)
+                return;
             Disposed.Invoke(this, new EventArgs());
         }
 

@@ -9,7 +9,7 @@ namespace Evol.Domain.Data
 {
     public interface IRepository<T> where T : IPrimaryKey
     {
-        void Insert(T entity);
+        Task InsertAsync(T entity);
 
         T Find(Guid id);
 
