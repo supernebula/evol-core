@@ -8,15 +8,13 @@ using Evol.TMovie.Data.Map;
 namespace Evol.TMovie.Data
 {
 
-    public class TMovieDbContext : DbContext, INamedDbContext
+    public class TMovieDbContext : DbContext
     {
-        public string Name { get; set; }
 
         public TMovieDbContext(DbContextOptions<TMovieDbContext> options) : base(options)
         {
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
-            Name = nameof(TMovieDbContext);
         }
 
 

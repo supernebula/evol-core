@@ -98,7 +98,7 @@ namespace Evol.Domain.Uow
 
         public abstract TDbContext GetDbContext<TDbContext>() where TDbContext : class;
 
-        public abstract void AddDbContext<TDbContext>(string name, TDbContext dbContext) where TDbContext : class;
+        public abstract void AddDbContext<TDbContext>(TDbContext dbContext) where TDbContext : class;
     }
 
 

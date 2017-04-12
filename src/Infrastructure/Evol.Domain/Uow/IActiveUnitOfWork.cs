@@ -15,7 +15,7 @@ namespace Evol.Domain.Uow
         TDbContext GetDbContext<TDbContext>() where TDbContext : class;
 
 
-        void AddDbContext<TDbContext>(string name, TDbContext dbContext) where TDbContext : class;
+        void AddDbContext<TDbContext>(TDbContext dbContext) where TDbContext : class;
 
         bool IsDisposed { get; }
 

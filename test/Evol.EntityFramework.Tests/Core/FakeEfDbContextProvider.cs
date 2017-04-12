@@ -8,7 +8,7 @@ namespace Evol.EntityFramework.Repository.Test.Core
     {
         private DbContext context;
 
-        public TDbContext Get<TDbContext>() where TDbContext : DbContext, INamedDbContext
+        public TDbContext Get<TDbContext>() where TDbContext : DbContext
         {
             if (context == null)
                 context = Activator.CreateInstance<TDbContext>();

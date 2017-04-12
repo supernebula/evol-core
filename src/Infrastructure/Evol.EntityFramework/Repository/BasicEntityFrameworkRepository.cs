@@ -14,7 +14,7 @@ namespace Evol.EntityFramework.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
-    public abstract class BasicEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext, INamedDbContext where T : class, IPrimaryKey
+    public abstract class BasicEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey
     {
         private TDbContext _context;
 

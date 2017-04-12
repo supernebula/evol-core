@@ -1,7 +1,7 @@
 ﻿
 namespace Evol.EntityFramework
 {
-    public interface INamedDbContext
+    public interface INamed
     {
         string Name { get; set; }
     }

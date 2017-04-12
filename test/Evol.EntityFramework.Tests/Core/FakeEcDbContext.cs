@@ -5,7 +5,7 @@ using Evol.EntityFramework.Repository.Test.Map;
 
 namespace Evol.EntityFramework.Repository.Test.Core
 {
-    public class FakeEcDbContext : NamedDbContext 
+    public class FakeEcDbContext : DbContext
     {
 
         public FakeEcDbContext() : this(null)
@@ -16,7 +16,6 @@ namespace Evol.EntityFramework.Repository.Test.Core
         {
             if (options == null)
                 throw new ArgumentNullException(nameof(options));
-            Name = nameof(FakeEcDbContext);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

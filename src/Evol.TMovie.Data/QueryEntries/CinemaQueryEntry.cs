@@ -3,6 +3,7 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Repositories;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;

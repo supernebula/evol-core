@@ -9,6 +9,6 @@ namespace Evol.EntityFramework.Repository
 {
     public interface IEfDbContextProvider
     {
-        TDbContext Get<TDbContext>() where TDbContext : DbContext, INamedDbContext;
+        TDbContext Get<TDbContext>() where TDbContext : DbContext;
     }
 }
