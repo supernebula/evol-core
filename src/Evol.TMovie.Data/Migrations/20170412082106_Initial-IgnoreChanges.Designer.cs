@@ -9,8 +9,8 @@ using Evol.TMovie.Domain.Models.Values;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    [Migration("20170411133844_AddTable")]
-    partial class AddTable
+    [Migration("20170412082106_Initial-IgnoreChanges")]
+    partial class InitialIgnoreChanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

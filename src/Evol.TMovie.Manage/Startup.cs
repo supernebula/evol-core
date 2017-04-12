@@ -77,7 +77,7 @@ namespace Evol.TMovie.Manage
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseUnhandledException();
+            //app.UseUnhandledException();
 
             app.UseMvc(routes =>
             {

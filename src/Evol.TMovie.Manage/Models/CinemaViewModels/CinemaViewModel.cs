@@ -1,10 +1,11 @@
-﻿using Evol.Domain.Dto;
+﻿using AutoMapper;
+using Evol.Domain.Dto;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using System;
 
 namespace Evol.TMovie.Manage.Models
 {
-    public class CinemaViewModel : IOutputDto
+    public class CinemaViewModel : IOutputDto, ICanMapFrom<Cinema>
     {
         public Guid Id { get; set; }
 
@@ -14,15 +15,5 @@ namespace Evol.TMovie.Manage.Models
 
         public DateTime CreateTime { get; set; }
 
-        public static CinemaViewModel From(Cinema value)
-        {
-            return new CinemaViewModel()
-            {
-                Id = value.Id,
-                Name = value.Name,
-                Address = value.Address,
-                CreateTime = value.CreateTime
-            };
-        }
     }
 }

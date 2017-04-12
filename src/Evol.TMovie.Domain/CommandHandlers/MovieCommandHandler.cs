@@ -17,22 +17,6 @@ namespace Evol.TMovie.Domain.CommandHandlers
             MovieRepository = movieRepository;
         }
 
-        public void Execute(MovieCreateCommand command)
-        {
-            var item = new Movie();
-            MovieRepository.Insert(item);
-        }
-
-        public void Execute(MovieUpdateCommand command)
-        {
-            MovieRepository.Update(command.AggregateRoot);
-        }
-
-        public void Execute(MovieDeleteCommand command)
-        {
-            MovieRepository.Delete(command.AggregateRootId);
-        }
-
         public Task ExecuteAsync(MovieCreateCommand command)
         {
             var item = new Movie();

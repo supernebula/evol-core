@@ -9,8 +9,8 @@ using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.Commands;
-using Evol.Common;
 using Evol.TMovie.Manage.Models;
+using Evol.TMovie.Domain.Dto;
 
 namespace Evol.TMovie.Manage.Controllers
 {
@@ -20,16 +20,17 @@ namespace Evol.TMovie.Manage.Controllers
 
         public ICommandBus CommandBus { get; set; }
 
-        public CinemaController(ICinemaQueryEntry cinemaQueryEntry)
+        public CinemaController(ICinemaQueryEntry cinemaQueryEntry, ICommandBus commandBus)
         {
             CinemaQueryEntry = cinemaQueryEntry;
+            CommandBus = commandBus;
         }
 
         // GET: Cinema
         public async Task<IActionResult> Index(CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            return View(paged.Convert(CinemaViewModel.From));
+            return View(paged.Map<CinemaViewModel>());
         }
 
         // GET: Cinema/Details/5

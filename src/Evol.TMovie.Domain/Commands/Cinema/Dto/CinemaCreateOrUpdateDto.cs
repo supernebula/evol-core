@@ -1,12 +1,11 @@
-﻿using Evol.Domain.Dto;
-using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
+using Evol.Domain.Dto;
+using Evol.TMovie.Domain.Models.AggregateRoots;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class CinemaCreateOrUpdateDto : IInputDto
+    public class CinemaCreateOrUpdateDto : IInputDto, ICanMapTo<Cinema>
     {
         [Required]
         [StringLength(20, MinimumLength = 1)]
