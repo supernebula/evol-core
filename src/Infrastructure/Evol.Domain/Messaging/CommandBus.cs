@@ -12,6 +12,8 @@ namespace Evol.Domain.Messaging
 
         public IUnitOfWork UnitOfWork { get; set; }
 
+        private IUnitOfWorkManager _unitOfWorkManager { get; set; }
+
 
         //public CommandBus(IUnitOfWork unitOfWork, ICommandHandlerFactory commandHandlerFactory)
         //{
@@ -22,12 +24,13 @@ namespace Evol.Domain.Messaging
         public CommandBus(IUnitOfWorkManager unitOfWorkManager, ICommandHandlerFactory commandHandlerFactory)
         {
             //UnitOfWork = unitOfWork;
-            UnitOfWork = unitOfWorkManager.Build();
+            _unitOfWorkManager = unitOfWorkManager;
             CommandHandlerFactory = commandHandlerFactory;
         }
 
         public async Task SendAsync<T>(T command) where T : Command
         {
+            UnitOfWork = _unitOfWorkManager.Build();
             var commandHandler = CommandHandlerFactory.GetHandler<T>();
             try
             {
