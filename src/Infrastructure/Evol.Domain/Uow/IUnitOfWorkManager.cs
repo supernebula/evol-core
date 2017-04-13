@@ -1,15 +1,16 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace Evol.Domain.Uow
 {
-    public interface IUnitOfWorkManager
+    public interface IActiveUnitOfWorkManager
     {
+        IActiveUnitOfWork Current { get; }
+    }
 
-        IUnitOfWork Current { get; }
-
-
-        IUnitOfWorkToComplete Begin();
-
-
-        IUnitOfWorkToComplete Begin(UnitOfWorkOption option);
+    public interface IUnitOfWorkManager : IActiveUnitOfWorkManager
+    {
+        IUnitOfWork Build();
     }
 }

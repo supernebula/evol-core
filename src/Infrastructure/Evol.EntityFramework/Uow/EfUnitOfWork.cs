@@ -86,15 +86,6 @@ namespace Evol.EntityFramework.Uow
             return Task.FromResult(0);
         }
 
-
-        public void AddDbContext(DbContext dbContext)
-        {
-            if (ActiveDbContexts.ContainsKey(dbContext.GetKey()))
-                return;
-            ActiveDbContexts.Add(dbContext.GetKey(), dbContext);
-            _dbContextAddedEvent(dbContext);
-        }
-
         /// <summary>
         /// <see cref="DbContextExtensions"/>
         /// </summary>
@@ -123,10 +114,19 @@ namespace Evol.EntityFramework.Uow
             return value;
         }
 
+        public void AddDbContext(DbContext dbContext)
+        {
+            if (ActiveDbContexts.ContainsKey(dbContext.GetKey()))
+                return;
+            ActiveDbContexts.Add(dbContext.GetKey(), dbContext);
+            if(_dbContextAddedEvent != null)
+                _dbContextAddedEvent(dbContext);
+        }
+
         public override void AddDbContext<TDbContext>(TDbContext dbContext)
         {
             var context = dbContext as DbContext;
-            ActiveDbContexts.Add(context.GetKey(), context);
+            AddDbContext(context);
         }
     }
 }

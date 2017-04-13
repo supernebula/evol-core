@@ -13,7 +13,7 @@ namespace Evol.TMovie.Manage
         {
             AppConfig.Current.InitModuleFrom<TMovieManageModule>();
             services.AddScoped<IUnitOfWork, EfUnitOfWork>();
-            //services.AddScoped<IActiveUnitOfWork, EfUnitOfWork>();
+            services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
             services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();

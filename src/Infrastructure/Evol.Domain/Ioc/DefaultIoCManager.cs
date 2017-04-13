@@ -15,6 +15,11 @@ namespace Evol.Domain.Ioc
             ServiceProvider = serviceProvider;
         }
 
+        /// <summary>
+        /// Resolve dependency injection service
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public T GetService<T>()
         {
             return ServiceProvider.GetService<T>();

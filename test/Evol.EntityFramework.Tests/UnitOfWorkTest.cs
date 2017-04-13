@@ -17,12 +17,14 @@ namespace Evol.EntityFramework.Repository.Test
     {
         public IUnitOfWork UnitOfWorkObj;
 
+        public IServiceProvider ServiceProvider;
+
         [ThreadStatic]
         private static IEfDbContextProvider _dbContextProvider;
 
         public UnitOfWorkTest()
         {
-            _dbContextProvider = new EfUnitOfWorkDbContextProvider(new EfUnitOfWork());
+            _dbContextProvider = new EfUnitOfWorkDbContextProvider(new EfUnitOfWorkManager(ServiceProvider));
         }
 
         [Fact,Description("EntityFramework工作单元依赖于事务，关键在于：针对数据库的多个更新统一提交，使用同一个DbContext")]
@@ -30,7 +32,7 @@ namespace Evol.EntityFramework.Repository.Test
         {
             var unitOfWorkObj = new EfUnitOfWork();//{ DbContextFactory = _dbContextFactory };
 
-            var uoWdbContextProvider = new EfUnitOfWorkDbContextProvider(unitOfWorkObj);
+            var uoWdbContextProvider = new EfUnitOfWorkDbContextProvider(null);
             var orderRepo = new FakeOrderRepository(uoWdbContextProvider) ;
             var productRepo = new FakeProductRepository(uoWdbContextProvider) ;
             var userRepo = new FakeUserRepository(uoWdbContextProvider) ; 

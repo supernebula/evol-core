@@ -10,7 +10,7 @@ namespace Evol.Domain.Tests
         [Fact]
         public async void UowManagerTest1()
         {
-            var uowManager = Moq.Mock.Of<IUnitOfWorkManager>();
+            var uowManager = Moq.Mock.Of<IMultiUnitOfWorkManager>();
             var uow = uowManager.Begin();
 
 

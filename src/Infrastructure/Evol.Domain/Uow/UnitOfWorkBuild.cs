@@ -12,7 +12,7 @@ namespace Evol.Domain.Uow
 
         public UnitOfWorkOption OptionArg { get; }
 
-        public Func<IUnitOfWorkManager> UnitOfWorkManagerThunk = () => { throw new NotImplementedException(); };
+        public Func<IMultiUnitOfWorkManager> UnitOfWorkManagerThunk = () => { throw new NotImplementedException(); };
 
         public static UnitOfWorkBuild UnitOfWork()
         {

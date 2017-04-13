@@ -14,14 +14,26 @@ namespace Evol.EntityFramework.Repository
             set;
         }
 
-        public EfUnitOfWorkDbContextProvider(IUnitOfWork uow)
+        //public EfUnitOfWorkDbContextProvider(IUnitOfWork uow)
+        //{
+        //    UnitOfWork = uow;
+        //}
+
+        public EfUnitOfWorkDbContextProvider(IUnitOfWorkManager uowManager)
         {
-            UnitOfWork = uow;
+            UnitOfWork = uowManager.Current;
         }
 
         public TDbContext Get<TDbContext>() where TDbContext : DbContext
         {
-            var context = UnitOfWork.GetDbContext<TDbContext>();
+            TDbContext context;
+            if (UnitOfWork == null)
+            {
+                context = AppConfig.Current.IoCManager.GetService<TDbContext>();
+                return context;
+            }
+
+            context = UnitOfWork.GetDbContext<TDbContext>();
             if (context != null)
                 return context;
             context = AppConfig.Current.IoCManager.GetService<TDbContext>();

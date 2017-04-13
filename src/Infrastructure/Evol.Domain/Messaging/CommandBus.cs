@@ -13,9 +13,16 @@ namespace Evol.Domain.Messaging
         public IUnitOfWork UnitOfWork { get; set; }
 
 
-        public CommandBus(IUnitOfWork unitOfWork, ICommandHandlerFactory commandHandlerFactory)
+        //public CommandBus(IUnitOfWork unitOfWork, ICommandHandlerFactory commandHandlerFactory)
+        //{
+        //    UnitOfWork = unitOfWork;
+        //    CommandHandlerFactory = commandHandlerFactory;
+        //}
+
+        public CommandBus(IUnitOfWorkManager unitOfWorkManager, ICommandHandlerFactory commandHandlerFactory)
         {
-            UnitOfWork = unitOfWork;
+            //UnitOfWork = unitOfWork;
+            UnitOfWork = unitOfWorkManager.Build();
             CommandHandlerFactory = commandHandlerFactory;
         }
 

@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Evol.Domain.Uow
 {
-    public class UnitOfWorkManager : IUnitOfWorkManager
+    public class MultiUnitOfWorkManager : IMultiUnitOfWorkManager
     {
         private Func<IUnitOfWork> NewUowThunk = () => { throw new NotImplementedException(); };
-        public UnitOfWorkManager()
+        public MultiUnitOfWorkManager()
         {
 
         }
