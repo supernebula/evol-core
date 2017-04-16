@@ -12,32 +12,20 @@ namespace Evol.TMovie.Data.QueryEntries
 {
     public class SeatQueryEntry : ISeatQueryEntry
     {
-        public Seat Fetch(Guid id)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<Seat> FetchAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Seat> Retrieve(ActorQueryParameter param)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<List<Seat>> RetrieveAsync(ActorQueryParameter param)
         {
             throw new NotImplementedException();
         }
 
-        public IPaged<Seat> RetrievePaged(ActorQueryParameter param)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IPaged<Seat>> RetrievePagedAsync(ActorQueryParameter param)
+        public Task<IPaged<Seat>> PagedAsync(ActorQueryParameter param, int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
         }

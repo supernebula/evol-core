@@ -12,32 +12,20 @@ namespace Evol.TMovie.Data.QueryEntries
 {
     public class ScreeningQueryEntry : IScreeningQueryEntry
     {
-        public Screening Fetch(Guid id)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<Screening> FetchAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Screening> Retrieve(ScreeningQueryParameter param)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<List<Screening>> RetrieveAsync(ScreeningQueryParameter param)
         {
             throw new NotImplementedException();
         }
 
-        public IPaged<Screening> RetrievePaged(ScreeningQueryParameter param)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IPaged<Screening>> RetrievePagedAsync(ScreeningQueryParameter param)
+        public Task<IPaged<Screening>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
         }

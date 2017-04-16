@@ -10,15 +10,9 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface IActorQueryEntry : IQueryEntry
     {
-        Actor Fetch(Guid id);
-
         Task<Actor> FetchAsync(Guid id);
 
-        List<Actor> Retrieve(ActorQueryParameter param);
-
         Task<List<Actor>> RetrieveAsync(ActorQueryParameter param);
-
-        IPaged<Actor> RetrievePaged(ActorQueryParameter param);
 
         Task<IPaged<Actor>> RetrievePagedAsync(ActorQueryParameter param);
     }

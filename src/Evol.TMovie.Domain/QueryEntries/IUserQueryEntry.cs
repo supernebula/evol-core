@@ -1,6 +1,7 @@
 ﻿using Evol.Common;
 using Evol.Domain.Data;
 using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.TMovie.Domain.QueryEntries.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,5 +18,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 
 
         Task<IPaged<User>> RetrievePagedAsync(UserQueryParameter param, int pageIndex, int pageSize);
+
+        Task<List<User>> GetByIdsAsync(Guid[] ids);
     }
 }

@@ -10,16 +10,13 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface IScreeningRoomQueryEntry : IQueryEntry
     {
-        ScreeningRoom Fetch(Guid id);
 
         Task<ScreeningRoom> FetchAsync(Guid id);
 
-        List<ScreeningRoom> Retrieve(ScreeningRoomQueryParameter param);
 
         Task<List<ScreeningRoom>> RetrieveAsync(ScreeningQueryParameter param);
 
-        IPaged<ScreeningRoom> RetrievePaged(ScreeningQueryParameter param);
 
-        Task<IPaged<ScreeningRoom>> RetrievePagedAsync(ScreeningQueryParameter param);
+        Task<IPaged<ScreeningRoom>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize);
     }
 }

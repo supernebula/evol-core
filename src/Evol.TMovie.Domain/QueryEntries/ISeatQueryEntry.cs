@@ -10,16 +10,10 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface ISeatQueryEntry : IQueryEntry
     {
-        Seat Fetch(Guid id);
-
         Task<Seat> FetchAsync(Guid id);
-
-        List<Seat> Retrieve(ActorQueryParameter param);
 
         Task<List<Seat>> RetrieveAsync(ActorQueryParameter param);
 
-        IPaged<Seat> RetrievePaged(ActorQueryParameter param);
-
-        Task<IPaged<Seat>> RetrievePagedAsync(ActorQueryParameter param);
+        Task<IPaged<Seat>> PagedAsync(ActorQueryParameter param, int pageIndex, int pageSize);
     }
 }
