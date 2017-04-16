@@ -10,6 +10,8 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 
         public string Salt { get; set; }
 
+        public string RealName { get; set; }
+
         public string Email { get; set; }
 
         public string Mobile { get; set; }
