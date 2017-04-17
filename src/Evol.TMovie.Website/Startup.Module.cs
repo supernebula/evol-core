@@ -17,10 +17,9 @@ namespace Evol.TMovie.Website
             services.AddScoped<IActiveUnitOfWork, EfUnitOfWork>();
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
-            services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
-            
+            services.AddScoped<IEfDbContextProvider, EfDbContextProvider>();
+            services.AddScoped<IEfUnitOfWorkDbContextProvider, EfUnitOfWorkDbContextProvider>();
             //AppConfig.Current.Container.RegisterType<IUserSession, UserSession>(new PerThreadLifetimeManager());
-            //AppConfig.Current.Container.RegisterType<ICommandHandlerActivator, DefaultCommandHandlerFactory.DefaultCommandHandlerActivator>(new PerThreadLifetimeManager());
         }
     }
 }

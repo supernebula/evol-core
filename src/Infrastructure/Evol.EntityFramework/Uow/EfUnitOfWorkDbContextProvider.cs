@@ -7,7 +7,7 @@ using System;
 
 namespace Evol.EntityFramework.Repository
 {
-    public class EfUnitOfWorkDbContextProvider : IEfDbContextProvider
+    public class EfUnitOfWorkDbContextProvider : IEfUnitOfWorkDbContextProvider
     {
         public IUnitOfWorkManager UowManager
         {
