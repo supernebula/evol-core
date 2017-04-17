@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class EmployeeRepository : BasicEntityFrameworkRepository<Employee, TMovieDbContext>, IEmployeeRepository
+    public class EmployeeRepository : BaseEntityFrameworkRepository<Employee, TMovieDbContext>, IEmployeeRepository
     {
-        public EmployeeRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public EmployeeRepository(IEfUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

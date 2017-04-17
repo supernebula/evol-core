@@ -19,7 +19,7 @@ namespace Evol.TMovie.Data.QueryEntries
         {
             _userRepository = userRepository;
         }
-        public async Task<User> FetchAsync(Guid id)
+        public async Task<User> FindAsync(Guid id)
         {
             return await _userRepository.FindAsync(id);
         }

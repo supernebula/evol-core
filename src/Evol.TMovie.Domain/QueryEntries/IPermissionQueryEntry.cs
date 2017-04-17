@@ -11,7 +11,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface IPermissionQueryEntry : IQueryEntry
     {
-        Task<Permission> FetchAsync(Guid id);
+        Task<Permission> FindAsync(Guid id);
 
         Task<List<Permission>> RetrieveAsync(PermissionQueryParameter param);
 

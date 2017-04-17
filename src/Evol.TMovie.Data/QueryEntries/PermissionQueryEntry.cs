@@ -21,7 +21,7 @@ namespace Evol.TMovie.Data.QueryEntries
             _permissionRepository = permissionRepository;
         }
 
-        public async Task<Permission> FetchAsync(Guid id)
+        public async Task<Permission> FindAsync(Guid id)
         {
             return await _permissionRepository.FindAsync(id);
         }

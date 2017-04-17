@@ -10,13 +10,12 @@ using System.Threading.Tasks;
 using Evol.TMovie.Domain.Repositories;
 using System.Linq.Expressions;
 using System.Linq;
+using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class EmployeePermissionShipQueryEntry : IEmployeePermissionShipQueryEntry
+    public class EmployeePermissionShipQueryEntry : BaseEntityFrameworkQuery<EmployeePermissionShip, TMovieDbContext>, IEmployeePermissionShipQueryEntry
     {
-        private IEmployeePermissionShipRepository _employeePermissionShipRepository { get; set; }
-
         private IPermissionQueryEntry _permissionQueryEntry { get; set; }
 
         private IRoleQueryEntry _roleQueryEntry { get; set; }
@@ -24,19 +23,13 @@ namespace Evol.TMovie.Data.QueryEntries
         private IEmployeeQueryEntry _employeeQueryEntry { get; set; }
 
         public EmployeePermissionShipQueryEntry(
-            IEmployeePermissionShipRepository employeePermissionShipRepository,
             IPermissionQueryEntry permissionQueryEntry,
-            IEmployeeQueryEntry employeeQueryEntry
-            )
+            IEmployeeQueryEntry employeeQueryEntry,
+            IEfDbContextProvider efDbContextProvider
+            ) : base(efDbContextProvider)
         {
-            _employeePermissionShipRepository = employeePermissionShipRepository;
             _permissionQueryEntry = permissionQueryEntry;
             _employeeQueryEntry = employeeQueryEntry;
-        }
-
-        public async Task<EmployeePermissionShip> FetchAsync(Guid id)
-        {
-            return await _employeePermissionShipRepository.FindAsync(id);
         }
 
         public async Task<IPaged<EmployeePermissionShip>> PagedAsync(EmployeePermissionShipQueryParameter param, int pageIndex, int pageSize)
@@ -54,7 +47,7 @@ namespace Evol.TMovie.Data.QueryEntries
             else if (param.EmployeeId != null)
                 query = e => e.EmployeeId == param.EmployeeId.Value;
 
-            var result = await _employeePermissionShipRepository.PagedAsync(query, pageIndex, pageSize);
+            var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;
         }
 
@@ -73,13 +66,13 @@ namespace Evol.TMovie.Data.QueryEntries
             else if (param.EmployeeId != null)
                 query = e => e.EmployeeId == param.EmployeeId.Value;
 
-            var list = (await _employeePermissionShipRepository.RetrieveAsync(query)).ToList();
+            var list = (await base.RetrieveAsync(query)).ToList();
             return list;
         }
 
         public async Task<IList<Permission>> GetCustomPermissionsByEmployeeIdAsync(Guid employeeId)
         {
-            var list = (await _employeePermissionShipRepository.RetrieveAsync(e => e.CustomPermissionId != null && e.EmployeeId == employeeId)).ToList();
+            var list = (await base.RetrieveAsync(e => e.CustomPermissionId != null && e.EmployeeId == employeeId)).ToList();
             var customPermissionids = list.Select(e => e.CustomPermissionId.Value).ToArray();
             var permissions = await _permissionQueryEntry.GetByPermissionIdsAsync(customPermissionids);
             return permissions;
@@ -87,7 +80,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IList<Employee>> GetEmployeesByRoleIdAsync(Guid roleId)
         {
-            var list = (await _employeePermissionShipRepository.RetrieveAsync(e => e.RoleId != null && e.RoleId == roleId)).ToList();
+            var list = (await base.RetrieveAsync(e => e.RoleId != null && e.RoleId == roleId)).ToList();
             var userIds = list.Select(e => e.EmployeeId).ToArray();
             var employees = await _employeeQueryEntry.GetByIdsAsync(userIds);
             return employees;
@@ -95,7 +88,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IList<Role>> GetRolesByEmployeeIdAsync(Guid employeeId)
         {
-            var list = (await _employeePermissionShipRepository.RetrieveAsync(e => e.RoleId != null && e.EmployeeId == employeeId)).ToList();
+            var list = (await base.RetrieveAsync(e => e.RoleId != null && e.EmployeeId == employeeId)).ToList();
             var roleIds = list.Select(e => e.RoleId.Value).ToArray();
             var roles = await _roleQueryEntry.GetByIdsAsync(roleIds);
             return roles;

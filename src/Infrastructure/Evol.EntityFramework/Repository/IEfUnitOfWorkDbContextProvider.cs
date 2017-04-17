@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Evol.EntityFramework.Repository
 {
+    /// <summary>
+    /// use unitOfWork
+    /// </summary>
     public interface IEfUnitOfWorkDbContextProvider : IEfDbContextProvider
     {
     }

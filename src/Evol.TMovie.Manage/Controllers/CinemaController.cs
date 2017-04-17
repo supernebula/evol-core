@@ -37,7 +37,7 @@ namespace Evol.TMovie.Manage.Controllers
         // GET: Cinema/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var item = await CinemaQueryEntry.FetchAsync(id);
+            var item = await CinemaQueryEntry.FindAsync(id);
             return View(item);
         }
 
@@ -65,7 +65,7 @@ namespace Evol.TMovie.Manage.Controllers
         // GET: Cinema/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var item = await CinemaQueryEntry.FetchAsync(id);
+            var item = await CinemaQueryEntry.FindAsync(id);
             return View(item);
         }
 

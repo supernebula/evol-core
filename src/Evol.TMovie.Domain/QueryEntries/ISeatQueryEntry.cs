@@ -10,7 +10,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface ISeatQueryEntry : IQueryEntry
     {
-        Task<Seat> FetchAsync(Guid id);
+        Task<Seat> FindAsync(Guid id);
 
         Task<List<Seat>> RetrieveAsync(ActorQueryParameter param);
 

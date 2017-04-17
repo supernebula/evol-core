@@ -13,7 +13,7 @@ namespace Evol.TMovie.Data.QueryEntries
     public class SeatQueryEntry : ISeatQueryEntry
     {
 
-        public Task<Seat> FetchAsync(Guid id)
+        public Task<Seat> FindAsync(Guid id)
         {
             throw new NotImplementedException();
         }

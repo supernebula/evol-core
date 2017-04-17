@@ -4,9 +4,9 @@ using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class ActorRepository : BasicEntityFrameworkRepository<Actor, TMovieDbContext>, IActorRepository
+    public class ActorRepository : BaseEntityFrameworkRepository<Actor, TMovieDbContext>, IActorRepository
     {
-        public ActorRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public ActorRepository(IEfUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

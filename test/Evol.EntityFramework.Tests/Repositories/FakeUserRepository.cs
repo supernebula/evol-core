@@ -8,7 +8,7 @@ using System;
 
 namespace Evol.EntityFramework.Repository.Test.Repositories
 {
-    public class FakeUserRepository : BasicEntityFrameworkRepository<FakeUser, FakeEcDbContext>
+    public class FakeUserRepository : BaseEntityFrameworkRepository<FakeUser, FakeEcDbContext>
     {
         public FakeUserRepository() : this(null)
         {

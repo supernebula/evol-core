@@ -14,7 +14,7 @@ namespace Evol.EntityFramework.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
-    public abstract class BasicEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey
+    public abstract class BaseEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey
     {
         private TDbContext _context;
 
@@ -33,7 +33,7 @@ namespace Evol.EntityFramework.Repository
 
         public DatabaseFacade Database => Context.Database;
 
-        protected BasicEntityFrameworkRepository(IEfDbContextProvider dbContextProvider)
+        protected BaseEntityFrameworkRepository(IEfDbContextProvider dbContextProvider)
         {
             DbContextProvider = dbContextProvider;
         }

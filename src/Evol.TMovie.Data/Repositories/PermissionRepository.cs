@@ -5,9 +5,9 @@ using Evol.TMovie.Domain.Repositories;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class PermissionRepository : BasicEntityFrameworkRepository<Permission, TMovieDbContext>, IPermissionRepository
+    public class PermissionRepository : BaseEntityFrameworkRepository<Permission, TMovieDbContext>, IPermissionRepository
     {
-        public PermissionRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public PermissionRepository(IEfUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

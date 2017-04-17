@@ -20,7 +20,7 @@ namespace Evol.TMovie.Data.QueryEntries
         {
             _roleRepository = roleRepository;
         }
-        public async Task<Role> FetchAsync(Guid id)
+        public async Task<Role> FindAsync(Guid id)
         {
             return await _roleRepository.FindAsync(id);
         }

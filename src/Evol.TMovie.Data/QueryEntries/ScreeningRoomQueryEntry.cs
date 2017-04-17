@@ -13,7 +13,7 @@ namespace Evol.TMovie.Data.QueryEntries
     public class ScreeningRoomQueryEntry : IScreeningRoomQueryEntry
     {
 
-        public Task<ScreeningRoom> FetchAsync(Guid id)
+        public Task<ScreeningRoom> FindAsync(Guid id)
         {
             throw new NotImplementedException();
         }

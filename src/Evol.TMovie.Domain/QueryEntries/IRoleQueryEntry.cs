@@ -10,7 +10,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface IRoleQueryEntry : IQueryEntry
     {
-        Task<Role> FetchAsync(Guid id);
+        Task<Role> FindAsync(Guid id);
 
         Task<List<Role>> RetrieveAsync(RoleQueryParameter param);
 

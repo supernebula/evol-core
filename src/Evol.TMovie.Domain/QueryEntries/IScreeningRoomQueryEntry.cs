@@ -11,7 +11,7 @@ namespace Evol.TMovie.Domain.QueryEntries
     public interface IScreeningRoomQueryEntry : IQueryEntry
     {
 
-        Task<ScreeningRoom> FetchAsync(Guid id);
+        Task<ScreeningRoom> FindAsync(Guid id);
 
 
         Task<List<ScreeningRoom>> RetrieveAsync(ScreeningQueryParameter param);

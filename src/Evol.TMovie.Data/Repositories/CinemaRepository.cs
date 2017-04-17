@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class CinemaRepository : BasicEntityFrameworkRepository<Cinema, TMovieDbContext>, ICinemaRepository
+    public class CinemaRepository : BaseEntityFrameworkRepository<Cinema, TMovieDbContext>, ICinemaRepository
     {
-        public CinemaRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public CinemaRepository(IEfUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

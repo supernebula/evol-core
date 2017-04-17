@@ -22,7 +22,7 @@ namespace Evol.TMovie.Data.QueryEntries
         }
 
 
-        public async Task<Movie> FetchAsync(Guid id)
+        public async Task<Movie> FindAsync(Guid id)
         {
             return await MovieRepository.FindAsync(id);
         }

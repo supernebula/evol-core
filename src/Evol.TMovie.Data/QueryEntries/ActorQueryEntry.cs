@@ -12,7 +12,7 @@ namespace Evol.TMovie.Data.QueryEntries
 {
     public class ActorQueryEntry : IActorQueryEntry
     {
-        public Task<Actor> FetchAsync(Guid id)
+        public Task<Actor> FindAsync(Guid id)
         {
             throw new NotImplementedException();
         }

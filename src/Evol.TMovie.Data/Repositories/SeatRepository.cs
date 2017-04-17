@@ -5,9 +5,9 @@ using Evol.TMovie.Domain.Models.Entities;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class SeatRepository : BasicEntityFrameworkRepository<Seat, TMovieDbContext>, ISeatRepository
+    public class SeatRepository : BaseEntityFrameworkRepository<Seat, TMovieDbContext>, ISeatRepository
     {
-        public SeatRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public SeatRepository(IEfUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

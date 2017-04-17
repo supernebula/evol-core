@@ -12,7 +12,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 {
     public interface IEmployeePermissionShipQueryEntry : IQueryEntry
     {
-        Task<EmployeePermissionShip> FetchAsync(Guid id);
+        Task<EmployeePermissionShip> FindAsync(Guid id);
 
         Task<IList<EmployeePermissionShip>> RetrieveAsync(EmployeePermissionShipQueryParameter param);
 

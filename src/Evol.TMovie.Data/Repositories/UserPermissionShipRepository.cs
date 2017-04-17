@@ -4,9 +4,9 @@ using Evol.TMovie.Domain.Repositories;
 
 namespace Evol.TMovie.Data.Repositories
 {
-    public class UserPermissionShipRepository : BasicEntityFrameworkRepository<UserPermissionShip, TMovieDbContext>, IUserPermissionShipRepository
+    public class UserPermissionShipRepository : BaseEntityFrameworkRepository<UserPermissionShip, TMovieDbContext>, IUserPermissionShipRepository
     {
-        public UserPermissionShipRepository(IEfDbContextProvider dbContextProvider) : base(dbContextProvider)
+        public UserPermissionShipRepository(IEfUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {
         }
     }

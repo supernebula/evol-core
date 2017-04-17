@@ -33,7 +33,7 @@ namespace Evol.TMovie.Data.QueryEntries
             _roleQueryEntry = roleQueryEntry;
         }
 
-        public async Task<UserPermissionShip> FetchAsync(Guid id)
+        public async Task<UserPermissionShip> FindAsync(Guid id)
         {
              return await _userPermissionShipRepository.FindAsync(id);
         }
