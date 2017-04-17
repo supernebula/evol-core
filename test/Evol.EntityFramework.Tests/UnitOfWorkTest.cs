@@ -24,15 +24,15 @@ namespace Evol.EntityFramework.Repository.Test
 
         public UnitOfWorkTest()
         {
-            _dbContextProvider = new EfUnitOfWorkDbContextProvider(new EfUnitOfWorkManager(ServiceProvider));
+            _dbContextProvider = new EfUnitOfWorkDbContextProvider(new EfUnitOfWorkManager(ServiceProvider, null /*ILogger*/), null /*ILogger*/);
         }
 
         [Fact,Description("EntityFramework工作单元依赖于事务，关键在于：针对数据库的多个更新统一提交，使用同一个DbContext")]
         public void MuiltChangeTest()
         {
-            var unitOfWorkObj = new EfUnitOfWork();//{ DbContextFactory = _dbContextFactory };
+            var unitOfWorkObj = new EfUnitOfWork( null /*ILogger*/);//{ DbContextFactory = _dbContextFactory };
 
-            var uoWdbContextProvider = new EfUnitOfWorkDbContextProvider(null);
+            var uoWdbContextProvider = new EfUnitOfWorkDbContextProvider(new EfUnitOfWorkManager(ServiceProvider, null /*ILogger*/), null /*ILogger*/);
             var orderRepo = new FakeOrderRepository(uoWdbContextProvider) ;
             var productRepo = new FakeProductRepository(uoWdbContextProvider) ;
             var userRepo = new FakeUserRepository(uoWdbContextProvider) ; 

@@ -12,7 +12,7 @@ namespace Evol.TMovie.Website
     {
         public void ConfigureModules(IServiceCollection services)
         {
-            AppConfig.Current.InitModuleFrom<TMovieWebsiteModule>();
+            AppConfig.Current.RegisterAppModuleFrom<TMovieWebsiteModule>();
             services.AddScoped<IUnitOfWork, EfUnitOfWork>();
             services.AddScoped<IActiveUnitOfWork, EfUnitOfWork>();
             services.AddScoped<ICommandBus, CommandBus>();

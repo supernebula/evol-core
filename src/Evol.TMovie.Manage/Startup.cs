@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 
 namespace Evol.TMovie.Manage
 {
@@ -33,34 +34,26 @@ namespace Evol.TMovie.Manage
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            var containerBuilder = new ContainerBuilder();
-            var container = containerBuilder.Build();
-            var serviceProvider = new AutofacServiceProvider(container);
-            AppConfig.InitCurrent(services, serviceProvider);
-            // Add framework services.
-            services.AddDbContext<TMovieDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            AppConfig.Init(services);
+            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
+
             //needed for NLog.Web
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // Add framework services.
             ConfigureModules(services);
-            // Add Autofac
-
-            
+            AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
 
 
-            containerBuilder.Populate(services);
-
-            //ConfigureModules(services);
-            ConfigureModules(containerBuilder);
-            return serviceProvider;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+
             //app.Use(new Func<RequestDelegate, RequestDelegate>(nextApp => new ContainerMiddleware(nextApp, app.ApplicationServices).Invoke));
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
@@ -88,6 +81,8 @@ namespace Evol.TMovie.Manage
             }
 
             //app.UseUnhandledException();
+
+            app.UserAppConfigRequestServicesMiddleware();
 
             app.UseMvc(routes =>
             {

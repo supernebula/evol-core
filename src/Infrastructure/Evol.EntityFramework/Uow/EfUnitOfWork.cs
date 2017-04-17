@@ -1,6 +1,7 @@
 ﻿using Evol.Domain.Uow;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,10 +20,11 @@ namespace Evol.EntityFramework.Uow
 
         private OnDbContextAdded _dbContextAddedEvent = null;
 
-        public EfUnitOfWork()
+        public EfUnitOfWork(ILoggerFactory logger)
         {
             ActiveDbContexts = new Dictionary<string, DbContext>();
             Transactions = new Dictionary<string, IDbContextTransaction>();
+            logger.CreateLogger<EfUnitOfWork>().LogDebug("CONSTRUCT> EfUnitOfWork");
         }
 
         protected override void BeginUow()

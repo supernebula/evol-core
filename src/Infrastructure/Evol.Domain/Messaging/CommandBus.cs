@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Evol.Domain.Commands;
 using Evol.Domain.Uow;
@@ -14,6 +15,10 @@ namespace Evol.Domain.Messaging
 
         private IUnitOfWorkManager _unitOfWorkManager { get; set; }
 
+        private ILoggerFactory _loggerFactory { get; set; }
+
+        private ILogger _logger { get; set; }
+
 
         //public CommandBus(IUnitOfWork unitOfWork, ICommandHandlerFactory commandHandlerFactory)
         //{
@@ -21,16 +26,19 @@ namespace Evol.Domain.Messaging
         //    CommandHandlerFactory = commandHandlerFactory;
         //}
 
-        public CommandBus(IUnitOfWorkManager unitOfWorkManager, ICommandHandlerFactory commandHandlerFactory)
+        public CommandBus(IUnitOfWorkManager unitOfWorkManager, ICommandHandlerFactory commandHandlerFactory, ILoggerFactory loggerFactory)
         {
             //UnitOfWork = unitOfWork;
             _unitOfWorkManager = unitOfWorkManager;
             CommandHandlerFactory = commandHandlerFactory;
+            _loggerFactory = loggerFactory;
+            _logger = _loggerFactory.CreateLogger<CommandBus>();
         }
 
         public async Task SendAsync<T>(T command) where T : Command
         {
             UnitOfWork = _unitOfWorkManager.Build();
+            _logger.LogDebug("EXECUTE> _unitOfWorkManager.Build()");
             var commandHandler = CommandHandlerFactory.GetHandler<T>();
             try
             {
@@ -44,6 +52,7 @@ namespace Evol.Domain.Messaging
                 //log
                 throw ex;
             }
+            _logger.LogDebug("EXECUTE> UnitOfWork.CommitAsync()");
         }
     }
 }

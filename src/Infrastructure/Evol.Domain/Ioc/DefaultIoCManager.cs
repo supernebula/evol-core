@@ -1,18 +1,29 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace Evol.Domain.Ioc
 {
-    public class DefaultIoCManager : IIoCManager
+    public class DefaultIoCManager : IIoCManager, IDisposable
     {
         public IServiceCollection Container { get; }
 
-        public IServiceProvider ServiceProvider { get; }
+        public IServiceProvider ServiceProvider
+        {
+            get
+            {
+                if (_serviceScope != null)
+                    return _serviceScope.ServiceProvider;
+                return _serviceProviderthunk.Invoke();
+            }
+        }
 
-        public DefaultIoCManager(IServiceCollection serviceCollection, IServiceProvider serviceProvider)
+        private Func<IServiceProvider> _serviceProviderthunk;
+
+        public DefaultIoCManager(IServiceCollection serviceCollection, Func<IServiceProvider> serviceProviderthunk)
         {
             Container = serviceCollection;
-            ServiceProvider = serviceProvider;
+            _serviceProviderthunk = serviceProviderthunk;
         }
 
         /// <summary>
@@ -23,6 +34,19 @@ namespace Evol.Domain.Ioc
         public T GetService<T>()
         {
             return ServiceProvider.GetService<T>();
+        }
+
+        public IEnumerable<T> GetServices<T>()
+        {
+            return ServiceProvider.GetServices<T>();
+        }
+
+        private IServiceScope _serviceScope;
+
+        public void Dispose()
+        {
+            if(_serviceScope != null)
+            _serviceScope.Dispose();
         }
     }
 }

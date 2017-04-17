@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Evol.TMovie.Website.Services;
 using Evol.TMovie.Data;
 using Evol.Domain;
+using System.Threading.Tasks;
+using Evol.Web.Middlewares;
 
 namespace Evol.TMovie.Website
 {
@@ -45,8 +47,9 @@ namespace Evol.TMovie.Website
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            AppConfig.InitCurrent(services, services.BuildServiceProvider());
+            AppConfig.Init(services);
             ConfigureModules(services);
+            AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +75,8 @@ namespace Evol.TMovie.Website
             //app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+
+            app.UserAppConfigRequestServicesMiddleware();
 
             app.UseMvc(routes =>
             {

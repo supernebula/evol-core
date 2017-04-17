@@ -14,5 +14,7 @@ namespace Evol.Domain.Ioc
         IServiceProvider ServiceProvider { get; }
 
         T GetService<T>();
+
+        IEnumerable<T> GetServices<T>();
     }
 }

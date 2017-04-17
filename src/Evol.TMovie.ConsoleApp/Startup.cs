@@ -7,6 +7,7 @@ using Evol.Domain.Uow;
 using Evol.EntityFramework.Uow;
 using Evol.EntityFramework.Repository;
 using System.IO;
+using System;
 
 namespace Evol.TMovie.ConsoleApp
 {
@@ -15,7 +16,7 @@ namespace Evol.TMovie.ConsoleApp
         public Startup()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             Configuration = builder.Build();
         }
@@ -31,17 +32,14 @@ namespace Evol.TMovie.ConsoleApp
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
-            AppConfig.InitCurrent(services, services.BuildServiceProvider());
-            AppConfig.Current.InitModuleFrom<TMovieConsoleAppModule>();
+            AppConfig.Init(services);
+            AppConfig.Current.RegisterAppModuleFrom<TMovieConsoleAppModule>();
             services.AddScoped<IUnitOfWork, EfUnitOfWork>();
             services.AddScoped<IActiveUnitOfWork, EfUnitOfWork>();
             services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
 
-            services.AddDbContext<TMovieDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             var serviceProvider = services.BuildServiceProvider();
-            var dbContext = serviceProvider.GetService<TMovieDbContext>();
+            AppConfig.ConfigServiceProvider(serviceProvider);
 
         }
     }

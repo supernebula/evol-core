@@ -13,24 +13,22 @@ namespace Evol.TMovie.Manage
     {
         public void ConfigureModules(IServiceCollection services)
         {
-            AppConfig.Current.InitModuleFrom<TMovieManageModule>();
-            //services.AddScoped<IUnitOfWork, EfUnitOfWork>();
-            //services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();
-            //services.AddScoped<ICommandBus, CommandBus>();
-            //services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
-            //services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
-
-            ////AppConfig.Current.Container.RegisterType<IUserSession, UserSession>(new PerThreadLifetimeManager());
-            ////AppConfig.Current.Container.RegisterType<ICommandHandlerActivator, DefaultCommandHandlerFactory.DefaultCommandHandlerActivator>(new PerThreadLifetimeManager());
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
+            services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();
+            services.AddScoped<ICommandBus, CommandBus>();
+            services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
+            services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
+            AppConfig.Current.RegisterAppModuleFrom<TMovieManageModule>();
+            //IUserSession
         }
 
-        public void ConfigureModules(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
-            containerBuilder.RegisterType<EfUnitOfWorkManager>().As<IUnitOfWorkManager>().InstancePerRequest();
-            containerBuilder.RegisterType<CommandBus>().As<ICommandBus>().InstancePerRequest();
-            containerBuilder.RegisterType<DefaultCommandHandlerFactory>().As<ICommandHandlerFactory>().InstancePerRequest();
-            containerBuilder.RegisterType<EfUnitOfWorkDbContextProvider>().As<IEfDbContextProvider>().InstancePerRequest();
-        }
+        //public void ConfigureModules(ContainerBuilder containerBuilder)
+        //{
+        //    containerBuilder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
+        //    containerBuilder.RegisterType<EfUnitOfWorkManager>().As<IUnitOfWorkManager>().InstancePerRequest();
+        //    containerBuilder.RegisterType<CommandBus>().As<ICommandBus>().InstancePerRequest();
+        //    containerBuilder.RegisterType<DefaultCommandHandlerFactory>().As<ICommandHandlerFactory>().InstancePerRequest();
+        //    containerBuilder.RegisterType<EfUnitOfWorkDbContextProvider>().As<IEfDbContextProvider>().InstancePerRequest();
+        //}
     }
 }

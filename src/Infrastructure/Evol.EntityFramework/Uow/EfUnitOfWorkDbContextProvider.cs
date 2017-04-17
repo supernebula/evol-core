@@ -2,16 +2,17 @@
 using Evol.Domain.Uow;
 using Evol.EntityFramework.Uow;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace Evol.EntityFramework.Repository
 {
     public class EfUnitOfWorkDbContextProvider : IEfDbContextProvider
     {
-        public IActiveUnitOfWork UnitOfWork
+        public IUnitOfWorkManager UowManager
         {
             get;
-            set;
+            private set;
         }
 
         //public EfUnitOfWorkDbContextProvider(IUnitOfWork uow)
@@ -19,25 +20,26 @@ namespace Evol.EntityFramework.Repository
         //    UnitOfWork = uow;
         //}
 
-        public EfUnitOfWorkDbContextProvider(IUnitOfWorkManager uowManager)
+        public EfUnitOfWorkDbContextProvider(IUnitOfWorkManager uowManager, ILoggerFactory logger)
         {
-            UnitOfWork = uowManager.Current;
+            UowManager = uowManager;
+            logger.CreateLogger<EfUnitOfWorkDbContextProvider>().LogDebug("CONSTRUCT> EfUnitOfWorkDbContextProvider");
         }
 
         public TDbContext Get<TDbContext>() where TDbContext : DbContext
         {
             TDbContext context;
-            if (UnitOfWork == null)
+            if (UowManager.Current == null)
             {
                 context = AppConfig.Current.IoCManager.GetService<TDbContext>();
                 return context;
             }
 
-            context = UnitOfWork.GetDbContext<TDbContext>();
+            context = UowManager.Current.GetDbContext<TDbContext>();
             if (context != null)
                 return context;
             context = AppConfig.Current.IoCManager.GetService<TDbContext>();
-            UnitOfWork.AddDbContext(context);
+            UowManager.Current.AddDbContext(context);
             return context;
         }
     }

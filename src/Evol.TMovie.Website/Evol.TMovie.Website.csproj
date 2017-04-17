@@ -36,6 +36,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Evol.TMovie.Data\Evol.TMovie.Data.csproj" />
     <ProjectReference Include="..\Evol.TMovie.Domain\Evol.TMovie.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
   </ItemGroup>
 
 </Project>
