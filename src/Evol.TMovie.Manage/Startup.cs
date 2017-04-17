@@ -53,7 +53,6 @@ namespace Evol.TMovie.Manage
 
             containerBuilder.Populate(services);
 
-            AppConfig.InitCurrent(services, serviceProvider);
             //ConfigureModules(services);
             ConfigureModules(containerBuilder);
             return serviceProvider;

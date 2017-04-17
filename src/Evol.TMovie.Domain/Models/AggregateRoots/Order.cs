@@ -22,7 +22,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 
         public OrderStatusType Status { get; set; }
 
-        public DateTime PayTime { get; set; }
+        public DateTime? PayTime { get; set; }
 
 
     }

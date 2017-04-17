@@ -17,7 +17,7 @@ namespace Evol.TMovie.Domain
 
         public override void Initailize()
         {
-            (new ObjectToObjectMapInitiator()).Init(this.GetType().GetTypeInfo().Assembly);
+            (new DtoObjectToObjectMapInitiator()).Init(this.GetType().GetTypeInfo().Assembly);
             _domainDependencyRegister.Register(IoCManager.Container, this.GetType().GetTypeInfo().Assembly); //Assembly.GetExecutingAssembly()
             base.Initailize();
         }

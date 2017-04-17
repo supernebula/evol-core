@@ -2,17 +2,20 @@
 using Evol.TMovie.Data;
 using Evol.TMovie.Domain;
 using Evol.TMovie.Domain.Dto;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 
-namespace Evol.TMovie.Manage
+namespace Evol.TMovie.DataTests
 {
     [DependOn(typeof(TMovieDataModule), typeof(TMovieDomainModule))]
-    public class TMovieManageModule : AppModule
+    public class TMovieDataTestModule : AppModule
     {
         public override void Initailize()
         {
             (new DtoObjectToObjectMapInitiator()).Init(this.GetType().GetTypeInfo().Assembly);
-            InitDependModule<TMovieManageModule>();
+            InitDependModule<TMovieDataTestModule>();
             base.Initailize();
         }
     }

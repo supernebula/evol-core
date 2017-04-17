@@ -10,7 +10,7 @@ namespace Evol.TMovie.Domain.Dto
     /// <summary>
     /// object-object mapper , <see cref="IObjectMapExtensions"/>
     /// </summary>
-    public class ObjectToObjectMapInitiator
+    public class DtoObjectToObjectMapInitiator
     {
         /// <summary>
         /// object-object mapp（automapper）

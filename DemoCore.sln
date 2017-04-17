@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoConsole", "src\DemoConsole\DemoConsole.csproj", "{3DAC2221-5307-4EA4-86E8-4208DEC030B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoConsole", "src\DemoConsole\DemoConsole.csproj", "{3DAC2221-5307-4EA4-86E8-4208DEC030B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{76EF6245-8D3F-464A-BB7E-ED8622AAEB05}"
 EndProject
@@ -19,32 +19,32 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util", "src\Infrastruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Common", "src\Infrastructure\Evol.Common\Evol.Common.csproj", "{10639FD4-78A1-4F0E-BD53-4D7EED316607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Domain", "src\Infrastructure\Evol.Domain\Evol.Domain.csproj", "{41C398FB-42B4-472A-B46B-CADCBEF14249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Domain", "src\Infrastructure\Evol.Domain\Evol.Domain.csproj", "{41C398FB-42B4-472A-B46B-CADCBEF14249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Web", "src\Infrastructure\Evol.Web\Evol.Web.csproj", "{F367A4E0-6BBC-43B0-956F-6F0E0E11A6FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Web", "src\Infrastructure\Evol.Web\Evol.Web.csproj", "{F367A4E0-6BBC-43B0-956F-6F0E0E11A6FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wrap", "Wrap", "{77452356-61F9-4D92-BA06-BA5C47C96074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Dapper", "src\Infrastructure\Evol.Dapper\Evol.Dapper.csproj", "{F03F6702-F3B0-4E73-AF42-55829F8CDA54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Dapper", "src\Infrastructure\Evol.Dapper\Evol.Dapper.csproj", "{F03F6702-F3B0-4E73-AF42-55829F8CDA54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.EntityFramework", "src\Infrastructure\Evol.EntityFramework\Evol.EntityFramework.csproj", "{9655A0A8-990D-425E-AE4B-5B125F264C27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.EntityFramework", "src\Infrastructure\Evol.EntityFramework\Evol.EntityFramework.csproj", "{9655A0A8-990D-425E-AE4B-5B125F264C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Memcached", "src\Infrastructure\Evol.Memcached\Evol.Memcached.csproj", "{F00E16D4-A85C-473F-82BB-6DB4F4AE7ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Memcached", "src\Infrastructure\Evol.Memcached\Evol.Memcached.csproj", "{F00E16D4-A85C-473F-82BB-6DB4F4AE7ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.MongoDB", "src\Infrastructure\Evol.MongoDB\Evol.MongoDB.csproj", "{A594511B-EA29-4EAC-93CB-58360DD54F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.MongoDB", "src\Infrastructure\Evol.MongoDB\Evol.MongoDB.csproj", "{A594511B-EA29-4EAC-93CB-58360DD54F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Redis", "src\Infrastructure\Evol.Redis\Evol.Redis.csproj", "{207ABBB4-5977-4FFB-8AF3-15C34D21BB1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Redis", "src\Infrastructure\Evol.Redis\Evol.Redis.csproj", "{207ABBB4-5977-4FFB-8AF3-15C34D21BB1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "document", "document", "{4458BF2D-1651-4346-AA76-2D3EC3F8E5EA}"
 	ProjectSection(SolutionItems) = preProject
 		document\aspnet-core.xmind = document\aspnet-core.xmind
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Redis.Tests", "test\Evol.Redis.Tests\Evol.Redis.Tests.csproj", "{A14614C5-797B-4B89-B060-17E6E96D5783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Redis.Tests", "test\Evol.Redis.Tests\Evol.Redis.Tests.csproj", "{A14614C5-797B-4B89-B060-17E6E96D5783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Dapper.Tests", "test\Evol.Dapper.Tests\Evol.Dapper.Tests.csproj", "{88EDC971-113F-4177-AD14-E21513270C64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Dapper.Tests", "test\Evol.Dapper.Tests\Evol.Dapper.Tests.csproj", "{88EDC971-113F-4177-AD14-E21513270C64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.EntityFramework.Tests", "test\Evol.EntityFramework.Tests\Evol.EntityFramework.Tests.csproj", "{A3579211-7AAF-47A0-BA16-FAD6B56A973C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.EntityFramework.Tests", "test\Evol.EntityFramework.Tests\Evol.EntityFramework.Tests.csproj", "{A3579211-7AAF-47A0-BA16-FAD6B56A973C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Test.Models", "test\Evol.Test.Models\Evol.Test.Models.csproj", "{792A1533-7AD0-4F36-8A86-ED360882C03F}"
 EndProject
@@ -52,17 +52,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.MongoDB.Tests", "test\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Memcached.Tests", "test\Evol.Memcached.Tests\Evol.Memcached.Tests.csproj", "{DBB12DA4-C154-40B8-8635-0E9D49FC609D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Library", "src\Demo.Library\Demo.Library.csproj", "{D66D1CD1-4293-4E2F-BD92-F6912EACC776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Library", "src\Demo.Library\Demo.Library.csproj", "{D66D1CD1-4293-4E2F-BD92-F6912EACC776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Website", "src\Demo.Website\Demo.Website.csproj", "{8276B5F6-3E58-45CC-9120-58D7A8BC31A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Website", "src\Demo.Website\Demo.Website.csproj", "{8276B5F6-3E58-45CC-9120-58D7A8BC31A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Web", "src\Demo.Web\Demo.Web.csproj", "{A9D3B8EE-3BD2-401E-946D-D425F2F40C7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Web", "src\Demo.Web\Demo.Web.csproj", "{A9D3B8EE-3BD2-401E-946D-D425F2F40C7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Snippet.Tests", "test\Evol.Snippet.Tests\Evol.Snippet.Tests.csproj", "{3B174BC7-9DFB-41C2-A50D-512F1EF61E34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Snippet.Tests", "test\Evol.Snippet.Tests\Evol.Snippet.Tests.csproj", "{3B174BC7-9DFB-41C2-A50D-512F1EF61E34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{DC97D607-3292-4313-8CED-8AA0B19FF382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Domain.Tests", "test\Evol.Domain.Tests\Evol.Domain.Tests.csproj", "{F30AB82A-ED53-486B-B856-403331E795E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Domain.Tests", "test\Evol.Domain.Tests\Evol.Domain.Tests.csproj", "{F30AB82A-ED53-486B-B856-403331E795E8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Data", "src\Evol.TMovie.Data\Evol.TMovie.Data.csproj", "{D6087E72-15BC-4BDD-9635-D8E45F43762E}"
 EndProject
@@ -73,6 +73,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Website", "src\Evol.TMovie.Website\Evol.TMovie.Website.csproj", "{2AF26149-1643-44D1-8076-133ED57221F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.ConsoleApp", "src\Evol.TMovie.ConsoleApp\Evol.TMovie.ConsoleApp.csproj", "{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.TMovie.DataTests", "Evol.TMovie.DataTests\Evol.TMovie.DataTests.csproj", "{3562ADE2-6020-40EF-A8C7-7CE417E906FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -188,6 +190,10 @@ Global
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3562ADE2-6020-40EF-A8C7-7CE417E906FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3562ADE2-6020-40EF-A8C7-7CE417E906FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3562ADE2-6020-40EF-A8C7-7CE417E906FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3562ADE2-6020-40EF-A8C7-7CE417E906FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -206,12 +212,12 @@ Global
 		{F00E16D4-A85C-473F-82BB-6DB4F4AE7ADD} = {77452356-61F9-4D92-BA06-BA5C47C96074}
 		{A594511B-EA29-4EAC-93CB-58360DD54F16} = {77452356-61F9-4D92-BA06-BA5C47C96074}
 		{207ABBB4-5977-4FFB-8AF3-15C34D21BB1D} = {77452356-61F9-4D92-BA06-BA5C47C96074}
-		{A14614C5-797B-4B89-B060-17E6E96D5783} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
-		{88EDC971-113F-4177-AD14-E21513270C64} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
-		{A3579211-7AAF-47A0-BA16-FAD6B56A973C} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
+		{A14614C5-797B-4B89-B060-17E6E96D5783} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
+		{88EDC971-113F-4177-AD14-E21513270C64} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
+		{A3579211-7AAF-47A0-BA16-FAD6B56A973C} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
 		{792A1533-7AD0-4F36-8A86-ED360882C03F} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
-		{39002745-9844-45D2-90C2-0E4AF9C17509} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
-		{DBB12DA4-C154-40B8-8635-0E9D49FC609D} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
+		{39002745-9844-45D2-90C2-0E4AF9C17509} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
+		{DBB12DA4-C154-40B8-8635-0E9D49FC609D} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
 		{D66D1CD1-4293-4E2F-BD92-F6912EACC776} = {E2F93D07-2E8C-493F-AE72-ED812E083CF1}
 		{8276B5F6-3E58-45CC-9120-58D7A8BC31A2} = {E2F93D07-2E8C-493F-AE72-ED812E083CF1}
 		{A9D3B8EE-3BD2-401E-946D-D425F2F40C7C} = {E2F93D07-2E8C-493F-AE72-ED812E083CF1}
@@ -223,5 +229,6 @@ Global
 		{9BD186C9-15ED-40DA-BCA2-42D4A364C9CA} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{2AF26149-1643-44D1-8076-133ED57221F7} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE} = {8B542B00-87DC-489A-9166-981260EE1AF6}
+		{3562ADE2-6020-40EF-A8C7-7CE417E906FD} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
 	EndGlobalSection
 EndGlobal

@@ -17,7 +17,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
         public Guid SupplierId { get; set; }
 
         /// <summary>
-        /// 没件(包)数量
+        /// 每件(包)数量
         /// </summary>
         public int QuantityPerUnit { get; set; }
 
@@ -25,7 +25,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 
         public float SellPrice { get; set; }
 
-        public string Stock { get; set; }
+        public int Stock { get; set; }
 
         public GoodsStateType GoodsState { get; set; }
     }

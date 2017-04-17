@@ -6,7 +6,7 @@ namespace Evol.TMovie.Domain.Dto
 {
     /// <summary>
     /// Object-object mapping
-    /// please init <see cref="ObjectToObjectMapInitiator"/>
+    /// please init <see cref="DtoObjectToObjectMapInitiator"/>
     /// </summary>
     public static class IObjectMapExtensions
     {
