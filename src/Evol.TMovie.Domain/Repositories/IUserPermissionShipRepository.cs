@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Evol.TMovie.Domain.Repositories
 {
-    public interface IUserRolePermissionShipRepository : IRepository<UserRolePermissionShip>
+    public interface IUserPermissionShipRepository : IRepository<UserPermissionShip>
     {
     }
 }

@@ -45,7 +45,7 @@ namespace Evol.TMovie.Data.QueryEntries
             return list;
         }
 
-        public async Task<IPaged<Permission>> RetrievePagedAsync(PermissionQueryParameter param, int pageIndex, int pageSize)
+        public async Task<IPaged<Permission>> PagedAsync(PermissionQueryParameter param, int pageIndex, int pageSize)
         {
             if (param == null)
                 throw new ArgumentNullException(nameof(param));

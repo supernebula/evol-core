@@ -14,7 +14,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<List<Role>> RetrieveAsync(RoleQueryParameter param);
 
-        Task<IPaged<Role>> RetrievePagedAsync(RoleQueryParameter param, int pageIndex, int pageSize);
+        Task<IPaged<Role>> PagedAsync(RoleQueryParameter param, int pageIndex, int pageSize);
 
         Task<List<Role>> GetByIdsAsync(Guid[] ids);
     }

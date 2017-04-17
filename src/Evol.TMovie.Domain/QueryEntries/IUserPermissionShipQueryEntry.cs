@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Domain.QueryEntries
 {
-    public interface IUserRolePermissionShipQueryEntry : IQueryEntry
+    public interface IUserPermissionShipQueryEntry : IQueryEntry
     {
-        Task<UserRolePermissionShip> FetchAsync(Guid id);
+        Task<UserPermissionShip> FetchAsync(Guid id);
 
-        Task<IList<UserRolePermissionShip>> RetrieveAsync(UserRolePermissionShipQueryParameter param);
+        Task<IList<UserPermissionShip>> RetrieveAsync(UserPermissionShipQueryParameter param);
 
-        Task<IPaged<UserRolePermissionShip>> PagedAsync(UserRolePermissionShipQueryParameter param, int pageIndex, int pageSize);
+        Task<IPaged<UserPermissionShip>> PagedAsync(UserPermissionShipQueryParameter param, int pageIndex, int pageSize);
 
         Task<IList<Role>> GetRolesByUserIdAsync(Guid userId);
 

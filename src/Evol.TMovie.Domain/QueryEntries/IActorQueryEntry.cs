@@ -14,6 +14,6 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<List<Actor>> RetrieveAsync(ActorQueryParameter param);
 
-        Task<IPaged<Actor>> RetrievePagedAsync(ActorQueryParameter param);
+        Task<IPaged<Actor>> PagedAsync(ActorQueryParameter param);
     }
 }

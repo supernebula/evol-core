@@ -8,7 +8,7 @@ namespace Evol.TMovie.Domain.Models.Entities
     /// OR 
     /// User(1) --------《 Permission(n)
     /// </summary>
-    public class UserRolePermissionShip : BaseEntity
+    public class UserPermissionShip : BaseEntity
     {
         public Guid UserId { get; set; }
 

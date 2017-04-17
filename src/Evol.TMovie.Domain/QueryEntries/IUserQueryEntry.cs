@@ -17,7 +17,7 @@ namespace Evol.TMovie.Domain.QueryEntries
         Task<List<User>> RetrieveAsync(UserQueryParameter param);
 
 
-        Task<IPaged<User>> RetrievePagedAsync(UserQueryParameter param, int pageIndex, int pageSize);
+        Task<IPaged<User>> PagedAsync(UserQueryParameter param, int pageIndex, int pageSize);
 
         Task<List<User>> GetByIdsAsync(Guid[] ids);
     }

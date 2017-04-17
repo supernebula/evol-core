@@ -15,7 +15,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<IList<RolePermissionShip>> RetrieveAsync(RolePermissionShipQueryParameter param);
 
-        Task<IPaged<RolePermissionShip>> RetrievePagedAsync(RolePermissionShipQueryParameter param, int pageIndex, int pageSize);
+        Task<IPaged<RolePermissionShip>> PagedAsync(RolePermissionShipQueryParameter param, int pageIndex, int pageSize);
 
         Task<IList<Role>> GetRolesByPermissionAsync(Guid PermissionId);
 

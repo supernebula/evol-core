@@ -2,7 +2,7 @@
 
 namespace Evol.TMovie.Domain.QueryEntries.Parameters
 {
-    public class UserRolePermissionShipQueryParameter
+    public class UserPermissionShipQueryParameter
     {
         public Guid? UserId { get; set; }
 

@@ -23,7 +23,7 @@ namespace Evol.TMovie.Data.QueryEntries
             throw new NotImplementedException();
         }
 
-        public Task<IPaged<Actor>> RetrievePagedAsync(ActorQueryParameter param)
+        public Task<IPaged<Actor>> PagedAsync(ActorQueryParameter param)
         {
             throw new NotImplementedException();
         }
