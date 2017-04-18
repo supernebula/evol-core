@@ -4,8 +4,6 @@ using Evol.Domain.Uow;
 using Evol.EntityFramework.Repository;
 using Evol.EntityFramework.Uow;
 using Microsoft.Extensions.DependencyInjection;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 
 namespace Evol.TMovie.Manage
 {

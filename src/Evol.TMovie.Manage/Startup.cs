@@ -7,13 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Evol.TMovie.Data;
 using Evol.Domain;
 using Evol.Web.Middlewares;
-using Evol.TMovie.Manage.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using NLog.Web;
 using NLog.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
