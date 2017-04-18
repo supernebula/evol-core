@@ -7,17 +7,16 @@ using Evol.TMovie.Domain.Models.Entities;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
+using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class SeatQueryEntry : ISeatQueryEntry
+    public class SeatQueryEntry : BaseEntityFrameworkQuery<Seat, TMovieDbContext>, ISeatQueryEntry
     {
 
-        public Task<Seat> FindAsync(Guid id)
+        public SeatQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
         {
-            throw new NotImplementedException();
         }
-
 
         public Task<List<Seat>> RetrieveAsync(ActorQueryParameter param)
         {

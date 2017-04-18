@@ -23,6 +23,11 @@ namespace Evol.EntityFramework.Repository
             return await innerBaseRepository.FindAsync(id);
         }
 
+        public async Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize)
+        {
+            return await innerBaseRepository.PagedAsync(pageIndex, pageSize);
+        }
+
         protected async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await innerBaseRepository.FindAsync(predicate);
@@ -38,11 +43,6 @@ namespace Evol.EntityFramework.Repository
             return await innerBaseRepository.RetrieveAsync(predicate);
         }
 
-        protected void Update(T item)
-        {
-            //wait for Context.SaveChange(),  item is being tracked object
-        }
-
         protected bool Any(Expression<Func<T, bool>> predicate)
         {
             return innerBaseRepository.Any(predicate);
@@ -51,12 +51,6 @@ namespace Evol.EntityFramework.Repository
         protected async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
         {
             return await innerBaseRepository.AnyAsync(predicate);
-        }
-
-
-        protected async Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize)
-        {
-            return await innerBaseRepository.PagedAsync(pageIndex, pageSize);
         }
 
 

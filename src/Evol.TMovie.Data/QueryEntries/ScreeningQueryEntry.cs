@@ -7,17 +7,15 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
+using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class ScreeningQueryEntry : IScreeningQueryEntry
+    public class ScreeningQueryEntry : BaseEntityFrameworkQuery<Screening, TMovieDbContext>, IScreeningQueryEntry
     {
-
-        public Task<Screening> FindAsync(Guid id)
+        public ScreeningQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
         {
-            throw new NotImplementedException();
         }
-
 
         public Task<List<Screening>> RetrieveAsync(ScreeningQueryParameter param)
         {

@@ -17,6 +17,6 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<IPaged<Movie>> PagedAsync(int index, int size);
 
-        Task<IPaged<Movie>> PagedAsync(Expression<Func<Movie, bool>> predicate,  int index, int size);
+        Task<IPaged<Movie>> PagedAsync(MovieQueryParameter param,  int index, int size);
     }
 }

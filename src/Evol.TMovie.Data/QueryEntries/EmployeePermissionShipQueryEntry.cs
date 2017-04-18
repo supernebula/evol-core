@@ -24,11 +24,13 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public EmployeePermissionShipQueryEntry(
             IPermissionQueryEntry permissionQueryEntry,
+            IRoleQueryEntry roleQueryEntry,
             IEmployeeQueryEntry employeeQueryEntry,
             IEfDbContextProvider efDbContextProvider
             ) : base(efDbContextProvider)
         {
             _permissionQueryEntry = permissionQueryEntry;
+            _roleQueryEntry = roleQueryEntry;
             _employeeQueryEntry = employeeQueryEntry;
         }
 

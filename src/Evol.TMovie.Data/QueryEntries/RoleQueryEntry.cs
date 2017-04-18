@@ -9,20 +9,14 @@ using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.QueryEntries;
 
 using Evol.TMovie.Domain.Repositories;
-
+using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class RoleQueryEntry : IRoleQueryEntry
+    public class RoleQueryEntry : BaseEntityFrameworkQuery<Role, TMovieDbContext>, IRoleQueryEntry
     {
-        private IRoleRepository _roleRepository { get; set; }
-        public RoleQueryEntry(IRoleRepository roleRepository)
+        public RoleQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
         {
-            _roleRepository = roleRepository;
-        }
-        public async Task<Role> FindAsync(Guid id)
-        {
-            return await _roleRepository.FindAsync(id);
         }
 
         public async Task<List<Role>> RetrieveAsync(RoleQueryParameter param)
@@ -40,7 +34,7 @@ namespace Evol.TMovie.Data.QueryEntries
             else if (param.Name != null)
                 query = e => e.Name.StartsWith(param.Name);
 
-            var list = (await _roleRepository.RetrieveAsync(query)).ToList();
+            var list = (await base.RetrieveAsync(query)).ToList();
             return list;
         }
 
@@ -59,12 +53,12 @@ namespace Evol.TMovie.Data.QueryEntries
             else if (param.Name != null)
                 query = e => e.Name.StartsWith(param.Name);
 
-            return await _roleRepository.PagedAsync(query, pageIndex, pageSize);
+            return await base.PagedAsync(query, pageIndex, pageSize);
         }
 
         public async Task<List<Role>> GetByIdsAsync(Guid[] ids)
         {
-            return (await _roleRepository.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
+            return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
         }
     }
 }

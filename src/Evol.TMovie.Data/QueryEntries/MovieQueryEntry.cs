@@ -9,39 +9,26 @@ using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Repositories;
 using Evol.Common;
+using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class MovieQueryEntry : IMovieQueryEntry
+    public class MovieQueryEntry : BaseEntityFrameworkQuery<Movie, TMovieDbContext>, IMovieQueryEntry
     {
-        public IMovieRepository MovieRepository { get; set; }
 
-        public MovieQueryEntry(IMovieRepository movieRepos)
+        public MovieQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
         {
-            MovieRepository = movieRepos;
         }
 
-
-        public async Task<Movie> FindAsync(Guid id)
-        {
-            return await MovieRepository.FindAsync(id);
-        }
 
         public Task<List<Movie>> RetrieveAsync(MovieQueryParameter param)
         {
             throw new NotImplementedException();
-        }
+        } 
 
-
-        public async Task<IPaged<Movie>> PagedAsync(int index, int size)
+        public Task<IPaged<Movie>> PagedAsync(MovieQueryParameter param, int pageIndex, int pageSize)
         {
-            return await MovieRepository.PagedAsync(index, size);
-        }
-
-
-        public async Task<IPaged<Movie>> PagedAsync(Expression<Func<Movie, bool>> predicate, int pageIndex, int pageSize)
-        {
-            return await MovieRepository.PagedAsync(predicate, pageIndex, pageSize);
+            throw new NotImplementedException();
         }
     }
 }

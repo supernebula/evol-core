@@ -8,25 +8,19 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Repositories;
-
+using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class UserQueryEntry : IUserQueryEntry
+    public class UserQueryEntry : BaseEntityFrameworkQuery<User, TMovieDbContext>, IUserQueryEntry
     {
-        private IUserRepository _userRepository { get; set; }
-        public UserQueryEntry(IUserRepository userRepository)
+        public UserQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
         {
-            _userRepository = userRepository;
-        }
-        public async Task<User> FindAsync(Guid id)
-        {
-            return await _userRepository.FindAsync(id);
         }
 
         public async Task<List<User>> GetByIdsAsync(Guid[] ids)
         {
-            return (await _userRepository.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
+            return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
         }
 
         public async Task<List<User>> RetrieveAsync(UserQueryParameter param)
@@ -36,7 +30,7 @@ namespace Evol.TMovie.Data.QueryEntries
             if (param.Key == null)
                 throw new ArgumentNullException((nameof(param.Key)));
 
-            var list = (await _userRepository.RetrieveAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key))).ToList();
+            var list = (await base.RetrieveAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key))).ToList();
             return list;
         }
 
@@ -47,7 +41,7 @@ namespace Evol.TMovie.Data.QueryEntries
             if (param.Key == null)
                 throw new ArgumentNullException((nameof(param.Key)));
 
-            var result = await _userRepository.PagedAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key), pageIndex, pageSize);
+            var result = await base.PagedAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key), pageIndex, pageSize);
             return result;
         }
     }
