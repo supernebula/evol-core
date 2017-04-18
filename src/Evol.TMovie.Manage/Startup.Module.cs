@@ -17,18 +17,10 @@ namespace Evol.TMovie.Manage
             services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
-            services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
+            services.AddScoped<IEfDbContextProvider, EfDbContextProvider>();
+            services.AddScoped<IEfUnitOfWorkDbContextProvider, EfUnitOfWorkDbContextProvider>();
             AppConfig.Current.RegisterAppModuleFrom<TMovieManageModule>();
             //IUserSession
         }
-
-        //public void ConfigureModules(ContainerBuilder containerBuilder)
-        //{
-        //    containerBuilder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
-        //    containerBuilder.RegisterType<EfUnitOfWorkManager>().As<IUnitOfWorkManager>().InstancePerRequest();
-        //    containerBuilder.RegisterType<CommandBus>().As<ICommandBus>().InstancePerRequest();
-        //    containerBuilder.RegisterType<DefaultCommandHandlerFactory>().As<ICommandHandlerFactory>().InstancePerRequest();
-        //    containerBuilder.RegisterType<EfUnitOfWorkDbContextProvider>().As<IEfDbContextProvider>().InstancePerRequest();
-        //}
     }
 }

@@ -15,11 +15,6 @@ namespace Evol.EntityFramework.Repository
             private set;
         }
 
-        //public EfUnitOfWorkDbContextProvider(IUnitOfWork uow)
-        //{
-        //    UnitOfWork = uow;
-        //}
-
         public EfUnitOfWorkDbContextProvider(IUnitOfWorkManager uowManager, ILoggerFactory logger)
         {
             UowManager = uowManager;
