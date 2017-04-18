@@ -71,18 +71,5 @@ namespace Evol.Domain
         {
             (new TModule()).Initailize();
         }
-
-        ///// <summary>
-        ///// Resolve dependency injection service
-        ///// </summary>
-        ///// <typeparam name="T"></typeparam>
-        ///// <returns></returns>
-        //public T GetService<T>()
-        //{
-        //    var service = ServiceProvider.GetService<T>();
-        //    return service;
-        //}
-
-
     }
 }

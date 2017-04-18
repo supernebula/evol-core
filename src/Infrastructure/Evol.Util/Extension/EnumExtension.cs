@@ -5,19 +5,19 @@ using System.Reflection;
 using System.Linq;
 
 
-namespace Evol.Util
+namespace Evol.Util.Extension
 { 
-    public class EnumHelper
+    public class EnumExtension
     {
         public static string GetDescription<TEnum>(TEnum enumValue) where TEnum : struct
         {
-            var valDesDic = GetValueDescriptionDictionary<TEnum>();
+            var valDesDic = GetValueDescriptionDic<TEnum>();
             string description;
             valDesDic.TryGetValue(enumValue, out description);
             return description;
         }
 
-        public static Dictionary<object, string> GetValueDescriptionDictionary<TEnum>() where TEnum : struct
+        public static Dictionary<object, string> GetValueDescriptionDic<TEnum>() where TEnum : struct
         {
             var type = typeof(TEnum);
             var valDesDic = new Dictionary<object, string>();
@@ -38,7 +38,7 @@ namespace Evol.Util
 
 
 
-        public static Dictionary<string, string> GetNameDescriptionDictionary<TEnum>() where TEnum : struct
+        public static Dictionary<string, string> GetNameDescriptionDic<TEnum>() where TEnum : struct
         {
             var type = typeof(TEnum);
             var nameDesDic = new Dictionary<string, string>();
