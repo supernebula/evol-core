@@ -14,9 +14,10 @@ namespace Evol.TMovie.DataTests
     {
         public override void Initailize()
         {
-            (new DtoObjectToObjectMapInitiator()).Init(this.GetType().GetTypeInfo().Assembly);
+            DtoObjectMapInitiator.Create(this.GetType().GetTypeInfo().Assembly);
             InitDependModule<TMovieDataTestModule>();
             base.Initailize();
+            DtoObjectMapInitiator.Initialize();
         }
     }
 }

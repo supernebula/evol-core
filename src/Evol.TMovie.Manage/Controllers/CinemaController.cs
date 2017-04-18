@@ -31,7 +31,8 @@ namespace Evol.TMovie.Manage.Controllers
         public async Task<IActionResult> Index(CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            return View(paged.MapPaged<CinemaViewModel>());
+            var result = paged.MapPaged<CinemaViewModel>();
+            return View(result);
         }
 
         // GET: Cinema/Details/5

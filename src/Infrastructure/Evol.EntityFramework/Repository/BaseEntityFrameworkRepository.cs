@@ -138,7 +138,7 @@ namespace Evol.EntityFramework.Repository
         public async Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize)
         {
             var total = await DbSet.CountAsync();
-            var list = await DbSet.OrderBy(e => e.Id).Skip(pageIndex * (pageSize - 1)).Take(pageSize).ToListAsync();
+            var list = await DbSet.OrderBy(e => e.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
             var paged = new PagedList<T>(list, total, pageIndex, pageSize);
             return paged;
         }
@@ -146,7 +146,7 @@ namespace Evol.EntityFramework.Repository
         public IPaged<T> Paged(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
         {
             var total = DbSet.Count(predicate);
-            var list = DbSet.OrderBy(e => e.Id).Skip(pageIndex * (pageSize - 1)).Take(pageSize).ToList();
+            var list = DbSet.OrderBy(e => e.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             var paged = new PagedList<T>(list, total, pageIndex, pageSize);
             return paged;
         }
@@ -154,7 +154,7 @@ namespace Evol.EntityFramework.Repository
         public async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
         {
             var total = await DbSet.CountAsync(predicate);
-            var list = await DbSet.Where(predicate).OrderBy(e => e.Id).Skip(pageIndex * (pageIndex - 1)).Take(pageSize).ToListAsync();
+            var list = await DbSet.Where(predicate).OrderBy(e => e.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
             var paged = new PagedList<T>(list, total, pageIndex, pageSize);
             return paged;
         }

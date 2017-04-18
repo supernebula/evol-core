@@ -11,9 +11,10 @@ namespace Evol.TMovie.Manage
     {
         public override void Initailize()
         {
-            (new DtoObjectToObjectMapInitiator()).Init(this.GetType().GetTypeInfo().Assembly);
+            DtoObjectMapInitiator.Create(this.GetType().GetTypeInfo().Assembly);
             InitDependModule<TMovieManageModule>();
             base.Initailize();
+            DtoObjectMapInitiator.Initialize();
         }
     }
 }

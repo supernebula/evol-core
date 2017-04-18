@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Configuration;
 using Evol.Domain.Dto;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,23 @@ namespace Evol.TMovie.Domain.Dto
 {
     /// <summary>
     /// object-object mapper , <see cref="IObjectMapExtensions"/>
+    /// AutoMapper每次调用 Mapper.Initialize() 都会创建新的 Mapper 实例，也就是多次调用 Mapper.Initialize() 只有最后一次生效。
+    /// 为了防止上次CreateMap()的Mapper实例丢失引起的config丢失，每次Initialize() 都是用相同的MapperConfiguration实例。MapperConfiguration
+    /// 负责存储所有的config信息。
     /// </summary>
-    public class DtoObjectToObjectMapInitiator
+    public class DtoObjectMapInitiator
     {
+        private static MapperConfigurationExpression mapConfig;
+        static DtoObjectMapInitiator()
+        {
+            mapConfig = new MapperConfigurationExpression();
+        }
+
         /// <summary>
         /// object-object mapp（automapper）
         /// </summary>
         /// <param name="assembly"></param>
-        public void Init(Assembly assembly)
+        public static void Create(Assembly assembly)
         {
             var maplist = new List<MapSourceDestinationPair>();
             var pairs1 = FindMapTo(assembly);
@@ -25,11 +35,17 @@ namespace Evol.TMovie.Domain.Dto
             maplist.AddRange(pairs2);
 
             maplist.ForEach(pair => {
-                Mapper.Initialize(cfg => cfg.CreateMap(pair.Source, pair.Destination));
+                mapConfig.CreateMap(pair.Source, pair.Destination);
             });
+            
         }
 
-        private List<MapSourceDestinationPair> FindMapTo(Assembly assembly)
+        public static void Initialize()
+        {
+            Mapper.Initialize(mapConfig);
+        }
+
+        private static List<MapSourceDestinationPair> FindMapTo(Assembly assembly)
         {
             Func<Type, bool> filter = type =>
             {
@@ -49,7 +65,7 @@ namespace Evol.TMovie.Domain.Dto
             return sourceDestinationPairs;
         }
 
-        private List<MapSourceDestinationPair> FindMapFrom(Assembly assembly)
+        private static List<MapSourceDestinationPair> FindMapFrom(Assembly assembly)
         {
             Func<Type, bool> filter = type =>
             {
