@@ -4,6 +4,9 @@ using Evol.TMovie.Domain.Commands;
 using Evol.TMovie.Domain.Repositories;
 using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.Domain.Events;
+using Evol.TMovie.Domain.Dto;
+using System.Collections.Generic;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
@@ -19,19 +22,28 @@ namespace Evol.TMovie.Domain.CommandHandlers
 
         public async Task ExecuteAsync(MovieCreateCommand command)
         {
-            var item = new Movie();
+            var item = command.Input.Map<Movie>();
+            item.Id = Guid.NewGuid();
+            item.Name = item.Name ?? string.Empty;
+            //....更多字段
+            item.CreateTime = DateTime.Now;
             await MovieRepository.InsertAsync(item);
+            command.Events.Add(new Event(item));
         }
 
-        public Task ExecuteAsync(MovieUpdateCommand command)
+        public async Task ExecuteAsync(MovieUpdateCommand command)
         {
-            MovieRepository.Update(command.AggregateRoot);
-            return Task.FromResult(1);
+            var item = await MovieRepository.FindAsync(command.Input.Id);
+            if (item == null)
+                throw new KeyNotFoundException();
+            item.Name = command.Input.Name;
+            //....更多字段
+            MovieRepository.Update(item);
         }
 
         public Task ExecuteAsync(MovieDeleteCommand command)
         {
-            MovieRepository.Delete(command.AggregateRootId);
+            MovieRepository.Delete(command.Input.Id);
             return Task.FromResult(1);
         }
     }

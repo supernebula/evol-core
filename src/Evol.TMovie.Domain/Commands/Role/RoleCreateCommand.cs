@@ -5,6 +5,6 @@ namespace Evol.TMovie.Domain.Commands
 {
     public class RoleCreateCommand : Command
     {
-        public CinemaCreateOrUpdateDto Input { get; set; }
+        public RoleCreateOrUpdateDto Input { get; set; }
     }
 }

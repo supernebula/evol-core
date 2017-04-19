@@ -9,6 +9,8 @@ using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Dto;
 using Evol.TMovie.Manage.Models;
+using Evol.TMovie.Domain.Commands.Dto;
+using Evol.TMovie.Domain.Commands;
 
 namespace Evol.TMovie.Manage.Controllers
 {
@@ -49,14 +51,14 @@ namespace Evol.TMovie.Manage.Controllers
         // POST: Cinema/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CinemaCreateOrUpdateDto dto)
+        public async Task<IActionResult> Create(RoleCreateOrUpdateDto dto)
         {
             if (!await TryUpdateModelAsync(dto))
             {
                 return View(dto);
             }
 
-            await CommandBus.SendAsync(new CinemaCreateCommand() { Input = dto });
+            await _commandBus.SendAsync(new RoleCreateCommand() { Input = dto });
 
             return RedirectToAction("Index");
         }
@@ -64,20 +66,20 @@ namespace Evol.TMovie.Manage.Controllers
         // GET: Cinema/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var item = await CinemaQueryEntry.FindAsync(id);
+            var item = await _roleQueryEntry.FindAsync(id);
             return View(item);
         }
 
         // POST: Cinema/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CinemaCreateOrUpdateDto dto)
+        public async Task<IActionResult> Edit(int id, RoleCreateOrUpdateDto dto)
         {
             if (!await TryUpdateModelAsync(dto))
             {
                 return View(dto);
             }
-            await CommandBus.SendAsync(new CinemaUpdateCommand() { Input = dto });
+            await _commandBus.SendAsync(new RoleUpdateCommand() { Input = dto });
             this.ModelState.AddModelError(string.Empty, "Success!");
             return View(dto);
         }
@@ -85,7 +87,7 @@ namespace Evol.TMovie.Manage.Controllers
         // GET: Cinema/Delete/5
         public async Task<bool> Delete(Guid id)
         {
-            await CommandBus.SendAsync(new CinemaDeleteCommand() { Input = new CinemaDeleteDto() { Id = id } });
+            await _commandBus.SendAsync(new RoleDeleteCommand() { Input = new ItemDeleteDto() { Id = id } });
             return true;
         }
     }

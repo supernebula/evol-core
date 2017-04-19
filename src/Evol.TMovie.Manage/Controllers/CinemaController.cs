@@ -58,7 +58,7 @@ namespace Evol.TMovie.Manage.Controllers
                 return View(dto);
             }
 
-            await CommandBus.SendAsync(new RoleCreateCommand() { Input = dto });
+            await CommandBus.SendAsync(new CinemaCreateCommand() { Input = dto });
 
             return RedirectToAction("Index");
         }
@@ -87,7 +87,7 @@ namespace Evol.TMovie.Manage.Controllers
         // GET: Cinema/Delete/5
         public async Task<bool> Delete(Guid id)
         {
-            await CommandBus.SendAsync(new CinemaDeleteCommand() { Input = new CinemaDeleteDto() { Id = id } });
+            await CommandBus.SendAsync(new CinemaDeleteCommand() { Input = new ItemDeleteDto() { Id = id } });
             return true;
         }
 

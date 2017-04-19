@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class PermissionCreateOrUpdateDto : IInputDto, ICanMapTo<Permission>
+    public class EmployeeCreateOrUpdateDto : IInputDto, ICanMapTo<Employee>
     {
         public Guid Id { get; set; }
 
@@ -16,6 +16,12 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
         [Required]
         [StringLength(20, MinimumLength = 1)]
-        public string Name { get; set; }
+        public string Username { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 1)]
+        public string Password { get; set; }
+
+        public string RealName { get; set; }
     }
 }

@@ -3,8 +3,8 @@ using Evol.Domain.Commands;
 
 namespace Evol.TMovie.Domain.Commands
 {
-    public class RoleUpdateCommand : Command
+    public class EmployeeCreateCommand : Command
     {
-        public RoleCreateOrUpdateDto Input { get; set; }
+        public EmployeeCreateOrUpdateDto Input { get; set; }
     }
 }
