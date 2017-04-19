@@ -6,6 +6,7 @@ using Evol.Common;
 using Xunit;
 using Xunit.Abstractions;
 using System.Linq;
+using Evol.Util.Extension;
 
 namespace Demo.Tests
 {
@@ -21,7 +22,7 @@ namespace Demo.Tests
         [Fact]
         public void EnumSpecifyDescriptionTest()
         {
-            var description = EnumHelper.GetDescription(GenderType.Male);
+            var description = EnumExtension.GetDescription(GenderType.Male);
             output.WriteLine($"{GenderType.Male}：{description}");
         }
 
@@ -30,7 +31,7 @@ namespace Demo.Tests
         {
             string description = null;
             TimeMonitor.WatchLoop("获取枚举描述", 100,
-                () => { description = EnumHelper.GetDescription(GenderType.Male); },
+                () => { description = EnumExtension.GetDescription(GenderType.Male); },
                 str => output.WriteLine(str)
             );
             output.WriteLine($"{GenderType.Male}：{description}");
@@ -40,14 +41,14 @@ namespace Demo.Tests
         [Fact]
         public void EnumAllDescriptionTest()
         {
-            var valueDescriptionDic = EnumHelper.GetValueDescriptionDictionary<GenderType>();
+            var valueDescriptionDic = EnumExtension.GetValueDescriptionDic<GenderType>();
             output.WriteLine($"Enum Value and Description:");
             foreach (var item in valueDescriptionDic)
             {
                 output.WriteLine($"{item.Key}：{item.Value}");
             }
 
-            var nameDescriptionDic = EnumHelper.GetNameDescriptionDictionary<GenderType>();
+            var nameDescriptionDic = EnumExtension.GetNameDescriptionDic<GenderType>();
             output.WriteLine($"Enum Name and Description:");
             foreach (var item in nameDescriptionDic)
             {
