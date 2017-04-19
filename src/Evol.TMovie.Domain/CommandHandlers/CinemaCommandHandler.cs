@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Evol.TMovie.Domain.Dto;
 using System.Threading.Tasks;
+using Evol.Domain.Events;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
@@ -25,6 +26,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
             item.Name = item.Address ?? string.Empty;
             item.CreateTime = DateTime.Now;
             await CinemaRepository.InsertAsync(item);
+            command.Events.Add(new Event(item));
         }
 
         public async Task ExecuteAsync(CinemaUpdateCommand command)

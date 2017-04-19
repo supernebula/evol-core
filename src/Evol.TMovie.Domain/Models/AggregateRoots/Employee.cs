@@ -1,9 +1,10 @@
 ﻿using Evol.Common;
+using Evol.Domain.Models;
 using System;
 
 namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
-    public class Employee : BaseEntity
+    public class Employee : AggregateRoot
     {
         public string Username { get; set; }
 

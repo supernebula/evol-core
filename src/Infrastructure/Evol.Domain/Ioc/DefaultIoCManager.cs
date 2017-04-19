@@ -12,8 +12,6 @@ namespace Evol.Domain.Ioc
         {
             get
             {
-                if (_serviceScope != null)
-                    return _serviceScope.ServiceProvider;
                 return _serviceProviderthunk.Invoke();
             }
         }
@@ -41,12 +39,8 @@ namespace Evol.Domain.Ioc
             return ServiceProvider.GetServices<T>();
         }
 
-        private IServiceScope _serviceScope;
-
         public void Dispose()
         {
-            if(_serviceScope != null)
-            _serviceScope.Dispose();
         }
     }
 }

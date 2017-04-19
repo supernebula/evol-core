@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Evol.Domain.Commands;
 using Evol.Domain.Uow;
+using System.Linq;
 
 namespace Evol.Domain.Messaging
 {
@@ -19,16 +20,8 @@ namespace Evol.Domain.Messaging
 
         private ILogger _logger { get; set; }
 
-
-        //public CommandBus(IUnitOfWork unitOfWork, ICommandHandlerFactory commandHandlerFactory)
-        //{
-        //    UnitOfWork = unitOfWork;
-        //    CommandHandlerFactory = commandHandlerFactory;
-        //}
-
         public CommandBus(IUnitOfWorkManager unitOfWorkManager, ICommandHandlerFactory commandHandlerFactory, ILoggerFactory loggerFactory)
         {
-            //UnitOfWork = unitOfWork;
             _unitOfWorkManager = unitOfWorkManager;
             CommandHandlerFactory = commandHandlerFactory;
             _loggerFactory = loggerFactory;
@@ -52,6 +45,14 @@ namespace Evol.Domain.Messaging
                 //log
                 throw ex;
             }
+
+            //处理事件，保证最终一致性
+            if (command.Events != null && command.Events.Any())
+            {
+                var eventPublisher = AppConfig.Current.IoCManager.GetService<IEventPublisher>();
+                await eventPublisher.PublishAsync(command.Events);
+            }
+
             _logger.LogDebug("EXECUTE> UnitOfWork.CommitAsync()");
         }
     }

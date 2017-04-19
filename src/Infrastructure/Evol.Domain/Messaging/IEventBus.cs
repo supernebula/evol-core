@@ -1,9 +1,10 @@
 ﻿using Evol.Domain.Events;
+using System.Threading.Tasks;
 
 namespace Evol.Domain.Messaging
 {
     public interface IEventBus
     {
-        void Publish<T>(T @event) where T : Event;
+        Task PublishAsync<T>(T @event) where T : Event;
     }
 }

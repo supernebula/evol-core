@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using Evol.TMovie.Domain.Models.Values;
 using Evol.Common;
+using Evol.Domain.Models;
 
 namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     /// <summary>
     /// 电影
     /// </summary>
-    public class Movie : BaseEntity
+    public class Movie : AggregateRoot
     {
         public Guid ProductId { get; set; }
 

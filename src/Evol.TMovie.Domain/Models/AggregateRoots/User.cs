@@ -1,8 +1,9 @@
 ﻿using Evol.Common;
+using Evol.Domain.Models;
 
 namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
-    public class User : BaseEntity
+    public class User : AggregateRoot
     {
         public string Username { get; set; }
 

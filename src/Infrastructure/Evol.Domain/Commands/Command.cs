@@ -1,5 +1,8 @@
 ﻿using System;
 using Evol.Domain.Messaging;
+using Evol.Common;
+using Evol.Domain.Events;
+using System.Collections.Generic;
 
 namespace Evol.Domain.Commands
 {
@@ -11,5 +14,6 @@ namespace Evol.Domain.Commands
         }
 
         public Guid Id { get; private set; }
+        public List<Event> Events { get; set; }
     }
 }

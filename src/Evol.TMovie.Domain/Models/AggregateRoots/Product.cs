@@ -3,10 +3,11 @@ using Evol.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Evol.Domain.Models;
 
 namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
-    public class Product : BaseEntity
+    public class Product : AggregateRoot
     {
         public string Name { get; set; }
 

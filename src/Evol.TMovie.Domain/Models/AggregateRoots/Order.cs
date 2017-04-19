@@ -4,10 +4,11 @@ using Evol.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Evol.Domain.Models;
 
 namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
-    public class Order : BaseEntity
+    public class Order : AggregateRoot
     {
         public string No { get; set; }
         public Guid UserId { get; set; }

@@ -1,13 +1,14 @@
 ﻿using System;
 using Evol.TMovie.Domain.Models.Values;
 using Evol.Common;
+using Evol.Domain.Models;
 
 namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     /// <summary>
     /// 放映场次
     /// </summary>
-    public class Screening : BaseEntity
+    public class Screening : AggregateRoot
     {
         public Guid MovieId { get; set; }
 
