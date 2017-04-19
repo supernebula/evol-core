@@ -2,9 +2,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Evol.TMovie.Domain.Commands.Dto
+namespace Evol.TMovie.Domain.Dto
 {
-    public class CinemaDeleteDto : IInputDto
+    public class ItemDeleteDto : IInputDto
     {
         [Required]
         public Guid Id { get; set; }

@@ -4,7 +4,7 @@ using Evol.TMovie.Domain.Dto;
 
 namespace Evol.TMovie.Domain.Commands
 {
-    public class CinemaDeleteCommand : Command
+    public class RoleDeleteCommand : Command
     {
         public ItemDeleteDto Input { get; set; }
     }

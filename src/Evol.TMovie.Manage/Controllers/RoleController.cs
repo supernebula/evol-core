@@ -5,40 +5,38 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Evol.TMovie.Domain.QueryEntries;
-using Evol.TMovie.Domain.QueryEntries.Parameters;
-using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Messaging;
-using Evol.TMovie.Domain.Commands;
-using Evol.TMovie.Manage.Models;
+using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Dto;
-using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.TMovie.Manage.Models;
 
 namespace Evol.TMovie.Manage.Controllers
 {
-    public class CinemaController : Controller
+    [Produces("application/json")]
+    [Route("api/Role")]
+    public class RoleController : Controller
     {
-        public ICinemaQueryEntry CinemaQueryEntry { get; set; }
+        private IRoleQueryEntry _roleQueryEntry { get; set; }
 
-        public ICommandBus CommandBus { get; set; }
+        private ICommandBus _commandBus { get; set; }
 
-        public CinemaController(ICinemaQueryEntry cinemaQueryEntry, ICommandBus commandBus)
+        public RoleController(IRoleQueryEntry roleQueryEntry, ICommandBus commandBus)
         {
-            CinemaQueryEntry = cinemaQueryEntry;
-            CommandBus = commandBus;
+            _roleQueryEntry = roleQueryEntry;
+            _commandBus = commandBus;
         }
-
         // GET: Cinema
-        public async Task<IActionResult> Index(CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(RoleQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
-            var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            var result = paged.MapPaged<CinemaViewModel>();
+            var paged = await _roleQueryEntry.PagedAsync(param, pageIndex, pageSize);
+            var result = paged.MapPaged<RoleViewModel>();
             return View(result);
         }
 
         // GET: Cinema/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var item = await CinemaQueryEntry.FindAsync(id);
+            var item = await _roleQueryEntry.FindAsync(id);
             return View(item);
         }
 
@@ -53,12 +51,12 @@ namespace Evol.TMovie.Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CinemaCreateOrUpdateDto dto)
         {
-            if (! await TryUpdateModelAsync(dto))
+            if (!await TryUpdateModelAsync(dto))
             {
                 return View(dto);
             }
 
-            await CommandBus.SendAsync(new RoleCreateCommand() { Input = dto });
+            await CommandBus.SendAsync(new CinemaCreateCommand() { Input = dto });
 
             return RedirectToAction("Index");
         }
@@ -90,6 +88,5 @@ namespace Evol.TMovie.Manage.Controllers
             await CommandBus.SendAsync(new CinemaDeleteCommand() { Input = new CinemaDeleteDto() { Id = id } });
             return true;
         }
-
     }
 }

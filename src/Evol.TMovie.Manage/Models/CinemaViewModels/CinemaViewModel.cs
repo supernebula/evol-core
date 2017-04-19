@@ -14,6 +14,5 @@ namespace Evol.TMovie.Manage.Models
         public string Address { get; set; }
 
         public DateTime CreateTime { get; set; }
-
     }
 }

@@ -10,6 +10,7 @@
     <Folder Include="EventHandlers\" />
     <Folder Include="Events\" />
     <Folder Include="Modules\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
