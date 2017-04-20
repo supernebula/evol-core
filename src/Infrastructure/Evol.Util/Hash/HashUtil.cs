@@ -13,5 +13,10 @@ namespace Evol.Util.Hash
             var output = string.Join(string.Empty, result);
             return output;
         }
+
+        public static string Md5PasswordWithSalt(string password, string salt)
+        {
+            return Md5(password + salt);
+        }
     }
 }

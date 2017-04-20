@@ -7,5 +7,11 @@ namespace Evol.TMovie.Manage.Models.Identity
 {
     public class AppRole
     {
+        public Guid Id { get; set; }
+
+        public string Code { get; set; }
+
+        public string Title { get; set; }
+
     }
 }

@@ -9,7 +9,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 {
     public class Product : AggregateRoot
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         public string Brand { get; set; }
 

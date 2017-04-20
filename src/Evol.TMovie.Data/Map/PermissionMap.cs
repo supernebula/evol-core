@@ -15,7 +15,7 @@ namespace Evol.TMovie.Data.Map
             builder.ToTable("Permission");
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Code).IsRequired().HasMaxLength(100);
-            builder.Property(e => e.Name).IsRequired().HasMaxLength(100);
+            builder.Property(e => e.Title).IsRequired().HasMaxLength(100);
             builder.Property(e => e.CreateTime).IsRequired();
         }
     }

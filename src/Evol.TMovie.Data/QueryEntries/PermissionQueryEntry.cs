@@ -27,11 +27,11 @@ namespace Evol.TMovie.Data.QueryEntries
 
             Expression<Func<Permission, bool>> query = null;
             if (param.Code != null && param.Name != null)
-                query = e => e.Code.StartsWith(param.Code) && e.Name.StartsWith(param.Name);
+                query = e => e.Code.StartsWith(param.Code) && e.Title.StartsWith(param.Name);
             else if (param.Code != null)
                 query = e => e.Code.StartsWith(param.Code);
             else if (param.Name != null)
-                query = e => e.Name.StartsWith(param.Name);
+                query = e => e.Title.StartsWith(param.Name);
 
             var list = (await base.RetrieveAsync(query)).ToList();
             return list;
@@ -46,11 +46,11 @@ namespace Evol.TMovie.Data.QueryEntries
 
             Expression<Func<Permission, bool>> query = null;
             if (param.Code != null && param.Name != null)
-                query = e => e.Code.StartsWith(param.Code) && e.Name.StartsWith(param.Name);
+                query = e => e.Code.StartsWith(param.Code) && e.Title.StartsWith(param.Name);
             else if (param.Code != null)
                 query = e => e.Code.StartsWith(param.Code);
             else if (param.Name != null)
-                query = e => e.Name.StartsWith(param.Name);
+                query = e => e.Title.StartsWith(param.Name);
 
             return await base.PagedAsync(query, pageIndex, pageSize);
         }

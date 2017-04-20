@@ -6,30 +6,36 @@ using System.Threading.Tasks;
 using System.Threading;
 using Evol.TMovie.Manage.Models.Identity;
 using Evol.TMovie.Domain.QueryEntries;
+using Evol.TMovie.Domain.Services;
 
 namespace Evol.TMovie.Manage.Core.Identity
 {
     public class AppUserStore : IUserRoleStore<AppUser>, IUserPasswordStore<AppUser>
     {
+        private IUserQueryEntry _userQueryEntry;
 
-        public AppUserStore(IUserQueryEntry userQueryEntry, IPasswordHasher<AppUser> passwordHasher)
+        private IUserPermissionShipQueryEntry _userPermissionShipQueryEntry;
+
+        private IUserPermissionService _userPermissionService;
+
+        private IPasswordHasher<HashUser> _passwordHasher;
+
+        public AppUserStore(IUserQueryEntry userQueryEntry, IUserPermissionShipQueryEntry userPermissionShipQueryEntry, IUserPermissionService userPermissionService)
         {
             if (userQueryEntry == null)
                 throw new ArgumentNullException(nameof(userQueryEntry));
 
-            UserQueryEntry = userQueryEntry;
-            PasswordHasher = passwordHasher;
+            _userQueryEntry = userQueryEntry;
+            _userPermissionShipQueryEntry = userPermissionShipQueryEntry;
+            _userPermissionService = userPermissionService;
+            _passwordHasher = new DefaultPasswordHasher();
         }
-
-
-        public IUserQueryEntry UserQueryEntry { get; private set; }
-
-        public IPasswordHasher<AppUser> PasswordHasher { get; private set; }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
+
+        #region  不实现
 
         public Task AddToRoleAsync(AppUser user, string roleName, CancellationToken cancellationToken)
         {
@@ -46,57 +52,81 @@ namespace Evol.TMovie.Manage.Core.Identity
             throw new NotImplementedException();
         }
 
+        #endregion
 
-
-        public Task<AppUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<AppUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Guid id;
+            if (!Guid.TryParse(userId, out id))
+                throw new ArgumentException($"{nameof(userId)} not a guid");
+            var item = await _userQueryEntry.FindAsync(id);
+            if (item == null)
+                return null;
+
+            var userPermission = await _userPermissionService.GetAsync(id);
+
+            return new AppUser() { Id = item.Id, Username = item.Username, RealName = item.RealName, Roles  = userPermission.Roles.Select(e => e.Value).ToArray()};
         }
 
-        public Task<AppUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<AppUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await _userQueryEntry.FindByUsernameAsync(normalizedUserName);
+            if (user == null)
+                return null;
+            var roles = await _userPermissionShipQueryEntry.GetRolesByUserIdAsync(user.Id);
+            return new AppUser() { Id = user.Id, Username = user.Username, RealName = user.RealName, Roles = roles.Select(e => e.Code).ToArray()};
         }
 
         public Task<string> GetNormalizedUserNameAsync(AppUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.Username);
         }
 
-        public Task<string> GetPasswordHashAsync(AppUser user, CancellationToken cancellationToken)
+        public async Task<string> GetPasswordHashAsync(AppUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var userEntity = await _userQueryEntry.FindByUsernameAsync(user.Username);
+            if (user == null)
+                return string.Empty;
+            return userEntity.Password;
         }
 
-        public Task<IList<string>> GetRolesAsync(AppUser user, CancellationToken cancellationToken)
+        public async Task<IList<string>> GetRolesAsync(AppUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var roles = await _userPermissionShipQueryEntry.GetRolesByUserIdAsync(user.Id);
+            var result = roles.Select(e => e.Code).ToList();
+            return result;
         }
 
         public Task<string> GetUserIdAsync(AppUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.Id.ToString());
         }
 
         public Task<string> GetUserNameAsync(AppUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.Username);
         }
 
-        public Task<IList<AppUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        public async Task<IList<AppUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var users = await _userPermissionShipQueryEntry.GetUsersByRoleCodeAsync(roleName);
+            var result = users.Select(e => new AppUser() { Id = e.Id, Username = e.Username, RealName = e.RealName }).ToList();
+            return result;
         }
 
-        public Task<bool> HasPasswordAsync(AppUser user, CancellationToken cancellationToken)
+        public async Task<bool> HasPasswordAsync(AppUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var userEntity = await _userQueryEntry.FindByUsernameAsync(user.Username);
+            return user != null && !string.IsNullOrWhiteSpace(userEntity.Password);
         }
 
-        public Task<bool> IsInRoleAsync(AppUser user, string roleName, CancellationToken cancellationToken)
+        public async Task<bool> IsInRoleAsync(AppUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var users = await _userPermissionShipQueryEntry.GetUsersByRoleCodeAsync(roleName);
+            return users.Any(e => e.Id == user.Id);
         }
+
+        #region 不实现
 
         public Task RemoveFromRoleAsync(AppUser user, string roleName, CancellationToken cancellationToken)
         {
@@ -122,5 +152,7 @@ namespace Evol.TMovie.Manage.Core.Identity
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

@@ -24,11 +24,13 @@ namespace Evol.TMovie.Data.QueryEntries
         public UserPermissionShipQueryEntry(
             IPermissionQueryEntry permissionQueryEntry,
             IRoleQueryEntry roleQueryEntry,
+            IUserQueryEntry userQueryEntry,
             IEfDbContextProvider efDbContextProvider
             ) : base(efDbContextProvider)
         {
             _permissionQueryEntry = permissionQueryEntry;
             _roleQueryEntry = roleQueryEntry;
+            _userQueryEntry = userQueryEntry;
         }
 
         public async Task<IList<UserPermissionShip>> RetrieveAsync(UserPermissionShipQueryParameter param)
@@ -85,11 +87,18 @@ namespace Evol.TMovie.Data.QueryEntries
             return roles;
         }
 
-        public async Task<IList<User>> GetUsersByRoleIdAsync(Guid userId)
+        public async Task<IList<User>> GetUsersByRoleIdAsync(Guid roleId)
         {
-            var list = (await base.RetrieveAsync(e => e.RoleId != null && e.UserId == userId)).ToList();
+            var list = (await base.RetrieveAsync(e => e.RoleId != null && e.RoleId == roleId)).ToList();
             var userIds = list.Select(e => e.UserId).ToArray();
             var users = await _userQueryEntry.GetByIdsAsync(userIds);
+            return users;
+        }
+
+        public async Task<IList<User>> GetUsersByRoleCodeAsync(string roleCode)
+        {
+            var role = await _roleQueryEntry.FindByCodeAsync(roleCode);
+            var users = await GetUsersByRoleIdAsync(role.Id);
             return users;
         }
     }

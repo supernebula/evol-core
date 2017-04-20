@@ -14,6 +14,8 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<User> FindAsync(Guid id);
 
+        Task<User> FindByUsernameAsync(string username);
+
         Task<List<User>> RetrieveAsync(UserQueryParameter param);
 
 

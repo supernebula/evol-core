@@ -12,7 +12,7 @@ namespace Evol.TMovie.Data.Map
             var builder = EntityBuilder(modelBuilder);
             builder.ToTable("Movie");
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Name).IsRequired().HasMaxLength(100);
+            builder.Property(e => e.Title).IsRequired().HasMaxLength(100);
             builder.Property(e => e.ForeignName).IsRequired(false).HasMaxLength(100);
             builder.Property(e => e.ReleaseDate).IsRequired();
             builder.Property(e => e.Minutes).IsRequired();

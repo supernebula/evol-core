@@ -33,7 +33,7 @@ namespace Evol.TMovie.DataTests
         [Fact]
         public void InsertOnePermissionTest()
         {
-            var item = new Permission() { Id = Guid.NewGuid(), Code = "movie.delete", Name = "删除电影", CreateTime = DateTime.Now };
+            var item = new Permission() { Id = Guid.NewGuid(), Code = "movie.delete", Title = "删除电影", CreateTime = DateTime.Now };
             _permissionRepository.InsertAsync(item).GetAwaiter().GetResult();
             _uow.SaveChangesAsync().GetAwaiter().GetResult();
             _uow.CommitAsync().GetAwaiter().GetResult();

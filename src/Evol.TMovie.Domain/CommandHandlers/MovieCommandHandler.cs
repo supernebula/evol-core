@@ -24,7 +24,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
         {
             var item = command.Input.Map<Movie>();
             item.Id = Guid.NewGuid();
-            item.Name = item.Name ?? string.Empty;
+            item.Title = item.Title ?? string.Empty;
             //....更多字段
             item.CreateTime = DateTime.Now;
             await MovieRepository.InsertAsync(item);
@@ -36,7 +36,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
             var item = await MovieRepository.FindAsync(command.Input.Id);
             if (item == null)
                 throw new KeyNotFoundException();
-            item.Name = command.Input.Name;
+            item.Title = command.Input.Name;
             //....更多字段
             MovieRepository.Update(item);
         }

@@ -13,7 +13,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
         public string No { get; set; }
         public Guid UserId { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         public int ItemCount { get; set; }
 

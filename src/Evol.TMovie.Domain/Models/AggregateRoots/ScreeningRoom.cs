@@ -14,7 +14,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
     {
         public Guid CinemaId { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         public SpaceDimensionType SpaceType { get; set; }
 

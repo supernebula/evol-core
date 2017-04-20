@@ -23,6 +23,11 @@ namespace Evol.TMovie.Data.QueryEntries
             return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
         }
 
+        public async Task<User> FindByUsernameAsync(string username)
+        {
+            return (await base.RetrieveAsync(e => e.Username == username)).FirstOrDefault();
+        }
+
         public async Task<List<User>> RetrieveAsync(UserQueryParameter param)
         {
             if (param == null)
@@ -44,5 +49,7 @@ namespace Evol.TMovie.Data.QueryEntries
             var result = await base.PagedAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key), pageIndex, pageSize);
             return result;
         }
+
+
     }
 }

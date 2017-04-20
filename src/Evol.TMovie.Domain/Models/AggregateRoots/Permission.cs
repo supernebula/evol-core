@@ -13,7 +13,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
     {
         public string Code { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
     }
 }
