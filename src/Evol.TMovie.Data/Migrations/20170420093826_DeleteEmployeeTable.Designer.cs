@@ -9,9 +9,10 @@ using Evol.TMovie.Domain.Models.Values;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    partial class TMovieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170420093826_DeleteEmployeeTable")]
+    partial class DeleteEmployeeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -54,38 +55,6 @@ namespace Evol.TMovie.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cinema");
-                });
-
-            modelBuilder.Entity("Evol.TMovie.Domain.Models.AggregateRoots.Employee", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreateTime");
-
-                    b.Property<DateTime?>("LastLoginTime");
-
-                    b.Property<int>("LoginCount");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("RealName")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Salt")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("Evol.TMovie.Domain.Models.AggregateRoots.Movie", b =>

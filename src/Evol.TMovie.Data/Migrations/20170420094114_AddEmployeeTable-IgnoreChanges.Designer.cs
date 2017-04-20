@@ -9,8 +9,8 @@ using Evol.TMovie.Domain.Models.Values;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    [Migration("20170417025124_AddTable")]
-    partial class AddTable
+    [Migration("20170420094114_AddEmployeeTable-IgnoreChanges")]
+    partial class AddEmployeeTableIgnoreChanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,6 +66,8 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<DateTime>("LastLoginTime");
 
+                    b.Property<int>("LoginCount");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -110,10 +112,6 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<int>("Minutes");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.Property<Guid>("ProductId");
 
                     b.Property<float>("Ratings");
@@ -124,6 +122,10 @@ namespace Evol.TMovie.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<int>("SpaceType");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
@@ -141,15 +143,15 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<int>("ItemCount");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.Property<string>("No");
 
                     b.Property<DateTime?>("PayTime");
 
                     b.Property<int>("Status");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<Guid>("UserId");
 
@@ -169,7 +171,7 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100);
 
@@ -195,10 +197,6 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<int>("GoodsState");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
                     b.Property<int>("QuantityPerUnit");
 
                     b.Property<float>("SellPrice");
@@ -206,6 +204,10 @@ namespace Evol.TMovie.Data.Migrations
                     b.Property<int>("Stock");
 
                     b.Property<Guid>("SupplierId");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
@@ -227,7 +229,7 @@ namespace Evol.TMovie.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100);
 
@@ -273,11 +275,11 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("SpaceType");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100);
-
-                    b.Property<int>("SpaceType");
 
                     b.HasKey("Id");
 
@@ -342,6 +344,40 @@ namespace Evol.TMovie.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Evol.TMovie.Domain.Models.Entities.EmployeePermissionShip", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<Guid?>("CustomPermissionId");
+
+                    b.Property<Guid>("EmployeeId");
+
+                    b.Property<Guid?>("RoleId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmployeePermissionShip");
+                });
+
+            modelBuilder.Entity("Evol.TMovie.Domain.Models.Entities.RolePermissionShip", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<Guid>("PermissionId");
+
+                    b.Property<Guid>("RoleId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RolePermissionShip");
                 });
 
             modelBuilder.Entity("Evol.TMovie.Domain.Models.Entities.Seat", b =>

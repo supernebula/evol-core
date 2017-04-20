@@ -12,10 +12,6 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
         [Required]
         [StringLength(20, MinimumLength = 1)]
-        public string Code { get; set; }
-
-        [Required]
-        [StringLength(20, MinimumLength = 1)]
         public string Username { get; set; }
 
         [Required]

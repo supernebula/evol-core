@@ -3,11 +3,10 @@ using Evol.EntityFramework.Repository;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
-using Evol.TMovie.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Evol.TMovie.Data.QueryEntries
@@ -25,23 +24,25 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Employee>> RetrieveAsync(EmployeeQueryParameter param)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.Key == null)
-                throw new ArgumentNullException((nameof(param.Key)));
+            Expression<Func<Employee, bool>> query = null;
+            if (param != null && !string.IsNullOrWhiteSpace(param.Key))
+                query = e => e.Username.Contains(param.Key) || e.RealName.Contains(param.Key);
+            else
+                query = e => true;
 
-            var list = (await base.RetrieveAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key))).ToList();
+            var list = (await base.RetrieveAsync(query)).ToList();
             return list;
         }
 
         public async Task<IPaged<Employee>> PagedAsync(EmployeeQueryParameter param, int pageIndex, int pageSize)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.Key == null)
-                throw new ArgumentNullException((nameof(param.Key)));
+            Expression<Func<Employee, bool>> query = null;
+            if (param != null && !string.IsNullOrWhiteSpace(param.Key))
+                query = e => e.Username.Contains(param.Key) || e.RealName.Contains(param.Key);
+            else
+                query = e => true;
 
-            var result = await base.PagedAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key), pageIndex, pageSize);
+            var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;
         }
     }

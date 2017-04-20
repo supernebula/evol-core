@@ -1,4 +1,4 @@
-using Evol.Domain;
+锘縰sing Evol.Domain;
 using Evol.Domain.Uow;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
@@ -8,36 +8,40 @@ using System;
 using Xunit;
 using Xunit.Abstractions;
 
+
 namespace Evol.TMovie.DataTests
 {
-    public class PermissionStoreTest
+    public class ScreeningStoreTest
     {
-        private IPermissionQueryEntry _permissionQueryEntry;
+        private IScreeningQueryEntry _screeningQueryEntry;
 
-        private IPermissionRepository _permissionRepository;
+        private IScreeningRepository _screeningRepository;
 
         private IUnitOfWork _uow;
 
         private ITestOutputHelper _output;
 
-        public PermissionStoreTest(ITestOutputHelper output)
+        public ScreeningStoreTest(ITestOutputHelper output)
         {
             new Startup();
             var uowManager = AppConfig.Current.IoCManager.GetService<IUnitOfWorkManager>();
             _uow = uowManager.Build();
-            _permissionRepository = AppConfig.Current.IoCManager.GetService<IPermissionRepository>();
-            _permissionQueryEntry = AppConfig.Current.IoCManager.GetService<IPermissionQueryEntry>();
+            _screeningRepository = AppConfig.Current.IoCManager.GetService<IScreeningRepository>();
+            _screeningQueryEntry = AppConfig.Current.IoCManager.GetService<IScreeningQueryEntry>();
             _output = output;
         }
 
         [Fact]
-        public void InsertOnePermissionTest()
+        public void InsertOneRoleTest()
         {
-            var item = new Permission() { Id = Guid.NewGuid(), Code = "screening.publish", Title = "发布场次", CreateTime = DateTime.Now };
-            _permissionRepository.InsertAsync(item).GetAwaiter().GetResult();
+            throw new NotImplementedException();
+            var item = new Screening();
+            _screeningRepository.InsertAsync(item).GetAwaiter().GetResult();
             _uow.SaveChangesAsync().GetAwaiter().GetResult();
             _uow.CommitAsync().GetAwaiter().GetResult();
         }
-
     }
+
+
 }
+

@@ -36,7 +36,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
             var item = await MovieRepository.FindAsync(command.Input.Id);
             if (item == null)
                 throw new KeyNotFoundException();
-            item.Title = command.Input.Name;
+            item.Title = command.Input.Title;
             //....更多字段
             MovieRepository.Update(item);
         }

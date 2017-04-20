@@ -18,7 +18,8 @@ namespace Evol.TMovie.Data.Map
             builder.Property(e => e.Password).IsRequired().HasMaxLength(100);
             builder.Property(e => e.Salt).IsRequired().HasMaxLength(100);
             builder.Property(e => e.RealName).IsRequired().HasMaxLength(100);
-            builder.Property(e => e.LastLoginTime).IsRequired();
+            builder.Property(e => e.LastLoginTime).IsRequired(false);
+            builder.Property(e => e.LoginCount).IsRequired();
             builder.Property(e => e.CreateTime).IsRequired();
         }
     }

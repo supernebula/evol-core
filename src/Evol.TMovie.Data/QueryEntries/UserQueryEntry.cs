@@ -9,6 +9,7 @@ using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.TMovie.Domain.Repositories;
 using Evol.EntityFramework.Repository;
+using System.Linq.Expressions;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
@@ -30,23 +31,25 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<User>> RetrieveAsync(UserQueryParameter param)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.Key == null)
-                throw new ArgumentNullException((nameof(param.Key)));
+            Expression<Func<User, bool>> query = null;
+            if (param != null && !string.IsNullOrWhiteSpace(param.Key))
+                query = e => e.Username.Contains(param.Key) || e.Email.Contains(param.Key) || e.Mobile.Contains(param.Key) || e.RealName.Contains(param.Key);
+            else
+                query = e => true;
 
-            var list = (await base.RetrieveAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key))).ToList();
+            var list = (await base.RetrieveAsync(query)).ToList();
             return list;
         }
 
         public async Task<IPaged<User>> PagedAsync(UserQueryParameter param, int pageIndex, int pageSize)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.Key == null)
-                throw new ArgumentNullException((nameof(param.Key)));
+            Expression<Func<User, bool>> query = null;
+            if (param != null && !string.IsNullOrWhiteSpace(param.Key))
+                query = e => e.Username.Contains(param.Key) || e.Email.Contains(param.Key) || e.Mobile.Contains(param.Key) || e.RealName.Contains(param.Key);
+            else
+                query = e => true;
 
-            var result = await base.PagedAsync(e => e.Username.StartsWith(param.Key) || e.RealName.StartsWith(param.Key) || e.Mobile.StartsWith(param.Key) || e.Email.StartsWith(param.Key), pageIndex, pageSize);
+            var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;
         }
 

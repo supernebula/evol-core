@@ -16,6 +16,10 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
         [Required]
         [StringLength(20, MinimumLength = 1)]
-        public string Name { get; set; }
+        public string Title { get; set; }
+
+        [Required]
+        [StringLength(500, MinimumLength = 0)]
+        public string Description { get; set; }
     }
 }

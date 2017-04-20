@@ -36,18 +36,20 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IPaged<EmployeePermissionShip>> PagedAsync(EmployeePermissionShipQueryParameter param, int pageIndex, int pageSize)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.RoleId == null || param.EmployeeId == null)
-                throw new ArgumentNullException(($"{nameof(param.RoleId)} & {nameof(param.EmployeeId)}"));
+            //if (param == null)
+            //    throw new ArgumentNullException(nameof(param));
+            //if (param.RoleId == null || param.EmployeeId == null)
+            //    throw new ArgumentNullException(($"{nameof(param.RoleId)} & {nameof(param.EmployeeId)}"));
 
             Expression<Func<EmployeePermissionShip, bool>> query = null;
-            if (param.RoleId != null && param.EmployeeId != null)
+            if (param != null && param.RoleId != null && param.EmployeeId != null)
                 query = e => e.RoleId == param.RoleId.Value && e.EmployeeId == param.EmployeeId.Value;
-            else if (param.RoleId != null)
+            else if (param != null && param.RoleId != null)
                 query = e => e.RoleId == param.RoleId.Value;
-            else if (param.EmployeeId != null)
+            else if (param != null && param.EmployeeId != null)
                 query = e => e.EmployeeId == param.EmployeeId.Value;
+            else
+                query = e => true;
 
             var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;
@@ -55,18 +57,16 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IList<EmployeePermissionShip>> RetrieveAsync(EmployeePermissionShipQueryParameter param)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.RoleId == null || param.EmployeeId == null)
-                throw new ArgumentNullException(($"{nameof(param.RoleId)} & {nameof(param.EmployeeId)}"));
 
             Expression<Func<EmployeePermissionShip, bool>> query = null;
-            if (param.RoleId != null && param.EmployeeId != null)
+            if (param == null && param.RoleId != null && param.EmployeeId != null)
                 query = e => e.RoleId == param.RoleId.Value && e.EmployeeId == param.EmployeeId.Value;
-            else if (param.RoleId != null)
+            else if (param == null && param.RoleId != null)
                 query = e => e.RoleId == param.RoleId.Value;
-            else if (param.EmployeeId != null)
+            else if (param == null && param.EmployeeId != null)
                 query = e => e.EmployeeId == param.EmployeeId.Value;
+            else
+                query = e => true;
 
             var list = (await base.RetrieveAsync(query)).ToList();
             return list;

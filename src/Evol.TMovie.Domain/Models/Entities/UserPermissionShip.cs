@@ -1,5 +1,7 @@
 ﻿using Evol.Common;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Evol.TMovie.Domain.Models.Entities
 {
@@ -8,6 +10,7 @@ namespace Evol.TMovie.Domain.Models.Entities
     /// OR 
     /// User(1) --------《 Permission(n)
     /// </summary>
+    [Obsolete]
     public class UserPermissionShip : BaseEntity
     {
         public Guid UserId { get; set; }

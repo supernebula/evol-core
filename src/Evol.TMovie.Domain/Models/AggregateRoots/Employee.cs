@@ -14,7 +14,9 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 
         public string RealName { get; set; }
 
-        public DateTime LastLoginTime { get; set; }
+        public DateTime? LastLoginTime { get; set; }
+
+        public int LoginCount { get; set; }
 
     }
 }

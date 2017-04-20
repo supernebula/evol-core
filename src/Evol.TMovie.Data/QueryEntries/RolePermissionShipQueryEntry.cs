@@ -37,12 +37,14 @@ namespace Evol.TMovie.Data.QueryEntries
                 throw new ArgumentNullException(($"{nameof(param.PermissionId)} & {nameof(param.RoleId)}"));
             
             Expression<Func<RolePermissionShip, bool>> query = null;
-            if (param.RoleId != null && param.PermissionId != null)
+            if (param != null && param.RoleId != null && param.PermissionId != null)
                 query = e => e.RoleId == param.RoleId.Value && e.PermissionId == param.PermissionId.Value;
-            else if (param.RoleId != null)
+            else if (param != null && param.RoleId != null)
                 query = e => e.RoleId == param.RoleId.Value;
-            else if (param.PermissionId != null)
+            else if (param != null && param.PermissionId != null)
                 query = e => e.PermissionId == param.PermissionId.Value;
+            else
+                query = e => true;
 
             var list = (await base.RetrieveAsync(query)).ToList();
             return list;
@@ -50,18 +52,15 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IPaged<RolePermissionShip>> PagedAsync(RolePermissionShipQueryParameter param, int pageIndex, int pageSize)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.RoleId == null || param.PermissionId == null)
-                throw new ArgumentNullException(($"{nameof(param.PermissionId)} & {nameof(param.RoleId)}"));
-
             Expression<Func<RolePermissionShip, bool>> query = null;
-            if (param.RoleId != null && param.PermissionId != null)
+            if (param != null && param.RoleId != null && param.PermissionId != null)
                 query = e => e.RoleId == param.RoleId.Value && e.PermissionId == param.PermissionId.Value;
-            else if (param.RoleId != null)
+            else if (param != null && param.RoleId != null)
                 query = e => e.RoleId == param.RoleId.Value;
-            else if (param.PermissionId != null)
+            else if (param != null && param.PermissionId != null)
                 query = e => e.PermissionId == param.PermissionId.Value;
+            else
+                query = e => true;
 
             var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;

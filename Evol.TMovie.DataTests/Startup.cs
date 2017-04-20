@@ -49,7 +49,8 @@ namespace Evol.TMovie.DataTests
             services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
-            services.AddScoped<IEfDbContextProvider, EfUnitOfWorkDbContextProvider>();
+            services.AddScoped<IEfDbContextProvider, EfDbContextProvider>();
+            services.AddScoped<IEfUnitOfWorkDbContextProvider, EfUnitOfWorkDbContextProvider>();
         }
     }
 }

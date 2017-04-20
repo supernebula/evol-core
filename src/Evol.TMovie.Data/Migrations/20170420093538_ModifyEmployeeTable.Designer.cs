@@ -9,9 +9,10 @@ using Evol.TMovie.Domain.Models.Values;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    partial class TMovieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170420093538_ModifyEmployeeTable")]
+    partial class ModifyEmployeeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -63,7 +64,7 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime?>("LastLoginTime");
+                    b.Property<DateTime>("LastLoginTime");
 
                     b.Property<int>("LoginCount");
 

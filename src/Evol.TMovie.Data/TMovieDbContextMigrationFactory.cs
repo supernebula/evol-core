@@ -9,7 +9,7 @@ using System.Text;
 namespace Evol.TMovie.Data
 {
     /// <summary>
-    /// 仅用作EF Migration
+    /// Only for use EntityFramework-Migration
     /// </summary>
     public class TMovieDbContextMigrationFactory : IDbContextFactory<TMovieDbContext>
     {

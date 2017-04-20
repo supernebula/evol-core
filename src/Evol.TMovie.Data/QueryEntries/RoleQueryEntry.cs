@@ -21,11 +21,6 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Role>> RetrieveAsync(RoleQueryParameter param)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.Code == null || param.Name == null)
-                throw new ArgumentNullException(($"{nameof(param.Code)} & {nameof(param.Name)}"));
-
             Expression<Func<Role, bool>> query = null;
             if (param.Code != null && param.Name != null)
                 query = e => e.Code.StartsWith(param.Code) && e.Title.StartsWith(param.Name);
@@ -33,25 +28,28 @@ namespace Evol.TMovie.Data.QueryEntries
                 query = e => e.Code.StartsWith(param.Code);
             else if (param.Name != null)
                 query = e => e.Title.StartsWith(param.Name);
-
+            else
+                query = e => true;
             var list = (await base.RetrieveAsync(query)).ToList();
             return list;
         }
 
         public async Task<IPaged<Role>> PagedAsync(RoleQueryParameter param, int pageIndex, int pageSize)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.Code == null || param.Name == null)
-                throw new ArgumentNullException(($"{nameof(param.Code)} & {nameof(param.Name)}"));
+            //if (param == null)
+            //    throw new ArgumentNullException(nameof(param));
+            //if (param.Code == null || param.Name == null)
+            //    throw new ArgumentNullException(($"{nameof(param.Code)} & {nameof(param.Name)}"));
 
             Expression<Func<Role, bool>> query = null;
-            if (param.Code != null && param.Name != null)
+            if (param != null && param.Code != null && param.Name != null)
                 query = e => e.Code.StartsWith(param.Code) && e.Title.StartsWith(param.Name);
-            else if (param.Code != null)
+            else if (param != null && param.Code != null)
                 query = e => e.Code.StartsWith(param.Code);
-            else if (param.Name != null)
+            else if (param != null && param.Name != null)
                 query = e => e.Title.StartsWith(param.Name);
+            else
+                query = e => true;
 
             return await base.PagedAsync(query, pageIndex, pageSize);
         }

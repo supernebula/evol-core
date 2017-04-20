@@ -16,7 +16,7 @@ namespace Evol.TMovie.Domain.Commands.Dto
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// 外语名称

@@ -15,8 +15,11 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<List<Permission>> RetrieveAsync(PermissionQueryParameter param);
 
+
         Task<IPaged<Permission>> PagedAsync(PermissionQueryParameter param, int pageIndex, int pageSize);
 
         Task<List<Permission>> GetByPermissionIdsAsync(Guid[] ids);
+
+        Task<List<Permission>> AllAsync();
     }
 }

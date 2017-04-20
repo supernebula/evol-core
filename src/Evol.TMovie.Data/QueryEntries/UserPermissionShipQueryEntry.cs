@@ -35,18 +35,15 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IList<UserPermissionShip>> RetrieveAsync(UserPermissionShipQueryParameter param)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.RoleId == null || param.UserId == null)
-                throw new ArgumentNullException(($"{nameof(param.RoleId)} & {nameof(param.UserId)}"));
-
             Expression<Func<UserPermissionShip, bool>> query = null;
-            if (param.RoleId != null && param.UserId != null)
+            if (param != null && param.RoleId != null && param.UserId != null)
                 query = e => e.RoleId == param.RoleId.Value && e.UserId == param.UserId.Value;
-            else if (param.RoleId != null)
+            else if (param != null && param.RoleId != null)
                 query = e => e.RoleId == param.RoleId.Value;
-            else if (param.UserId != null)
+            else if (param != null && param.UserId != null)
                 query = e => e.UserId == param.UserId.Value;
+            else
+                query = e => true;
 
             var list = (await base.RetrieveAsync(query)).ToList();
             return list;
@@ -54,18 +51,15 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<IPaged<UserPermissionShip>> PagedAsync(UserPermissionShipQueryParameter param, int pageIndex, int pageSize)
         {
-            if (param == null)
-                throw new ArgumentNullException(nameof(param));
-            if (param.RoleId == null || param.UserId == null)
-                throw new ArgumentNullException(($"{nameof(param.RoleId)} & {nameof(param.UserId)}"));
-
             Expression<Func<UserPermissionShip, bool>> query = null;
-            if (param.RoleId != null && param.UserId != null)
+            if (param != null && param.RoleId != null && param.UserId != null)
                 query = e => e.RoleId == param.RoleId.Value && e.UserId == param.UserId.Value;
-            else if (param.RoleId != null)
+            else if (param != null && param.RoleId != null)
                 query = e => e.RoleId == param.RoleId.Value;
-            else if (param.UserId != null)
+            else if (param != null && param.UserId != null)
                 query = e => e.UserId == param.UserId.Value;
+            else
+                query = e => true;
 
             var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;
