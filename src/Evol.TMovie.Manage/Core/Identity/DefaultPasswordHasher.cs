@@ -23,9 +23,10 @@ namespace Evol.TMovie.Manage.Core.Identity
             return HashUtil.Md5PasswordWithSalt(password, employee.Salt);
         }
 
+        //lg-3.
         public PasswordVerificationResult VerifyHashedPassword(AppUser user, string hashedPassword, string providedPassword)
         {
-            var employee = _employeeQueryEntry.FindAsync(user.Id).GetAwaiter().GetResult();
+            var employee = _employeeQueryEntry.FindByUsernameAsync(user.Username).GetAwaiter().GetResult();
             var newHashedPassword = HashUtil.Md5PasswordWithSalt(providedPassword, employee.Salt);
             return hashedPassword == newHashedPassword ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed;
         }

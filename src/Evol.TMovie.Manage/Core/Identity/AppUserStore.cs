@@ -83,6 +83,7 @@ namespace Evol.TMovie.Manage.Core.Identity
             return Task.FromResult(user.Username);
         }
 
+        //lg-2.
         public async Task<string> GetPasswordHashAsync(AppUser user, CancellationToken cancellationToken)
         {
             var userEntity = await _employeeQueryEntry.FindByUsernameAsync(user.Username);
@@ -91,6 +92,7 @@ namespace Evol.TMovie.Manage.Core.Identity
             return userEntity.Password;
         }
 
+        //lg-6.
         public async Task<IList<string>> GetRolesAsync(AppUser user, CancellationToken cancellationToken)
         {
             var roles = await _employeePermissionShipQueryEntry.GetRolesByEmployeeIdAsync(user.Id);
@@ -98,11 +100,13 @@ namespace Evol.TMovie.Manage.Core.Identity
             return result;
         }
 
+        //lg-4.
         public Task<string> GetUserIdAsync(AppUser user, CancellationToken cancellationToken)
         {
             return Task.FromResult(user.Id.ToString());
         }
 
+        //lg-5.
         public Task<string> GetUserNameAsync(AppUser user, CancellationToken cancellationToken)
         {
             return Task.FromResult(user.Username);

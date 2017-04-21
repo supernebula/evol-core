@@ -55,13 +55,11 @@ namespace Evol.TMovie.Manage.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
 
-                var employee = await _employeeQueryEntry.FindByUsernameAsync(model.Username);
-                var inputPasswordHash = HashUtil.Md5PasswordWithSalt(model.Password, employee.Salt);
-                var ePermissionDto = await _employeePermissionService.GetAsync(employee.Id);
-                var roleCodes = ePermissionDto.Roles.Select(e => e.Value).ToArray();
-                var appUser = new AppUser { Id = employee.Id, Username = model.Username, RealName = employee.RealName, Roles = roleCodes };
-
-                var result = await _signInManager.PasswordSignInAsync(appUser, inputPasswordHash, model.RememberMe, lockoutOnFailure: false);
+                //var employee = await _employeeQueryEntry.FindByUsernameAsync(model.Username);
+                //var ePermissionDto = await _employeePermissionService.GetAsync(employee.Id);
+                var appUser = new AppUser {Username = model.Username };
+                //lg-1.
+                var result = await _signInManager.PasswordSignInAsync(appUser, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");

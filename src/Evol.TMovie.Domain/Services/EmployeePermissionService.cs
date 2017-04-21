@@ -19,12 +19,14 @@ namespace Evol.TMovie.Domain.Services
         public EmployeePermissionService(
             IPermissionQueryEntry permissionQueryEntry,
             IRoleQueryEntry roleQueryEntry,
-            IEmployeeQueryEntry employeeQueryEntry
+            IEmployeeQueryEntry employeeQueryEntry,
+            IEmployeePermissionShipQueryEntry employeePermissionShipQueryEntry
             )
         {
             _permissionQueryEntry = permissionQueryEntry;
             _roleQueryEntry = roleQueryEntry;
             _employeeQueryEntry = employeeQueryEntry;
+            _employeePermissionShipQueryEntry = employeePermissionShipQueryEntry;
         }
         public async Task<EmployeePermissionDto> GetAsync(Guid employeeId)
         {
