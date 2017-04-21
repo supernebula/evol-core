@@ -76,6 +76,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.ConsoleApp", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.TMovie.DataTests", "Evol.TMovie.DataTests\Evol.TMovie.DataTests.csproj", "{3562ADE2-6020-40EF-A8C7-7CE417E906FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D3FC6F2-EF7A-4399-A6AC-AF4C2EAE76BA}"
+	ProjectSection(SolutionItems) = preProject
+		ThisIsCSharp.cs = ThisIsCSharp.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
