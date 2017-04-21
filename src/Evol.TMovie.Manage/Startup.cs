@@ -34,6 +34,7 @@ namespace Evol.TMovie.Manage
         {
             AppConfig.Init(services);
             services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            ConfigureIdentity(services);
             services.AddMvc();
 
             //needed for NLog.Web
@@ -76,10 +77,18 @@ namespace Evol.TMovie.Manage
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                AuthenticationScheme = "MyCookieMiddlewareInstance",
+                LoginPath = new PathString("/Login/Login/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
+
             //app.UseUnhandledException();
 
             app.UserAppConfigRequestServicesMiddleware();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

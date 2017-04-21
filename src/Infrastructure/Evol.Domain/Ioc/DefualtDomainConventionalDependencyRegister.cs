@@ -20,7 +20,7 @@ namespace Evol.Domain.Ioc
             var eventHandlerImpls = FindEventHandler(assembly);
             eventHandlerImpls.ForEach(p => container.AddTransient(p.Interface, p.Impl));
 
-            var domainServiceImpls = FindEventHandler(assembly);
+            var domainServiceImpls = FindService(assembly);
             domainServiceImpls.ForEach(p => container.AddTransient(p.Interface, p.Impl));
         }
 

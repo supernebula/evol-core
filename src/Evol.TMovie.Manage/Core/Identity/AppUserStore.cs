@@ -12,23 +12,23 @@ namespace Evol.TMovie.Manage.Core.Identity
 {
     public class AppUserStore : IUserRoleStore<AppUser>, IUserPasswordStore<AppUser>
     {
-        private IUserQueryEntry _userQueryEntry;
+        private IEmployeeQueryEntry _employeeQueryEntry;
 
-        private IUserPermissionShipQueryEntry _userPermissionShipQueryEntry;
+        private IEmployeePermissionShipQueryEntry _employeePermissionShipQueryEntry;
 
-        private IUserPermissionService _userPermissionService;
+        private IEmployeePermissionService _employeePermissionService;
 
-        private IPasswordHasher<HashUser> _passwordHasher;
+        private IPasswordHasher<AppUser> _passwordHasher;
 
-        public AppUserStore(IUserQueryEntry userQueryEntry, IUserPermissionShipQueryEntry userPermissionShipQueryEntry, IUserPermissionService userPermissionService)
+        public AppUserStore(IEmployeeQueryEntry userQueryEntry, IEmployeePermissionShipQueryEntry userPermissionShipQueryEntry, IEmployeePermissionService employeePermissionService, IPasswordHasher<AppUser> passwordHasher)
         {
             if (userQueryEntry == null)
                 throw new ArgumentNullException(nameof(userQueryEntry));
 
-            _userQueryEntry = userQueryEntry;
-            _userPermissionShipQueryEntry = userPermissionShipQueryEntry;
-            _userPermissionService = userPermissionService;
-            _passwordHasher = new DefaultPasswordHasher();
+            _employeeQueryEntry = userQueryEntry;
+            _employeePermissionShipQueryEntry = userPermissionShipQueryEntry;
+            _employeePermissionService = employeePermissionService;
+            _passwordHasher = passwordHasher;
         }
 
         public void Dispose()
@@ -59,22 +59,23 @@ namespace Evol.TMovie.Manage.Core.Identity
             Guid id;
             if (!Guid.TryParse(userId, out id))
                 throw new ArgumentException($"{nameof(userId)} not a guid");
-            var item = await _userQueryEntry.FindAsync(id);
+            var item = await _employeeQueryEntry.FindAsync(id);
             if (item == null)
                 return null;
 
-            var userPermission = await _userPermissionService.GetAsync(id);
+            var userPermission = await _employeePermissionService.GetAsync(id);
 
             return new AppUser() { Id = item.Id, Username = item.Username, RealName = item.RealName, Roles  = userPermission.Roles.Select(e => e.Value).ToArray()};
         }
 
-        public async Task<AppUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public Task<AppUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            var user = await _userQueryEntry.FindByUsernameAsync(normalizedUserName);
-            if (user == null)
-                return null;
-            var roles = await _userPermissionShipQueryEntry.GetRolesByUserIdAsync(user.Id);
-            return new AppUser() { Id = user.Id, Username = user.Username, RealName = user.RealName, Roles = roles.Select(e => e.Code).ToArray()};
+            throw new NotImplementedException();
+            //var user = await _employeeQueryEntry.FindByUsernameAsync(normalizedUserName);
+            //if (user == null)
+            //    return null;
+            //var roles = await _employeePermissionShipQueryEntry.GetRolesByUserIdAsync(user.Id);
+            //return new AppUser() { Id = user.Id, Username = user.Username, RealName = user.RealName, Roles = roles.Select(e => e.Code).ToArray()};
         }
 
         public Task<string> GetNormalizedUserNameAsync(AppUser user, CancellationToken cancellationToken)
@@ -84,7 +85,7 @@ namespace Evol.TMovie.Manage.Core.Identity
 
         public async Task<string> GetPasswordHashAsync(AppUser user, CancellationToken cancellationToken)
         {
-            var userEntity = await _userQueryEntry.FindByUsernameAsync(user.Username);
+            var userEntity = await _employeeQueryEntry.FindByUsernameAsync(user.Username);
             if (user == null)
                 return string.Empty;
             return userEntity.Password;
@@ -92,7 +93,7 @@ namespace Evol.TMovie.Manage.Core.Identity
 
         public async Task<IList<string>> GetRolesAsync(AppUser user, CancellationToken cancellationToken)
         {
-            var roles = await _userPermissionShipQueryEntry.GetRolesByUserIdAsync(user.Id);
+            var roles = await _employeePermissionShipQueryEntry.GetRolesByEmployeeIdAsync(user.Id);
             var result = roles.Select(e => e.Code).ToList();
             return result;
         }
@@ -109,20 +110,20 @@ namespace Evol.TMovie.Manage.Core.Identity
 
         public async Task<IList<AppUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
-            var users = await _userPermissionShipQueryEntry.GetUsersByRoleCodeAsync(roleName);
+            var users = await _employeePermissionShipQueryEntry.GetEmployeesByRoleCodeAsync(roleName);
             var result = users.Select(e => new AppUser() { Id = e.Id, Username = e.Username, RealName = e.RealName }).ToList();
             return result;
         }
 
         public async Task<bool> HasPasswordAsync(AppUser user, CancellationToken cancellationToken)
         {
-            var userEntity = await _userQueryEntry.FindByUsernameAsync(user.Username);
+            var userEntity = await _employeeQueryEntry.FindByUsernameAsync(user.Username);
             return user != null && !string.IsNullOrWhiteSpace(userEntity.Password);
         }
 
         public async Task<bool> IsInRoleAsync(AppUser user, string roleName, CancellationToken cancellationToken)
         {
-            var users = await _userPermissionShipQueryEntry.GetUsersByRoleCodeAsync(roleName);
+            var users = await _employeePermissionShipQueryEntry.GetEmployeesByRoleCodeAsync(roleName);
             return users.Any(e => e.Id == user.Id);
         }
 

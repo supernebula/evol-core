@@ -45,5 +45,12 @@ namespace Evol.TMovie.Data.QueryEntries
             var result = await base.PagedAsync(query, pageIndex, pageSize);
             return result;
         }
+
+        public async Task<Employee> FindByUsernameAsync(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentNullException();
+            return (await base.RetrieveAsync(e => e.Username == username)).FirstOrDefault();
+        }
     }
 }

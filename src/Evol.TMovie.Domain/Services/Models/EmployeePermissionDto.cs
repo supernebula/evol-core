@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Evol.TMovie.Domain.Services.Models
 {
-    public class UserPermissionDto : IOutputDto
+    public class EmployeePermissionDto : IOutputDto
     {
-        public Guid UserId { get; set; }
+        public Guid EmployeeId { get; set; }
 
         public string UserName { get; set; }
 

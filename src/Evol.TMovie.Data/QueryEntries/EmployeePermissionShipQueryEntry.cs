@@ -95,5 +95,14 @@ namespace Evol.TMovie.Data.QueryEntries
             var roles = await _roleQueryEntry.GetByIdsAsync(roleIds);
             return roles;
         }
+
+        public async Task<IList<Employee>> GetEmployeesByRoleCodeAsync(string roleCode)
+        {
+            if (string.IsNullOrWhiteSpace(roleCode))
+                throw new ArgumentNullException(nameof(roleCode));
+            var role = await _roleQueryEntry.FindByCodeAsync(roleCode);
+            var users = await GetEmployeesByRoleIdAsync(role.Id);
+            return users;
+        }
     }
 }

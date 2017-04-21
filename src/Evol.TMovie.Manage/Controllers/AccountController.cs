@@ -9,6 +9,9 @@ using Evol.TMovie.Manage.Models.AccountViewModels;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Evol.TMovie.Manage.Models.Identity;
+using Evol.TMovie.Domain.QueryEntries;
+using Evol.Util.Hash;
+using Evol.TMovie.Domain.Services;
 
 namespace Evol.TMovie.Manage.Controllers
 {
@@ -18,8 +21,14 @@ namespace Evol.TMovie.Manage.Controllers
 
         private readonly SignInManager<AppUser> _signInManager;
 
-        public AccountController(SignInManager<AppUser> signInManager, ILoggerFactory loggerFactory)
+        private readonly IEmployeeQueryEntry _employeeQueryEntry;
+
+        private readonly IEmployeePermissionService _employeePermissionService;
+
+        public AccountController(IEmployeeQueryEntry employeeQueryEntry, IEmployeePermissionService employeePermissionService, SignInManager<AppUser> signInManager, ILoggerFactory loggerFactory)
         {
+            _employeeQueryEntry = employeeQueryEntry;
+            _employeePermissionService = employeePermissionService;
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
@@ -37,7 +46,7 @@ namespace Evol.TMovie.Manage.Controllers
         // GET: Account/Details/5
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -45,7 +54,14 @@ namespace Evol.TMovie.Manage.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+                var employee = await _employeeQueryEntry.FindByUsernameAsync(model.Username);
+                var inputPasswordHash = HashUtil.Md5PasswordWithSalt(model.Password, employee.Salt);
+                var ePermissionDto = await _employeePermissionService.GetAsync(employee.Id);
+                var roleCodes = ePermissionDto.Roles.Select(e => e.Value).ToArray();
+                var appUser = new AppUser { Id = employee.Id, Username = model.Username, RealName = employee.RealName, Roles = roleCodes };
+
+                var result = await _signInManager.PasswordSignInAsync(appUser, inputPasswordHash, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");

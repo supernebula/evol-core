@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Domain.Services
 {
-    public interface IUserPermissionService : IService
+    public interface IEmployeePermissionService : IService
     {
-        Task<UserPermissionDto> GetAsync(Guid userId);
+        Task<EmployeePermissionDto> GetAsync(Guid employeeId);
 
     }
 }

@@ -23,5 +23,7 @@ namespace Evol.TMovie.Domain.QueryEntries
         Task<IList<Permission>> GetCustomPermissionsByEmployeeIdAsync(Guid employeeId);
 
         Task<IList<Employee>> GetEmployeesByRoleIdAsync(Guid roleId);
+
+        Task<IList<Employee>> GetEmployeesByRoleCodeAsync(string roleCode);
     }
 }

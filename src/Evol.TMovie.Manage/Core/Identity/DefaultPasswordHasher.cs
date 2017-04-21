@@ -1,4 +1,6 @@
 ﻿using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.TMovie.Domain.QueryEntries;
+using Evol.TMovie.Manage.Models.Identity;
 using Evol.Util.Hash;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -8,16 +10,23 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Manage.Core.Identity
 {
-    public class DefaultPasswordHasher : IPasswordHasher<HashUser>
+    public class DefaultPasswordHasher : IPasswordHasher<AppUser>
     {
-        public string HashPassword(HashUser user, string password)
+        private IEmployeeQueryEntry _employeeQueryEntry;
+        public DefaultPasswordHasher(IEmployeeQueryEntry employeeQueryEntry)
         {
-            return HashUtil.Md5PasswordWithSalt(password, user.Salt);
+            _employeeQueryEntry = employeeQueryEntry;
+        }
+        public string HashPassword(AppUser user, string password)
+        {
+            var employee = _employeeQueryEntry.FindAsync(user.Id).GetAwaiter().GetResult();
+            return HashUtil.Md5PasswordWithSalt(password, employee.Salt);
         }
 
-        public PasswordVerificationResult VerifyHashedPassword(HashUser user, string hashedPassword, string providedPassword)
+        public PasswordVerificationResult VerifyHashedPassword(AppUser user, string hashedPassword, string providedPassword)
         {
-            var newHashedPassword = HashUtil.Md5PasswordWithSalt(providedPassword, user.Salt);
+            var employee = _employeeQueryEntry.FindAsync(user.Id).GetAwaiter().GetResult();
+            var newHashedPassword = HashUtil.Md5PasswordWithSalt(providedPassword, employee.Salt);
             return hashedPassword == newHashedPassword ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed;
         }
     }
