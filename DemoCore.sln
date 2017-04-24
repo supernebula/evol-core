@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
 EndProject
@@ -38,6 +38,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "document", "document", "{4458BF2D-1651-4346-AA76-2D3EC3F8E5EA}"
 	ProjectSection(SolutionItems) = preProject
 		document\aspnet-core.xmind = document\aspnet-core.xmind
+		docker-netcore.md = docker-netcore.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Redis.Tests", "test\Evol.Redis.Tests\Evol.Redis.Tests.csproj", "{A14614C5-797B-4B89-B060-17E6E96D5783}"
