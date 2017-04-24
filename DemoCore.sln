@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "document", "document", "{44
 	ProjectSection(SolutionItems) = preProject
 		document\aspnet-core.xmind = document\aspnet-core.xmind
 		document\docker-netcore.md = document\docker-netcore.md
+		document\linux-started.md = document\linux-started.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Redis.Tests", "test\Evol.Redis.Tests\Evol.Redis.Tests.csproj", "{A14614C5-797B-4B89-B060-17E6E96D5783}"
@@ -78,6 +79,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D3FC6F2-EF7A-4399-A6AC-AF4C2EAE76BA}"
 	ProjectSection(SolutionItems) = preProject
 		ThisIsCSharp.cs = ThisIsCSharp.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{64AA9E57-894B-4BBE-85C3-44611F92D12D}"
+	ProjectSection(SolutionItems) = preProject
+		document\images\docker_cli_stage.png = document\images\docker_cli_stage.png
 	EndProjectSection
 EndProject
 Global
@@ -229,5 +235,6 @@ Global
 		{9BD186C9-15ED-40DA-BCA2-42D4A364C9CA} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{2AF26149-1643-44D1-8076-133ED57221F7} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE} = {8B542B00-87DC-489A-9166-981260EE1AF6}
+		{64AA9E57-894B-4BBE-85C3-44611F92D12D} = {4458BF2D-1651-4346-AA76-2D3EC3F8E5EA}
 	EndGlobalSection
 EndGlobal
