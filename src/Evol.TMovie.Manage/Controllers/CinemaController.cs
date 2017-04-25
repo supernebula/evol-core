@@ -51,12 +51,18 @@ namespace Evol.TMovie.Manage.Controllers
         // POST: Cinema/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CinemaCreateOrUpdateDto dto)
+        public async Task<IActionResult> Create(CinemaCreateOrUpdateDto dto, string vertyCode)
         {
             if (! await TryUpdateModelAsync(dto))
             {
                 return View(dto);
             }
+
+            //if (!ValidateVertyCode(vertyCode))
+            //{
+            //    ModelState.AddModelError("vertyCode", "ÑéÖ¤Âë´íÎó");
+            //    return View(dto);
+            //}
 
             await CommandBus.SendAsync(new CinemaCreateCommand() { Input = dto });
 

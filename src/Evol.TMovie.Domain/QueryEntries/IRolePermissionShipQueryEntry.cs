@@ -13,12 +13,14 @@ namespace Evol.TMovie.Domain.QueryEntries
     {
         Task<RolePermissionShip> FindAsync(Guid id);
 
-        Task<IList<RolePermissionShip>> RetrieveAsync(RolePermissionShipQueryParameter param);
+        Task<List<RolePermissionShip>> RetrieveAsync(RolePermissionShipQueryParameter param);
 
         Task<IPaged<RolePermissionShip>> PagedAsync(RolePermissionShipQueryParameter param, int pageIndex, int pageSize);
 
-        Task<IList<Role>> GetRolesByPermissionAsync(Guid PermissionId);
+        Task<List<Role>> GetRolesByPermissionAsync(Guid permissionId);
 
-        Task<IList<Permission>> GetPermissionsAsync(Guid permissionId);
+        Task<List<Permission>> GetPermissionsAsync(Guid roleId);
+
+        Task<List<Permission>> GetPermissionsAsync(Guid[] roleIds);
     }
 }

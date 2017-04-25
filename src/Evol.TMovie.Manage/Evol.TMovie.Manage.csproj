@@ -2416,6 +2416,7 @@
 
   <ItemGroup>
     <None Include="Startup.Module.cs" />
+    <None Include="Startup.Preload.cs" />
   </ItemGroup>
 
   <ItemGroup>

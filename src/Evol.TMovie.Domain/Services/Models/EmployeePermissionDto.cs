@@ -15,6 +15,8 @@ namespace Evol.TMovie.Domain.Services.Models
 
         public List<KeyValuePair<Guid, string>> Roles { get; set; }
 
+        public List<KeyValuePair<Guid, string>> PermissionsOfRole { get; set; }
+
         public List<KeyValuePair<Guid, string>> CustomPermissions { get; set; }
     }
 }

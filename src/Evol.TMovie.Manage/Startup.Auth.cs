@@ -18,6 +18,12 @@ namespace Evol.TMovie.Manage
                 options.SignInScheme = new IdentityCookieOptions().ExternalCookieAuthenticationScheme;
             });
 
+            //配置权限策略
+            services.AddAuthorization(options =>
+            {
+                ///<see cref="Startup.PerLoad(IServiceCollection, System.IServiceProvider)"/>
+            });
+
             // 注册 IHttpContextAccessor ，会用到
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

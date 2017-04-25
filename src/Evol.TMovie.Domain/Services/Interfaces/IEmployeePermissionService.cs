@@ -11,5 +11,7 @@ namespace Evol.TMovie.Domain.Services
     {
         Task<EmployeePermissionDto> GetAsync(Guid employeeId);
 
+        Task<bool> ValidatePermissionAsync(Guid employeeId, string permissionCode, string httpSessionId);
+
     }
 }

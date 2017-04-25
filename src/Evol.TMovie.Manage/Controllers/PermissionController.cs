@@ -11,6 +11,7 @@ using Evol.TMovie.Domain.Commands.Dto;
 using Evol.TMovie.Domain.Commands;
 using Evol.TMovie.Domain.Dto;
 using Evol.TMovie.Manage.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Evol.TMovie.Manage.Controllers
 {

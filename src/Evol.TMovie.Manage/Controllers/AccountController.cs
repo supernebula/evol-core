@@ -15,6 +15,7 @@ using Evol.TMovie.Domain.Services;
 
 namespace Evol.TMovie.Manage.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly ILogger _logger;
@@ -24,6 +25,14 @@ namespace Evol.TMovie.Manage.Controllers
         private readonly IEmployeeQueryEntry _employeeQueryEntry;
 
         private readonly IEmployeePermissionService _employeePermissionService;
+
+
+        [Authorize(Policy = "user.index")]
+        public IActionResult Index(int pageIndex, int pageSize)
+        {
+            var result = _employeeQueryEntry.PagedAsync(null, pageIndex, pageSize);
+            return View(result);
+        }
 
         public AccountController(IEmployeeQueryEntry employeeQueryEntry, IEmployeePermissionService employeePermissionService, SignInManager<AppUser> signInManager, ILoggerFactory loggerFactory)
         {
@@ -110,5 +119,7 @@ namespace Evol.TMovie.Manage.Controllers
             _logger.LogInformation(4, "User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
+        
     }
 }
