@@ -33,7 +33,7 @@ namespace Evol.TMovie.Manage
         public void ConfigureServices(IServiceCollection services)
         {
             AppConfig.Init(services);
-            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
             ConfigureIdentity(services);
             services.AddMvc();
 

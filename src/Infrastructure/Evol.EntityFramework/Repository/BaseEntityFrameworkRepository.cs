@@ -154,7 +154,11 @@ namespace Evol.EntityFramework.Repository
         public async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
         {
             var total = await DbSet.CountAsync(predicate);
-            var list = await DbSet.Where(predicate).OrderBy(e => e.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            var skip = (pageIndex - 1) * pageSize;
+            var query = DbSet.Where(predicate);
+            if (skip > 0)
+                query = query.Skip(skip);
+            var list = await query.Take(pageSize).OrderBy(e => e.Id).ToListAsync();
             var paged = new PagedList<T>(list, total, pageIndex, pageSize);
             return paged;
         }

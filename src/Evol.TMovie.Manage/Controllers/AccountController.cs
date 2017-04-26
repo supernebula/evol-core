@@ -27,8 +27,7 @@ namespace Evol.TMovie.Manage.Controllers
         private readonly IEmployeePermissionService _employeePermissionService;
 
 
-        [Authorize(Policy = "user.index")]
-        public IActionResult Index(int pageIndex, int pageSize)
+        public IActionResult Index(int pageIndex = 1, int pageSize = 10)
         {
             var result = _employeeQueryEntry.PagedAsync(null, pageIndex, pageSize);
             return View(result);

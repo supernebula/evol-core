@@ -19,7 +19,7 @@ namespace Evol.TMovie.Data
                 .SetBasePath(options.ApplicationBasePath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             var configuration = builder.Build();
-            var dbOptionsBuilder = new DbContextOptionsBuilder<TMovieDbContext>().UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            var dbOptionsBuilder = new DbContextOptionsBuilder<TMovieDbContext>().UseSqlServer(configuration.GetConnectionString("TMConnection"));
             return new TMovieDbContext(dbOptionsBuilder.Options);
         }
     }

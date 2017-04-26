@@ -9,8 +9,8 @@ using Evol.TMovie.Domain.Models.Values;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    [Migration("20170420094114_AddEmployeeTable-IgnoreChanges")]
-    partial class AddEmployeeTableIgnoreChanges
+    [Migration("20170426093432_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,7 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
-                    b.Property<DateTime>("LastLoginTime");
+                    b.Property<DateTime?>("LastLoginTime");
 
                     b.Property<int>("LoginCount");
 

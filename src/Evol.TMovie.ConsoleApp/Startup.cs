@@ -29,7 +29,7 @@ namespace Evol.TMovie.ConsoleApp
         {
             // Add framework services.
             services.AddDbContext<TMovieDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
 
 
             AppConfig.Init(services);
