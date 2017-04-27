@@ -1,5 +1,4 @@
-﻿using Evol.Domain;
-using Evol.Domain.Uow;
+﻿using Evol.Domain.Uow;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

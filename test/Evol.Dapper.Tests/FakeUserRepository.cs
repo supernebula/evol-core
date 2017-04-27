@@ -6,7 +6,7 @@ namespace Evol.Dapper.Repository.Test
 {
     public class FakeUserRepository : BasicDapperRepository<FakeUser, FakeEcDbContext>
     {
-        public FakeUserRepository(IDbConnectionProvider<FakeEcDbContext> dbConnectionProvider) : base(dbConnectionProvider)
+        public FakeUserRepository(IDapperDbContextProvider dbConnectionProvider) : base(dbConnectionProvider)
         {
         }
 

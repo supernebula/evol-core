@@ -5,11 +5,11 @@ namespace Evol.Dapper.Repository.Test
 {
     public class BatchQueryTest
     {
-        private DbContextProvider<FakeEcDbContext> _dbContextProvider;
+        private DapperDbContextProvider _dbContextProvider;
 
         public void MyTestInitialize()
         {
-            _dbContextProvider = new DbContextProvider<FakeEcDbContext>();
+            _dbContextProvider = new DapperDbContextProvider();
         }
         [Fact]
         public void QueryLargeTest()

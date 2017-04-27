@@ -11,14 +11,24 @@ namespace Evol.Dapper.Repository
     public class BasicDapperRepository<T, TDbContext> : IDisposable where TDbContext : DapperDbContext, new() where T : class, IPrimaryKey
     {
 
-        public BasicDapperRepository(IDbConnectionProvider<TDbContext> dbConnectionProvider)
+        private TDbContext _context;
+
+        //[Dependency]
+        public IDapperDbContextProvider DbContextProvider { get; set; }
+
+        private DapperDbContext DbContext
+        {
+            get
+            {
+                return _context = _context ?? DbContextProvider.Get<TDbContext>();
+            }
+        }
+
+        public BasicDapperRepository(IDapperDbContextProvider dbConnectionProvider)
         {
             DbContextProvider = dbConnectionProvider;
         }
 
-        public IDbConnectionProvider<TDbContext> DbContextProvider { get; set; }
-
-        public TDbContext DbContext => DbContextProvider.Create();
 
         public IDbConnection DbConnection => DbContext.DbConnection;
 
