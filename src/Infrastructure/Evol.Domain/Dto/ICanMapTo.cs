@@ -11,7 +11,6 @@ namespace Evol.Domain.Dto
     /// <typeparam name="TTo"></typeparam>
     public interface ICanMapTo<TTo>
     {
-
     }
 
 

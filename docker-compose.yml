@@ -1,8 +1,0 @@
-version: '2'
-
-services:
-  evol.tmovie.manage:
-    image: evol.tmovie.manage
-    build:
-      context: ./src/Evol.TMovie.Manage
-      dockerfile: Dockerfile

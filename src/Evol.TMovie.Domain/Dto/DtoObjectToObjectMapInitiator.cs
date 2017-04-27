@@ -3,6 +3,7 @@ using AutoMapper.Configuration;
 using Evol.Domain.Dto;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -35,9 +36,27 @@ namespace Evol.TMovie.Domain.Dto
             maplist.AddRange(pairs2);
 
             maplist.ForEach(pair => {
+                if (IsImplInterface(pair.Source, typeof(ICanOptionMapTo)))
+                {
+                    var dto = (ICanOptionMapTo)Activator.CreateInstance(pair.Source);
+                    dto.ConfigMap(mapConfig);
+                    return;
+                }
+
+                if (IsImplInterface(pair.Destination, typeof(ICanOptionMapFrom)))
+                {
+                    var dto = (ICanOptionMapFrom)Activator.CreateInstance(pair.Source);
+                    dto.ConfigMap(mapConfig);
+                    return;
+                }
+
                 mapConfig.CreateMap(pair.Source, pair.Destination);
             });
-            
+        }
+
+        private static bool IsImplInterface(Type impl, Type interfaceTypeDef)
+        {
+            return impl.GetTypeInfo().ImplementedInterfaces.Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == interfaceTypeDef);
         }
 
         public static void Initialize()
@@ -50,7 +69,9 @@ namespace Evol.TMovie.Domain.Dto
             Func<Type, bool> filter = type =>
             {
                 var tInfo = type.GetTypeInfo();
-                return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapTo<>));
+                //return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapTo<>));
+                var flag = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.ImplementedInterfaces.Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapTo<>));
+                return flag;
             };
             var impls = assembly.GetTypes().Where(filter).ToList();
             var sourceDestinationPairs = new List<MapSourceDestinationPair>();
@@ -58,7 +79,7 @@ namespace Evol.TMovie.Domain.Dto
                 return sourceDestinationPairs;
             impls.ForEach(t =>
             {
-                var @interfaces = t.GetTypeInfo().GetInterfaces().Where(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapTo<>)).ToList();
+                var @interfaces = t.GetTypeInfo().ImplementedInterfaces.Where(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapTo<>)).ToList();
                 var @interface = @interfaces.First();
                 sourceDestinationPairs.Add(new MapSourceDestinationPair() { Source = t, Destination = @interface.GenericTypeArguments.First() });
             });
@@ -70,7 +91,7 @@ namespace Evol.TMovie.Domain.Dto
             Func<Type, bool> filter = type =>
             {
                 var tInfo = type.GetTypeInfo();
-                return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapFrom<>));
+                return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.ImplementedInterfaces.Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapFrom<>));
             };
             var impls = assembly.GetTypes().Where(filter).ToList();
             var sourceDestinationPairs = new List<MapSourceDestinationPair>();
@@ -78,7 +99,7 @@ namespace Evol.TMovie.Domain.Dto
                 return sourceDestinationPairs;
             impls.ForEach(t =>
             {
-                var @interfaces = t.GetTypeInfo().GetInterfaces().Where(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapFrom<>)).ToList();
+                var @interfaces = t.GetTypeInfo().ImplementedInterfaces.Where(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(ICanMapFrom<>)).ToList();
                 var @interface = @interfaces.First();
                 var source = @interface.GenericTypeArguments.First();
                 sourceDestinationPairs.Add(new MapSourceDestinationPair() { Source = source, Destination = t });
