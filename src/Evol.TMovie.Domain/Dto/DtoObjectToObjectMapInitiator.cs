@@ -36,16 +36,16 @@ namespace Evol.TMovie.Domain.Dto
             maplist.AddRange(pairs2);
 
             maplist.ForEach(pair => {
-                if (IsImplInterface(pair.Source, typeof(ICanOptionMapTo)))
+                if (IsImplInterface(pair.Source, typeof(ICanOptionMapTo<>)))
                 {
                     var dto = (ICanOptionMapTo)Activator.CreateInstance(pair.Source);
                     dto.ConfigMap(mapConfig);
                     return;
                 }
 
-                if (IsImplInterface(pair.Destination, typeof(ICanOptionMapFrom)))
+                if (IsImplInterface(pair.Destination, typeof(ICanOptionMapFrom<>)))
                 {
-                    var dto = (ICanOptionMapFrom)Activator.CreateInstance(pair.Source);
+                    var dto = (ICanOptionMapFrom)Activator.CreateInstance(pair.Destination);
                     dto.ConfigMap(mapConfig);
                     return;
                 }
