@@ -40,11 +40,6 @@ namespace Evol.Dapper.Uow
             };
         }
 
-        public override Task SaveChangesAsync()
-        {
-            return Task.FromResult(1);
-        }
-
         protected override Task CommitUowAsync()
         {
             bool exceptioned = false;

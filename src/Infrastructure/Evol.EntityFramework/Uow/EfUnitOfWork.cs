@@ -42,7 +42,7 @@ namespace Evol.EntityFramework.Uow
             };
         }
 
-        public async override Task SaveChangesAsync()
+        private async Task SaveChangesAsync()
         {
             try
             {
@@ -56,11 +56,12 @@ namespace Evol.EntityFramework.Uow
                 //log
                 throw ex;
             }
-
         }
 
-        protected override Task CommitUowAsync()
+        protected async override Task CommitUowAsync()
         {
+            await SaveChangesAsync();
+
             bool exceptioned = false;
             Exception exception = null;
             foreach (var trans in Transactions.Values)
@@ -85,7 +86,6 @@ namespace Evol.EntityFramework.Uow
 
             if(exceptioned)
                 throw exception;
-            return Task.FromResult(0);
         }
 
         /// <summary>

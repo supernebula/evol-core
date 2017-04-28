@@ -9,7 +9,7 @@ namespace Evol.Domain.Uow
     {
         UnitOfWorkOption Option { get; }
 
-        Task SaveChangesAsync();
+        //Task SaveChangesAsync();
 
 
         TDbContext GetDbContext<TDbContext>() where TDbContext : class;

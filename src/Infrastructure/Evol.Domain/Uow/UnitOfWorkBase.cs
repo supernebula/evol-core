@@ -37,9 +37,6 @@ namespace Evol.Domain.Uow
             Begin(new UnitOfWorkOption());
         }
 
-        public abstract Task SaveChangesAsync(); 
-
-
         protected abstract Task CommitUowAsync();
 
         public async Task CommitAsync()
