@@ -37,7 +37,6 @@ namespace Evol.Domain.Messaging
             {
                 UnitOfWork.Begin(new UnitOfWorkOption() { IsolationLevel = IsolationLevel.ReadCommitted });
                 await commandHandler.ExecuteAsync(command);
-                await UnitOfWork.SaveChangesAsync();
                 await UnitOfWork.CommitAsync();
             }
             catch (Exception ex)
