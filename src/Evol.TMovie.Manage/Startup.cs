@@ -43,6 +43,11 @@ namespace Evol.TMovie.Manage
             ConfigureModules(services);
             AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
 
+            //services.Configure<IISOptions>(options => {
+            //    options.AutomaticAuthentication = true;
+            //    options.ForwardWindowsAuthentication = true;
+            //    options.ForwardClientCertificate = true;
+            //});
 
         }
 

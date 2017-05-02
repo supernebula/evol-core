@@ -12,6 +12,12 @@ namespace Evol.TMovie.Website.Controllers
     {
 
         [AllowAnonymous]
+        public IActionResult Hot()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
