@@ -3242,6 +3242,7 @@
     <Folder Include="logs\" />
     <Folder Include="Views\Account\" />
     <Folder Include="config\" />
+    <Folder Include="ApiControllers\" />
   </ItemGroup>
 
   <ItemGroup>
