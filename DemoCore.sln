@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
 EndProject
@@ -85,6 +85,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{64AA9E
 	ProjectSection(SolutionItems) = preProject
 		document\images\docker_cli_stage.png = document\images\docker_cli_stage.png
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Scheduler", "src\Evol.Scheduler\Evol.Scheduler.csproj", "{071D3FD2-534A-4A9A-BC1B-89950983E686}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,6 +202,10 @@ Global
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{071D3FD2-534A-4A9A-BC1B-89950983E686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071D3FD2-534A-4A9A-BC1B-89950983E686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071D3FD2-534A-4A9A-BC1B-89950983E686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071D3FD2-534A-4A9A-BC1B-89950983E686}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,5 +242,6 @@ Global
 		{2AF26149-1643-44D1-8076-133ED57221F7} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{C3C87D5D-8860-4BCA-9C6B-519C87F53EFE} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{64AA9E57-894B-4BBE-85C3-44611F92D12D} = {4458BF2D-1651-4346-AA76-2D3EC3F8E5EA}
+		{071D3FD2-534A-4A9A-BC1B-89950983E686} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 	EndGlobalSection
 EndGlobal
