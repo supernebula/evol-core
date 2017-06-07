@@ -59,10 +59,10 @@ namespace Evol.TMovie.Manage.ApiControllers
         [HttpPost]
         public async Task Post(CinemaCreateOrUpdateDto value)
         {
-            if (TryValidateModel(value))
-            {
-                return ModelState;
-            }
+            //if (TryValidateModel(value))
+            //{
+            //    ModelState;
+            //}
         }
         
         // PUT: api/Cinema/5
