@@ -18,5 +18,13 @@ namespace Evol.MongoDB.Repository
             MongoClient = new MongoClient(mongoUrl);
             Database = MongoClient.GetDatabase(mongoUrl.DatabaseName);
         }
+
+        protected NamedMongoDbContext(MongoDbContextOptions options)
+        {
+            Name = options.DbContextType.FullName;
+            var mongoUrl = new MongoUrl(options.ConnectionString);
+            MongoClient = new MongoClient(mongoUrl);
+            Database = MongoClient.GetDatabase(mongoUrl.DatabaseName);
+        }
     }
 }
