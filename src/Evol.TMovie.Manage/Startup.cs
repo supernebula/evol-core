@@ -10,8 +10,8 @@ using Evol.Web.Middlewares;
 using NLog.Web;
 using NLog.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
+using Evol.TMovie.Manage.Extensions.DependencyInjection;
+using Evol.MongoDB.Repository;
 
 namespace Evol.TMovie.Manage
 {
@@ -34,6 +34,7 @@ namespace Evol.TMovie.Manage
         {
             AppConfig.Init(services);
             services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
+            //services.AddMongoDbContext<LogMongoContext>(() => UseConnectionString(""));
             ConfigureIdentity(services);
             services.AddMvc();
 

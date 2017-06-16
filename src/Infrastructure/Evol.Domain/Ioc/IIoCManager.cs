@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Evol.Common.IoC;
 
 namespace Evol.Domain.Ioc
 {
-    public interface IIoCManager
+    public interface IIoCManager : IIoCServiceGetter
     {
         IServiceCollection Container { get; }
 
         IServiceProvider ServiceProvider { get; }
 
-        T GetService<T>();
-
-        IEnumerable<T> GetServices<T>();
     }
 }
