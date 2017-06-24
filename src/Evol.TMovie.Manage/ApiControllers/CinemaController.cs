@@ -15,7 +15,6 @@ using Evol.TMovie.Domain.Dto;
 namespace Evol.TMovie.Manage.ApiControllers
 {
     [Produces("application/json")]
-    [Route("api/Cinema")]
     public class CinemaController : Controller
     {
         public ICinemaQueryEntry CinemaQueryEntry { get; set; }
@@ -47,7 +46,7 @@ namespace Evol.TMovie.Manage.ApiControllers
         }
 
         // GET: api/Cinema/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet]
         public async Task<CinemaViewModel> Get(Guid id)
         {
             var item = await CinemaQueryEntry.FindAsync(id);
