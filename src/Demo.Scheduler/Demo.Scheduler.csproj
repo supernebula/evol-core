@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Quartz" Version="3.0.0-alpha2" />
+    <PackageReference Include="Quartz" Version="3.0.0-alpha1" />
   </ItemGroup>
 
 </Project>
