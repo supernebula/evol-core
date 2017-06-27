@@ -15,7 +15,7 @@ namespace Evol.TMovie.Manage
             services.AddAuthentication(options =>
             {
                 // This is the Default value for ExternalCookieAuthenticationScheme
-                options.SignInScheme = new IdentityCookieOptions().ExternalCookieAuthenticationScheme;
+                options.DefaultSignInScheme = new IdentityCookieOptions().ExternalCookieAuthenticationScheme;
             });
 
             //配置权限策略
@@ -31,7 +31,7 @@ namespace Evol.TMovie.Manage
             services.AddScoped<IRoleStore<AppRole>, AppRoleStore>();
 
             // Identity services
-            services.TryAddSingleton<IdentityMarkerService>();
+            //services.TryAddSingleton<IdentityMarkerService>(); //.net core 1.1 升级 .net core 2.0 不支持
             services.TryAddScoped<IUserValidator<AppUser>, UserValidator<AppUser>>();
             services.TryAddScoped<IPasswordValidator<AppUser>, PasswordValidator<AppUser>>();
             services.TryAddScoped<IPasswordHasher<AppUser>, DefaultPasswordHasher>();

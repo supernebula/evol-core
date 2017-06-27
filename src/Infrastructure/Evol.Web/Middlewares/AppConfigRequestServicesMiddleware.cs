@@ -1,9 +1,6 @@
 ﻿using Evol.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Evol.Web.Middlewares

@@ -83,13 +83,16 @@ namespace Evol.TMovie.Manage
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions()
-            {
-                AuthenticationScheme = "MyCookieMiddlewareInstance",
-                LoginPath = new PathString("/Login/Login/"),
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true
-            });
+            //.net core 1.1 升级 .net core 2.0 不支持
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            //{
+            //    AuthenticationScheme = "MyCookieMiddlewareInstance",
+            //    LoginPath = new PathString("/Login/Login/"),
+            //    AutomaticAuthenticate = true,
+            //    AutomaticChallenge = true
+            //});
+
+            //
 
             //app.UseUnhandledException();
 
