@@ -9,7 +9,7 @@ namespace Evol.TMovie.Manage
 {
     public partial class Startup
     {
-        public void ConfigureModules(IServiceCollection services)
+        public void ConfigureApp(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, EfUnitOfWork>();
             services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();

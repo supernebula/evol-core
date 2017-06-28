@@ -12,6 +12,11 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Evol.Domain;
+using Evol.TMovie.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace Evol.TMovie.Manage
 {
@@ -27,14 +32,37 @@ namespace Evol.TMovie.Manage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentityServiceAuthentication();
+            //自定义配置
+            AppConfig.Init(services);
 
+
+            //MVC / SYSTEM 配置
+            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
+            services.AddIdentityServiceAuthentication();
             services.AddMvc();
+
+            //needed for NLog.Web
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // Add framework services.
+            ConfigureApp(services);
+            AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            //app.Use(new Func<RequestDelegate, RequestDelegate>(nextApp => new ContainerMiddleware(nextApp, app.ApplicationServices).Invoke));
+            //add NLog to ASP.NET Core
+            loggerFactory.AddNLog();
+            //add NLog.Web
+            //app.AddNLogWeb();-----
+            ////needed for non-NETSTANDARD platforms: configure nlog.config in your project root. NB: you need NLog.Web.AspNetCore package for this. 		
+            //env.ConfigureNLog("nlog.config");-----
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,6 +73,7 @@ namespace Evol.TMovie.Manage
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
 
             app.UseStaticFiles();
 
