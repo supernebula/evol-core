@@ -17,6 +17,7 @@ using Evol.TMovie.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace Evol.TMovie.Manage
 {
@@ -57,11 +58,7 @@ namespace Evol.TMovie.Manage
             //add NLog to ASP.NET Core
             loggerFactory.AddNLog();
             //add NLog.Web
-            //app.AddNLogWeb();-----
-            ////needed for non-NETSTANDARD platforms: configure nlog.config in your project root. NB: you need NLog.Web.AspNetCore package for this. 		
-            //env.ConfigureNLog("nlog.config");-----
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            app.AddNLogWeb();
 
             if (env.IsDevelopment())
             {
