@@ -26,7 +26,19 @@ namespace Evol.TMovie.Data.Ioc
                 var tInfo = type.GetTypeInfo();
                 return tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && typeof(IQueryEntry).GetTypeInfo().IsAssignableFrom(type);
             };
-            var impls = assembly.GetTypes().Where(filter).ToList();
+
+            List<Type> impls;
+
+            try
+            {
+                impls = assembly.GetTypes().Where(filter).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            
             var interfaceImpls = new List<InterfaceImplPair>();
             if (impls.Count == 0)
                 return interfaceImpls;

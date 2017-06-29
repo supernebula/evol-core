@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 
 namespace Evol.Util.Cache
 {
@@ -11,7 +12,11 @@ namespace Evol.Util.Cache
         /// <summary>
         /// 
         /// </summary>
-        public static MemoryCache Cache = new MemoryCache(new MemoryCacheOptions() {/* ISystemClock = ?*/ CompactOnMemoryPressure = false, ExpirationScanFrequency = TimeSpan.FromMinutes(20)});
+        //.net core  1.1
+        //public static MemoryCache Cache = new MemoryCache(new MemoryCacheOptions() {/* ISystemClock = ?*/ CompactOnMemoryPressure = false, ExpirationScanFrequency = TimeSpan.FromMinutes(20)});
+
+        //.net core 2.0
+        //public static MemoryCache Cache = new MemoryCache(IOptions<MemoryCacheOptions> optionsAccessor);
 
         public static bool Add<T>(string key, T obj)
         {
