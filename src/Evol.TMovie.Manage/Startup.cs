@@ -17,7 +17,7 @@ using Evol.TMovie.Manage.Services;
 
 namespace Evol.TMovie.Manage
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration)
         {
