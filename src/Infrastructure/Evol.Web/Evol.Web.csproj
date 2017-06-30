@@ -10,12 +10,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview2-final" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0-preview2-final" />
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Evol.Domain\Evol.Domain.csproj" />
+    <ProjectReference Include="..\Evol.Util\Evol.Util.csproj" />
   </ItemGroup>
 
 </Project>
