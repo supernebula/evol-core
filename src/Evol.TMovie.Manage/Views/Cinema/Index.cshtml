@@ -4,6 +4,20 @@
 @{
     ViewData["Title"] = "Cinema Index";
 }
+<script>
+    var adminNameRole = @Html.VueValidateRoleFor(Model => Model.Name); // var adminNameRole = {min:10, min-error:'提示', max:20};
+    var role2
+    var role3
+    ....
+    new Vue({
+        el: '#app',
+        data: {
+            rules: adminNameRole
+        }
+    })
+</script>
+
+
 <section class="content-header">
     <h1>
         Cinema
