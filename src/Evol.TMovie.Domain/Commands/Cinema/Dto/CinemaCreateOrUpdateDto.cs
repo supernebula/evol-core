@@ -18,7 +18,7 @@ namespace Evol.TMovie.Domain.Commands.Dto
         [StringLength(20, MinimumLength = 1)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true, ErrorMessage = "不能为空")]
         [StringLength(100, MinimumLength = 1)]
         public string Address { get; set; }
 

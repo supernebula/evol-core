@@ -1,4 +1,4 @@
-@model Evol.TMovie.Domain.Commands.Dto.CinemaCreateOrUpdateDto
+﻿@model Evol.TMovie.Domain.Commands.Dto.CinemaCreateOrUpdateDto
 
 @{
     ViewData["Title"] = "Create";
@@ -12,6 +12,13 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
+            <label asp-for="Id" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Name" class="form-control" />
@@ -21,8 +28,7 @@
         <div class="form-group">
             <label asp-for="Address" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <textarea asp-for="Address" class="form-control" rows="5" >
-                </textarea>
+                <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
         </div>

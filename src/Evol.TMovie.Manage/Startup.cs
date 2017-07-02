@@ -14,6 +14,8 @@ using Microsoft.Extensions.Options;
 using Evol.TMovie.Manage.Data;
 using Evol.TMovie.Manage.Models;
 using Evol.TMovie.Manage.Services;
+using Evol.Domain;
+using Evol.TMovie.Data;
 
 namespace Evol.TMovie.Manage
 {
@@ -29,6 +31,8 @@ namespace Evol.TMovie.Manage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AppConfig.Init(services);
+            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -37,6 +41,8 @@ namespace Evol.TMovie.Manage
                 .AddDefaultTokenProviders();
 
             // Add application services.
+            ConfigureApp(services);
+            AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
