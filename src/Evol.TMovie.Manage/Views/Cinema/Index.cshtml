@@ -1,10 +1,15 @@
 ﻿@using Evol.Common;
+@using Evol.Web.Mvc.Html;
+@using Evol.TMovie.Domain.Commands.Dto;
 @model IPaged<CinemaViewModel>
 
 @{
     ViewData["Title"] = "Cinema Index";
+    var roleJson = Html.VueValidateRoleFor<CinemaCreateOrUpdateDto>();
 }
+
 <script>
+    @Html.Raw(roleJson);
     @*var adminNameRole = @Html.VueValidateRoleFor(Model => Model.Name); // var adminNameRole = {min:10, min-error:'提示', max:20};
     var role2
     var role3
@@ -29,7 +34,7 @@
     </ol>
 </section>
 
-@Html.Partial("create.vue")
+@*@Html.Partial("create.vue")*@
 
 <section class="content">
     <div class="row">

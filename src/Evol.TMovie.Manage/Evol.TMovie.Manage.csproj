@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Evol.TMovie.Domain\Evol.TMovie.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.EntityFramework\Evol.EntityFramework.csproj" />
+    <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
   </ItemGroup>
 
 </Project>
