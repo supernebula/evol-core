@@ -5,11 +5,12 @@
 
 @{
     ViewData["Title"] = "Cinema Index";
-    var roleJson = Html.VueValidateRoleFor<CinemaCreateOrUpdateDto>();
+    var roleJson = Html.VueValidateRoleFor<CinemaCreateOrUpdateDto>();//模型的所有属性验证规则
+    var proprRoleJson = Html.VueValidateRoleFor<CinemaCreateOrUpdateDto, string>(e=> e.Address); //单个属性验证规则
 }
 
 <script>
-    @Html.Raw(roleJson); //vue-validator role
+    var createRule = @Html.Raw(roleJson); //vue-validator role
     @*var adminNameRole = @Html.VueValidateRoleFor(Model => Model.Name); // var adminNameRole = {min:10, min-error:'提示', max:20};
     var role2
     var role3
