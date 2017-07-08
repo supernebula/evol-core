@@ -16,6 +16,7 @@ using Evol.TMovie.Manage.Models;
 using Evol.TMovie.Manage.Services;
 using Evol.Domain;
 using Evol.TMovie.Data;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Evol.TMovie.Manage
 {
@@ -47,6 +48,13 @@ namespace Evol.TMovie.Manage
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             services.AddMvc();
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "TmAPI", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +80,15 @@ namespace Evol.TMovie.Manage
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TmAPI V1");
             });
         }
     }

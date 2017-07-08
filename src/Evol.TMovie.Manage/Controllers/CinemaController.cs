@@ -51,7 +51,7 @@ namespace Evol.TMovie.Manage.Controllers
         // POST: Cinema/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CinemaCreateOrUpdateDto dto, string vertyCode)
+        public async Task<IActionResult> Create(CinemaCreateDto dto, string vertyCode)
         {
             if (! await TryUpdateModelAsync(dto))
             {
@@ -79,7 +79,7 @@ namespace Evol.TMovie.Manage.Controllers
         // POST: Cinema/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CinemaCreateOrUpdateDto dto)
+        public async Task<IActionResult> Edit(int id, CinemaUpdateDto dto)
         {
             if (!await TryUpdateModelAsync(dto))
             {

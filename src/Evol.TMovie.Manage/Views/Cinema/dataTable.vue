@@ -1,4 +1,4 @@
-﻿<div id="main-table" class="box">
+﻿<div id="cinema-table" class="box">
     <div class="box-header">
         <h3 class="box-title">影院</h3>
     </div>

@@ -9,10 +9,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class CinemaCreateOrUpdateDto : IInputDto, ICanOptionMapTo<Cinema>
+    public class CinemaCreateDto : IInputDto, ICanOptionMapTo<Cinema>
     {
-
-        public Guid Id { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 1)]
@@ -22,10 +20,9 @@ namespace Evol.TMovie.Domain.Commands.Dto
         [StringLength(100, MinimumLength = 1)]
         public string Address { get; set; }
 
-        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        public virtual void ConfigMap(MapperConfigurationExpression mapConfig)
         {
-            mapConfig.CreateMap<CinemaCreateOrUpdateDto, Cinema>()
-                .ForMember(e => e.Id, m => m.MapFrom(s => s.Id));
+            mapConfig.CreateMap<CinemaCreateDto, Cinema>();
         }
 
 

@@ -5,23 +5,62 @@
 
 @{
     ViewData["Title"] = "Cinema Index";
-    var roleJson = Html.VueValidateRoleFor<CinemaCreateOrUpdateDto>();//模型的所有属性验证规则
-    var proprRoleJson = Html.VueValidateRoleFor<CinemaCreateOrUpdateDto, string>(e=> e.Address); //单个属性验证规则
+    var createValidRole = Html.VueValidateRoleFor<CinemaCreateDto>();//创建影院模型vue-validator验证规则
+    var updateValidRole = Html.VueValidateRoleFor<CinemaUpdateDto>(); //更新影院模型vue-validator验证规则
 }
 
+@section Scripts{ 
+
+
 <script>
-    var createRule = @Html.Raw(roleJson); //vue-validator role
-    @*var adminNameRole = @Html.VueValidateRoleFor(Model => Model.Name); // var adminNameRole = {min:10, min-error:'提示', max:20};
-    var role2
-    var role3
-    ....
-    new Vue({
-        el: '#app',
-        data: {
-            rules: adminNameRole
-        }
-    })*@
+    var vueValidRole = {
+        cinemaCreate : @Html.Raw(createValidRole)
+        ,cinemaUpdate : @Html.Raw(updateValidRole)
+
+    };
+
+    var apiUri = {
+            pagedGet : '/api/cinema',
+            createPost : '/api/cinema',
+            updatePut : '/api/cinema',
+            delete : '/api/cinema'
+        };
+
+    var vueApp = {};
+
+    $(function () {
+
+        vueApp = {
+            table: new Vue({
+                el: '#cinema-table',
+                data: {
+                }
+            }),
+
+            create: new Vue({
+                el: '#cinema-create',
+                data: {
+                    rules: vueValidRole.cinemaCreate
+                }
+            }),
+
+            update: new Vue({
+                el: '#cinema-update',
+                data: {
+                    rules: vueValidRole.cinemaUpdate
+                }
+            })
+
+
+        };
+
+        $.getJSON(apiUri.pagedGet, function (json) {
+            vueApp.table.data = json;
+        });
+
+    });
 </script>
+}
 
 
 <section class="content-header">
@@ -35,101 +74,14 @@
     </ol>
 </section>
 
-@Html.Partial("~/Views/Cinema/dataTable.vue")
+@*@Html.Partial("~/Views/Cinema/dataTable.vue")*@
 
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
 
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                        <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dataTables_length" id="example1_length">
-                            <label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label></div></div></div><div class="row">
-                            <div class="col-sm-12">
-                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
-                                    <thead>
-                                        <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 201px;">Id</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 248px;">Name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 219px;">CreateTime</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 172px;">Address</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 125px;">Operate</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+            @Html.HtmlPartial("dataTable.vue")
 
-                                        @foreach (var item in Model)
-                                        {
-                                            <tr role="row" class="even">
-                                                <td class="sorting_1">
-                                                    @Html.DisplayFor(modelItem => item.Id)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Name)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Address)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.CreateTime)
-                                                </td>
-                                                <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">Id</th>
-                                            <th rowspan="1" colspan="1">Name</th>
-                                            <th rowspan="1" colspan="1">CreateTime</th>
-                                            <th rowspan="1" colspan="1">Address</th>
-                                            <th rowspan="1" colspan="1"></th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-sm-5">
-                                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 25 of 57 entries</div>
-                            </div>
-                        <div class="col-sm-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous disabled" id="example1_previous"> 
-                                        <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
-                                     </li>
-                                    <li class="paginate_button active">
-                                        <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
-                                     </li>
-                                    <li class="paginate_button ">
-                                        <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
-                                     </li>
-                                    <li class="paginate_button ">
-                                        <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
-                                     </li>
-                                    <li class="paginate_button next" id="example1_next">
-                                        <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">Next</a>
-                                    </li>
-                                  </ul>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.box-body -->
-            </div>
             <!-- /.box -->
         </div>
         <!-- /.col -->
