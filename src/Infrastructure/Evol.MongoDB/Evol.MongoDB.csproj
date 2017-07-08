@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta3-build3705" />
   </ItemGroup>
 
   <ItemGroup>
