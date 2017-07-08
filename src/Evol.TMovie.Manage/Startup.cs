@@ -17,6 +17,8 @@ using Evol.TMovie.Manage.Services;
 using Evol.Domain;
 using Evol.TMovie.Data;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace Evol.TMovie.Manage
 {
@@ -53,8 +55,11 @@ namespace Evol.TMovie.Manage
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "TmAPI", Version = "v1" });
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "Evol.TMovie.Manage.xml");
+                c.IncludeXmlComments(xmlPath);
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

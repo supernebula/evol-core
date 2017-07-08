@@ -7,6 +7,10 @@
     <UserSecretsId>aspnet-Evol.TMovie.Manage-5C2B7BA1-4963-4B9E-B6BA-F006A66E138B</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Evol.TMovie.Manage.xml</DocumentationFile>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
