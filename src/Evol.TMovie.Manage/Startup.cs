@@ -19,6 +19,7 @@ using Evol.TMovie.Data;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using Evol.Web.Middlewares;
 
 namespace Evol.TMovie.Manage
 {
@@ -65,6 +66,7 @@ namespace Evol.TMovie.Manage
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -80,12 +82,15 @@ namespace Evol.TMovie.Manage
 
             app.UseAuthentication();
 
+            app.UseMiddleware(typeof(GlobalExceptionHanderMiddleware));
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+           
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

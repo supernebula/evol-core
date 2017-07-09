@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace Evol.Web.Exceptions
@@ -8,12 +10,20 @@ namespace Evol.Web.Exceptions
     /// <summary>
     /// 输入异常
     /// </summary>
-    public class InputException : Exception
+    [DataContract]
+    [JsonObject]
+    public class InputError : Exception
     {
-        public Dictionary<string, string> ErrorState { get; set; }
-        public InputException(Dictionary<string, string> errorState, string message) : base(message)
+        [DataMember]
+        public Dictionary<string, string> ModelError { get; private set; }
+
+        [DataMember]
+        public Exception Exception { get; private set; }
+
+        public InputError(Dictionary<string, string> modelErrorDic, string message, Exception innerEx = null)  
+            : base(message, innerEx)
         {
-            ErrorState = errorState;
+            ModelError = modelErrorDic;
         }
     }
 }

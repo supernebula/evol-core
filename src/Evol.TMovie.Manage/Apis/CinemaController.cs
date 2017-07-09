@@ -86,21 +86,31 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<string> Post(CinemaCreateDto value)
+        public async Task<InputError> Post(CinemaCreateDto value)
         {
             if (!TryValidateModel(value))
             {
                 var keys = ModelState.Keys;
-                var errorState = new Dictionary<string, string>();
+                var modelError = new Dictionary<string, string>();
                 foreach (var key in keys)
                 {
                     ModelStateEntry modeState = null;
                     if (ModelState.TryGetValue(key, out modeState) && modeState != null && modeState.ValidationState != ModelValidationState.Valid)
-                        errorState.Add(key, string.Join(";", modeState.Errors.Select(e => e.ErrorMessage)));
+                    {
+                        var error = new KeyValuePair<string, string>(key, string.Join(";", modeState.Errors.Select(e => e.ErrorMessage)));
+                        modelError.Add(error.Key, error.Value);
+                    }
+                    
                 }
 
-                var exc = new InputException(errorState, string.Join(";", ModelState.Root.Errors.Select(e => e.ErrorMessage)) ?? "输入错误！");
-                return JsonUtil.Serialize(exc);
+                var rootMsg = "输入错误！";
+                if (ModelState.Root.Errors.Any())
+                    rootMsg = string.Join(";", ModelState.Root.Errors.Select(e => e.ErrorMessage));
+                var err = new InputError(modelError, rootMsg);
+                throw err;
+                //return err;
+                //var json = JsonUtil.Serialize(err);
+                //return json;
             }
 
             await CommandBus.SendAsync(new CinemaCreateCommand { Input = value });
@@ -116,11 +126,11 @@ namespace Evol.TMovie.Manage.Apis
         [HttpPut("{id}")]
         public async Task Put(int id, CinemaUpdateDto value)
         {
-            if (!TryValidateModel(value))
-            {
-                var errorState = ModelState.Select(e => new KeyValuePair<string, string>(e.Key, e.Value.RawValue.ToString())).ToDictionary(e => e.Key, e => e.Value);
-                throw new InputException(errorState, "输入错误");
-            }
+            //if (!TryValidateModel(value))
+            //{
+            //    var errorState = ModelState.Select(e => new KeyValuePair<string, string>(e.Key, e.Value.RawValue.ToString())).ToDictionary(e => e.Key, e => e.Value);
+            //    throw new InputException(errorState, "输入错误");
+            //}
 
             await CommandBus.SendAsync(new CinemaUpdateCommand { Input = value });
         }

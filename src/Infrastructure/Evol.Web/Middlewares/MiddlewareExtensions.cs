@@ -18,7 +18,7 @@ namespace Evol.Web.Middlewares
         {
             if (app == null)
                 throw new ArgumentNullException("app");
-            app.UseMiddleware<UnhandledExceptionMiddleware>();
+            app.UseMiddleware<GlobalExceptionHanderMiddleware>();
             return app;
         }
 
