@@ -14,7 +14,7 @@ namespace Evol.Util.Serialization
                 var output = Newtonsoft.Json.JsonConvert.SerializeObject(value);
                 return output;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }

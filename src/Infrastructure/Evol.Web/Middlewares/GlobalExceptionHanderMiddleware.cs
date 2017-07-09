@@ -1,7 +1,9 @@
 ﻿using Evol.Util.Serialization;
 using Evol.Web.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Net;
 using System.Threading;
@@ -25,32 +27,52 @@ namespace Evol.Web.Middlewares
         {
             try
             {
-                await _next.Invoke(context);
+                await _next(context);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex).ConfigureAwait(false);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception ex)
+        private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             _logger.LogError(new EventId(Thread.CurrentThread.ManagedThreadId), ex, ex.Message);
 
-            if (ex is InputError)
+            if (context.Response.HasStarted)
             {
-                context.Response.Clear();   
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Response.ContentType = context.Request.Headers["Accept"];
-                if (context.Response.ContentType.ToLower() == "application/xml")
-                    await context.Response.WriteAsync(XmlUtil.Serialize(ex)).ConfigureAwait(false);
-                else 
-                {
-                    context.Response.ContentType = "application/json";
-                    await context.Response.WriteAsync(JsonUtil.Serialize(ex)).ConfigureAwait(false);
-                }
+                _logger.LogWarning("The response has already started, the error handler will not be executed.");;
             }
+
+            context.Response.Clear();
+
+            //InputError
+            //context.Response.Clear();   
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            context.Response.OnStarting(ClearCacheHeaders, context.Response);
+            context.Response.ContentType = context.Request.Headers["Accept"];
+            if (context.Response.ContentType.ToLower() == "application/xml;charset=utf-8")
+                return context.Response.WriteAsync(XmlUtil.Serialize(ex));
+            else
+            {
+                context.Response.ContentType = "application/json;charset=utf-8";
+                var content = JsonUtil.Serialize((InputError)ex);
+                return context.Response.WriteAsync(ex.Message);
+            }
+
+        }
+
+        private Task ClearCacheHeaders(object state)
+        {
+            var response = (HttpResponse)state;
+            response.Headers[HeaderNames.CacheControl] = "no-cache";
+            response.Headers[HeaderNames.Pragma] = "no-cache";
+            response.Headers[HeaderNames.Expires] = "-1";
+            response.Headers.Remove(HeaderNames.ETag);
+            return Task.CompletedTask;
         }
 
     }
 }
+
+

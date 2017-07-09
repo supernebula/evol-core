@@ -86,7 +86,7 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<InputError> Post(CinemaCreateDto value)
+        public async Task Post(CinemaCreateDto value)
         {
             if (!TryValidateModel(value))
             {
@@ -113,8 +113,8 @@ namespace Evol.TMovie.Manage.Apis
                 //return json;
             }
 
-            await CommandBus.SendAsync(new CinemaCreateCommand { Input = value });
-            return null;
+            //await CommandBus.SendAsync(new CinemaCreateCommand { Input = value });
+            //return null;
         }
 
         // PUT: api/Cinema/5
