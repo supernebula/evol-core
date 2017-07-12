@@ -8,7 +8,7 @@ using Evol.Common;
 
 namespace Evol.Utilities.Test.Serialization
 {
-    public class XmlUtilityTest
+    public class XmlUtilTest
     {
         [Fact, Description("XML反序列化")]
         public void DeSerializeTest()
