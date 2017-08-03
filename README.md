@@ -1,2 +1,2 @@
 # evol-core
-Netcore development framework
+Based on the .net core domain-driven development framework
