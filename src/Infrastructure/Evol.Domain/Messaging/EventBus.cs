@@ -1,4 +1,5 @@
 ﻿using Evol.Domain.Events;
+using System;
 using System.Threading.Tasks;
 
 namespace Evol.Domain.Messaging
@@ -17,8 +18,23 @@ namespace Evol.Domain.Messaging
             var handlers = _eventHandlerFactory.GetHandler<T>();
             foreach (var handler in handlers)
             {
-                await handler.HandleAsync(@event);
+                var method = handler.GetType().GetMethod(nameof(handler.HandleAsync));
+                var handleAsync = Attribute.GetCustomAttribute(method, typeof(HandleAsyncAttribute), false) as HandleAsyncAttribute;
+                if (handleAsync != null)
+                    AsyncInvoke(() => handler.HandleAsync(@event));
+                else
+                    await handler.HandleAsync(@event);
             }
+        }
+
+        private void AsyncInvoke(Action action)
+        {
+            throw new NotImplementedException();
+            Task.Run(action)
+                .ContinueWith(t => {
+                    //if(t.Exception != null)
+                        //some logic & logger
+                });
         }
     }
 }
