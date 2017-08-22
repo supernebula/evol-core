@@ -7,17 +7,20 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.Domain.Events;
 using Evol.TMovie.Domain.Dto;
 using System.Collections.Generic;
+using Evol.TMovie.Domain.Events;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
     public class MovieCommandHandler : ICommandHandler<MovieCreateCommand>, ICommandHandler<MovieUpdateCommand>, ICommandHandler<MovieDeleteCommand>
     {
+        public IEventPublisher EventPub { get; set; }
 
         public IMovieRepository MovieRepository { get; set; }
 
-        public MovieCommandHandler(IMovieRepository movieRepository)
+        public MovieCommandHandler(IMovieRepository movieRepository, IEventPublisher eventPublisher)
         {
             MovieRepository = movieRepository;
+            EventPub = eventPublisher;
         }
 
         public async Task ExecuteAsync(MovieCreateCommand command)
@@ -28,7 +31,8 @@ namespace Evol.TMovie.Domain.CommandHandlers
             //....更多字段
             item.CreateTime = DateTime.Now;
             await MovieRepository.InsertAsync(item);
-            command.Events.Add(new Event(item));
+            //await EventPub.PublishAsync(new OrderCreateEvent()); //test
+            //command.Events.Add(new Event(item));
         }
 
         public async Task ExecuteAsync(MovieUpdateCommand command)
