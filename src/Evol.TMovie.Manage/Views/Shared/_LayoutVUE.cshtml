@@ -1,0 +1,20 @@
+﻿@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    @RenderBody()
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    @RenderSection("FootScripts", required: false)
+</body>
+
+</html>
