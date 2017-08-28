@@ -1,0 +1,24 @@
+{
+  "name": "element-starter",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --port 8086",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "vue": "^2.1.6",
+    "element-ui": "^1.4.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-plugin-component": "^0.10.0",
+    "babel-preset-vue-app": "^1.2.0",
+    "cross-env": "^1.0.6",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "style-loader": "^0.13.1",
+    "vue-loader": "^9.8.0",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "beta"
+  }
+}
