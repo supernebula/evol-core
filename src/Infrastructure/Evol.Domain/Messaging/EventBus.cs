@@ -24,22 +24,22 @@ namespace Evol.Domain.Messaging
             foreach (var handler in handlers)
             {
                 var method = handler.GetType().GetMethod(nameof(handler.HandleAsync));
-                var handleAsync = Attribute.GetCustomAttribute(method, typeof(HandleAsyncAttribute), false) as HandleAsyncAttribute;
+                var handleAsync = Attribute.GetCustomAttribute(method, typeof(ForkHandleAttribute), false) as ForkHandleAttribute;
                 if (handleAsync != null)
-                    AsyncHandle(() => handler.HandleAsync(@event));
+                    ForkHandle(() => handler.HandleAsync(@event));
                 else
                     await handler.HandleAsync(@event);
             }
         }
 
-        private void AsyncHandle(Action action)
+        private void ForkHandle(Action action)
         {
             var cancelSource = new CancellationTokenSource();
             Task.Run(action, cancelSource.Token)
                 .ContinueWith(t => {
                     if (t.Exception == null)
                         return;
-                    _logger.LogError(t.Exception, "在处理HandleAsyncAttribute标记的异步逻辑时发生异常");
+                    _logger.LogError(t.Exception, "在处理ForkHandleAttribute标记的异步方法时发生异常");
                 });
         }
     }

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Domain.EventHandlers
 {
-    class OrderEventHandler : IEventHandler<OrderCreateEvent>
+    public class OrderEventHandler : IEventHandler<OrderCreateEvent>
     {
-        [HandleAsync]
+        [ForkHandle]
         public Task HandleAsync(OrderCreateEvent @event)
         {
             //Send SMS

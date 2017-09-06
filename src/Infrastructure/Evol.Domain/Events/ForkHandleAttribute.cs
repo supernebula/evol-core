@@ -5,10 +5,10 @@ using System.Text;
 namespace Evol.Domain.Events
 {
     /// <summary>
-    ///  Non-transactional event handle
+    ///  Non-transactional event handle。Processed in a new thread, but not waiting for results
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
-    public class HandleAsyncAttribute : Attribute
+    public class ForkHandleAttribute : Attribute
     {
 
     }
