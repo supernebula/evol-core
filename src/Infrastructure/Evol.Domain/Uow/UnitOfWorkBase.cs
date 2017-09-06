@@ -51,7 +51,7 @@ namespace Evol.Domain.Uow
             catch (Exception ex)
             {
                 _exception = ex;
-                throw;
+                throw ex;
             }
 
         }
