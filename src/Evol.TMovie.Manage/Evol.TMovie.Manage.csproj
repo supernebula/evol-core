@@ -1783,6 +1783,9 @@
 
   <ItemGroup>
     <Folder Include="Views\Started\" />
+    <Folder Include="wwwdev\dist\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwdev_4package_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

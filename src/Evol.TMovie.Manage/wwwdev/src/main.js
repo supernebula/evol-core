@@ -9,7 +9,15 @@ Vue.component(Select.name, Select)
  * Vue.use(Select)
  */
 
+//new Vue({
+//    el: '#app',
+//    data: {
+//        message: "Hello Vue"
+//    },
+//    render: h => h(App)
+//})
+
 new Vue({
-    el: '#app',
-    render: h => h(App)
+    el: 'body',
+    components: { App }
 })
