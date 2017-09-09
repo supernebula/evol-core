@@ -38,7 +38,7 @@ namespace Evol.TMovie.Website
         {
             // Add framework services.
             services.AddDbContext<TMovieDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TMConnection"), opt => opt.UseRowNumberForPaging()));
            
 
             services.AddMvc();
