@@ -7,11 +7,9 @@ using Xunit.Abstractions;
 namespace Evol.Logging.Tests
 {
     /// <summary>
-    /// 文件写入对别：
-    /// log4net- total: 200000条数据, Elapsed:8900
-    /// nlog- total: 200000调数据, 	Elapsed:109813
+    /// Log4net、Nlog日志文件写入对比
     /// </summary>
-    public class BigDataTest : IDisposable
+    public class BigDataTest
     {
         private readonly ITestOutputHelper output;
         public BigDataTest(ITestOutputHelper outputHelper)
@@ -19,10 +17,9 @@ namespace Evol.Logging.Tests
             output = outputHelper;
         }
 
-        public void Dispose()
-        {
-        }
-
+        /// <summary>
+        /// 使用Log4net连续插入20W行字符串
+        /// </summary>
         [Fact]
         public void Log4netTest()
         {
@@ -44,7 +41,9 @@ namespace Evol.Logging.Tests
             output.WriteLine($"Log4net测试 total: {total}, Elapsed:{sw.ElapsedMilliseconds}");
         }
 
-
+        /// <summary>
+        /// 使用Nlog连续插入20W行字符串
+        /// </summary>
         [Fact]
         public void NlogTest()
         {
@@ -61,5 +60,6 @@ namespace Evol.Logging.Tests
             log.Info($"total: {total}, Elapsed:{sw.ElapsedMilliseconds}");
             output.WriteLine($"NLog测试 total: {total}, Elapsed:{sw.ElapsedMilliseconds}");
         }
+
     }
 }
