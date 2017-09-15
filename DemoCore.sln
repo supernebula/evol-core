@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
 EndProject
@@ -92,7 +92,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovieLog.Data", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Manage", "src\Evol.TMovie.Manage\Evol.TMovie.Manage.csproj", "{7356A510-85AF-419F-AC9C-83B130049120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Logging.Tests", "Evol.Logging.Tests\Evol.Logging.Tests.csproj", "{E643F985-0726-436F-BE97-2252CBEE221C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Logging.Tests", "Evol.Logging.Tests\Evol.Logging.Tests.csproj", "{E643F985-0726-436F-BE97-2252CBEE221C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
