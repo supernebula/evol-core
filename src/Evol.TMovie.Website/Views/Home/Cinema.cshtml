@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+
+<div id="head-bar" class="row">
+    <div class="col-xs-1">
+
+    </div>
+    <div class="col-xs-10">
+        杭州UME国际影城
+    </div>
+
+</div>
+
+<div class="row cinema-item"  style=" border-top:1px solid #EAEAEA;  height:120px;margin: 10px 0 5px 0;">
+    <div class="col-xs-12">
+        <div class="name">杭州UME国际影城</div>
+        <div class="min-price">28元起</div>
+        <div class="addr">西湖区文一西路1000号西城广场4楼</div>
+        <div class=" special">3D</div>
+    </div>
+</div>
+
+<div class="row show-item " id="viewport">
+    <div class="col-xs-12 " id="scroller">
+            <div class="slide">
+                <div class="painting giotto" style="background: url('../images/ckxt.jpg');"></div>
+            </div>
+            <div class="slide">
+                <div class="painting leonardo" style="background: url('../images/gkek.jpg');"></div>
+            </div>
+            <div class="slide">
+                <div class="painting gaugin" style="background: url('../images/szx.jpg');"></div>
+            </div>
+            <div class="slide">
+                <div class="painting warhol" style="background: url('../images/xqjq3.jpg');"></div>
+            </div>
+
+        <div class="slide">
+            <div class="painting warhol" style="background: url('../images/xsj2003.jpg');"></div>
+        </div>
+
+        <div class="slide">
+            <div class="painting warhol" style="background: url('../images/yszm.jpg');"></div>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    
+<link href="~/css/movie-iscroll.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    
+<script src="~/js/iscroll/iscroll.js"></script>
+    <script>
+        function isPassive() {
+            var supportsPassiveOption = false;
+            try {
+                addEventListener("test", null, Object.defineProperty({}, 'passive', {
+                    get: function () {
+                        supportsPassiveOption = true;
+                    }
+                }));
+            } catch (e) { }
+            return supportsPassiveOption;
+        }
+
+        var myScroll;
+
+        function loaded() {
+            myScroll = new IScroll('#wrapper', {
+                scrollX: true,
+                scrollY: false,
+                momentum: false,
+                snap: true,
+                snapSpeed: 400,
+                keyBindings: true,
+                indicators: {
+                    el: document.getElementById('indicator'),
+                    resize: false
+                }
+            });
+        }
+
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, isPassive() ? {
+            capture: false,
+            passive: false
+        } : false);
+
+    </script>
+
+
+}
