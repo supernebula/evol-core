@@ -21,8 +21,37 @@
     </div>
 </div>
 
-<div class="row show-item " id="viewport">
-    <div class="col-xs-12 " id="scroller">
+<div class="row show-item " id="wrapper">
+    <div class="col-xs-12 " id="scroller" style="height:120px;">
+        <ul id="scroller">
+            <li><a><img src=”@Url.Content("../images/xsj2003.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/ckxt.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/gkek.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/szx.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/xqjq3.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../images/xsj2003.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/ckxt.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/gkek.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/szx.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/xqjq3.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../images/xsj2003.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/ckxt.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/gkek.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/szx.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/xqjq3.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../images/xsj2003.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/ckxt.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/gkek.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/szx.jpg")" /></a></li>
+            <li><a><img src=”@Url.Content("../wwwroot/images/xqjq3.jpg")" /></a></li>
+            <img src="~/wwwroot/images/ckxt.jpg" />
+            @*<div class="slide">
+                <a><img src=”~/images/xsj2003.jpg" /></a>
+            </div>
+
+            <div class="slide">
+                <div class="painting yszm" style="background: url('../images/yszm.jpg');"></div>
+            </div>
             <div class="slide">
                 <div class="painting giotto" style="background: url('../images/ckxt.jpg');"></div>
             </div>
@@ -34,26 +63,29 @@
             </div>
             <div class="slide">
                 <div class="painting warhol" style="background: url('../images/xqjq3.jpg');"></div>
-            </div>
+            </div>*@
 
-        <div class="slide">
-            <div class="painting warhol" style="background: url('../images/xsj2003.jpg');"></div>
-        </div>
 
-        <div class="slide">
-            <div class="painting warhol" style="background: url('../images/yszm.jpg');"></div>
-        </div>
+
+
+
+        </ul>
+            
     </div>
+</div>
+
+<div id="indicator">
+    <div id="dotty"></div>
 </div>
 
 @section Styles{
     
-<link href="~/css/movie-iscroll.css" rel="stylesheet" />
+<link href="/css/movie-iscroll.css" rel="stylesheet" />
 }
 
 @section Scripts{
     
-<script src="~/js/iscroll/iscroll.js"></script>
+<script src="/js/iscroll/iscroll.js"></script>
     <script>
         function isPassive() {
             var supportsPassiveOption = false;
@@ -74,8 +106,8 @@
                 scrollX: true,
                 scrollY: false,
                 momentum: false,
-                snap: true,
-                snapSpeed: 400,
+                snap: false,
+                snapSpeed: 100,
                 keyBindings: true,
                 indicators: {
                     el: document.getElementById('indicator'),
@@ -88,6 +120,10 @@
             capture: false,
             passive: false
         } : false);
+
+        $(function () { 
+            loaded();
+        });
 
     </script>
 
