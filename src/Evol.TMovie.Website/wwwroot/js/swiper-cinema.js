@@ -1,5 +1,9 @@
 ﻿// JavaScript Document
- var mySwiper = new Swiper('.swiper-container',{
+var mySwiper = new Swiper('.swiper-container', {
+    speed: 3000,
+    freeMode: true,
+    freeModeSticky: true,
+    freeModeMomentumVelocityRatio: 5,
 	  slidesPerView : 'auto',
 	  centeredSlides : true,
 	  watchSlidesProgress: true,
