@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 * {
 	margin: 0;
@@ -26,7 +26,7 @@ body{
 		margin-top:10px;
 	}
 .swiper-slide{
-	width:25%;
+	/*width:35%;*/
 	 -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
@@ -35,11 +35,16 @@ body{
 .swiper-slide-active {
 
 }
-.swiper-slide .main-img{
-	width:60%;
-	margin:0 auto;
-	display:block;
+.swiper-slide .main-img {
+    width: 80%;
+    margin: 20%;
+    margin: 0 auto;
+    display: block;
 }
+.swiper-slide-active .main-img {
+    border: 1px solid #a7cceb;
+}
+
 #pagination{
 	position:absolute;
 	bottom:100px;
@@ -53,6 +58,7 @@ body{
 	background:none;
 	opacity: 1;
 }
+
 .swiper-pagination-bullet i{
 	background:#41203f;
 	width:24px;
