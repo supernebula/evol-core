@@ -1,21 +1,27 @@
 ﻿// JavaScript Document
 var mySwiper = new Swiper('.swiper-container', {
-    speed: 3000,
+    speed: 30,
     freeMode: true,
     freeModeSticky: true,
+    //freeModeMomentumRatio: 1,
+    //shortSwipes: true,
+
     freeModeMomentumVelocityRatio: 5,
+    freeModeMomentumBounce : false,
 	  slidesPerView : 'auto',
 	  centeredSlides : true,
 	  watchSlidesProgress: true,
 	  pagination : '.swiper-pagination',
 	  paginationClickable: true,
 
-      onSlideChangeEnd: function(swiper){
+      onTransitionEnd: function (swiper) {
+          alert("onTransitionEnd:" + swiper.activeIndex);
         //console.log(swiper.activeIndex) //切换结束时，告诉我现在是第几个slide
       },
-      onTouchEnd: function(swiper){
-        console.log(swiper.activeIndex) //回调函数，当释放slider时执行。
-        },
+      //onSlideChangeEnd: function(swiper){
+      //    console.log(swiper.activeIndex); //回调函数，swiper从一个slide过渡到另一个slide结束时执行。
+      //    alert("onSlideChangeEnd:" + swiper.activeIndex);
+      //  },
 	  onProgress: function(swiper){
         for (var i = 0; i < swiper.slides.length; i++){
           var slide = swiper.slides[i];
