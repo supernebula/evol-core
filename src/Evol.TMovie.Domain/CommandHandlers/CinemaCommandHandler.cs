@@ -10,7 +10,7 @@ using Evol.Domain.Events;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
-    public class CinemaCommandHandler : ICommandHandler<RoleCreateCommand>, ICommandHandler<CinemaUpdateCommand>, ICommandHandler<CinemaDeleteCommand>
+    public class CinemaCommandHandler : ICommandHandler<CinemaCreateCommand>, ICommandHandler<CinemaUpdateCommand>, ICommandHandler<CinemaDeleteCommand>
     {
         public ICinemaRepository CinemaRepository { get; set; }
 
@@ -18,7 +18,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
         {
             CinemaRepository = cinemaRepository;
         }
-        public async Task ExecuteAsync(RoleCreateCommand command)
+        public async Task ExecuteAsync(CinemaCreateCommand command)
         {
             var item = command.Input.Map<Cinema>();
             item.Id = Guid.NewGuid();
@@ -26,7 +26,6 @@ namespace Evol.TMovie.Domain.CommandHandlers
             item.Name = item.Address ?? string.Empty;
             item.CreateTime = DateTime.Now;
             await CinemaRepository.InsertAsync(item);
-            command.Events.Add(new Event(item));
         }
 
         public async Task ExecuteAsync(CinemaUpdateCommand command)

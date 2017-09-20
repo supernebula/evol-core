@@ -89,7 +89,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpPost]
         public async Task Post(CinemaCreateDto value)
         {
-            if (!TryValidateModel(value))
+            if(!ModelState.IsValid)
             {
                 var keys = ModelState.Keys;
                 var modelError = new Dictionary<string, string>();
@@ -109,13 +109,9 @@ namespace Evol.TMovie.Manage.Apis
                     rootMsg = string.Join(";", ModelState.Root.Errors.Select(e => e.ErrorMessage));
                 var err = new InputError(modelError, rootMsg);
                 throw err;
-                //return err;
-                //var json = JsonUtil.Serialize(err);
-                //return json;
             }
 
-            //await CommandBus.SendAsync(new CinemaCreateCommand { Input = value });
-            //return null;
+            await CommandBus.SendAsync(new CinemaCreateCommand { Input = value });
         }
 
         // PUT: api/Cinema/5

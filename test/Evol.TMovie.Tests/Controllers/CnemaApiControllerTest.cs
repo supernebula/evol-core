@@ -34,23 +34,25 @@ namespace Evol.TMovie.Manage.Tests.Controllers
                 Address = "WenYiXiLu #552"
             };
 
-            _apiController.Post(dto)
-                .ContinueWith(t =>
-                {
-                    if (t.IsFaulted)
-                    {
-                        Trace.WriteLine(t.Exception.Message + "\r\n" + t.Exception.StackTrace);
-                        return;
-                    }
-                    Trace.WriteLine("success");
-                }).GetAwaiter().GetResult();
+            TestUtil.AssertSync(() => _apiController.Post(dto), output);
+
+            //_apiController.Post(dto)
+            //    .ContinueWith(t =>
+            //    {
+            //        if (t.IsFaulted)
+            //        {
+
+            //            Trace.WriteLine(t.Exception.Message + "\r\n" + t.Exception.StackTrace);
+            //        }
+            //        Assert.True(t.IsCompletedSuccessfully);
+            //    }).GetAwaiter().GetResult();
 
         }
 
         public void Dispose()
         {
             Startup.Clear();
-            throw new NotImplementedException();
+          
         }
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration.Xml;
 using Microsoft.Extensions.FileProviders;
+using Evol.TMovie.Manage.Apis;
 
 namespace Evol.TMovie.Manage.Tests
 {
@@ -43,7 +44,10 @@ namespace Evol.TMovie.Manage.Tests
             AppConfig.ConfigServiceProvider(_services.BuildServiceProvider());
 
             _services.AddMvc();
+            _services.AddTransient<CinemaApiController>();
             _serviceProvider = _services.BuildServiceProvider();
+            AppConfig.ConfigServiceProvider(_serviceProvider);
+            
         }
 
 
