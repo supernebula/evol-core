@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Evol.TMovie.Website.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
 

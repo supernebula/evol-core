@@ -9,11 +9,12 @@ using Evol.TMovie.Manage.Models;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
 using Evol.TMovie.Domain.Commands.Dto;
-using Evol.TMovie.Domain.Dto;
+using Evol.Domain.Dto;
 using Evol.Web.Exceptions;
 using Evol.TMovie.Domain.Commands;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Evol.Util.Serialization;
+using Evol.TMovie.Domain.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,13 +24,13 @@ namespace Evol.TMovie.Manage.Apis
     /// 影院CURD
     /// </summary>
     [Route("api/[controller]")]
-    public class CinemaController : Controller
+    public class CinemaApiController : Controller
     {
         public ICinemaQueryEntry CinemaQueryEntry { get; set; }
 
         public ICommandBus CommandBus { get; set; }
 
-        public CinemaController(ICinemaQueryEntry cinemaQueryEntry, ICommandBus commandBus)
+        public CinemaApiController(ICinemaQueryEntry cinemaQueryEntry, ICommandBus commandBus)
         {
             CinemaQueryEntry = cinemaQueryEntry;
             CommandBus = commandBus;

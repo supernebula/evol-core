@@ -7,7 +7,7 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class CinemaUpdateDto : CinemaCreateDto, IInputDto, ICanOptionMapTo<Cinema>
+    public class CinemaUpdateDto : CinemaCreateDto, IInputDto, ICanConfigMapTo<Cinema>
     {
 
         public Guid Id { get; set; }

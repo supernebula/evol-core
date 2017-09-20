@@ -6,7 +6,7 @@ using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Manage.Models
 {
-    public class PermissonViewModel : IOutputDto, ICanOptionMapFrom<Permission>
+    public class PermissonViewModel : IOutputDto, ICanConfigMapFrom<Permission>
     {
         public Guid Id { get; set; }
 

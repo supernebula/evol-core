@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
-namespace Evol.TMovie.Domain.Dto
+namespace Evol.Domain.Dto
 {
     /// <summary>
     /// object-object mapper , <see cref="IObjectMapExtensions"/>
@@ -36,16 +36,16 @@ namespace Evol.TMovie.Domain.Dto
             maplist.AddRange(pairs2);
 
             maplist.ForEach(pair => {
-                if (IsImplInterface(pair.Source, typeof(ICanOptionMapTo<>)))
+                if (IsImplInterface(pair.Source, typeof(ICanConfigMapTo<>)))
                 {
-                    var dto = (ICanOptionMapTo)Activator.CreateInstance(pair.Source);
+                    var dto = (ICanConfigMapTo)Activator.CreateInstance(pair.Source);
                     dto.ConfigMap(mapConfig);
                     return;
                 }
 
-                if (IsImplInterface(pair.Destination, typeof(ICanOptionMapFrom<>)))
+                if (IsImplInterface(pair.Destination, typeof(ICanConfigMapFrom<>)))
                 {
-                    var dto = (ICanOptionMapFrom)Activator.CreateInstance(pair.Destination);
+                    var dto = (ICanConfigMapFrom)Activator.CreateInstance(pair.Destination);
                     dto.ConfigMap(mapConfig);
                     return;
                 }

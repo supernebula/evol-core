@@ -4,7 +4,7 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.Repositories;
 using System;
 using System.Collections.Generic;
-using Evol.TMovie.Domain.Dto;
+using Evol.Domain.Dto;
 using System.Threading.Tasks;
 using Evol.Domain.Events;
 

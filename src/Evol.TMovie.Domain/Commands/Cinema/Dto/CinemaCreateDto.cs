@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class CinemaCreateDto : IInputDto, ICanOptionMapTo<Cinema>
+    public class CinemaCreateDto : IInputDto, ICanConfigMapTo<Cinema>
     {
 
         [Required]

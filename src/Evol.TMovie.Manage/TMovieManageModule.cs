@@ -1,7 +1,7 @@
 ﻿using Evol.Domain.Modules;
 using Evol.TMovie.Data;
 using Evol.TMovie.Domain;
-using Evol.TMovie.Domain.Dto;
+using Evol.Domain.Dto;
 using System.Reflection;
 
 namespace Evol.TMovie.Manage

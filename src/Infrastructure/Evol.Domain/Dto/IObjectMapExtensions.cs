@@ -2,7 +2,7 @@
 using Evol.Common;
 using System.Collections.Generic;
 
-namespace Evol.TMovie.Domain.Dto
+namespace Evol.Domain.Dto
 {
     /// <summary>
     /// Object-object mapping

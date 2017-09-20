@@ -5,7 +5,7 @@ using Evol.TMovie.Domain.Repositories;
 using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.Domain.Events;
-using Evol.TMovie.Domain.Dto;
+using Evol.Domain.Dto;
 using System.Collections.Generic;
 using Evol.TMovie.Domain.Events;
 

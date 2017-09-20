@@ -4,14 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Evol.TMovie.Domain.Dto
+namespace Evol.Domain.Dto
 {
 
-    public interface ICanOptionMapFrom<TTo> : ICanOptionMapFrom, ICanMapFrom<TTo>
+    public interface ICanConfigMapFrom<TTo> : ICanConfigMapFrom, ICanMapFrom<TTo>
     {
     }
 
-    public interface ICanOptionMapFrom
+    public interface ICanConfigMapFrom
     {
         void ConfigMap(MapperConfigurationExpression mapConfig);
 

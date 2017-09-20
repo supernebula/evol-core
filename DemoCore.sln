@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
 EndProject
@@ -92,7 +92,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovieLog.Data", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Manage", "src\Evol.TMovie.Manage\Evol.TMovie.Manage.csproj", "{7356A510-85AF-419F-AC9C-83B130049120}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Logging.Tests", "Evol.Logging.Tests\Evol.Logging.Tests.csproj", "{E643F985-0726-436F-BE97-2252CBEE221C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.TMovie.Manage.Tests", "test\Evol.TMovie.Tests\Evol.TMovie.Manage.Tests.csproj", "{F6AB0976-8001-493F-9417-82EBF3799869}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Logging.Tests", "test\Evol.Logging.Tests\Evol.Logging.Tests.csproj", "{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -220,10 +222,14 @@ Global
 		{7356A510-85AF-419F-AC9C-83B130049120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7356A510-85AF-419F-AC9C-83B130049120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7356A510-85AF-419F-AC9C-83B130049120}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E643F985-0726-436F-BE97-2252CBEE221C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E643F985-0726-436F-BE97-2252CBEE221C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E643F985-0726-436F-BE97-2252CBEE221C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E643F985-0726-436F-BE97-2252CBEE221C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6AB0976-8001-493F-9417-82EBF3799869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6AB0976-8001-493F-9417-82EBF3799869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6AB0976-8001-493F-9417-82EBF3799869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6AB0976-8001-493F-9417-82EBF3799869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -263,7 +269,8 @@ Global
 		{E1E57B6C-50F8-455C-92E3-2E5C0436199D} = {E2F93D07-2E8C-493F-AE72-ED812E083CF1}
 		{4D9CA517-11E2-4FC3-B2C4-354346776714} = {8B542B00-87DC-489A-9166-981260EE1AF6}
 		{7356A510-85AF-419F-AC9C-83B130049120} = {8B542B00-87DC-489A-9166-981260EE1AF6}
-		{E643F985-0726-436F-BE97-2252CBEE221C} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
+		{F6AB0976-8001-493F-9417-82EBF3799869} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
+		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCE97902-2004-4E22-84BB-3C7593359A8B}

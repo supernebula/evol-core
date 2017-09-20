@@ -1,9 +1,12 @@
 ﻿using Evol.Domain.Dto;
+using Evol.TMovie.Domain.Dto;
+using Evol.TMovie.Domain.Models.AggregateRoots;
 using System;
+using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Website.Models.CinemaViewModels
 {
-    public class CinemaViewModel : IOutputDto
+    public class CinemaViewModel : IOutputDto, ICanConfigMapFrom<Cinema>
     {
         public Guid Id { get; set; }
 
@@ -12,5 +15,10 @@ namespace Evol.TMovie.Website.Models.CinemaViewModels
         public string Address { get; set; }
 
         public DateTime CreateTime { get; set; }
+
+        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        {
+            mapConfig.CreateMap<Cinema, CinemaViewModel>();
+        }
     }
 }

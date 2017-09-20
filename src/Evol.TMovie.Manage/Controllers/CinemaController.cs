@@ -10,8 +10,9 @@ using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Messaging;
 using Evol.TMovie.Domain.Commands;
 using Evol.TMovie.Manage.Models;
-using Evol.TMovie.Domain.Dto;
+using Evol.Domain.Dto;
 using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.TMovie.Domain.Dto;
 
 namespace Evol.TMovie.Manage.Controllers
 {
