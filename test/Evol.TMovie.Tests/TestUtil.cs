@@ -20,8 +20,18 @@ namespace Evol.TMovie.Manage.Tests
                     if (output != null)
                     {
                         output.WriteLine(t.Exception.Message + "\r\n" + t.Exception.StackTrace);
-                        if (t.Exception.InnerException != null)
-                            output.WriteLine("Message:\r\n" + t.Exception.InnerException.Message + "\r\n\r\nSource:\r\n" + t.Exception.InnerException.Source + "\r\n\r\nStackTrace:\r\n" + t.Exception.InnerException.StackTrace);
+                        output.WriteLine("\r\n\r\n");
+
+                        foreach (var exceptionItem in t.Exception.InnerExceptions)
+                        {
+                            var exception = exceptionItem;
+                            while (exception != null)
+                            {
+                                output.WriteLine(exception.Message + "\r\n" + exception.StackTrace);
+                                output.WriteLine("\r\n\r\n");
+                                exception = exception.InnerException;
+                            }
+                        }
                     }
                    
                 }

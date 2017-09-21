@@ -30,22 +30,11 @@ namespace Evol.TMovie.Manage.Tests.Controllers
         {
             var dto = new CinemaCreateDto()
             {
-                Name = "UME Cinema",
-                Address = "WenYiXiLu #552"
+                Name = "UME Cinema_" + DateTime.Now.Minute + DateTime.Now.Second,
+                Address = "WenYiXiLu #552-" +DateTime.Now.Second
             };
 
             TestUtil.AssertSync(() => _apiController.Post(dto), output);
-
-            //_apiController.Post(dto)
-            //    .ContinueWith(t =>
-            //    {
-            //        if (t.IsFaulted)
-            //        {
-
-            //            Trace.WriteLine(t.Exception.Message + "\r\n" + t.Exception.StackTrace);
-            //        }
-            //        Assert.True(t.IsCompletedSuccessfully);
-            //    }).GetAwaiter().GetResult();
 
         }
 

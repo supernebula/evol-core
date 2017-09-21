@@ -23,7 +23,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
             var item = command.Input.Map<Cinema>();
             item.Id = Guid.NewGuid();
             item.Name = item.Name ?? string.Empty;
-            item.Name = item.Address ?? string.Empty;
+            item.Address = item.Address ?? string.Empty;
             item.CreateTime = DateTime.Now;
             await CinemaRepository.InsertAsync(item);
         }

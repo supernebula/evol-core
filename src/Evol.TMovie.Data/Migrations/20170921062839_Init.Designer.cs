@@ -12,8 +12,8 @@ using System;
 namespace Evol.TMovie.Data.Migrations
 {
     [DbContext(typeof(TMovieDbContext))]
-    [Migration("20170920155631_initdb")]
-    partial class initdb
+    [Migration("20170921062839_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
