@@ -34,5 +34,10 @@ namespace Evol.TMovie.Data.QueryEntries
                 return await base.PagedAsync(pageIndex, pageSize);
             return await base.PagedAsync(e => e.Name.Contains(param.Name), pageIndex, pageSize);
         }
+
+        public Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

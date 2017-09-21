@@ -15,5 +15,7 @@ namespace Evol.TMovie.Domain.QueryEntries
         Task<List<Cinema>> RetrieveAsync(CinemaQueryParameter param);
 
         Task<IPaged<Cinema>> PagedAsync(CinemaQueryParameter param, int pageIndex, int pageSize);
+
+        Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId);
     }
 }

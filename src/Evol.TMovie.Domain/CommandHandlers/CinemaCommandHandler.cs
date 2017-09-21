@@ -12,11 +12,14 @@ namespace Evol.TMovie.Domain.CommandHandlers
 {
     public class CinemaCommandHandler : ICommandHandler<CinemaCreateCommand>, ICommandHandler<CinemaUpdateCommand>, ICommandHandler<CinemaDeleteCommand>
     {
-        public ICinemaRepository CinemaRepository { get; set; }
+        public ICinemaRepository CinemaRepository { get; private set; }
 
-        public CinemaCommandHandler(ICinemaRepository cinemaRepository)
+        public IEventBus EventBus { get; private set; }
+
+        public CinemaCommandHandler(ICinemaRepository cinemaRepository, IEventBus eventBus)
         {
             CinemaRepository = cinemaRepository;
+            EventBus = eventBus;
         }
         public async Task ExecuteAsync(CinemaCreateCommand command)
         {
@@ -26,6 +29,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
             item.Address = item.Address ?? string.Empty;
             item.CreateTime = DateTime.Now;
             await CinemaRepository.InsertAsync(item);
+            //EventBus.PublishAsync<CinemaCreateEvent>();
         }
 
         public async Task ExecuteAsync(CinemaUpdateCommand command)

@@ -31,7 +31,7 @@ namespace Evol.Domain.Dto
         /// <summary>
         /// Object-object mapping for Collection
         /// </summary>
-        public static IEnumerable<TTo> MapList<TTo>(this IEnumerable<object> source) where TTo : new()
+        public static List<TTo> MapList<TTo>(this IEnumerable<object> source) where TTo : new()
         {
             var tos = new List<TTo>();
             foreach (var item in source)

@@ -39,7 +39,7 @@ namespace Evol.Domain.Messaging
                 .ContinueWith(t => {
                     if (t.Exception == null)
                         return;
-                    _logger.LogError(t.Exception, "在处理ForkHandleAttribute标记的异步方法时发生异常");
+                    _logger.LogError(t.Exception, $"在处理{nameof(ForkHandleAttribute)}标记的异步方法时发生异常");
                 });
         }
     }
