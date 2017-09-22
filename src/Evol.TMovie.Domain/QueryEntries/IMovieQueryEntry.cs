@@ -13,7 +13,9 @@ namespace Evol.TMovie.Domain.QueryEntries
     {
         Task<Movie> FindAsync(Guid id);
 
-        Task<List<Movie>> RetrieveAsync(MovieQueryParameter param);
+        Task<List<Movie>> SelectAsync(Guid[] ids);
+
+        Task<List<Movie>> SelectAsync(MovieQueryParameter param);
 
         Task<IPaged<Movie>> PagedAsync(int index, int size);
 

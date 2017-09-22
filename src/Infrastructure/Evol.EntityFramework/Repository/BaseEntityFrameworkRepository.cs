@@ -84,6 +84,12 @@ namespace Evol.EntityFramework.Repository
         }
 
 
+        public async Task<List<T>> SelectAsync(Guid[] ids)
+        {
+            return await DbSet.Where(e => ids.Contains(e.Id)).ToListAsync();
+        }
+
+
         public T Find(Expression<Func<T, bool>> predicate)
         {
             return DbSet.FirstOrDefault(predicate);

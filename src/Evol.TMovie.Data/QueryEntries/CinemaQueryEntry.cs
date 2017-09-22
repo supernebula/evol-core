@@ -14,9 +14,15 @@ namespace Evol.TMovie.Data.QueryEntries
 {
     public class CinemaQueryEntry : BaseEntityFrameworkQuery<Cinema, TMovieDbContext>, ICinemaQueryEntry
     {
+        public IScreeningQueryEntry ScreeningQuery { get; private set; }
 
-        public CinemaQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
+        public IMovieQueryEntry MovieQuery { get; private set; }
+
+        public CinemaQueryEntry( IEfDbContextProvider efDbContextProvider, IScreeningQueryEntry screeningQuery, IMovieQueryEntry movieQuery) 
+            : base(efDbContextProvider)
         {
+            ScreeningQuery = screeningQuery;
+            MovieQuery = movieQuery;
         }
 
         public async Task<List<Cinema>> RetrieveAsync(CinemaQueryParameter param)
@@ -35,9 +41,12 @@ namespace Evol.TMovie.Data.QueryEntries
             return await base.PagedAsync(e => e.Name.Contains(param.Name), pageIndex, pageSize);
         }
 
-        public Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId)
+        public async Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId)
         {
-            throw new NotImplementedException();
+            var screens = await ScreeningQuery.RetrieveAsync(new ScreeningQueryParameter { CinemaId = cinemaId });
+            var movieIds = screens.Select(e => e.MovieId).ToArray();
+            var movies = await MovieQuery.SelectAsync(movieIds);
+            return movies;
         }
     }
 }

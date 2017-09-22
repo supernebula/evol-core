@@ -23,6 +23,12 @@ namespace Evol.EntityFramework.Repository
             return await innerBaseRepository.FindAsync(id);
         }
 
+
+        public virtual async Task<List<T>> SelectAsync(Guid[] ids)
+        {
+            return await innerBaseRepository.SelectAsync(ids);
+        }
+
         public async Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize)
         {
             return await innerBaseRepository.PagedAsync(pageIndex, pageSize);

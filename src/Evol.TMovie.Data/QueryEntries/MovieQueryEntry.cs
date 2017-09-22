@@ -20,8 +20,13 @@ namespace Evol.TMovie.Data.QueryEntries
         {
         }
 
+        public override async Task<List<Movie>> SelectAsync(Guid[] ids)
+        {
+            return await base.SelectAsync(ids);
+        }
 
-        public Task<List<Movie>> RetrieveAsync(MovieQueryParameter param)
+
+        public Task<List<Movie>> SelectAsync(MovieQueryParameter param)
         {
             throw new NotImplementedException();
         } 
@@ -30,5 +35,7 @@ namespace Evol.TMovie.Data.QueryEntries
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

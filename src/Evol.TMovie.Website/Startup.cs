@@ -9,6 +9,7 @@ using Evol.TMovie.Data;
 using Evol.Domain;
 using System.Threading.Tasks;
 using Evol.Web.Middlewares;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Evol.TMovie.Website
 {
@@ -88,6 +89,15 @@ namespace Evol.TMovie.Website
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TmAPI V1");
             });
         }
     }

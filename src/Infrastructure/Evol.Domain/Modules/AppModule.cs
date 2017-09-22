@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Evol.Domain.Modules
 {
     /// <summary>
-    /// 模型（目前每个项目看作一个模块）初始化
+    /// 模块（目前每个项目看作一个模块）初始化
     /// </summary>
     public abstract class AppModule
     {
