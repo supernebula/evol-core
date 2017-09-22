@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    class ScreeningCreateOrUpdateDto : IInputDto, ICanMapTo<Screening>
+    class ScreeningCreateOrUpdateDto : IInputDto, ICanConfigMapTo<Screening>
     {
         public Guid Id { get; set; }
         public Guid MovieId { get; set; }

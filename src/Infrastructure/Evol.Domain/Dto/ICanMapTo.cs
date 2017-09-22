@@ -9,7 +9,7 @@ namespace Evol.Domain.Dto
     ///  such as the Global.asax file for ASP.NET applications.
     /// </summary>
     /// <typeparam name="TTo"></typeparam>
-    public interface ICanMapTo<TTo>
+    public interface ICanConfigMapTo<TTo>
     {
     }
 

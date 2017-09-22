@@ -4,12 +4,12 @@ using Evol.TMovie.Domain.Models.Values;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class MovieCreateOrUpdateDto : IInputDto, ICanMapTo<Movie>
+    public class MovieCreateDto : IInputDto, ICanConfigMapTo<Movie>
     {
-        public Guid Id { get; set; }
 
         public Guid ProductId { get; set; }
 
@@ -82,5 +82,10 @@ namespace Evol.TMovie.Domain.Commands.Dto
         /// 语言
         /// </summary>
         public string Language { get; set; }
+
+        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        {
+            mapConfig.CreateMap<MovieCreateDto, Movie>();
+        }
     }
 }

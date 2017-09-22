@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class ScreeningRoomCreateOrUpdateDto : IInputDto, ICanMapTo<ScreeningRoom>
+    public class ScreeningRoomCreateOrUpdateDto : IInputDto, ICanConfigMapTo<ScreeningRoom>
     {
         public Guid Id { get; set; }
         public Guid CinemaId { get; set; }

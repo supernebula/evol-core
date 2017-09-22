@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class EmployeeCreateOrUpdateDto : IInputDto, ICanMapTo<Employee>
+    public class EmployeeCreateOrUpdateDto : IInputDto, ICanConfigMapTo<Employee>
     {
         public Guid Id { get; set; }
 

@@ -6,6 +6,6 @@ namespace Evol.TMovie.Domain.Commands
 {
     public class MovieUpdateCommand : Command
     {
-        public MovieCreateOrUpdateDto Input { get; set; }
+        public MovieUpdateDto Input { get; set; }
     }
 }
