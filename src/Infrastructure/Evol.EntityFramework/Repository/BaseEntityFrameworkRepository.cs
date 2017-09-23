@@ -14,7 +14,7 @@ namespace Evol.EntityFramework.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
-    public abstract class BaseEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey
+    public abstract class BaseEntityFrameworkRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey, new()
     {
         private TDbContext _context;
 
@@ -58,19 +58,24 @@ namespace Evol.EntityFramework.Repository
             await DbSet.AddRangeAsync(items);
         }
 
-        public void Delete(T item)
+        public Task DeleteAsync(T item)
         {
             DbSet.Remove(item);
+            return Task.FromResult(1);
         }
 
-        public void Delete(Guid id)
+        public Task DeleteAsync(Guid id)
         {
-            var item = Find(id);
-            Delete(item);
-        }
+            //方式一: 先创建附加，再删除。一次数据库操作
+            var delObj = new T() { Id = id };
+            DbSet.Attach(delObj);
+            DbSet.Remove(delObj);
+            return Task.FromResult(1);
 
-        public void DeleteAsync(Guid id)
-        {
+            ////方式二： 先查找，在删除（EF官方推荐）。两次数据库操作
+            //var item = await DbSet.FindAsync(id);
+            //DbSet.Remove(item);
+
 
         }
 
