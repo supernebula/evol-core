@@ -9,11 +9,13 @@ namespace Evol.Domain.Data
 {
     public interface IRepository<T> where T : IPrimaryKey
     {
-        Task InsertAsync(T entity);
 
-        T Find(Guid id);
+
+        //T Find(Guid id);
 
         Task<T> FindAsync(Guid id);
+
+        Task<IEnumerable<T>> SelectAsync(Guid[] ids);
 
         T Find(Expression<Func<T, bool>> predicate);
 
@@ -21,21 +23,23 @@ namespace Evol.Domain.Data
 
         IQueryable<T> Query();
 
-        IEnumerable<T> Retrieve(Expression<Func<T, bool>> predicate);
+        //IEnumerable<T> Retrieve(Expression<Func<T, bool>> predicate);
 
         Task<IEnumerable<T>> RetrieveAsync(Expression<Func<T, bool>> predicate);
 
-        void Update(T item);
+        Task InsertAsync(T entity);
 
-        void Delete(T item);
+        Task UpdateAsync(T item);
 
-        void Delete(Guid id);
+        Task DeleteAsync(T item);
 
-        IPaged<T> Paged(int index, int size);
+        Task DeleteAsync(Guid id);
+
+        //IPaged<T> Paged(int index, int size);
 
         Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize);
 
-        IPaged<T> Paged(Expression<Func<T, bool>> predicate, int index, int size);
+        //IPaged<T> Paged(Expression<Func<T, bool>> predicate, int index, int size);
 
         Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize);
 

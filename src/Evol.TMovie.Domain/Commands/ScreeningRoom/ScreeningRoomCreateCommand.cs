@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Evol.TMovie.Domain.Commands.Dto;
+using Evol.Domain.Commands;
 
 namespace Evol.TMovie.Domain.Commands
 {
-    class ScreeningRoomCreateCommand
+    public class ScreeningRoomCreateCommand : Command
     {
+        public ScreeningRoomCreateDto Input { get; set; }
     }
 }

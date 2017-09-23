@@ -69,6 +69,11 @@ namespace Evol.EntityFramework.Repository
             Delete(item);
         }
 
+        public void DeleteAsync(Guid id)
+        {
+
+        }
+
         public void Save()
         {
             //wait for Context.SaveChange(),  item is being tracked object
@@ -120,6 +125,12 @@ namespace Evol.EntityFramework.Repository
 
         public void Update(T item)
         {
+            //wait for Context.SaveChange(),  item is being tracked object
+        }
+
+        public Task UpdateAsync(T item)
+        {
+            return Task.FromResult(1);
             //wait for Context.SaveChange(),  item is being tracked object
         }
 

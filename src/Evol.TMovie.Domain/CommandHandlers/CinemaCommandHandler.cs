@@ -10,7 +10,10 @@ using Evol.Domain.Events;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
-    public class CinemaCommandHandler : ICommandHandler<CinemaCreateCommand>, ICommandHandler<CinemaUpdateCommand>, ICommandHandler<CinemaDeleteCommand>
+    public class CinemaCommandHandler : 
+        ICommandHandler<CinemaCreateCommand>, 
+        ICommandHandler<CinemaUpdateCommand>, 
+        ICommandHandler<CinemaDeleteCommand>
     {
         public ICinemaRepository CinemaRepository { get; private set; }
 
@@ -24,11 +27,10 @@ namespace Evol.TMovie.Domain.CommandHandlers
         {
             var item = command.Input.Map<Cinema>();
             item.Id = Guid.NewGuid();
-            item.Name = item.Name ?? string.Empty;
-            item.Address = item.Address ?? string.Empty;
+            item.Name = item.Name;
+            item.Address = item.Address;
             item.CreateTime = DateTime.Now;
             await CinemaRepository.InsertAsync(item);
-            //EventBus.PublishAsync<CinemaCreateEvent>();
         }
 
         public async Task ExecuteAsync(CinemaUpdateCommand command)
@@ -38,13 +40,12 @@ namespace Evol.TMovie.Domain.CommandHandlers
                 throw new KeyNotFoundException();
             item.Name = command.Input.Name;
             item.Address = command.Input.Address;
-            CinemaRepository.Update(item);
+            await CinemaRepository.UpdateAsync(item);
         }
 
-        public Task ExecuteAsync(CinemaDeleteCommand command)
+        public async Task ExecuteAsync(CinemaDeleteCommand command)
         {
-            CinemaRepository.Delete(command.Input.Id);
-            return Task.FromResult(1);
+            await CinemaRepository.DeleteAsync(command.Input.Id);
         }
     }
 }

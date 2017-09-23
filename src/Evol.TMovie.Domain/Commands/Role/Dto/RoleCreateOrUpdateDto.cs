@@ -3,6 +3,7 @@ using Evol.Domain.Dto;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using System;
 using System.ComponentModel.DataAnnotations;
+using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
@@ -21,5 +22,10 @@ namespace Evol.TMovie.Domain.Commands.Dto
         [Required]
         [StringLength(500, MinimumLength = 0)]
         public string Description { get; set; }
+
+        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

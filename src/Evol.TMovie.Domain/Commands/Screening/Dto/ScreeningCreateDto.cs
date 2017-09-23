@@ -2,14 +2,12 @@
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.Models.Values;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    class ScreeningCreateOrUpdateDto : IInputDto, ICanConfigMapTo<Screening>
+    public class ScreeningCreateDto : IInputDto, ICanConfigMapTo<Screening>
     {
-        public Guid Id { get; set; }
         public Guid MovieId { get; set; }
 
         public Guid CinemaId { get; set; }
@@ -27,5 +25,10 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
 
         public SpaceDimensionType SpaceType { get; set; }
+
+        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        {
+            mapConfig.CreateMap<ScreeningCreateDto, Screening>();
+        }
     }
 }

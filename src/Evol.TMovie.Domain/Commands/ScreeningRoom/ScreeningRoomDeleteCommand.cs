@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Evol.Domain.Commands;
+using Evol.TMovie.Domain.Dto;
 
 namespace Evol.TMovie.Domain.Commands
 {
-    class ScreeningRoomDeleteCommand
+    public class ScreeningRoomDeleteCommand : Command
     {
+        public ItemDeleteDto Input { get; set; }
     }
 }

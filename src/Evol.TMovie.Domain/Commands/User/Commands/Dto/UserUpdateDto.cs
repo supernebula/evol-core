@@ -1,29 +1,30 @@
-﻿using AutoMapper;
-using Evol.Domain.Dto;
+﻿using Evol.Domain.Dto;
 using Evol.TMovie.Domain.Models.AggregateRoots;
-using System;
-using System.ComponentModel.DataAnnotations;
 using AutoMapper.Configuration;
+using System;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class EmployeeCreateOrUpdateDto : IInputDto, ICanConfigMapTo<Employee>
+    public class UserUpdateDto : IInputDto, ICanConfigMapTo<User>
     {
         public Guid Id { get; set; }
 
-        [Required]
-        [StringLength(20, MinimumLength = 1)]
         public string Username { get; set; }
 
-        [Required]
-        [StringLength(20, MinimumLength = 1)]
         public string Password { get; set; }
+
+        public string Salt { get; set; }
 
         public string RealName { get; set; }
 
+        public string Email { get; set; }
+
+        public string Mobile { get; set; }
+
         public void ConfigMap(MapperConfigurationExpression mapConfig)
         {
-            throw new NotImplementedException();
+            mapConfig.CreateMap<UserUpdateDto, User>();
         }
     }
 }
+
