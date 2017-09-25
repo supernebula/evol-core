@@ -17,11 +17,12 @@ namespace Evol.TMovie.Domain.CommandHandlers
     {
         public ICinemaRepository CinemaRepository { get; private set; }
 
-        //public IEventBus EventBus { get; private set; }
+        public IEventBus EventBus { get; private set; }
 
-        public CinemaCommandHandler(ICinemaRepository cinemaRepository)
+        public CinemaCommandHandler(ICinemaRepository cinemaRepository, IEventBus eventBus)
         {
             CinemaRepository = cinemaRepository;
+            EventBus = eventBus;
         }
         public async Task ExecuteAsync(CinemaCreateCommand command)
         {

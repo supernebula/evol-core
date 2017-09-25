@@ -21,7 +21,7 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
         public void ConfigMap(MapperConfigurationExpression mapConfig)
         {
-            throw new NotImplementedException();
+            mapConfig.CreateMap<PermissionCreateOrUpdateDto, Permission>();
         }
     }
 }

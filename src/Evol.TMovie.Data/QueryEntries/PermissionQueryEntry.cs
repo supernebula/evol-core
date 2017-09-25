@@ -31,7 +31,7 @@ namespace Evol.TMovie.Data.QueryEntries
             else
                 query = e => true;
 
-            var list = (await base.RetrieveAsync(query)).ToList();
+            var list = (await base.SelectAsync(query)).ToList();
             return list;
         }
 
@@ -53,7 +53,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Permission>> GetByPermissionIdsAsync(Guid[] ids)
         {
-            return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
+            return (await base.SelectAsync(e => ids.Contains(e.Id))).ToList();
         }
 
         public Task<List<Permission>> AllAsync()

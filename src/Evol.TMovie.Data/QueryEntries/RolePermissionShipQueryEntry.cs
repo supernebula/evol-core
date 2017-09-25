@@ -46,7 +46,7 @@ namespace Evol.TMovie.Data.QueryEntries
             else
                 query = e => true;
 
-            var list = (await base.RetrieveAsync(query)).ToList();
+            var list = (await base.SelectAsync(query)).ToList();
             return list;
         }
 
@@ -69,7 +69,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Permission>> GetPermissionsAsync(Guid roleId)
         {
-            var list = (await base.RetrieveAsync(e => e.RoleId == roleId)).ToList();
+            var list = (await base.SelectAsync(e => e.RoleId == roleId)).ToList();
             var permissionIds = list.Select(e => e.PermissionId).ToArray();
             var result = await _permissionQueryEntry.GetByPermissionIdsAsync(permissionIds);
             return result;
@@ -77,7 +77,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Permission>> GetPermissionsAsync(Guid[] roleIds)
         {
-            var list = (await base.RetrieveAsync(e => roleIds.Contains(e.RoleId))).ToList();
+            var list = (await base.SelectAsync(e => roleIds.Contains(e.RoleId))).ToList();
             var permissionIds = list.Select(e => e.PermissionId).ToArray();
             var result = await _permissionQueryEntry.GetByPermissionIdsAsync(permissionIds);
             return result;
@@ -85,7 +85,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Role>> GetRolesByPermissionAsync(Guid permissionId)
         {
-            var list = (await base.RetrieveAsync(e => e.PermissionId == permissionId)).ToList();
+            var list = (await base.SelectAsync(e => e.PermissionId == permissionId)).ToList();
             var roleIds = list.Select(e => e.RoleId).ToArray();
             var result = await _roleQueryEntry.GetByIdsAsync(roleIds);
             return result;

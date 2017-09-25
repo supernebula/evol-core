@@ -41,7 +41,7 @@ namespace Evol.EntityFramework.Repository.Test
             var users = CreateOneUser(total);
             var time1 = sw.ElapsedMilliseconds;
             sw.Restart();
-            fakeUserRepo.InsertRange(users);
+            fakeUserRepo.InsertRangeAsync(users).GetAwaiter();
             context.SaveChanges();
             sw.Stop();
             context.Dispose();
@@ -82,7 +82,7 @@ namespace Evol.EntityFramework.Repository.Test
             sw.Start();
 
             var user = CreateOneUser();
-            fakeUserRepo.Insert(user);
+            fakeUserRepo.InsertAsync(user).GetAwaiter();
             context.SaveChanges();
             sw.Stop();
             Trace.WriteLine("Insert " + 1 + ", 毫秒：" + sw.ElapsedMilliseconds);

@@ -38,19 +38,10 @@ namespace Evol.EntityFramework.Repository
             DbContextProvider = dbContextProvider;
         }
 
-        public void Insert(T item)
-        {
-            DbSet.Add(item);
-        }
 
         public async Task InsertAsync(T item)
         {
             await DbSet.AddAsync(item);
-        }
-
-        public void InsertRange(IEnumerable<T> items)
-        {
-            DbSet.AddRange(items);
         }
 
         public async Task InsertRangeAsync(IEnumerable<T> items)
@@ -75,8 +66,6 @@ namespace Evol.EntityFramework.Repository
             ////方式二： 先查找，在删除（EF官方推荐）。两次数据库操作
             //var item = await DbSet.FindAsync(id);
             //DbSet.Remove(item);
-
-
         }
 
         public void Save()
@@ -84,25 +73,9 @@ namespace Evol.EntityFramework.Repository
             //wait for Context.SaveChange(),  item is being tracked object
         }
 
-        public T Find(Guid id)
-        {
-            return DbSet.Find(id);
-        }
         public async Task<T> FindAsync(Guid id)
         {
             return await DbSet.FindAsync(id);
-        }
-
-
-        public async Task<List<T>> SelectAsync(Guid[] ids)
-        {
-            return await DbSet.Where(e => ids.Contains(e.Id)).ToListAsync();
-        }
-
-
-        public T Find(Expression<Func<T, bool>> predicate)
-        {
-            return DbSet.FirstOrDefault(predicate);
         }
 
         public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
@@ -110,7 +83,15 @@ namespace Evol.EntityFramework.Repository
             return await DbSet.Where(predicate).FirstOrDefaultAsync();
         }
 
+        public async Task<List<T>> SelectAsync(Guid[] ids)
+        {
+            return await DbSet.Where(e => ids.Contains(e.Id)).ToListAsync();
+        }
 
+        public async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await DbSet.Where(predicate).ToListAsync();
+        }
 
         public IQueryable<T> Query()
         {
@@ -118,15 +99,6 @@ namespace Evol.EntityFramework.Repository
         }
 
 
-        public IEnumerable<T> Retrieve(Expression<Func<T, bool>> predicate)
-        {
-            return DbSet.Where(predicate);
-        }
-
-        public async Task<IEnumerable<T>> RetrieveAsync(Expression<Func<T, bool>> predicate)
-        {
-            return await DbSet.Where(predicate).ToListAsync();
-        }
 
         public void Update(T item)
         {
@@ -139,36 +111,15 @@ namespace Evol.EntityFramework.Repository
             //wait for Context.SaveChange(),  item is being tracked object
         }
 
-        public bool Any(Expression<Func<T, bool>> predicate)
-        {
-            return DbSet.Any(predicate);
-        }
-
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
         {
             return await DbSet.AnyAsync(predicate);
-        }
-
-        public IPaged<T> Paged(int pageIndex, int pageSize)
-        {
-            var total = DbSet.Count();
-            var list = DbSet.OrderBy(e => e.Id).Skip(pageIndex*(pageSize - 1)).Take(pageSize).ToList();
-            var paged = new PagedList<T>(list, total, pageIndex, pageSize);
-            return paged;
         }
 
         public async Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize)
         {
             var total = await DbSet.CountAsync();
             var list = await DbSet.OrderBy(e => e.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
-            var paged = new PagedList<T>(list, total, pageIndex, pageSize);
-            return paged;
-        }
-
-        public IPaged<T> Paged(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
-        {
-            var total = DbSet.Count(predicate);
-            var list = DbSet.OrderBy(e => e.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             var paged = new PagedList<T>(list, total, pageIndex, pageSize);
             return paged;
         }
@@ -184,5 +135,6 @@ namespace Evol.EntityFramework.Repository
             var paged = new PagedList<T>(list, total, pageIndex, pageSize);
             return paged;
         }
+
     }
 }

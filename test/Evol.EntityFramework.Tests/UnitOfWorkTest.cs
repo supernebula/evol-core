@@ -41,8 +41,8 @@ namespace Evol.EntityFramework.Repository.Test
             try
             {
                 //orderRepo.Insert(FakeOrder.Fake());
-                productRepo.Insert(FakeProduct.Fake());
-                userRepo.Insert(FakeUser.Fake());
+                productRepo.InsertAsync(FakeProduct.Fake()).GetAwaiter();
+                userRepo.InsertAsync(FakeUser.Fake()).GetAwaiter();
                 unitOfWorkObj.CommitAsync().GetAwaiter().GetResult();
             }
             catch (Exception ex)

@@ -19,7 +19,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Employee>> GetByIdsAsync(Guid[] ids)
         {
-            return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
+            return (await base.SelectAsync(e => ids.Contains(e.Id))).ToList();
         }
 
         public async Task<List<Employee>> RetrieveAsync(EmployeeQueryParameter param)
@@ -30,7 +30,7 @@ namespace Evol.TMovie.Data.QueryEntries
             else
                 query = e => true;
 
-            var list = (await base.RetrieveAsync(query)).ToList();
+            var list = (await base.SelectAsync(query)).ToList();
             return list;
         }
 
@@ -50,7 +50,7 @@ namespace Evol.TMovie.Data.QueryEntries
         {
             if (string.IsNullOrWhiteSpace(username))
                 throw new ArgumentNullException();
-            return (await base.RetrieveAsync(e => e.Username == username)).FirstOrDefault();
+            return (await base.SelectAsync(e => e.Username == username)).FirstOrDefault();
         }
     }
 }

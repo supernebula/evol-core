@@ -29,7 +29,7 @@ namespace Evol.TMovie.Data.QueryEntries
         {
             if (param == null || string.IsNullOrWhiteSpace(param.Name))
                 return new List<Cinema>();
-            var items = await base.RetrieveAsync(e => e.Name.Contains(param.Name));
+            var items = await base.SelectAsync(e => e.Name.Contains(param.Name));
             return items.ToList();
         }
 

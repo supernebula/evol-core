@@ -30,7 +30,7 @@ namespace Evol.TMovie.Data.QueryEntries
                 query = e => e.Title.StartsWith(param.Name);
             else
                 query = e => true;
-            var list = (await base.RetrieveAsync(query)).ToList();
+            var list = (await base.SelectAsync(query)).ToList();
             return list;
         }
 
@@ -56,7 +56,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Role>> GetByIdsAsync(Guid[] ids)
         {
-            return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
+            return (await base.SelectAsync(e => ids.Contains(e.Id))).ToList();
         }
 
         public Task<Role> FindByNameAsync(string name)

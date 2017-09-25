@@ -8,14 +8,14 @@ namespace Evol.Domain.Messaging
 {
     public class EventBus : IEventBus
     {
-        public IEventHandlerFactory _eventHandlerFactory { get; set; }
+        public IEventHandlerFactory _eventHandlerFactory { get; private set; }
 
-        public ILogger _logger { get; set; }
+        public ILogger _logger { get; private set; }
 
-        public EventBus(IEventHandlerFactory eventHandlerFactory, ILogger logger)
+        public EventBus(IEventHandlerFactory eventHandlerFactory, ILoggerFactory loggerFactory)
         {
             _eventHandlerFactory = eventHandlerFactory;
-            _logger = logger;
+            _logger = loggerFactory.CreateLogger<EventBus>();
         }
         
         public async Task PublishAsync<T>(T @event) where T : Event

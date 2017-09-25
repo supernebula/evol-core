@@ -21,12 +21,12 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<User>> GetByIdsAsync(Guid[] ids)
         {
-            return (await base.RetrieveAsync(e => ids.Contains(e.Id))).ToList();
+            return (await base.SelectAsync(e => ids.Contains(e.Id))).ToList();
         }
 
         public async Task<User> FindByUsernameAsync(string username)
         {
-            return (await base.RetrieveAsync(e => e.Username == username)).FirstOrDefault();
+            return (await base.SelectAsync(e => e.Username == username)).FirstOrDefault();
         }
 
         public async Task<List<User>> RetrieveAsync(UserQueryParameter param)
@@ -37,7 +37,7 @@ namespace Evol.TMovie.Data.QueryEntries
             else
                 query = e => true;
 
-            var list = (await base.RetrieveAsync(query)).ToList();
+            var list = (await base.SelectAsync(query)).ToList();
             return list;
         }
 
