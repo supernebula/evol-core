@@ -15,12 +15,12 @@ namespace Evol.Domain.Messaging
             EventHandlerActivator = new DefaultEventHandlerActivator();
         }
 
-        public DefaultEventHandlerFactory(IEventHandlerActivator activator)
-        {
-            if (activator == null)
-                throw new ArgumentNullException(nameof(activator));
-            EventHandlerActivator = activator;
-        }
+        //public DefaultEventHandlerFactory(IEventHandlerActivator activator)
+        //{
+        //    if (activator == null)
+        //        throw new ArgumentNullException(nameof(activator));
+        //    EventHandlerActivator = activator;
+        //}
 
         public IEnumerable<IEventHandler<T>> GetHandler<T>() where T : Event
         {

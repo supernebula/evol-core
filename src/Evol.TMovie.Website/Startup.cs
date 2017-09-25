@@ -10,6 +10,7 @@ using Evol.Domain;
 using System.Threading.Tasks;
 using Evol.Web.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Evol.TMovie.Website
 {
@@ -58,6 +59,7 @@ namespace Evol.TMovie.Website
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddProvider(NullLoggerProvider.Instance);
 
             if (env.IsDevelopment())
             {
