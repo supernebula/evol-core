@@ -15,6 +15,8 @@ namespace Evol.TMovie.Manage
             services.AddScoped<IUnitOfWorkManager, EfUnitOfWorkManager>();
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<ICommandHandlerFactory, DefaultCommandHandlerFactory>();
+            services.AddScoped<IEventBus, EventBus>();
+            services.AddScoped<IEventHandlerFactory, DefaultEventHandlerFactory>();
             services.AddScoped<IEfDbContextProvider, EfDbContextProvider>();
             services.AddScoped<IEfUnitOfWorkDbContextProvider, EfUnitOfWorkDbContextProvider>();
             AppConfig.Current.RegisterAppModuleFrom<TMovieManageModule>();

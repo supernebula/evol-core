@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Evol.TMovie.Data.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
