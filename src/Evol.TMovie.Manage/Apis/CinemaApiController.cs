@@ -123,7 +123,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpPut("{id}")]
         public async Task Put(int id, CinemaUpdateDto value)
         {
-            //if (!TryValidateModel(value))
+            //if(!ModelState.IsValid)
             //{
             //    var errorState = ModelState.Select(e => new KeyValuePair<string, string>(e.Key, e.Value.RawValue.ToString())).ToDictionary(e => e.Key, e => e.Value);
             //    throw new InputException(errorState, "输入错误");
