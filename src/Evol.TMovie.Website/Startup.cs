@@ -7,10 +7,11 @@ using Microsoft.Extensions.Logging;
 using Evol.TMovie.Website.Services;
 using Evol.TMovie.Data;
 using Evol.Domain;
-using System.Threading.Tasks;
 using Evol.Web.Middlewares;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Logging.Abstractions;
+using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Evol.TMovie.Website
 {
@@ -48,6 +49,16 @@ namespace Evol.TMovie.Website
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "TmAPI", Version = "v1" });
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "Evol.TMovie.Website.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
 
             AppConfig.Init(services);
             ConfigureModules(services);

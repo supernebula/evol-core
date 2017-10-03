@@ -5,13 +5,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
   </PropertyGroup>
 
   <PropertyGroup>
     <UserSecretsId>aspnet-Evol.Cinema.Website-ae5e8a9f-d541-445f-9414-64f2afe5adaf</UserSecretsId>
     <AssemblyName>Evol.TMovie.Website</AssemblyName>
     <RootNamespace>Evol.TMovie.Website</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Evol.TMovie.Website.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
@@ -47,6 +52,11 @@
     <ProjectReference Include="..\Evol.TMovie.Data\Evol.TMovie.Data.csproj" />
     <ProjectReference Include="..\Evol.TMovie.Domain\Evol.TMovie.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

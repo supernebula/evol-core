@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Evol.TMovie.Manage.Data;
-using Evol.TMovie.Manage.Models;
-using Evol.TMovie.Manage.Services;
 using Evol.Domain;
 using Evol.TMovie.Data;
 using Swashbuckle.AspNetCore.Swagger;
@@ -44,7 +34,7 @@ namespace Evol.TMovie.Manage
         public void ConfigureServices(IServiceCollection services)
         {
             AppConfig.Init(services);
-            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
+            services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection"), opt => opt.UseRowNumberForPaging()));
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), opt => opt.UseRowNumberForPaging()));
 
@@ -55,12 +45,11 @@ namespace Evol.TMovie.Manage
             // Add application services.
             //services.AddTransient<IEmailSender, AuthMessageSender>();
             //services.AddTransient<ISmsSender, AuthMessageSender>();
-            ConfigureApp(services);
+
 
             services.AddMvc();
 
-            var serviceProvider = services.BuildServiceProvider();
-            AppConfig.ConfigServiceProvider(serviceProvider);
+
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -71,6 +60,11 @@ namespace Evol.TMovie.Manage
                 var xmlPath = Path.Combine(basePath, "Evol.TMovie.Manage.xml");
                 c.IncludeXmlComments(xmlPath);
             });
+
+            AppConfig.Init(services);
+            ConfigureApp(services);
+            var serviceProvider = services.BuildServiceProvider();
+            AppConfig.ConfigServiceProvider(serviceProvider);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
