@@ -59,26 +59,29 @@ namespace Evol.TMovie.Manage.Controllers
                 return View(dto);
             }
 
-            //if (!ValidateVertyCode(vertyCode))
-            //{
-            //    ModelState.AddModelError("vertyCode", "验证码错误");
-            //    return View(dto);
-            //}
-
             await CommandBus.SendAsync(new CinemaCreateCommand() { Input = dto });
 
             return RedirectToAction("Index");
         }
 
-        // GET: Cinema/Edit/5
+        /// <summary>
+        /// 查找影院
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(Guid id)
         {
             var item = await CinemaQueryEntry.FindAsync(id);
             return View(item);
         }
 
-        // POST: Cinema/Edit/5
-        [HttpPost]
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CinemaUpdateDto dto)
         {
@@ -91,7 +94,11 @@ namespace Evol.TMovie.Manage.Controllers
             return View(dto);
         }
 
-        // GET: Cinema/Delete/5
+        /// <summary>
+        /// 删除影院
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> Delete(Guid id)
         {
             await CommandBus.SendAsync(new CinemaDeleteCommand() { Input = new ItemDeleteDto() { Id = id } });

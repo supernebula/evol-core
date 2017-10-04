@@ -5,7 +5,7 @@
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
     <AssetTargetFallback>%3b%3bnet461%3bportable-net45+win8</AssetTargetFallback>
     <UserSecretsId>aspnet-Evol.TMovie.Manage-5C2B7BA1-4963-4B9E-B6BA-F006A66E138B</UserSecretsId>
-    <PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
+    <AssetTargetFallback>portable-net45+win8</AssetTargetFallback>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

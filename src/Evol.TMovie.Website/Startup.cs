@@ -70,9 +70,8 @@ namespace Evol.TMovie.Website
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            loggerFactory.AddProvider(NullLoggerProvider.Instance);
 
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsEnvironment("Shell_Development"))
             {
                 app.UseDeveloperExceptionPage();
                 //app.UseDatabaseErrorPage();

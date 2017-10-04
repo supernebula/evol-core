@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Manage.Models
 {
-    public class RoleViewModel : IOutputDto, ICanMapFrom<Role>
+    public class RoleViewModel : IOutputDto, ICanConfigMapFrom<Role>
     {
         public Guid Id { get; set; }
 

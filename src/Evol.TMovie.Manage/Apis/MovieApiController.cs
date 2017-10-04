@@ -8,11 +8,11 @@ using Evol.Domain.Messaging;
 using Evol.TMovie.Manage.Models;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
-using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Dto;
+using Evol.TMovie.Domain.Commands.Dto;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Evol.Web.Exceptions;
 using Evol.TMovie.Domain.Commands;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Evol.TMovie.Domain.Dto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,101 +20,100 @@ using Evol.TMovie.Domain.Dto;
 namespace Evol.TMovie.Manage.Apis
 {
     /// <summary>
-    /// 影院管理 API
+    /// 电影管理 API
     /// </summary>
     [Route("api/[controller]")]
-    public class CinemaApiController : BaseApiController
+    public class MovieApiController : BaseApiController
     {
-        public ICinemaQueryEntry CinemaQueryEntry { get; set; }
+        public IMovieQueryEntry MovieQueryEntry { get; set; }
 
         public ICommandBus CommandBus { get; set; }
 
-        public CinemaApiController(ICinemaQueryEntry cinemaQueryEntry, ICommandBus commandBus)
+        public MovieApiController(IMovieQueryEntry movieQueryEntry, ICommandBus commandBus)
         {
-            CinemaQueryEntry = cinemaQueryEntry;
+            MovieQueryEntry = movieQueryEntry;
             CommandBus = commandBus;
         }
 
-        // GET: api/Cinema
+        // GET: api/Movie
         /// <summary>
-        /// 查询影院列表
+        /// 查询电影列表
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<CinemaViewModel>> GetSearch([FromQuery]CinemaQueryParameter param = null)
+        public async Task<IEnumerable<MovieViewModel>> GetSearch([FromQuery]MovieQueryParameter param = null)
         {
-            var list = await CinemaQueryEntry.RetrieveAsync(param);
-            var result = list.Map<List<CinemaViewModel>>();
+            var list = await MovieQueryEntry.SelectAsync(param);
+            var result = list.Map<List<MovieViewModel>>();
             return result;
         }
 
-        // GET: api/Cinema/Paged
+        // GET: api/Movie/Paged
         /// <summary>
-        /// 分页查询影院列表
+        /// 分页查询电影列表
         /// </summary>
         /// <param name="param"></param>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Paged")]
-        public async Task<IPaged<CinemaViewModel>> Get([FromQuery]CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IPaged<MovieViewModel>> Get([FromQuery]MovieQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
-            var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            var result = paged.MapPaged<CinemaViewModel>();
+            var paged = await MovieQueryEntry.PagedAsync(param, pageIndex, pageSize);
+            var result = paged.MapPaged<MovieViewModel>();
             return result;
         }
 
-        // GET: api/Cinema/5
+        // GET: api/Movie/5
         /// <summary>
-        /// 获取指定影院
+        /// 获取指定电影
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<CinemaViewModel> Get(Guid id)
+        public async Task<MovieViewModel> Get(Guid id)
         {
-            var item = await CinemaQueryEntry.FindAsync(id);
-            var result = item.Map<CinemaViewModel>();
+            var item = await MovieQueryEntry.FindAsync(id);
+            var result = item.Map<MovieViewModel>();
             return result;
         }
 
-        // POST: api/Cinema
+        // POST: api/Movie
         /// <summary>
-        /// 创建影院
+        /// 创建电影
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task Post(CinemaCreateDto value)
+        public async Task Post(MovieCreateDto value)
         {
             ThrowIfNotModelIsValid();
-
-            await CommandBus.SendAsync(new CinemaCreateCommand { Input = value });
+            await CommandBus.SendAsync(new MovieCreateCommand { Input = value });
         }
 
-        // PUT: api/Cinema/5
+        // PUT: api/Movie/5
         /// <summary>
-        /// 更新影院
+        /// 更新电影
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
         [HttpPut("{id}")]
-        public async Task Put(int id, CinemaUpdateDto value)
+        public async Task Put(int id, MovieUpdateDto value)
         {
             ThrowIfNotModelIsValid();
-            await CommandBus.SendAsync(new CinemaUpdateCommand { Input = value });
+            await CommandBus.SendAsync(new MovieUpdateCommand { Input = value });
         }
 
-        // DELETE: api/Cinema/5
+        // DELETE: api/Movie/5
         /// <summary>
-        /// 删除影院
+        /// 删除电影
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
         public async Task Delete(Guid id)
         {
-            await CommandBus.SendAsync(new CinemaDeleteCommand { Input = new ItemDeleteDto { Id = id } });
+            await CommandBus.SendAsync(new MovieDeleteCommand { Input = new ItemDeleteDto { Id = id } });
         }
     }
 }

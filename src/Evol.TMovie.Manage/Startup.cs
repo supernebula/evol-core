@@ -76,7 +76,7 @@ namespace Evol.TMovie.Manage
 
             app.UseMiddleware<GlobalExceptionHanderMiddleware>();
 
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsEnvironment("Shell_Development"))
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
