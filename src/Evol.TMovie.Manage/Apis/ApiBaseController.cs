@@ -16,8 +16,8 @@ namespace Evol.TMovie.Manage.Apis
         {
             if (!ModelState.IsValid)
             {
-                var errorState = ModelState.Select(e => new KeyValuePair<string, string>(e.Key, e.Value.RawValue.ToString())).ToDictionary(e => e.Key, e => e.Value);
-                throw new InputError(errorState, "输入验证失败");
+                var errorMessage = ModelState.Where(e => e.Value.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid).ToDictionary(e => e.Key, e => e.Value.Errors.First().ErrorMessage);
+                throw new InputError(errorMessage, "输入验证失败");
             }
         }
     }

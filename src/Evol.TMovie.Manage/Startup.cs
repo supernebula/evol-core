@@ -74,7 +74,7 @@ namespace Evol.TMovie.Manage
             loggerFactory.AddDebug();
             loggerFactory.AddProvider(NullLoggerProvider.Instance);
 
-            app.UseMiddleware<GlobalExceptionHanderMiddleware>();
+  
 
             if (env.IsDevelopment() || env.IsEnvironment("Shell_Development"))
             {
@@ -86,7 +86,7 @@ namespace Evol.TMovie.Manage
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseMiddleware<GlobalExceptionHanderMiddleware>();
             app.UseStaticFiles();
 
 

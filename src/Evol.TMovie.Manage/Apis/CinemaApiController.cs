@@ -95,7 +95,7 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="id"></param>
         /// <param name="value"></param>
         [HttpPut("{id}")]
-        public async Task Put(int id, CinemaUpdateDto value)
+        public async Task Put(Guid id, CinemaUpdateDto value)
         {
             ThrowIfNotModelIsValid();
             await CommandBus.SendAsync(new CinemaUpdateCommand { Input = value });
