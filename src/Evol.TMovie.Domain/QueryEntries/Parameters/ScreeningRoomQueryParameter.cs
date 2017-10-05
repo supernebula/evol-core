@@ -8,5 +8,6 @@ namespace Evol.TMovie.Domain.QueryEntries.Parameters
 {
     public class ScreeningRoomQueryParameter
     {
+        public Guid CinemaId { get; set; }
     }
 }

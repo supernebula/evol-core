@@ -78,9 +78,9 @@ namespace Evol.EntityFramework.Repository
             return await DbSet.FindAsync(id);
         }
 
-        public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
+        public async Task<T> FindAsync(Expression<Func<T, bool>> condition)
         {
-            return await DbSet.Where(predicate).FirstOrDefaultAsync();
+            return await DbSet.Where(condition).FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> SelectAsync(Guid[] ids)
@@ -88,9 +88,19 @@ namespace Evol.EntityFramework.Repository
             return await DbSet.Where(e => ids.Contains(e.Id)).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> condition)
         {
-            return await DbSet.Where(predicate).ToListAsync();
+            return await DbSet.Where(condition).ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> SelectAsync(Func<IQueryable<T>, IQueryable<T>> condition)
+        {
+            if (condition == null)
+                throw new ArgumentNullException(nameof(condition));
+
+            var query = condition.Invoke(DbSet.AsQueryable());
+            var items = await query.ToListAsync();
+            return items;
         }
 
         public IQueryable<T> Query()
@@ -111,9 +121,21 @@ namespace Evol.EntityFramework.Repository
             //wait for Context.SaveChange(),  item is being tracked object
         }
 
-        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> condition)
         {
-            return await DbSet.AnyAsync(predicate);
+            if (condition == null)
+                throw new ArgumentNullException(nameof(condition));
+
+            return await DbSet.AnyAsync(condition);
+        }
+
+        public async Task<bool> AnyAsync(Func<IQueryable<T>, IQueryable<T>> condition)
+        {
+            if (condition == null)
+                throw new ArgumentNullException(nameof(condition));
+
+            var query = condition.Invoke(DbSet.AsQueryable());
+            return await query.AnyAsync();
         }
 
         public async Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize)
@@ -124,11 +146,30 @@ namespace Evol.EntityFramework.Repository
             return paged;
         }
 
-        public async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
+        public async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> condition, int pageIndex, int pageSize)
         {
-            var total = await DbSet.CountAsync(predicate);
+            if (condition == null)
+                throw new ArgumentNullException(nameof(condition));
+
+            var total = await DbSet.CountAsync(condition);
             var skip = (pageIndex - 1) * pageSize;
-            var query = DbSet.Where(predicate);
+            var query = DbSet.Where(condition);
+            if (skip > 0)
+                query = query.Skip(skip);
+            var list = await query.Take(pageSize).OrderBy(e => e.Id).ToListAsync();
+            var paged = new PagedList<T>(list, total, pageIndex, pageSize);
+            return paged;
+        }
+
+        public async Task<IPaged<T>> PagedAsync(Func<IQueryable<T>, IQueryable<T>> condition, int pageIndex, int pageSize)
+        {
+            if (condition == null)
+                throw new ArgumentNullException(nameof(condition));
+
+            var queryable = condition.Invoke(DbSet.AsQueryable<T>());
+            var total = await queryable.CountAsync();
+            var skip = (pageIndex - 1) * pageSize;
+            var query = queryable;
             if (skip > 0)
                 query = query.Skip(skip);
             var list = await query.Take(pageSize).OrderBy(e => e.Id).ToListAsync();

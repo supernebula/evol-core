@@ -18,6 +18,7 @@ namespace Evol.TMovie.Manage.Apis
     /// <summary>
     /// 场次管理 API
     /// </summary>
+    [Route("api/Screening")]
     public class ScreeningApiController : ApiBaseController
     {
         public IScreeningQueryEntry ScreeningQueryEntry { get; set; }
@@ -37,7 +38,7 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<ScreeningViewModel>> GetSearch([FromQuery]ScreeningQueryParameter param = null)
+        public async Task<IEnumerable<ScreeningViewModel>> GetList([FromQuery]ScreeningQueryParameter param = null)
         {
             var list = await ScreeningQueryEntry.SelectAsync(param);
             var result = list.Map<List<ScreeningViewModel>>();
@@ -53,7 +54,7 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Paged")]
-        public async Task<IPaged<ScreeningViewModel>> Get([FromQuery]ScreeningQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IPaged<ScreeningViewModel>> GetPaged([FromQuery]ScreeningQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await ScreeningQueryEntry.PagedAsync(param, pageIndex, pageSize);
             var result = paged.MapPaged<ScreeningViewModel>();

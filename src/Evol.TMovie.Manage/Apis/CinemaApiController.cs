@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Evol.TMovie.Domain.QueryEntries;
@@ -10,19 +9,15 @@ using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
 using Evol.TMovie.Domain.Commands.Dto;
 using Evol.Domain.Dto;
-using Evol.Web.Exceptions;
 using Evol.TMovie.Domain.Commands;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Evol.TMovie.Domain.Dto;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Evol.TMovie.Manage.Apis
 {
     /// <summary>
     /// 影院管理 API
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/cinema")]
     public class CinemaApiController : ApiBaseController
     {
         public ICinemaQueryEntry CinemaQueryEntry { get; set; }
@@ -42,9 +37,9 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<CinemaViewModel>> GetSearch([FromQuery]CinemaQueryParameter param = null)
+        public async Task<IEnumerable<CinemaViewModel>> GetList([FromQuery]CinemaQueryParameter param = null)
         {
-            var list = await CinemaQueryEntry.RetrieveAsync(param);
+            var list = await CinemaQueryEntry.SelectAsync(param);
             var result = list.Map<List<CinemaViewModel>>();
             return result;
         }
@@ -58,7 +53,7 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Paged")]
-        public async Task<IPaged<CinemaViewModel>> Get([FromQuery]CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IPaged<CinemaViewModel>> GetPaged([FromQuery]CinemaQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await CinemaQueryEntry.PagedAsync(param, pageIndex, pageSize);
             var result = paged.MapPaged<CinemaViewModel>();

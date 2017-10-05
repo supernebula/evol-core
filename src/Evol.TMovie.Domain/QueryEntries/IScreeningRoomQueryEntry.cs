@@ -14,9 +14,9 @@ namespace Evol.TMovie.Domain.QueryEntries
         Task<ScreeningRoom> FindAsync(Guid id);
 
 
-        Task<List<ScreeningRoom>> RetrieveAsync(ScreeningQueryParameter param);
+        Task<List<ScreeningRoom>> SelectAsync(ScreeningRoomQueryParameter param);
 
 
-        Task<IPaged<ScreeningRoom>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize);
+        Task<IPaged<ScreeningRoom>> PagedAsync(ScreeningRoomQueryParameter param, int pageIndex, int pageSize);
     }
 }

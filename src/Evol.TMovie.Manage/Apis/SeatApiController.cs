@@ -12,6 +12,10 @@ using Evol.TMovie.Domain.Commands;
 
 namespace Evol.TMovie.Manage.Apis
 {
+    /// <summary>
+    /// 座位管理 API
+    /// </summary>
+    [Route("api/Seat")]
     public class SeatApiController : ApiBaseController
     {
         public ISeatQueryEntry SeatQueryEntry { get; set; }
@@ -24,14 +28,27 @@ namespace Evol.TMovie.Manage.Apis
             CommandBus = commandBus;
         }
 
+        // GET: api/Seat/all
+        /// <summary>
+        /// 查询作为列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("All")]
+        public async Task<List<SeatViewModel>> GetAll()
+        {
+            var list = await SeatQueryEntry.AllAsync(Guid.Empty);
+            var result = list.MapList<SeatViewModel>();
+            return result;
+        }
+
         // GET: api/Seat/Paged
         /// <summary>
-        /// 分页查询影院场次列表
+        /// 查询作为列表
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        [HttpGet("Get")]
-        public async Task<List<SeatViewModel>> Get([FromQuery]SeatQueryParameter param = null)
+        [HttpGet]
+        public async Task<List<SeatViewModel>> GetList([FromQuery]SeatQueryParameter param = null)
         {
             var list = await SeatQueryEntry.SelectAsync(param);
             var result = list.MapList<SeatViewModel>();

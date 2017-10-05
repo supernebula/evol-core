@@ -14,6 +14,8 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<List<Seat>> SelectAsync(SeatQueryParameter param);
 
+        Task<List<Seat>> AllAsync(Guid ScreeningRoomId);
+
         Task<IPaged<Seat>> PagedAsync(SeatQueryParameter param, int pageIndex, int pageSize);
     }
 }

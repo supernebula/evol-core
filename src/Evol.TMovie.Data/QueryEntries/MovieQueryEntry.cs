@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
-using Evol.TMovie.Domain.Repositories;
 using Evol.Common;
 using Evol.EntityFramework.Repository;
 
@@ -20,22 +17,42 @@ namespace Evol.TMovie.Data.QueryEntries
         {
         }
 
-        //public override async Task<List<Movie>> SelectAsync(Guid[] ids)
-        //{
-        //    return await base.SelectAsync(ids);
-        //}
-
-
-        public Task<List<Movie>> SelectAsync(MovieQueryParameter param)
+        public async Task<List<Movie>> SelectAsync(MovieQueryParameter param)
         {
-            throw new NotImplementedException();
+            var result = await SelectAsync(query => {
+                if (!string.IsNullOrWhiteSpace(param.Name))
+                    query = query.Where(e => e.Title.Contains(param.Name));
+                if (param.ReleaseDate != null)
+                    query = query.Where(e => e.ReleaseDate == (param.ReleaseDate.Value));
+                if (!string.IsNullOrWhiteSpace(param.ReleaseRegion))
+                    query = query.Where(e => e.ReleaseRegion.Contains(param.ReleaseRegion));
+                if (param.SpaceType != null)
+                    query = query.Where(e => e.SpaceType == param.SpaceType.Value);
+                if (!string.IsNullOrWhiteSpace(param.Language))
+                    query = query.Where(e => e.Language.Contains(param.Language));
+                return query;
+            });
+
+            return result.ToList();
         } 
 
-        public Task<IPaged<Movie>> PagedAsync(MovieQueryParameter param, int pageIndex, int pageSize)
+        public async Task<IPaged<Movie>> PagedAsync(MovieQueryParameter param, int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
+            var result = await PagedAsync(query => {
+                if (!string.IsNullOrWhiteSpace(param.Name))
+                    query = query.Where(e => e.Title.Contains(param.Name));
+                if (param.ReleaseDate != null)
+                    query = query.Where(e => e.ReleaseDate == (param.ReleaseDate.Value));
+                if (!string.IsNullOrWhiteSpace(param.ReleaseRegion))
+                    query = query.Where(e => e.ReleaseRegion.Contains(param.ReleaseRegion));
+                if (param.SpaceType != null)
+                    query = query.Where(e => e.SpaceType == param.SpaceType.Value);
+                if (!string.IsNullOrWhiteSpace(param.Language))
+                    query = query.Where(e => e.Language.Contains(param.Language));
+                return query;
+            }, pageIndex, pageSize);
+
+            return result;
         }
-
-
     }
 }

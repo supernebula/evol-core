@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Evol.TMovie.Domain.QueryEntries;
@@ -10,19 +9,15 @@ using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
 using Evol.Domain.Dto;
 using Evol.TMovie.Domain.Commands.Dto;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Evol.Web.Exceptions;
 using Evol.TMovie.Domain.Commands;
 using Evol.TMovie.Domain.Dto;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Evol.TMovie.Manage.Apis
 {
     /// <summary>
     /// 电影管理 API
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/movie")]
     public class MovieApiController : ApiBaseController
     {
         public IMovieQueryEntry MovieQueryEntry { get; set; }
@@ -35,14 +30,14 @@ namespace Evol.TMovie.Manage.Apis
             CommandBus = commandBus;
         }
 
-        // GET: api/Movie
+        // GET: api/movie
         /// <summary>
         /// 查询电影列表
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<MovieViewModel>> GetSearch([FromQuery]MovieQueryParameter param = null)
+        public async Task<IEnumerable<MovieViewModel>> GetList([FromQuery]MovieQueryParameter param = null)
         {
             var list = await MovieQueryEntry.SelectAsync(param);
             var result = list.Map<List<MovieViewModel>>();

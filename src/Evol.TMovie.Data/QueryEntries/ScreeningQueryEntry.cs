@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries;
@@ -17,15 +16,17 @@ namespace Evol.TMovie.Data.QueryEntries
         {
         }
 
-        public Task<List<Screening>> SelectAsync(ScreeningQueryParameter param)
+        public async Task<List<Screening>> SelectAsync(ScreeningQueryParameter param)
         {
-            throw new NotImplementedException();
+            var items = await base.SelectAsync(e => e.CinemaId == param.CinemaId);
+            return items.ToList();
         }
 
 
-        public Task<IPaged<Screening>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize)
+        public async Task<IPaged<Screening>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
+            var result = await base.PagedAsync(e => e.CinemaId == param.CinemaId, pageIndex, pageSize);
+            return result;
         }
 
     }

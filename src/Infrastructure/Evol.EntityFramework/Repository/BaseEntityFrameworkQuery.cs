@@ -23,9 +23,9 @@ namespace Evol.EntityFramework.Repository
             return await innerBaseRepository.FindAsync(id);
         }
 
-        protected async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
+        protected async Task<T> FindAsync(Expression<Func<T, bool>> condition)
         {
-            return await innerBaseRepository.FindAsync(predicate);
+            return await innerBaseRepository.FindAsync(condition);
         }
 
         public async Task<List<T>> SelectAsync(Guid[] ids)
@@ -38,14 +38,24 @@ namespace Evol.EntityFramework.Repository
             return innerBaseRepository.Query();
         }
 
-        protected async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate)
+        protected async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> condition)
         {
-            return await innerBaseRepository.SelectAsync(predicate);
+            return await innerBaseRepository.SelectAsync(condition);
         }
 
-        protected async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        protected async Task<IEnumerable<T>> SelectAsync(Func<IQueryable<T>, IQueryable<T>> condition)
         {
-            return await innerBaseRepository.AnyAsync(predicate);
+            return await innerBaseRepository.SelectAsync(condition);
+        }
+
+        protected async Task<bool> AnyAsync(Expression<Func<T, bool>> condition)
+        {
+            return await innerBaseRepository.AnyAsync(condition);
+        }
+
+        protected async Task<bool> AnyAsync(Func<IQueryable<T>, IQueryable<T>> condition)
+        {
+            return await innerBaseRepository.AnyAsync(condition);
         }
 
 
@@ -54,9 +64,14 @@ namespace Evol.EntityFramework.Repository
             return await innerBaseRepository.PagedAsync(pageIndex, pageSize);
         }
 
-        protected async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
+        protected async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> condition, int pageIndex, int pageSize)
         {
-            return await innerBaseRepository.PagedAsync(predicate, pageIndex, pageSize);
+            return await innerBaseRepository.PagedAsync(condition, pageIndex, pageSize);
+        }
+
+        protected async Task<IPaged<T>> PagedAsync(Func<IQueryable<T>, IQueryable<T>> condition, int pageIndex, int pageSize)
+        {
+            return await innerBaseRepository.PagedAsync(condition, pageIndex, pageSize);
         }
     }
 
