@@ -18,7 +18,7 @@ namespace Evol.TMovie.Manage.Apis
     /// <summary>
     /// 场次管理 API
     /// </summary>
-    public class ScreeningApiController : BaseApiController
+    public class ScreeningApiController : ApiBaseController
     {
         public IScreeningQueryEntry ScreeningQueryEntry { get; set; }
 

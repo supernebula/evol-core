@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Evol.TMovie.Manage.Apis
 {
-    public abstract class BaseApiController : Controller
+    public abstract class ApiBaseController : Controller
     {
         /// <summary>
         /// 如果ModelState验证失败，则抛出异常

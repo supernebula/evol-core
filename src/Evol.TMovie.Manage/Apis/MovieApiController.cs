@@ -23,7 +23,7 @@ namespace Evol.TMovie.Manage.Apis
     /// 电影管理 API
     /// </summary>
     [Route("api/[controller]")]
-    public class MovieApiController : BaseApiController
+    public class MovieApiController : ApiBaseController
     {
         public IMovieQueryEntry MovieQueryEntry { get; set; }
 

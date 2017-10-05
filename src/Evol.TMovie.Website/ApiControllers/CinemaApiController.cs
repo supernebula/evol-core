@@ -78,7 +78,7 @@ namespace Evol.TMovie.Website.ApiControllers
         [Route("api/Cinema/Sched")]
         public async Task<List<ScreeningViewModel>> Schedule(Guid id, Guid movieId)
         {
-            var item = await ScreeningQuery.RetrieveAsync(new ScreeningQueryParameter { CinemaId = id  });
+            var item = await ScreeningQuery.SelectAsync(new ScreeningQueryParameter { CinemaId = id  });
             var values = item.MapList<ScreeningViewModel>();
             return values;
         }

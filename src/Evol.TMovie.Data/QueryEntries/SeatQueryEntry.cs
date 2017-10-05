@@ -18,13 +18,12 @@ namespace Evol.TMovie.Data.QueryEntries
         {
         }
 
-        public Task<List<Seat>> RetrieveAsync(ActorQueryParameter param)
+        public Task<IPaged<Seat>> PagedAsync(SeatQueryParameter param, int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
         }
 
-
-        public Task<IPaged<Seat>> PagedAsync(ActorQueryParameter param, int pageIndex, int pageSize)
+        public Task<List<Seat>> SelectAsync(SeatQueryParameter param)
         {
             throw new NotImplementedException();
         }

@@ -43,7 +43,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId)
         {
-            var screens = await ScreeningQuery.RetrieveAsync(new ScreeningQueryParameter { CinemaId = cinemaId });
+            var screens = await ScreeningQuery.SelectAsync(new ScreeningQueryParameter { CinemaId = cinemaId });
             var movieIds = screens.Select(e => e.MovieId).ToArray();
             var movies = await MovieQuery.SelectAsync(movieIds);
             return movies;

@@ -17,7 +17,7 @@ namespace Evol.TMovie.Data.QueryEntries
         {
         }
 
-        public Task<List<Screening>> RetrieveAsync(ScreeningQueryParameter param)
+        public Task<List<Screening>> SelectAsync(ScreeningQueryParameter param)
         {
             throw new NotImplementedException();
         }
@@ -27,5 +27,6 @@ namespace Evol.TMovie.Data.QueryEntries
         {
             throw new NotImplementedException();
         }
+
     }
 }
