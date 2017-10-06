@@ -14,10 +14,11 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<Order> FindAsync(Guid id);
 
+        Task<Order> FindAsync(Guid orderId, Guid userId);
+
         Task<Order> FindByOrderNoAsync(string orderNo);
 
         Task<List<Order>> SelectAsync(OrderQueryParameter param);
-
 
         Task<IPaged<Order>> PagedAsync(OrderQueryParameter param, int pageIndex, int pageSize);
 

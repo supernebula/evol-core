@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Evol.Domain.Dto;
+using Evol.TMovie.Domain.Models.Entities;
+using Evol.TMovie.Domain.Models.AggregateRoots;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
     public class OrderCreateDto : IInputDto, ICanConfigMapTo<Order>
     {
-        public string No { get; set; }
-
         public Guid UserId { get; set; }
 
         public string Title { get; set; }
@@ -18,5 +20,9 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
         public List<OrderDetail> Items { get; set; }
 
+        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        {
+            mapConfig.CreateMap<OrderCreateDto, Order>();
+        }
     }
 }
