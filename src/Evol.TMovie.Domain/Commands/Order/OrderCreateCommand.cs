@@ -5,6 +5,6 @@ namespace Evol.TMovie.Domain.Commands
 {
     public class OrderCreateCommand : Command
     {
-        public ScreeningCreateDto Input { get; set; }
+        public OrderCreateDto Input { get; set; }
     }
 }
