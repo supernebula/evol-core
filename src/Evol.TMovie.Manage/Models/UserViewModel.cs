@@ -1,10 +1,7 @@
-﻿using Evol.Common;
-using Evol.Domain.Models;
-using Evol.TMovie.Domain.Models.Values;
-
-namespace Evol.TMovie.Domain.Models.AggregateRoots
+﻿using Evol.TMovie.Domain.Models.Values;
+namespace Evol.TMovie.Manage.Models
 {
-    public class User : AggregateRoot
+    public class UserViewModel
     {
         public string OpenId { get; set; }
 
@@ -12,15 +9,10 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 
         public string Username { get; set; }
 
-        public string Password { get; set; }
-
-        public string Salt { get; set; }
-
         public string RealName { get; set; }
 
         public string Email { get; set; }
 
         public string Mobile { get; set; }
-
     }
 }

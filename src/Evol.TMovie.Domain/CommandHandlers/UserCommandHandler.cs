@@ -6,7 +6,8 @@ using System;
 using System.Collections.Generic;
 using Evol.Domain.Dto;
 using System.Threading.Tasks;
-using Evol.Domain.Events;
+using Evol.TMovie.Domain.QueryEntries;
+using Evol.Util.Hash;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
@@ -17,22 +18,36 @@ namespace Evol.TMovie.Domain.CommandHandlers
     {
         public IUserRepository UserRepository { get; set; }
 
-        public UserCommandHandler(IUserRepository userRepository)
+        public IUserQueryEntry UserQueryEntry { get; set; }
+
+        public UserCommandHandler(IUserRepository userRepository, IUserQueryEntry userQueryEntry)
         {
             UserRepository = userRepository;
+            UserQueryEntry = userQueryEntry;
         }
 
         public async Task ExecuteAsync(UserCreateCommand command)
         {
+            var dto = command.Input;
             var item = command.Input.Map<User>();
             item.Id = Guid.NewGuid();
+            item.Salt = Guid.NewGuid().ToString();
+            item.Password = HashUtil.Md5PasswordWithSalt(dto.Password, item.Salt);
             item.CreateTime = DateTime.Now;
             await UserRepository.InsertAsync(item);
         }
 
-        public Task ExecuteAsync(UserUpdateCommand command)
+        public async Task ExecuteAsync(UserUpdateCommand command)
         {
-            throw new NotImplementedException();
+            var dto = command.Input;
+            var item = await UserQueryEntry.FindAsync(dto.Id);
+            if (item == null)
+                throw new KeyNotFoundException($"{nameof(dto.Id)}:{dto.Id}");
+            item.Id = Guid.NewGuid();
+            item.RealName = dto.RealName;
+            item.Email = dto.Email ;
+            item.Mobile = dto.Mobile;
+            item.CreateTime = DateTime.Now;
         }
 
         public async Task ExecuteAsync(UserDeleteCommand command)

@@ -12,6 +12,8 @@ namespace Evol.TMovie.Manage.Models
     /// </summary>
     public class MovieViewModel : IOutputDto, ICanConfigMapFrom<Movie>
     {
+        public Guid Id { get; set; }
+
         public Guid ProductId { get; set; }
 
         /// <summary>

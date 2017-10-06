@@ -55,12 +55,38 @@ namespace Evol.EntityFramework.Repository
             return Task.FromResult(1);
         }
 
+        public Task DeleteAsync(IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                DbSet.Remove(item);
+            }
+            return Task.FromResult(1);
+        }
+
         public Task DeleteAsync(Guid id)
         {
             //方式一: 先创建附加，再删除。一次数据库操作
             var delObj = new T() { Id = id };
             DbSet.Attach(delObj);
             DbSet.Remove(delObj);
+            return Task.FromResult(1);
+
+            ////方式二： 先查找，在删除（EF官方推荐）。两次数据库操作
+            //var item = await DbSet.FindAsync(id);
+            //DbSet.Remove(item);
+        }
+
+        public Task DeleteAsync(Guid[] ids)
+        {
+            //方式一: 先创建附加，再删除。一次数据库操作
+            foreach (var id in ids)
+            {
+                var delObj = new T() { Id = id };
+                DbSet.Attach(delObj);
+                DbSet.Remove(delObj);
+            }
+
             return Task.FromResult(1);
 
             ////方式二： 先查找，在删除（EF官方推荐）。两次数据库操作

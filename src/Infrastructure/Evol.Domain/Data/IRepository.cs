@@ -26,7 +26,11 @@ namespace Evol.Domain.Data
 
         Task DeleteAsync(T item);
 
+        Task DeleteAsync(IEnumerable<T> items);
+
         Task DeleteAsync(Guid id);
+
+        Task DeleteAsync(Guid[] ids);
 
         Task<IPaged<T>> PagedAsync(int pageIndex, int pageSize);
 

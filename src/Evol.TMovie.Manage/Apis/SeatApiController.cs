@@ -30,25 +30,12 @@ namespace Evol.TMovie.Manage.Apis
 
         // GET: api/Seat/all
         /// <summary>
-        /// 查询作为列表
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("All")]
-        public async Task<List<SeatViewModel>> GetAll()
-        {
-            var list = await SeatQueryEntry.AllAsync(Guid.Empty);
-            var result = list.MapList<SeatViewModel>();
-            return result;
-        }
-
-        // GET: api/Seat/Paged
-        /// <summary>
-        /// 查询作为列表
+        /// 查询座位列表
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<List<SeatViewModel>> GetList([FromQuery]SeatQueryParameter param = null)
+        [HttpGet("All")]
+        public async Task<List<SeatViewModel>> GetAll([FromQuery]SeatQueryParameter param = null)
         {
             var list = await SeatQueryEntry.SelectAsync(param);
             var result = list.MapList<SeatViewModel>();
@@ -57,7 +44,7 @@ namespace Evol.TMovie.Manage.Apis
 
         // GET: api/Seat/5
         /// <summary>
-        /// 获取指定场次
+        /// 获取指定座位
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -72,12 +59,12 @@ namespace Evol.TMovie.Manage.Apis
 
         // PUT: api/Seat/5
         /// <summary>
-        /// 变更场次
+        /// 变更场次座位
         /// </summary>
         /// <param name="roomId">screenRoomId</param>
         /// <param name="value"></param>
-        [HttpPut("{id}")]
-        public async Task Put(int roomId, SeatChangeDto value)
+        [HttpPut]
+        public async Task Put(Guid roomId, [FromBody]SeatChangeDto value)
         {
             ThrowIfNotModelIsValid();
             await CommandBus.SendAsync(new SeatChangeCommand { Input = value });

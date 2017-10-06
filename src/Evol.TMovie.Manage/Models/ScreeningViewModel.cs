@@ -8,6 +8,8 @@ namespace Evol.TMovie.Manage.Models
 {
     public class ScreeningViewModel : IOutputDto, ICanConfigMapFrom<Screening>
     {
+        public Guid Id { get; set; }
+
         public Guid MovieId { get; set; }
 
         public Guid CinemaId { get; set; }

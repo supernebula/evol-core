@@ -16,7 +16,7 @@ namespace Evol.TMovie.Domain.QueryEntries
 
         Task<User> FindByUsernameAsync(string username);
 
-        Task<List<User>> RetrieveAsync(UserQueryParameter param);
+        Task<List<User>> SelectAsync(UserQueryParameter param);
 
 
         Task<IPaged<User>> PagedAsync(UserQueryParameter param, int pageIndex, int pageSize);

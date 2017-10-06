@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
-    class ScreeningCommandHandler:
+    public class ScreeningCommandHandler:
         ICommandHandler<ScreeningCreateCommand>, 
         ICommandHandler<ScreeningUpdateCommand>, 
         ICommandHandler<ScreeningDeleteCommand>
@@ -40,9 +40,10 @@ namespace Evol.TMovie.Domain.CommandHandlers
             item.MovieId = dto.MovieId;
             item.CinemaId = dto.CinemaId;
             item.StartTime = dto.StartTime;
-            item.StartTime = dto.StartTime;
+            item.EndTime = dto.EndTime;
             item.ScreeningRoomId = dto.ScreeningRoomId;
             item.SellPrice = dto.SellPrice;
+            item.Price = dto.Price;
             item.SpaceType = dto.SpaceType;
             await ScreeningRepository.UpdateAsync(item);
         }

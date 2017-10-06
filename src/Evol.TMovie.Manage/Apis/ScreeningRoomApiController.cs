@@ -15,19 +15,16 @@ using Evol.TMovie.Domain.Dto;
 
 namespace Evol.TMovie.Manage.Apis
 {
-    /// <summary>
-    /// 场次管理 API
-    /// </summary>
-    [Route("api/Screening")]
-    public class ScreeningApiController : ApiBaseController
+    [Route("api/ScreenRoom")]
+    public class ScreeningRoomApiController : ApiBaseController
     {
-        public IScreeningQueryEntry ScreeningQueryEntry { get; set; }
+        public IScreeningRoomQueryEntry ScreenRoomQueryEntry { get; set; }
 
         public ICommandBus CommandBus { get; set; }
 
-        public ScreeningApiController(IScreeningQueryEntry screeningQueryEntry, ICommandBus commandBus)
+        public ScreeningRoomApiController(IScreeningRoomQueryEntry screenRoomQueryEntry, ICommandBus commandBus)
         {
-            ScreeningQueryEntry = screeningQueryEntry;
+            ScreenRoomQueryEntry = screenRoomQueryEntry;
             CommandBus = commandBus;
         }
 
@@ -38,10 +35,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<ScreeningViewModel>> GetList([FromQuery]ScreeningQueryParameter param = null)
+        public async Task<IEnumerable<ScreeningRoomViewModel>> GetList([FromQuery]ScreeningRoomQueryParameter param = null)
         {
-            var list = await ScreeningQueryEntry.SelectAsync(param);
-            var result = list.Map<List<ScreeningViewModel>>();
+            var list = await ScreenRoomQueryEntry.SelectAsync(param);
+            var result = list.Map<List<ScreeningRoomViewModel>>();
             return result;
         }
 
@@ -54,10 +51,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Paged")]
-        public async Task<IPaged<ScreeningViewModel>> GetPaged([FromQuery]ScreeningQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IPaged<ScreeningRoomViewModel>> GetPaged([FromQuery]ScreeningRoomQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
-            var paged = await ScreeningQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            var result = paged.MapPaged<ScreeningViewModel>();
+            var paged = await ScreenRoomQueryEntry.PagedAsync(param, pageIndex, pageSize);
+            var result = paged.MapPaged<ScreeningRoomViewModel>();
             return result;
         }
 
@@ -68,10 +65,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ScreeningViewModel> Get(Guid id)
+        public async Task<ScreeningRoomViewModel> Get(Guid id)
         {
-            var item = await ScreeningQueryEntry.FindAsync(id);
-            var result = item.Map<ScreeningViewModel>();
+            var item = await ScreenRoomQueryEntry.FindAsync(id);
+            var result = item.Map<ScreeningRoomViewModel>();
             return result;
         }
 
@@ -82,10 +79,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task Post(ScreeningCreateDto value)
+        public async Task Post(ScreeningRoomCreateDto value)
         {
             ThrowIfNotModelIsValid();
-            await CommandBus.SendAsync(new ScreeningCreateCommand { Input = value });
+            await CommandBus.SendAsync(new ScreeningRoomCreateCommand { Input = value });
         }
 
         // PUT: api/Screening/5
@@ -95,10 +92,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="id"></param>
         /// <param name="value"></param>
         [HttpPut("{id}")]
-        public async Task Put(Guid id, ScreeningUpdateDto value)
+        public async Task Put(Guid id, ScreeningRoomUpdateDto value)
         {
             ThrowIfNotModelIsValid();
-            await CommandBus.SendAsync(new ScreeningUpdateCommand { Input = value });
+            await CommandBus.SendAsync(new ScreeningRoomUpdateCommand { Input = value });
         }
 
         // DELETE: api/Screening/5
@@ -109,7 +106,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpDelete("{id}")]
         public async Task Delete(Guid id)
         {
-            await CommandBus.SendAsync(new ScreeningDeleteCommand { Input = new ItemDeleteDto { Id = id } });
+            await CommandBus.SendAsync(new ScreeningRoomDeleteCommand { Input = new ItemDeleteDto { Id = id } });
         }
     }
 }

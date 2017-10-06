@@ -11,6 +11,8 @@ namespace Evol.TMovie.Manage.Models
 {
     public class SeatViewModel : IOutputDto, ICanConfigMapFrom<Seat>
     {
+        public Guid Id { get; set; }
+
         public SeatType SeatType { get; set; }
 
         public int RowNo { get; set; }

@@ -36,10 +36,10 @@ namespace Evol.TMovie.Domain.CommandHandlers
             if (item == null)
                 throw new KeyNotFoundException();
             var dto = command.Input;
-
-            //map 更多字段
-            throw new NotImplementedException();
-
+            item.CinemaId = dto.CinemaId;
+            item.Title = dto.Title;
+            item.SpaceType = dto.SpaceType;
+            item.Seats = dto.Seats;
             await ScreeningRoomRepository.UpdateAsync(item);
         }
 

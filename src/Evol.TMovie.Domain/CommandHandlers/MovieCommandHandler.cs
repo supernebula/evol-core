@@ -27,6 +27,7 @@ namespace Evol.TMovie.Domain.CommandHandlers
         {
             var item = command.Input.Map<Movie>();
             item.Id = Guid.NewGuid();
+            item.ProductId = Guid.Empty;
             item.Title = item.Title ?? string.Empty;
             item.ForeignName = item.ForeignName ?? string.Empty;
             item.ReleaseRegion = item.ReleaseRegion ?? string.Empty;

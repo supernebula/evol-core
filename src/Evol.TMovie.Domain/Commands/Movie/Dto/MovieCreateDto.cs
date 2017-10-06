@@ -11,9 +11,6 @@ namespace Evol.TMovie.Domain.Commands.Dto
 {
     public class MovieCreateDto : IInputDto, ICanConfigMapTo<Movie>
     {
-
-        public Guid ProductId { get; set; }
-
         /// <summary>
         /// 名称
         /// </summary>

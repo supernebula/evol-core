@@ -56,8 +56,8 @@ namespace Evol.Web.Middlewares
             else
             {
                 context.Response.ContentType = "application/json;charset=utf-8";
-                var inex = (InputError)ex;
-                var content = JsonUtil.Serialize(inex);
+                //var inex = (InputError)ex;
+                var content = JsonUtil.Serialize(ex);
                 return context.Response.WriteAsync(ex.Message);
             }
 
