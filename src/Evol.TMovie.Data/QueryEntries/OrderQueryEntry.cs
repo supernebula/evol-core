@@ -21,6 +21,12 @@ namespace Evol.TMovie.Data.QueryEntries
             OrderDetailQueryEntry = orderDetailQueryEntry;
         }
 
+        public async Task<Order> FindAsync(Guid orderId, Guid userId)
+        {
+            var item = await base.FindAsync(e => e.UserId == userId && e.Id == orderId);
+            return item;
+        }
+
         public async Task<Order> FindByOrderNoAsync(string orderNo)
         {
             var item = await base.FindAsync(e => e.No == orderNo);
@@ -79,5 +85,7 @@ namespace Evol.TMovie.Data.QueryEntries
             var items = base.SelectAsync(ids);
             return items;
         }
+
+
     }
 }
