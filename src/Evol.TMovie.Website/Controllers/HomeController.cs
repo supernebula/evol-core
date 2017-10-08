@@ -24,18 +24,6 @@ namespace Evol.TMovie.Website.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult CinemaList()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        public IActionResult Cinema()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
