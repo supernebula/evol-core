@@ -18,20 +18,20 @@ namespace Evol.TMovie.Manage.Apis
     /// <summary>
     /// 场次管理 API
     /// </summary>
-    [Route("api/Screening")]
-    public class ScreeningApiController : ApiBaseController
+    [Route("api/Schedule")]
+    public class ScheduleApiController : ApiBaseController
     {
-        public IScheduleQueryEntry ScreeningQueryEntry { get; set; }
+        public IScheduleQueryEntry ScheduleQueryEntry { get; set; }
 
         public ICommandBus CommandBus { get; set; }
 
-        public ScreeningApiController(IScheduleQueryEntry screeningQueryEntry, ICommandBus commandBus)
+        public ScheduleApiController(IScheduleQueryEntry scheduleQueryEntry, ICommandBus commandBus)
         {
-            ScreeningQueryEntry = screeningQueryEntry;
+            ScheduleQueryEntry = scheduleQueryEntry;
             CommandBus = commandBus;
         }
 
-        // GET: api/Screening
+        // GET: api/Schedule
         /// <summary>
         /// 查询影院场次列表
         /// </summary>
@@ -40,12 +40,12 @@ namespace Evol.TMovie.Manage.Apis
         [HttpGet]
         public async Task<IEnumerable<ScheduleViewModel>> GetList([FromQuery]ScheduleQueryParameter param = null)
         {
-            var list = await ScreeningQueryEntry.SelectAsync(param);
+            var list = await ScheduleQueryEntry.SelectAsync(param);
             var result = list.Map<List<ScheduleViewModel>>();
             return result;
         }
 
-        // GET: api/Screening/Paged
+        // GET: api/Schedule/Paged
         /// <summary>
         /// 分页查询影院场次列表
         /// </summary>
@@ -56,7 +56,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpGet("Paged")]
         public async Task<IPaged<ScheduleViewModel>> GetPaged([FromQuery]ScheduleQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
-            var paged = await ScreeningQueryEntry.PagedAsync(param, pageIndex, pageSize);
+            var paged = await ScheduleQueryEntry.PagedAsync(param, pageIndex, pageSize);
             var result = paged.MapPaged<ScheduleViewModel>();
             return result;
         }
@@ -70,7 +70,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpGet("{id}")]
         public async Task<ScheduleViewModel> Get(Guid id)
         {
-            var item = await ScreeningQueryEntry.FindAsync(id);
+            var item = await ScheduleQueryEntry.FindAsync(id);
             var result = item.Map<ScheduleViewModel>();
             return result;
         }
@@ -88,7 +88,7 @@ namespace Evol.TMovie.Manage.Apis
             await CommandBus.SendAsync(new ScheduleCreateCommand { Input = value });
         }
 
-        // PUT: api/Screening/5
+        // PUT: api/Schedule/5
         /// <summary>
         /// 更新场次
         /// </summary>
@@ -101,7 +101,7 @@ namespace Evol.TMovie.Manage.Apis
             await CommandBus.SendAsync(new ScheduleUpdateCommand { Input = value });
         }
 
-        // DELETE: api/Screening/5
+        // DELETE: api/Schedule/5
         /// <summary>
         /// 删除场次
         /// </summary>

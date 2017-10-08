@@ -17,7 +17,7 @@ namespace Evol.TMovie.Website.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Shecd()
+        public IActionResult Schedule()
         {
             return View();
         }
