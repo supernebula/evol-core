@@ -17,12 +17,12 @@ namespace Evol.TMovie.Website.ApiControllers
     {
         public ICinemaQueryEntry CinemaQuery { get; private set; }
 
-        public IScreeningQueryEntry ScreeningQuery{ get; private set; }
+        public IScheduleQueryEntry ScheduleQuery { get; private set; }
 
-        public CinemaApiController(ICinemaQueryEntry cinemaQueryEntry, IScreeningQueryEntry screeningQuery)
+        public CinemaApiController(ICinemaQueryEntry cinemaQueryEntry, IScheduleQueryEntry scheduleQuery)
         {
             CinemaQuery = cinemaQueryEntry;
-            ScreeningQuery = screeningQuery;
+            ScheduleQuery = scheduleQuery;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Evol.TMovie.Website.ApiControllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [Route("api/Cinema/Show")]
-        public async Task<ShowMovieViewModel> Screening(Guid id)
+        public async Task<ShowMovieViewModel> Showing(Guid id)
         {
             var items = await CinemaQuery.SelectShowingMoiveAsync(id);
             var value = items.Map<ShowMovieViewModel>();
@@ -76,13 +76,43 @@ namespace Evol.TMovie.Website.ApiControllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [Route("api/Cinema/Sched")]
-        public async Task<List<ScreeningViewModel>> Schedule(Guid id, Guid movieId)
+        public async Task<List<ScheduleViewModel>> Screening(Guid id, Guid movieId)
         {
-            var item = await ScreeningQuery.SelectAsync(new ScreeningQueryParameter { CinemaId = id  });
-            var values = item.MapList<ScreeningViewModel>();
+            var item = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = id  });
+            var values = item.MapList<ScheduleViewModel>();
             return values;
         }
 
+        /// <summary>
+        /// 获取座位列表
+        /// </summary>
+        /// <param name="cinemaId"></param>
+        /// <param name="screeningId"></param>
+        /// <returns></returns>
+        [HttpGet("Seat")]
+        [Route("api/Cinema/Seat")]
+        public async Task<List<ScheduleViewModel>> Seat(Guid cinemaId, Guid screeningId)
+        {
+            var item = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = cinemaId });
+            var values = item.MapList<ScheduleViewModel>();
+            return values;
+        }
+
+
+        /// <summary>
+        /// 获取座位列表
+        /// </summary>
+        /// <param name="cinemaId"></param>
+        /// <param name="screeningId"></param>
+        /// <returns></returns>
+        [HttpGet("PickSeat")]
+        [Route("api/Cinema/PickSeat")]
+        public async Task<List<ScheduleViewModel>> PickSeat(Guid cinemaId, Guid screeningId)
+        {
+            var item = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = cinemaId });
+            var values = item.MapList<ScheduleViewModel>();
+            return values;
+        }
 
 
     }

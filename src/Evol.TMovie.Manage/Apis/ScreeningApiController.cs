@@ -21,11 +21,11 @@ namespace Evol.TMovie.Manage.Apis
     [Route("api/Screening")]
     public class ScreeningApiController : ApiBaseController
     {
-        public IScreeningQueryEntry ScreeningQueryEntry { get; set; }
+        public IScheduleQueryEntry ScreeningQueryEntry { get; set; }
 
         public ICommandBus CommandBus { get; set; }
 
-        public ScreeningApiController(IScreeningQueryEntry screeningQueryEntry, ICommandBus commandBus)
+        public ScreeningApiController(IScheduleQueryEntry screeningQueryEntry, ICommandBus commandBus)
         {
             ScreeningQueryEntry = screeningQueryEntry;
             CommandBus = commandBus;
@@ -38,10 +38,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<ScreeningViewModel>> GetList([FromQuery]ScreeningQueryParameter param = null)
+        public async Task<IEnumerable<ScheduleViewModel>> GetList([FromQuery]ScheduleQueryParameter param = null)
         {
             var list = await ScreeningQueryEntry.SelectAsync(param);
-            var result = list.Map<List<ScreeningViewModel>>();
+            var result = list.Map<List<ScheduleViewModel>>();
             return result;
         }
 
@@ -54,10 +54,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [HttpGet("Paged")]
-        public async Task<IPaged<ScreeningViewModel>> GetPaged([FromQuery]ScreeningQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
+        public async Task<IPaged<ScheduleViewModel>> GetPaged([FromQuery]ScheduleQueryParameter param = null, int pageIndex = 1, int pageSize = 10)
         {
             var paged = await ScreeningQueryEntry.PagedAsync(param, pageIndex, pageSize);
-            var result = paged.MapPaged<ScreeningViewModel>();
+            var result = paged.MapPaged<ScheduleViewModel>();
             return result;
         }
 
@@ -68,10 +68,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ScreeningViewModel> Get(Guid id)
+        public async Task<ScheduleViewModel> Get(Guid id)
         {
             var item = await ScreeningQueryEntry.FindAsync(id);
-            var result = item.Map<ScreeningViewModel>();
+            var result = item.Map<ScheduleViewModel>();
             return result;
         }
 
@@ -82,10 +82,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task Post(ScreeningCreateDto value)
+        public async Task Post(ScheduleCreateDto value)
         {
             ThrowIfNotModelIsValid();
-            await CommandBus.SendAsync(new ScreeningCreateCommand { Input = value });
+            await CommandBus.SendAsync(new ScheduleCreateCommand { Input = value });
         }
 
         // PUT: api/Screening/5
@@ -95,10 +95,10 @@ namespace Evol.TMovie.Manage.Apis
         /// <param name="id"></param>
         /// <param name="value"></param>
         [HttpPut("{id}")]
-        public async Task Put(Guid id, ScreeningUpdateDto value)
+        public async Task Put(Guid id, ScheduleUpdateDto value)
         {
             ThrowIfNotModelIsValid();
-            await CommandBus.SendAsync(new ScreeningUpdateCommand { Input = value });
+            await CommandBus.SendAsync(new ScheduleUpdateCommand { Input = value });
         }
 
         // DELETE: api/Screening/5
@@ -109,7 +109,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpDelete("{id}")]
         public async Task Delete(Guid id)
         {
-            await CommandBus.SendAsync(new ScreeningDeleteCommand { Input = new ItemDeleteDto { Id = id } });
+            await CommandBus.SendAsync(new ScheduleDeleteCommand { Input = new ItemDeleteDto { Id = id } });
         }
     }
 }

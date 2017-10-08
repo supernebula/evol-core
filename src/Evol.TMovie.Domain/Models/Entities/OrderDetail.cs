@@ -9,6 +9,6 @@ namespace Evol.TMovie.Domain.Models.Entities
     {
         public Guid ProductId { get; set; }
 
-        public Guid ScreeningId { get; set; }
+        public Guid ScheduleId { get; set; }
     }
 }

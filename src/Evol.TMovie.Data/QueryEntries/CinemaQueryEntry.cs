@@ -12,14 +12,14 @@ namespace Evol.TMovie.Data.QueryEntries
 {
     public class CinemaQueryEntry : BaseEntityFrameworkQuery<Cinema, TMovieDbContext>, ICinemaQueryEntry
     {
-        public IScreeningQueryEntry ScreeningQuery { get; private set; }
+        public IScheduleQueryEntry ScheduleQuery { get; private set; }
 
         public IMovieQueryEntry MovieQuery { get; private set; }
 
-        public CinemaQueryEntry( IEfDbContextProvider efDbContextProvider, IScreeningQueryEntry screeningQuery, IMovieQueryEntry movieQuery) 
+        public CinemaQueryEntry( IEfDbContextProvider efDbContextProvider, IScheduleQueryEntry scheduleQuery, IMovieQueryEntry movieQuery) 
             : base(efDbContextProvider)
         {
-            ScreeningQuery = screeningQuery;
+            ScheduleQuery = scheduleQuery;
             MovieQuery = movieQuery;
         }
 
@@ -41,7 +41,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId)
         {
-            var screens = await ScreeningQuery.SelectAsync(new ScreeningQueryParameter { CinemaId = cinemaId });
+            var screens = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = cinemaId });
             var movieIds = screens.Select(e => e.MovieId).ToArray();
             var movies = await MovieQuery.SelectAsync(movieIds);
             return movies;

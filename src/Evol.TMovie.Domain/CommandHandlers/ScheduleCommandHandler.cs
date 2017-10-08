@@ -9,31 +9,31 @@ using System.Collections.Generic;
 
 namespace Evol.TMovie.Domain.CommandHandlers
 {
-    public class ScreeningCommandHandler:
-        ICommandHandler<ScreeningCreateCommand>, 
-        ICommandHandler<ScreeningUpdateCommand>, 
-        ICommandHandler<ScreeningDeleteCommand>
+    public class ScheduleCommandHandler:
+        ICommandHandler<ScheduleCreateCommand>, 
+        ICommandHandler<ScheduleUpdateCommand>, 
+        ICommandHandler<ScheduleDeleteCommand>
     {
         public IEventBus EventBus { get; private set; }
 
-    public IScreeningRepository ScreeningRepository { get; set; }
+    public IScheduleRepository ScheduleRepository { get; set; }
 
-    public ScreeningCommandHandler(IScreeningRepository screeningRepository)
+    public ScheduleCommandHandler(IScheduleRepository scheduleRepository)
     {
-            ScreeningRepository = screeningRepository;
+            ScheduleRepository = scheduleRepository;
     }
 
-        public async Task ExecuteAsync(ScreeningCreateCommand command)
+        public async Task ExecuteAsync(ScheduleCreateCommand command)
         {
-            var item = command.Input.Map<Screening>();
+            var item = command.Input.Map<Schedule>();
             item.Id = Guid.NewGuid();
             item.CreateTime = DateTime.Now;
-            await ScreeningRepository.InsertAsync(item);
+            await ScheduleRepository.InsertAsync(item);
         }
 
-        public async Task ExecuteAsync(ScreeningUpdateCommand command)
+        public async Task ExecuteAsync(ScheduleUpdateCommand command)
         {
-            var item = await ScreeningRepository.FindAsync(command.Input.Id);
+            var item = await ScheduleRepository.FindAsync(command.Input.Id);
             if (item == null)
                 throw new KeyNotFoundException();
             var dto = command.Input;
@@ -45,12 +45,12 @@ namespace Evol.TMovie.Domain.CommandHandlers
             item.SellPrice = dto.SellPrice;
             item.Price = dto.Price;
             item.SpaceType = dto.SpaceType;
-            await ScreeningRepository.UpdateAsync(item);
+            await ScheduleRepository.UpdateAsync(item);
         }
 
-        public async Task ExecuteAsync(ScreeningDeleteCommand command)
+        public async Task ExecuteAsync(ScheduleDeleteCommand command)
         {
-            await ScreeningRepository.DeleteAsync(command.Input.Id);
+            await ScheduleRepository.DeleteAsync(command.Input.Id);
         }
     }
 }

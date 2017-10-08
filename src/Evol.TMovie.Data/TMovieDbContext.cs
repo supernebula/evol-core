@@ -30,7 +30,7 @@ namespace Evol.TMovie.Data
             //modelBuilder.AddConfiguration<CinemaMap>();
             //modelBuilder.AddConfiguration<MovieMap>();
             //modelBuilder.AddConfiguration<ActorMap>();
-            //modelBuilder.AddConfiguration<ScreeningMap>();
+            //modelBuilder.AddConfiguration<ScheduleMap>();
             //modelBuilder.AddConfiguration<ScreeningRoomMap>();
             //modelBuilder.AddConfiguration<SeatMap>();
             ////方法二

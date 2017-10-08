@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Evol.Domain.Dto;
+using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.Models.Values;
-using Evol.Common;
-using Evol.Domain.Models;
+using System;
+using AutoMapper.Configuration;
 
-namespace Evol.TMovie.Domain.Models.AggregateRoots
+namespace Evol.TMovie.Domain.Commands.Dto
 {
-    /// <summary>
-    /// 放映场次
-    /// </summary>
-    public class Screening : AggregateRoot
+    public class ScheduleCreateDto : IInputDto, ICanConfigMapTo<Schedule>
     {
         public Guid MovieId { get; set; }
 
@@ -27,5 +25,10 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
 
 
         public SpaceDimensionType SpaceType { get; set; }
+
+        public void ConfigMap(MapperConfigurationExpression mapConfig)
+        {
+            mapConfig.CreateMap<ScheduleCreateDto, Schedule>();
+        }
     }
 }

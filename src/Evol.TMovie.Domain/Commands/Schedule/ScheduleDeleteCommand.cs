@@ -3,7 +3,7 @@ using Evol.TMovie.Domain.Dto;
 
 namespace Evol.TMovie.Domain.Commands
 {
-    public class ScreeningDeleteCommand : Command
+    public class ScheduleDeleteCommand : Command
     {
         public ItemDeleteDto Input { get; set; }
     }

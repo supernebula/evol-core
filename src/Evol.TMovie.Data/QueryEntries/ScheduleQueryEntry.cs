@@ -10,20 +10,20 @@ using Evol.EntityFramework.Repository;
 
 namespace Evol.TMovie.Data.QueryEntries
 {
-    public class ScreeningQueryEntry : BaseEntityFrameworkQuery<Screening, TMovieDbContext>, IScreeningQueryEntry
+    public class ScheduleQueryEntry : BaseEntityFrameworkQuery<Schedule, TMovieDbContext>, IScheduleQueryEntry
     {
-        public ScreeningQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
+        public ScheduleQueryEntry(IEfDbContextProvider efDbContextProvider) : base(efDbContextProvider)
         {
         }
 
-        public async Task<List<Screening>> SelectAsync(ScreeningQueryParameter param)
+        public async Task<List<Schedule>> SelectAsync(ScheduleQueryParameter param)
         {
-            var items = await base.SelectAsync(e => e.CinemaId == param.CinemaId);
+            var items = await base.SelectAsync(e => e.CinemaId == param.CinemaId && e.Id == param.ScheduleId);
             return items.ToList();
         }
 
 
-        public async Task<IPaged<Screening>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize)
+        public async Task<IPaged<Schedule>> PagedAsync(ScheduleQueryParameter param, int pageIndex, int pageSize)
         {
             var result = await base.PagedAsync(e => e.CinemaId == param.CinemaId, pageIndex, pageSize);
             return result;

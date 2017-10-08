@@ -12,12 +12,6 @@ namespace Evol.TMovie.Website.Controllers
     {
 
         [AllowAnonymous]
-        public IActionResult Hot()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -27,18 +21,6 @@ namespace Evol.TMovie.Website.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Test()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
 
             return View();
         }

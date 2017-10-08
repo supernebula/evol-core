@@ -9,7 +9,7 @@ using Evol.TMovie.Domain.Models.Values;
 
 namespace Evol.TMovie.Website.Models.CinemaViewModels
 {
-    public class ScreeningViewModel : IOutputDto, ICanConfigMapFrom<Screening>
+    public class ScheduleViewModel : IOutputDto, ICanConfigMapFrom<Schedule>
     {
 
         public Guid MovieId { get; set; }
@@ -32,7 +32,7 @@ namespace Evol.TMovie.Website.Models.CinemaViewModels
 
         public void ConfigMap(MapperConfigurationExpression mapConfig)
         {
-            mapConfig.CreateMap<Screening, ScreeningViewModel>();
+            mapConfig.CreateMap<Schedule, ScheduleViewModel>();
         }
     }
 }

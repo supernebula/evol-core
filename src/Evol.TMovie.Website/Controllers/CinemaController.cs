@@ -17,7 +17,13 @@ namespace Evol.TMovie.Website.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Screening()
+        public IActionResult Shecd()
+        {
+            return View();
+        }
+
+
+        public IActionResult PickSeat()
         {
             return View();
         }

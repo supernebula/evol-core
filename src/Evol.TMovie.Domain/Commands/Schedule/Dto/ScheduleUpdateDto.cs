@@ -6,7 +6,7 @@ using AutoMapper.Configuration;
 
 namespace Evol.TMovie.Domain.Commands.Dto
 {
-    public class ScreeningUpdateDto : IInputDto, ICanConfigMapTo<Screening>
+    public class ScheduleUpdateDto : IInputDto, ICanConfigMapTo<Schedule>
     {
         public Guid Id { get; set; }
 
@@ -30,7 +30,7 @@ namespace Evol.TMovie.Domain.Commands.Dto
 
         public void ConfigMap(MapperConfigurationExpression mapConfig)
         {
-            mapConfig.CreateMap<ScreeningUpdateDto, Screening>();
+            mapConfig.CreateMap<ScheduleUpdateDto, Schedule>();
         }
     }
 }

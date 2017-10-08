@@ -3,8 +3,8 @@ using Evol.Domain.Commands;
 
 namespace Evol.TMovie.Domain.Commands
 {
-    public class ScreeningUpdateCommand : Command
+    public class ScheduleCreateCommand : Command
     {
-        public ScreeningUpdateDto Input { get; set; }
+        public ScheduleCreateDto Input { get; set; }
     }
 }
