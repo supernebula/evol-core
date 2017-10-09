@@ -45,6 +45,31 @@
 </div>
 <div class="swiper-pagination" id="pagination"></div>
 
+<div id="app" class="">
+    <div id="schedules" class="row">
+
+        <div class="schedule" v-for="item in items">
+            <div class="time col-xs-3">
+                {{ item.start }} <br />
+                {{ item.end }}
+            </div>
+            <div class="room col-xs-4">
+                {{ item.attr }} <br />
+                {{ item.room }}
+            </div>
+            <div class="price col-xs-3">
+                {{ item.sellprice }} <br />
+                {{ item.price }}
+            </div>
+            <div class="buy col-xs-2">
+                <div class="btn-group" role="group" aria-label="..." style="margin: 20px 0 0 0;">
+                    <button type="button" item-id="" class="btn btn-default">购票</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Styles{
 

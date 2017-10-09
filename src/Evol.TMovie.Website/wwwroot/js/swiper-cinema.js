@@ -1,4 +1,17 @@
 ﻿// JavaScript Document
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        items: [
+            { date: '今天10-9', start: '12:50',end : '14:45', attr: '', room : '5号厅', sellprice : '28元',  price : '40元', scheduleId : '00000' },
+            { date: '今天10-9', start: '13:20', end: '15:15', attr: '', room: '6号厅', sellprice: '30元', price: '50元', scheduleId: '00000' },
+            { date: '今天10-9', start: '14:00', end: '15:5', attr: '', room: '8号厅', sellprice: '30元', price: '50元', scheduleId: '00000' }
+        ]
+    }
+})
+
+
 var mySwiper = new Swiper('.swiper-container', {
     speed: 30,
     freeMode: true,
