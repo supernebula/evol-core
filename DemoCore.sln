@@ -96,7 +96,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Manage.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Logging.Tests", "test\Evol.Logging.Tests\Evol.Logging.Tests.csproj", "{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.RabbitMQ", "src\Infrastructure\Evol.RabbitMQ\Evol.RabbitMQ.csproj", "{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.RabbitMQ", "src\Infrastructure\Evol.RabbitMQ\Evol.RabbitMQ.csproj", "{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.RabbitMQ.Tests", "test\Evol.RabbitMQ.Tests\Evol.RabbitMQ.Tests.csproj", "{2925C2CF-8706-481A-94B8-7C263E2B16D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -236,6 +238,10 @@ Global
 		{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -278,6 +284,7 @@ Global
 		{F6AB0976-8001-493F-9417-82EBF3799869} = {76EF6245-8D3F-464A-BB7E-ED8622AAEB05}
 		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
 		{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A} = {77452356-61F9-4D92-BA06-BA5C47C96074}
+		{2925C2CF-8706-481A-94B8-7C263E2B16D9} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCE97902-2004-4E22-84BB-3C7593359A8B}

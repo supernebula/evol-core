@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/src/Evol.TMovie.Manage
+/src/Evol.TMovie.Website
+/src/Evol.TMovie.Data
+/src/Evol.TMovie.Domain
