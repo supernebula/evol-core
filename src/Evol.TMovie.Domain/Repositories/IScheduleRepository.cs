@@ -3,7 +3,7 @@ using Evol.Domain.Data;
 
 namespace Evol.TMovie.Domain.Repositories
 {
-    public interface IScreeningRepository : IRepository<Screening>
+    public interface IScheduleRepository : IRepository<Schedule>
     {
     }
 }

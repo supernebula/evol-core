@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "影院场次排片";
 }
 
 <div id="head-bar" class="row">
@@ -12,7 +12,7 @@
 
 </div>
 
-<div class="row cinema-item"  style=" border-top:1px solid #EAEAEA;  height:120px;margin: 10px 0 5px 0;">
+<div class="row cinema-item" style=" border-top:1px solid #EAEAEA;  height:120px;margin: 10px 0 5px 0;">
     <div class="col-xs-12">
         <div class="name">杭州UME国际影城</div>
         <div class="min-price">28元起</div>
@@ -45,17 +45,42 @@
 </div>
 <div class="swiper-pagination" id="pagination"></div>
 
+<div id="app" class="">
+    <div id="schedules" class="row">
+
+        <div class="schedule" v-for="item in items">
+            <div class="time col-xs-3">
+                {{ item.start }} <br />
+                {{ item.end }}
+            </div>
+            <div class="room col-xs-4">
+                {{ item.attr }} <br />
+                {{ item.room }}
+            </div>
+            <div class="price col-xs-3">
+                {{ item.sellprice }} <br />
+                {{ item.price }}
+            </div>
+            <div class="buy col-xs-2">
+                <div class="btn-group" role="group" aria-label="..." style="margin: 20px 0 0 0;">
+                    <button type="button" item-id="" class="btn btn-default">购票</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Styles{
 
-<link href="~/css/swiper.min.css" rel="stylesheet" />
-<link href="~/css/swiper.cinema.css" rel="stylesheet" />
+    <link href="~/css/swiper.min.css" rel="stylesheet" />
+    <link href="~/css/swiper.cinema.css" rel="stylesheet" />
 
 }
 
 @section Scripts{
- 
-<script src="~/js/swiper.min.js"></script>
-<script src="~/js/swiper-cinema.js"></script>
+
+    <script src="~/js/swiper.min.js"></script>
+    <script src="~/js/swiper-cinema.js"></script>
 
 }

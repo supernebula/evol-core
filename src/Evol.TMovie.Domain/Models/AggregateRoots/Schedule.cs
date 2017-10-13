@@ -8,7 +8,7 @@ namespace Evol.TMovie.Domain.Models.AggregateRoots
     /// <summary>
     /// 放映场次
     /// </summary>
-    public class Screening : AggregateRoot
+    public class Schedule : AggregateRoot
     {
         public Guid MovieId { get; set; }
 

@@ -8,13 +8,13 @@ using Evol.Domain.Data;
 
 namespace Evol.TMovie.Domain.QueryEntries
 {
-    public interface IScreeningQueryEntry : IQueryEntry
+    public interface IScheduleQueryEntry : IQueryEntry
     {
 
-        Task<Screening> FindAsync(Guid id);
+        Task<Schedule> FindAsync(Guid id);
 
-        Task<List<Screening>> RetrieveAsync(ScreeningQueryParameter param);
+        Task<List<Schedule>> SelectAsync(ScheduleQueryParameter param);
 
-        Task<IPaged<Screening>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize);
+        Task<IPaged<Schedule>> PagedAsync(ScheduleQueryParameter param, int pageIndex, int pageSize);
     }
 }
