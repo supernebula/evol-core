@@ -2,7 +2,7 @@
 
 ### 概述
 
-基于C#/.NET Core2.0跨平台，领域驱动Web开发框架； Based on the .net core domain-driven development framework；
+基于C#/.NET Core2.0跨平台，领域驱动Web开发框架； Based on the c#/.net core domain-driven development framework；
 
 ### 基本思想
 
