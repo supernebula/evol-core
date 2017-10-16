@@ -19,3 +19,7 @@ DDD领域驱动设计、CQRS、微服务、并发、跨平台、分布式、支�
 ### 部署
 
 Window、Linux、Docker
+
+### License
+
+Apache License, Version 2.0 <http://www.apache.org/licenses/>
