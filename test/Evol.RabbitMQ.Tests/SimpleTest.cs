@@ -32,7 +32,7 @@ namespace Evol.RabbitMQ.Tests
 
         }
 
-        [Fact]
+        [Fact] 
         public void LoopSendTest()
         {
             try
