@@ -14,7 +14,7 @@
 
 ### 技术栈
 
-.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、EntityFramework、Dapper、MongoDB、Redis、SQL Server、Node.Js、RabbitMQ、MVVM.....等等
+.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、EntityFramework、Dapper、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
 
 ### 部署
 
