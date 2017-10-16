@@ -14,7 +14,7 @@ DDD领域驱动设计、CQRS、微服务、并发、跨平台、分布式、支�
 
 ### 技术栈
 
-.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、EntityFramework、Dapper、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
+.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、IoC、EntityFramework、Dapper、UnitOfWork、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
 
 ### 部署
 
