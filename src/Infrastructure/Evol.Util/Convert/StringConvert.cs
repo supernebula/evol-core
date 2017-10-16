@@ -16,12 +16,14 @@ namespace Evol.Util.Convert
         /// <returns></returns>
         public static T To<T>(string str)
         {
+            var a = System.Convert.ToInt32("2");
             throw new NotImplementedException();
         }
 
-        public static byte ToByte(string str)
+        public static bool TryToByte(string str, ref byte value)
         {
-            throw new NotImplementedException();
+            byte temp;
+            return byte.TryParse(str, out temp) && (value = temp) == temp;
         }
 
         public static short ToShort(string str)
