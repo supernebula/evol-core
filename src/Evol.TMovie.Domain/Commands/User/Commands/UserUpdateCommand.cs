@@ -5,6 +5,6 @@ namespace Evol.TMovie.Domain.Commands
 {
     public class UserUpdateCommand : Command
     {
-        public ScreeningUpdateDto Input { get; set; }
+        public ScheduleUpdateDto Input { get; set; }
     }
 }

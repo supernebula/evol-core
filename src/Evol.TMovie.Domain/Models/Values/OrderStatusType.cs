@@ -7,6 +7,8 @@ namespace Evol.TMovie.Domain.Models.Values
 
         Paid,
 
+        Received,
+
         Completed,
 
         Closed

@@ -22,6 +22,8 @@ namespace Evol.Domain.Data
 
         Task InsertAsync(T entity);
 
+        Task InsertRangeAsync(IEnumerable<T> items);
+
         Task UpdateAsync(T item);
 
         Task DeleteAsync(T item);
