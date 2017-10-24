@@ -38,9 +38,15 @@ namespace Evol.EntityFramework.Repository
             return innerBaseRepository.Query();
         }
 
-        protected async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate)
+        protected async Task<List<T>> SelectAsync(Expression<Func<T, bool>> predicate)
         {
             return await innerBaseRepository.SelectAsync(predicate);
+        }
+
+        protected async Task<List<T>> SelectAsync(Func<IQueryable<T>, IQueryable<T>> condition)
+        {
+            var items = await innerBaseRepository.SelectAsync(condition);
+            return items;
         }
 
         protected async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
@@ -57,6 +63,12 @@ namespace Evol.EntityFramework.Repository
         protected async Task<IPaged<T>> PagedAsync(Expression<Func<T, bool>> predicate, int pageIndex, int pageSize)
         {
             return await innerBaseRepository.PagedAsync(predicate, pageIndex, pageSize);
+        }
+
+        protected async Task<IPaged<T>> PagedAsync(Func<IQueryable<T>, IQueryable<T>> condition, int pageIndex, int pageSize)
+        {
+            var paged = await innerBaseRepository.PagedAsync(condition, pageIndex, pageSize);
+            return paged;
         }
     }
 

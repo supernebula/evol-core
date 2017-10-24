@@ -29,7 +29,7 @@ namespace Evol.TMovie.Data.QueryEntries
             return (await base.SelectAsync(e => e.Username == username)).FirstOrDefault();
         }
 
-        public async Task<List<User>> RetrieveAsync(UserQueryParameter param)
+        public async Task<List<User>> SelectAsync(UserQueryParameter param)
         {
             Expression<Func<User, bool>> query = null;
             if (param != null && !string.IsNullOrWhiteSpace(param.Key))

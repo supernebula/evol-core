@@ -25,7 +25,7 @@ namespace Evol.TMovie.Data.QueryEntries
             MovieQuery = movieQuery;
         }
 
-        public async Task<List<Cinema>> RetrieveAsync(CinemaQueryParameter param)
+        public async Task<List<Cinema>> SelectAsync(CinemaQueryParameter param)
         {
             if (param == null || string.IsNullOrWhiteSpace(param.Name))
                 return new List<Cinema>();
@@ -43,7 +43,7 @@ namespace Evol.TMovie.Data.QueryEntries
 
         public async Task<List<Movie>> SelectShowingMoiveAsync(Guid cinemaId)
         {
-            var screens = await ScheduleQuery.SelectAsync(new ScreeningQueryParameter { CinemaId = cinemaId });
+            var screens = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = cinemaId });
             var movieIds = screens.Select(e => e.MovieId).ToArray();
             var movies = await MovieQuery.SelectAsync(movieIds);
             return movies;

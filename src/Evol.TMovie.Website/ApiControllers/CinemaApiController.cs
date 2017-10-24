@@ -17,12 +17,12 @@ namespace Evol.TMovie.Website.ApiControllers
     {
         public ICinemaQueryEntry CinemaQuery { get; private set; }
 
-        public IScreeningQueryEntry ScreeningQuery{ get; private set; }
+        public IScheduleQueryEntry ScheduleQuery { get; private set; }
 
-        public CinemaApiController(ICinemaQueryEntry cinemaQueryEntry, IScreeningQueryEntry screeningQuery)
+        public CinemaApiController(ICinemaQueryEntry cinemaQueryEntry, IScheduleQueryEntry screeningQuery)
         {
             CinemaQuery = cinemaQueryEntry;
-            ScreeningQuery = screeningQuery;
+            ScheduleQuery = screeningQuery;
         }
 
         /// <summary>
@@ -76,10 +76,10 @@ namespace Evol.TMovie.Website.ApiControllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [Route("api/Cinema/Sched")]
-        public async Task<List<ScreeningViewModel>> Schedule(Guid id, Guid movieId)
+        public async Task<List<ScheduleViewModel>> Schedule(Guid id, Guid movieId)
         {
-            var item = await ScreeningQuery.RetrieveAsync(new ScreeningQueryParameter { CinemaId = id  });
-            var values = item.MapList<ScreeningViewModel>();
+            var item = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = id  });
+            var values = item.MapList<ScheduleViewModel>();
             return values;
         }
 

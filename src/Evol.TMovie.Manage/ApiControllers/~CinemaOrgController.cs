@@ -33,7 +33,7 @@
 //        [Route("api/Cinema/list")]
 //        public async Task<IEnumerable<CinemaViewModel>> Get(CinemaQueryParameter param = null)
 //        {
-//            var list = await CinemaQueryEntry.RetrieveAsync(param);
+//            var list = await CinemaQueryEntry.SelectAsync(param);
 //            var result = list.Map<List<CinemaViewModel>>();
 //            return result;
 //        }
@@ -55,7 +55,7 @@
 //            var result = item.Map<CinemaViewModel>();
 //            return result;
 //        }
-        
+
 //        // POST: api/Cinema
 //        [HttpPost]
 //        public Task Post(CinemaCreateDto value)
@@ -67,13 +67,13 @@
 //            }
 //            return Task.FromResult(1);
 //        }
-        
+
 //        // PUT: api/Cinema/5
 //        [HttpPut("{id}")]
 //        public void Put(int id, CinemaUpdateDto value)
 //        {
 //        }
-        
+
 //        // DELETE: api/ApiWithActions/5
 //        [HttpDelete("{id}")]
 //        public void Delete(int id)

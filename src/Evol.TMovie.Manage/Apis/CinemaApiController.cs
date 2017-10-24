@@ -45,7 +45,7 @@ namespace Evol.TMovie.Manage.Apis
         [HttpGet]
         public async Task<IEnumerable<CinemaViewModel>> GetSearch([FromQuery]CinemaQueryParameter param = null)
         {
-            var list = await CinemaQueryEntry.RetrieveAsync(param);
+            var list = await CinemaQueryEntry.SelectAsync(param);
             var result = list.Map<List<CinemaViewModel>>();
             return result;
         }

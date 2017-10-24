@@ -18,13 +18,13 @@ namespace Evol.TMovie.Data.QueryEntries
         }
 
 
-        public Task<List<ScreeningRoom>> RetrieveAsync(ScreeningQueryParameter param)
+        public Task<List<ScreeningRoom>> SelectAsync(ScheduleQueryParameter param)
         {
             throw new NotImplementedException();
         }
 
 
-        public Task<IPaged<ScreeningRoom>> PagedAsync(ScreeningQueryParameter param, int pageIndex, int pageSize)
+        public Task<IPaged<ScreeningRoom>> PagedAsync(ScheduleQueryParameter param, int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
         }

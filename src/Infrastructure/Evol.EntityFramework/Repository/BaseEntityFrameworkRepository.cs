@@ -88,9 +88,17 @@ namespace Evol.EntityFramework.Repository
             return await DbSet.Where(e => ids.Contains(e.Id)).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate)
+        public async Task<List<T>> SelectAsync(Expression<Func<T, bool>> predicate)
         {
             return await DbSet.Where(predicate).ToListAsync();
+        }
+
+        public async Task<List<T>> SelectAsync(Func<IQueryable<T>, IQueryable<T>> condition)
+        {
+            var query = Query();
+            query = condition.Invoke(query);
+            var items = await query.ToListAsync();
+            return items;
         }
 
         public IQueryable<T> Query()
@@ -129,6 +137,21 @@ namespace Evol.EntityFramework.Repository
             var total = await DbSet.CountAsync(predicate);
             var skip = (pageIndex - 1) * pageSize;
             var query = DbSet.Where(predicate);
+            if (skip > 0)
+                query = query.Skip(skip);
+            var list = await query.Take(pageSize).OrderBy(e => e.Id).ToListAsync();
+            var paged = new PagedList<T>(list, total, pageIndex, pageSize);
+            return paged;
+        }
+
+
+        public async Task<IPaged<T>> PagedAsync(Func<IQueryable<T>, IQueryable<T>> condition, int pageIndex, int pageSize)
+        {
+            var query = Query();
+            query = condition.Invoke(query);
+
+            var total = await query.CountAsync();
+            var skip = (pageIndex - 1) * pageSize;
             if (skip > 0)
                 query = query.Skip(skip);
             var list = await query.Take(pageSize).OrderBy(e => e.Id).ToListAsync();

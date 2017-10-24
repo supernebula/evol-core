@@ -16,7 +16,7 @@ namespace Evol.Domain.Data
 
         Task<List<T>> SelectAsync(Guid[] ids);
 
-        Task<IEnumerable<T>> SelectAsync(Expression<Func<T, bool>> predicate);
+        Task<List<T>> SelectAsync(Expression<Func<T, bool>> predicate);
 
         IQueryable<T> Query();
 
