@@ -1,4 +1,4 @@
-﻿using Evol.Domain.Modules;
+﻿using Evol.Configuration.Modules;
 using Evol.TMovie.Data;
 using Evol.TMovie.Domain;
 using Evol.Domain.Dto;

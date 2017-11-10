@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Evol.Domain.Modules
+namespace Evol.Configuration.Modules
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class DependOnAttribute : Attribute

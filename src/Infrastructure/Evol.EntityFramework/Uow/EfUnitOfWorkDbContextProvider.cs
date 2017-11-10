@@ -1,7 +1,5 @@
-﻿using Evol.Common.IoC;
-using Evol.Domain;
+﻿using Evol.Configuration;
 using Evol.Domain.Uow;
-using Evol.EntityFramework.Uow;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;

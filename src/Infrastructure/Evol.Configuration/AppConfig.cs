@@ -1,9 +1,9 @@
 ﻿using System;
-using Evol.Domain.Ioc;
-using Evol.Domain.Modules;
 using Microsoft.Extensions.DependencyInjection;
+using Evol.Configuration.Modules;
+using Evol.Configuration.Ioc;
 
-namespace Evol.Domain
+namespace Evol.Configuration
 {
     public class AppConfig
     {

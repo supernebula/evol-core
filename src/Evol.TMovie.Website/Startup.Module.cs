@@ -1,4 +1,5 @@
-﻿using Evol.Domain;
+﻿using Evol.Configuration;
+using Evol.Domain;
 using Evol.Domain.Configuration;
 using Evol.Domain.Messaging;
 using Evol.Domain.Uow;

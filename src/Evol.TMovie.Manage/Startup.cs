@@ -22,6 +22,7 @@ using System.IO;
 using Evol.Web.Middlewares;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Manage
 {

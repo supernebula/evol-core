@@ -1,4 +1,4 @@
-﻿using Evol.Domain;
+﻿using Evol.Configuration;
 using Evol.Domain.Messaging;
 using Evol.Domain.Uow;
 using Evol.EntityFramework.Repository;

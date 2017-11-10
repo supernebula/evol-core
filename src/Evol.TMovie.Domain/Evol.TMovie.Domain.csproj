@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Evol.TMovie.Domain</AssemblyName>
     <RootNamespace>Evol.TMovie.Domain</RootNamespace>
   </PropertyGroup>
@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Evol.Configuration\Evol.Configuration.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
   </ItemGroup>
 

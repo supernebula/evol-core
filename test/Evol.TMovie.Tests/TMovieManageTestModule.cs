@@ -1,7 +1,7 @@
 ﻿
 using Evol.Domain.Dto;
 using Evol.Domain.Ioc;
-using Evol.Domain.Modules;
+using Evol.Configuration.Modules;
 using System.Reflection;
 
 namespace Evol.TMovie.Manage.Tests

@@ -7,10 +7,13 @@ using Microsoft.Extensions.Logging;
 using Evol.TMovie.Website.Services;
 using Evol.TMovie.Data;
 using Evol.Domain;
+using Evol.Configuration;
 using System.Threading.Tasks;
 using Evol.Web.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Logging.Abstractions;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 namespace Evol.TMovie.Website
 {
@@ -30,17 +33,17 @@ namespace Evol.TMovie.Website
             }
 
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            ConfigurationRoot = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddDbContext<TMovieDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TMConnection"), opt => opt.UseRowNumberForPaging()));
+                options.UseSqlServer(ConfigurationRoot.GetConnectionString("TMConnection"), opt => opt.UseRowNumberForPaging()));
            
 
             services.AddMvc();
@@ -48,6 +51,10 @@ namespace Evol.TMovie.Website
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+
 
             AppConfig.Init(services);
             ConfigureModules(services);
@@ -57,7 +64,7 @@ namespace Evol.TMovie.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(ConfigurationRoot.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddProvider(NullLoggerProvider.Instance);
 

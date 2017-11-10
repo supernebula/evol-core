@@ -1,6 +1,6 @@
 ﻿using Evol.EntityFramework.Repository;
 using Microsoft.EntityFrameworkCore;
-using Evol.Domain;
+using Evol.Configuration;
 
 namespace Evol.EntityFramework.Uow
 {

@@ -1,5 +1,4 @@
-﻿using Evol.Domain;
-using Evol.TMovie.Manage.Apis;
+﻿using Evol.TMovie.Manage.Apis;
 using Evol.TMovie.Domain.Commands.Dto;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using Xunit;
 using Xunit.Abstractions;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Manage.Tests.Controllers
 {

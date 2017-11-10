@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Util.Tests", "test\Evol.Util.Tests\Evol.Util.Tests.csproj", "{6CDD5327-B412-40B3-ABC9-A92211F167AA}"
 EndProject
@@ -98,7 +98,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.Logging.Tests", "test\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.RabbitMQ", "src\Infrastructure\Evol.RabbitMQ\Evol.RabbitMQ.csproj", "{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.RabbitMQ.Tests", "test\Evol.RabbitMQ.Tests\Evol.RabbitMQ.Tests.csproj", "{2925C2CF-8706-481A-94B8-7C263E2B16D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.RabbitMQ.Tests", "test\Evol.RabbitMQ.Tests\Evol.RabbitMQ.Tests.csproj", "{2925C2CF-8706-481A-94B8-7C263E2B16D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolFx.TMovie.Website", "src\EvolFx.TMovie.Website\EvolFx.TMovie.Website.csproj", "{83121F47-C563-4CF5-813F-5A0E47B74ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Fx.EntityFramework", "src\Infrastructure\Evol.Fx.EntityFramework\Evol.Fx.EntityFramework.csproj", "{E169F36C-C6EF-402C-B6C0-1A309FA74502}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Configuration", "src\Infrastructure\Evol.Configuration\Evol.Configuration.csproj", "{A9D593CA-62C0-477E-B94A-FC125DEBBAAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -242,6 +248,18 @@ Global
 		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2925C2CF-8706-481A-94B8-7C263E2B16D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83121F47-C563-4CF5-813F-5A0E47B74ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83121F47-C563-4CF5-813F-5A0E47B74ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83121F47-C563-4CF5-813F-5A0E47B74ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83121F47-C563-4CF5-813F-5A0E47B74ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E169F36C-C6EF-402C-B6C0-1A309FA74502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E169F36C-C6EF-402C-B6C0-1A309FA74502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E169F36C-C6EF-402C-B6C0-1A309FA74502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E169F36C-C6EF-402C-B6C0-1A309FA74502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D593CA-62C0-477E-B94A-FC125DEBBAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D593CA-62C0-477E-B94A-FC125DEBBAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D593CA-62C0-477E-B94A-FC125DEBBAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D593CA-62C0-477E-B94A-FC125DEBBAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,6 +303,9 @@ Global
 		{6A1D754E-D2D1-44BB-956B-3CD87BAFD8C2} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
 		{2A7AB31E-ED25-4F9D-BB06-14953EBB9B8A} = {77452356-61F9-4D92-BA06-BA5C47C96074}
 		{2925C2CF-8706-481A-94B8-7C263E2B16D9} = {DC97D607-3292-4313-8CED-8AA0B19FF382}
+		{83121F47-C563-4CF5-813F-5A0E47B74ACF} = {8B542B00-87DC-489A-9166-981260EE1AF6}
+		{E169F36C-C6EF-402C-B6C0-1A309FA74502} = {77452356-61F9-4D92-BA06-BA5C47C96074}
+		{A9D593CA-62C0-477E-B94A-FC125DEBBAAD} = {1AD154AD-3377-44A1-8BC3-FA86CCB40E93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCE97902-2004-4E22-84BB-3C7593359A8B}

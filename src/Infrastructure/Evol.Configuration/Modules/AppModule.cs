@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Evol.Domain.Ioc;
+using Evol.Configuration.Ioc;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Evol.Domain.Modules
+namespace Evol.Configuration.Modules
 {
     /// <summary>
     /// 模块（目前每个项目看作一个模块）初始化

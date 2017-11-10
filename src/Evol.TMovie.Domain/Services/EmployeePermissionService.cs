@@ -7,6 +7,7 @@ using Evol.TMovie.Domain.QueryEntries;
 using Evol.Domain;
 using Microsoft.Extensions.Caching.Memory;
 using Evol.TMovie.Domain.Models.AggregateRoots;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Domain.Services
 {

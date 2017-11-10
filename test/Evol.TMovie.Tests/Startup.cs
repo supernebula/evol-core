@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.Extensions.DependencyInjection;
-using Evol.Domain;
 using Evol.TMovie.Data;
 using Evol.Domain.Uow;
 using Evol.EntityFramework.Uow;
@@ -13,8 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
-using Evol.TMovie.Manage.Apis;
 using Microsoft.Extensions.Logging.Abstractions;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Manage.Tests
 {

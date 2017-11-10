@@ -26,6 +26,8 @@
     <None Include="Startup.Module.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
@@ -46,6 +48,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Evol.TMovie.Data\Evol.TMovie.Data.csproj" />
     <ProjectReference Include="..\Evol.TMovie.Domain\Evol.TMovie.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\Evol.Configuration\Evol.Configuration.csproj" />
+    <ProjectReference Include="..\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
   </ItemGroup>
 

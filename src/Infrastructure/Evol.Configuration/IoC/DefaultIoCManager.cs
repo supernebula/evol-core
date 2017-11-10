@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
-namespace Evol.Domain.Ioc
+namespace Evol.Configuration.Ioc
 {
     public class DefaultIoCManager : IIoCManager, IDisposable
     {

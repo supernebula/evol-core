@@ -1,5 +1,5 @@
-﻿using Evol.Dapper.Repository;
-using Evol.Domain;
+﻿using Evol.Configuration;
+using Evol.Dapper.Repository;
 using Evol.Domain.Uow;
 using Microsoft.Extensions.Logging;
 

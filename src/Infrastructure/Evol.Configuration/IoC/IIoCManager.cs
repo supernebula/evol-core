@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Evol.Common.IoC;
 
-namespace Evol.Domain.Ioc
+namespace Evol.Configuration.Ioc
 {
     public interface IIoCManager : IIoCServiceGetter
     {

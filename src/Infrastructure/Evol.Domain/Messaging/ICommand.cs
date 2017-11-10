@@ -8,6 +8,9 @@ namespace Evol.Domain.Messaging
     {
         Guid Id { get; }
 
-        List<Event> Events { get; set; }
+        string Version { get;}
+
+        //[Obsolete]
+        //List<Event> Events { get; set; }
     }
 }

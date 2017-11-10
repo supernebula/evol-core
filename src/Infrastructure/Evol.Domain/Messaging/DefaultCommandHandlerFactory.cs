@@ -1,7 +1,7 @@
 ﻿using System;
 using Evol.Domain.Commands;
 using Evol.Domain.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Evol.Configuration;
 
 namespace Evol.Domain.Messaging
 {

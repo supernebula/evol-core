@@ -2,7 +2,7 @@
 using Evol.TMovie.Data.Ioc;
 using Evol.TMovie.Domain;
 using Evol.Domain.Ioc;
-using Evol.Domain.Modules;
+using Evol.Configuration.Modules;
 
 namespace Evol.TMovie.Data
 {

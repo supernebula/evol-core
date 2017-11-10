@@ -1,5 +1,4 @@
-﻿
-using Evol.Domain;
+﻿using Evol.Configuration;
 
 namespace Evol.Dapper.Repository
 {

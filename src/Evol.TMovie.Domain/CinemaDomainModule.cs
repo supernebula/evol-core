@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Evol.Domain.Ioc;
-using Evol.Domain.Modules;
+using Evol.Configuration.Modules;
 using Evol.Domain.Dto;
 
 namespace Evol.TMovie.Domain

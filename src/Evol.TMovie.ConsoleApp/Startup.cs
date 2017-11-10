@@ -8,6 +8,7 @@ using Evol.EntityFramework.Uow;
 using Evol.EntityFramework.Repository;
 using System.IO;
 using System;
+using Evol.Configuration;
 
 namespace Evol.TMovie.ConsoleApp
 {

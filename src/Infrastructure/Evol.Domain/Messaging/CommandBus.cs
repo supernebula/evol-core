@@ -45,12 +45,12 @@ namespace Evol.Domain.Messaging
                 throw ex;
             }
 
-            //处理事件，保证最终一致性
-            if (command.Events != null && command.Events.Any())
-            {
-                var eventPublisher = AppConfig.Current.IoCManager.GetService<IEventPublisher>();
-                await eventPublisher.PublishAsync(command.Events);
-            }
+            ////处理事件，保证最终一致性
+            //if (command.Events != null && command.Events.Any())
+            //{
+            //    var eventPublisher = AppConfig.Current.IoCManager.GetService<IEventPublisher>();
+            //    await eventPublisher.PublishAsync(command.Events);
+            //}
 
             _logger.LogDebug("EXECUTE> UnitOfWork.CommitAsync()");
         }
