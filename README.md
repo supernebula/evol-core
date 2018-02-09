@@ -32,5 +32,5 @@ supnebula@gmail.com
 
 #### More
 
-    (了解.NetStandard)[https://docs.microsoft.com/en-us/dotnet/standard/net-standard]
+   (了解.NetStandard)[https://docs.microsoft.com/en-us/dotnet/standard/net-standard]
 
