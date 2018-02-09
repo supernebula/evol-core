@@ -16,7 +16,12 @@ C#、.NET Standard2、.Net core2.0、Node.Js
 
 ### 技术栈
 
-.Net Standard2.0、.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、IoC、EntityFramework、Dapper、UnitOfWork、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
+.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、EntityFramework、Dapper、UnitOfWork、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
+
+(了解.NetStandard)[https://docs.microsoft.com/en-us/dotnet/standard/net-standard]
+
+![.Net技术体系](https://msdnshared.blob.core.windows.net/media/2016/09/dotnet-tomorrow.png)
+
 
 ### 部署
 
