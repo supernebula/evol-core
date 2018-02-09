@@ -50,20 +50,20 @@ namespace Evol.Util.Maths
 
         public static int Random(int min, int max, int? seed = null)
         {
-            Random random = seed == null ? new Random(Guid.NewGuid().GetHashCode()) : new Random(seed.Value);
+            Random random = seed == null ? new Random(DateTime.Now.Millisecond) : new Random(seed.Value);
             return random.Next(min, max);
         }
 
         public static double RandomDouble(int min, int max, int? seed = null)
         {
-            Random random = seed == null ? new Random(Guid.NewGuid().GetHashCode()) : new Random(seed.Value);
+            Random random = seed == null ? new Random(DateTime.Now.Millisecond) : new Random(seed.Value);
             return random.NextDouble() * random.Next(min, max);
         }
 
         public static string RandomLetter(int minLength, int maxLength, int? seed = null)
         {
             var letters = new[] {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-            Random random = seed == null ? new Random(Guid.NewGuid().GetHashCode()) : new Random(seed.Value);
+            Random random = seed == null ? new Random(DateTime.Now.Millisecond) : new Random(seed.Value);
             var length =  random.Next(minLength, maxLength);
             string str = null;
             for (int i = 0; i < length; i++)
@@ -76,7 +76,7 @@ namespace Evol.Util.Maths
         public static string RandomLetter(int length, int? seed = null)
         {
             var letters = new[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-            Random random = seed == null ? new Random(Guid.NewGuid().GetHashCode()) : new Random(seed.Value);
+            Random random = seed == null ? new Random(DateTime.Now.Millisecond) : new Random(seed.Value);
             string str = null;
             for (int i = 0; i < length; i++)
             {

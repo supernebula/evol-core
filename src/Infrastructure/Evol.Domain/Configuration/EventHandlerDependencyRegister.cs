@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Evol.Common;
 using Evol.Domain.Messaging;
-using Microsoft.Extensions.DependencyInjection;
+using Evol.Common.IoC;
 
 namespace Evol.Domain.Configuration
 {
@@ -25,20 +25,20 @@ namespace Evol.Domain.Configuration
             }
         }
 
-
+        private IIoCManager _ioCManager;
         private readonly Func<IDependencyMapProvider> _eventHandlerTypeProviderThunk;
-        private readonly Func<IServiceCollection> _containerThunk;
+        private readonly Func<IIoCManager> _ioCManagerThunk;
         private readonly Func<Assembly[]> _assembliesThunk;
-        public EventHandlerDependencyRegister(IServiceCollection container, IDependencyMapProvider commandHandlerTypeProvider, params Assembly[] assemblies)
+        public EventHandlerDependencyRegister(IIoCManager ioCManager, IDependencyMapProvider commandHandlerTypeProvider, params Assembly[] assemblies)
         {
-            if (container != null)
-                _containerThunk = () => container;
+            if (_ioCManager != null)
+                _ioCManagerThunk = () => ioCManager;
             if (commandHandlerTypeProvider != null)
                 _eventHandlerTypeProviderThunk = () => commandHandlerTypeProvider;
             _assembliesThunk = () => assemblies;
         }
 
-        public EventHandlerDependencyRegister(IServiceCollection container, params Assembly[] assemblies) : this(container, null, assemblies)
+        public EventHandlerDependencyRegister(IIoCManager ioCManager, params Assembly[] assemblies) : this(ioCManager, null, assemblies)
         {
             _eventHandlerTypeProviderThunk = () => new DefaultEventHandlerTypeProvider();
         }
@@ -47,18 +47,18 @@ namespace Evol.Domain.Configuration
         public void Register()
         {
             var maps = _eventHandlerTypeProviderThunk().GetDependencyMap(_assembliesThunk()).ToList();
-            maps.ForEach(e => _containerThunk().AddTransient(e.Interface, e.Impl));
+            maps.ForEach(e => _ioCManagerThunk().AddPerDependency(e.Interface, e.Impl));
         }
 
 
-        public void Register(Type from, Type to, ServiceLifetime lifetime)
+        public void Register(Type from, Type to, IocLifetime lifetime)
         {
-            if (lifetime == ServiceLifetime.Scoped)
-                _containerThunk().AddScoped(from, to);
-            else if (lifetime == ServiceLifetime.Singleton)
-                _containerThunk().AddSingleton(from, to);
+            if (lifetime == IocLifetime.PerRequest)
+                _ioCManagerThunk().AddPerRequest(from, to);
+            else if (lifetime == IocLifetime.SingleInstance)
+                _ioCManagerThunk().AddSingleInstance(from, to);
             else
-                _containerThunk().AddTransient(from, to);
+                _ioCManagerThunk().AddPerDependency(from, to);
         }
     }
 }

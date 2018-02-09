@@ -1,15 +1,16 @@
-﻿using Evol.Domain.Uow;
-using Microsoft.Extensions.Logging;
+﻿using Evol.UnitOfWork.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using Evol.Common.Logging;
 
 namespace Evol.Fx.EntityFramework.Uow
 {
     public class EfUnitOfWork : UnitOfWorkBase
     {
+
 
         public Dictionary<string, DbContextTransaction> Transactions { get; }
 
@@ -24,6 +25,7 @@ namespace Evol.Fx.EntityFramework.Uow
             ActiveDbContexts = new Dictionary<string, DbContext>();
             Transactions = new Dictionary<string, DbContextTransaction>();
             logger.CreateLogger<EfUnitOfWork>().LogDebug("CONSTRUCT> EfUnitOfWork");
+            Key = Guid.NewGuid();
         }
 
         protected override void BeginUow()
@@ -65,12 +67,6 @@ namespace Evol.Fx.EntityFramework.Uow
             Exception exception = null;
             foreach (var trans in Transactions.Values)
             {
-                if (exceptioned)
-                {
-                    trans.Rollback();
-                    continue;
-                }
-
                 try
                 {
                     trans.Commit();
@@ -79,12 +75,27 @@ namespace Evol.Fx.EntityFramework.Uow
                 {
                     exception = ex;
                     exceptioned = true;
-                    trans.Rollback();
+                    break;
                 }
             }
 
-            if(exceptioned)
+            if (exceptioned)
+            {
+                Rollback();
                 throw exception;
+            }
+        }
+
+        public override void Rollback()
+        {
+            //todo: 后续升级为分布式事务
+            foreach (var trans in Transactions.Values)
+            {
+                trans.Rollback();
+            }
+
+            Child?.Rollback();
+            Parent?.Rollback();
         }
 
         /// <summary>

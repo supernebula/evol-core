@@ -74,13 +74,9 @@
       <Project>{10639FD4-78A1-4F0E-BD53-4D7EED316607}</Project>
       <Name>Evol.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Evol.Configuration\Evol.Configuration.csproj">
-      <Project>{A9D593CA-62C0-477E-B94A-FC125DEBBAAD}</Project>
-      <Name>Evol.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Evol.Domain\Evol.Domain.csproj">
-      <Project>{41c398fb-42b4-472a-b46b-cadcbef14249}</Project>
-      <Name>Evol.Domain</Name>
+    <ProjectReference Include="..\Evol.UnitOfWork.Abstractions\Evol.UnitOfWork.Abstractions.csproj">
+      <Project>{9a73d3a4-7fb6-4829-9194-50c235b8113d}</Project>
+      <Name>Evol.UnitOfWork.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

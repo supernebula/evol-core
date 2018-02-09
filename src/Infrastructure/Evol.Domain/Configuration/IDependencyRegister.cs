@@ -1,6 +1,5 @@
-﻿
-using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Evol.Common.IoC;
 
 namespace Evol.Domain.Configuration
 {
@@ -12,6 +11,6 @@ namespace Evol.Domain.Configuration
 
         void Register();
 
-        void Register(Type from, Type to, ServiceLifetime lifetime);
+        void Register(Type from, Type to, IocLifetime lifetime);
     }
 }

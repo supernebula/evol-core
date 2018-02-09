@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Evol.Common;
+using Evol.Common.IoC;
 using Evol.Domain.Messaging;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.Domain.Configuration
 {
@@ -26,30 +26,31 @@ namespace Evol.Domain.Configuration
             }
         }
 
+        private readonly IIoCManager _ioCManager;
         private readonly Func<IDependencyMapProvider> _eventBusTypeProviderThunk;
-        private readonly Func<IServiceCollection> _containerThunk;
+        private readonly Func<IIoCManager> _ioCManagerThunk;
         private readonly Func<Assembly[]> _assembliesThunk;
 
-        public EventBusDependencyRegister(IServiceCollection container, IDependencyMapProvider commandBusTypeProvider, params Assembly[] assemblies)
+        public EventBusDependencyRegister(IIoCManager ioCManager, IDependencyMapProvider eventBusTypeProvider, params Assembly[] assemblies)
         {
-            if (container == null)
-                throw new ArgumentNullException(nameof(container));
-            _containerThunk = () => container;
+            if (_ioCManager == null)
+                throw new ArgumentNullException(nameof(_ioCManager));
+            _ioCManagerThunk = () => _ioCManager;
             if (_eventBusTypeProviderThunk != null)
-                _eventBusTypeProviderThunk = () => commandBusTypeProvider;
+                _eventBusTypeProviderThunk = () => eventBusTypeProvider;
             _assembliesThunk = () => assemblies;
         }
 
-        public EventBusDependencyRegister(IServiceCollection container, params Assembly[] assemblies) : this(container, null, assemblies)
+        public EventBusDependencyRegister(IIoCManager ioCManager, params Assembly[] assemblies) : this(ioCManager, null, assemblies)
         {
             _eventBusTypeProviderThunk = () => new DefaultEventBusTypeProvider();
         }
 
-        public EventBusDependencyRegister(IServiceCollection container)
+        public EventBusDependencyRegister(IIoCManager ioCManager)
         {
-            if (container == null)
-                throw new ArgumentNullException(nameof(container));
-            _containerThunk = () => container;
+            if (ioCManager == null)
+                throw new ArgumentNullException(nameof(ioCManager));
+            _ioCManagerThunk = () => ioCManager;
             _eventBusTypeProviderThunk = () => new DefaultEventBusTypeProvider();
         }
 
@@ -58,17 +59,17 @@ namespace Evol.Domain.Configuration
             var eventBusMap = _eventBusTypeProviderThunk().GetDependencyMap(_assembliesThunk()).FirstOrDefault();
             if (eventBusMap == default(InterfaceImplPair))
                 throw new NotImplementedException("没有找到" + nameof(IEventBus) + "的实现");
-            _containerThunk().AddTransient(eventBusMap.Interface, eventBusMap.Impl);
+            _ioCManagerThunk().AddPerDependency(eventBusMap.Interface, eventBusMap.Impl);
         }
 
-        public void Register(Type from, Type to, ServiceLifetime lifetime)
+        public void Register(Type from, Type to, IocLifetime lifetime)
         {
-            if (lifetime == ServiceLifetime.Scoped)
-                _containerThunk().AddScoped(from, to);
-            else if (lifetime == ServiceLifetime.Singleton)
-                _containerThunk().AddSingleton(from, to);
+            if (lifetime == IocLifetime.PerRequest)
+                _ioCManagerThunk().AddPerRequest(from, to);
+            else if (lifetime == IocLifetime.SingleInstance)
+                _ioCManagerThunk().AddSingleInstance(from, to);
             else
-                _containerThunk().AddTransient(from, to);
+                _ioCManagerThunk().AddPerDependency(from, to);
         }
     }
 }

@@ -1,20 +1,21 @@
-﻿using Evol.Domain.Uow;
+﻿using Evol.UnitOfWork.Abstractions;
 using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Evol.Common.IoC;
+using Evol.Common.Logging;
 
 namespace Evol.Dapper.Uow
 {
     public class DapperUnitOfWorkManager : IUnitOfWorkManager
     {
+        public Guid Key { get; }
 
+        private IIoCManager IoCManager { get; set; }
 
-        private IServiceProvider ServiceProvider { get; set; }
-
-        public DapperUnitOfWorkManager(IServiceProvider serviceProvider, ILoggerFactory logger)
+        public DapperUnitOfWorkManager(IIoCManager ioCManager, ILoggerFactory logger)
         {
-            ServiceProvider = serviceProvider;
+            IoCManager = ioCManager;
             logger.CreateLogger<DapperUnitOfWorkManager>().LogDebug("CONSTRUCT> DapperUnitOfWorkManager");
+            Key = Guid.NewGuid();
         }
 
         public IUnitOfWork _current;
@@ -26,12 +27,29 @@ namespace Evol.Dapper.Uow
             }
         }
 
+
+
         public IUnitOfWork Build()
         {
-            if (_current != null)
+            ////生命周期变更：由每请求唯一工作单元 修改为 每依赖工作单元 20180102
+            //if (_current != null)
+            //    return _current;
+            //_current = IoCManager.GetService<IUnitOfWork>();
+            //return _current;
+
+            var uow = IoCManager.GetService<IUnitOfWork>();
+            if (_current == null)
+            {
+                _current = uow;
                 return _current;
-            _current = ServiceProvider.GetService<IUnitOfWork>();
-            return _current;
+            }
+
+            if (_current == uow)
+                return _current;
+
+            _current.Child = uow;
+            uow.Parent = _current;
+            return uow;
         }
     }
 }

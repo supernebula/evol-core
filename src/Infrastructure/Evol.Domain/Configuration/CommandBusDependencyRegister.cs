@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Evol.Domain.Messaging;
 using Evol.Common;
-using Microsoft.Extensions.DependencyInjection;
+using Evol.Common.IoC;
 
 namespace Evol.Domain.Configuration
 {
@@ -26,29 +26,30 @@ namespace Evol.Domain.Configuration
             }
         }
 
+        private readonly IIoCManager _ioCManager;
         private readonly Func<IDependencyMapProvider> _commandBusTypeProviderThunk;
-        private readonly Func<IServiceCollection> _containerThunk;
+        private readonly Func<IIoCManager> _ioCManagerThunk;
         private readonly Func<Assembly[]> _assembliesThunk;
 
-        public CommandBusDependencyRegister(IServiceCollection container, IDependencyMapProvider commandBusTypeProvider, params Assembly[] assemblies)
+        public CommandBusDependencyRegister(IIoCManager ioCManager, IDependencyMapProvider commandBusTypeProvider, params Assembly[] assemblies)
         {
-            if (container != null)
-                _containerThunk = () => container;
+            if (_ioCManager != null)
+                _ioCManagerThunk = () => ioCManager;
             if (_commandBusTypeProviderThunk != null)
                 _commandBusTypeProviderThunk = () => commandBusTypeProvider;
             if(assemblies != null)
                 _assembliesThunk = () => assemblies;
         }
 
-        public CommandBusDependencyRegister(IServiceCollection container, params Assembly[] assemblies) : this(container, null, assemblies)
+        public CommandBusDependencyRegister(IIoCManager ioCManager, params Assembly[] assemblies) : this(ioCManager, null, assemblies)
         {
             _commandBusTypeProviderThunk = () => new DefaultCommandBusTypeProvider();
         }
 
-        public CommandBusDependencyRegister(IServiceCollection container)
+        public CommandBusDependencyRegister(IIoCManager ioCManager)
         {
-            if (container != null)
-                _containerThunk = () => container;
+            if (_ioCManager != null)
+                _ioCManagerThunk = () => _ioCManager;
             _commandBusTypeProviderThunk = () => new DefaultCommandBusTypeProvider();
         }
 
@@ -57,18 +58,18 @@ namespace Evol.Domain.Configuration
             var commandBusMap = _commandBusTypeProviderThunk().GetDependencyMap(_assembliesThunk()).FirstOrDefault();
             if(commandBusMap == default(InterfaceImplPair))
                 throw new NotImplementedException("没有找到" + nameof(ICommandBus) + "的实现");
-            _containerThunk().AddScoped(commandBusMap.Interface, commandBusMap.Impl);  
+            _ioCManagerThunk().AddPerRequest(commandBusMap.Interface, commandBusMap.Impl);  
         }
        
 
-        public void Register(Type from, Type to, ServiceLifetime lifetime)
+        public void Register(Type from, Type to, IocLifetime lifetime)
         {
-            if(lifetime == ServiceLifetime.Scoped)
-                _containerThunk().AddScoped(from, to);
-            else if(lifetime == ServiceLifetime.Singleton)
-                _containerThunk().AddSingleton(from, to);
+            if(lifetime == IocLifetime.PerRequest)
+                _ioCManagerThunk().AddPerRequest(from, to);
+            else if(lifetime == IocLifetime.SingleInstance)
+                _ioCManagerThunk().AddSingleInstance(from, to);
             else
-                _containerThunk().AddTransient(from, to);
+                _ioCManagerThunk().AddPerDependency(from, to);
         }
     }
 }

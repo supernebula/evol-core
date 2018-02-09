@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Evol.Configuration.Ioc;
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+using Evol.Common.IoC;
 
 namespace Evol.Configuration.Modules
 {

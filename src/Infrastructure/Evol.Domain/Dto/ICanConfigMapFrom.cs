@@ -6,8 +6,7 @@ using System.Text;
 
 namespace Evol.Domain.Dto
 {
-
-    public interface ICanConfigMapFrom<TTo> : ICanConfigMapFrom, ICanMapFrom<TTo>
+    public interface ICanConfigMapFrom<TFrom> : ICanConfigMapFrom, ICanMapFrom<TFrom>
     {
     }
 

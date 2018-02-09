@@ -2,19 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>supernebula</Authors>
+    <Company>SuperNebula</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
-    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Evol.Common\Evol.Common.csproj" />
     <ProjectReference Include="..\Evol.Configuration\Evol.Configuration.csproj" />
+    <ProjectReference Include="..\Evol.UnitOfWork.Abstractions\Evol.UnitOfWork.Abstractions.csproj" />
     <ProjectReference Include="..\Evol.Util\Evol.Util.csproj" />
   </ItemGroup>
 

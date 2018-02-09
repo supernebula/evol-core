@@ -1,5 +1,5 @@
-﻿using Evol.Domain.Uow;
-using Microsoft.Extensions.Logging;
+﻿using Evol.UnitOfWork.Abstractions;
+using Evol.Common.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -46,12 +46,6 @@ namespace Evol.Dapper.Uow
             Exception exception = null;
             foreach (var trans in Transactions.Values)
             {
-                if (exceptioned)
-                {
-                    trans.Rollback();
-                    continue;
-                }
-
                 try
                 {
                     trans.Commit();
@@ -60,13 +54,29 @@ namespace Evol.Dapper.Uow
                 {
                     exception = ex;
                     exceptioned = true;
-                    trans.Rollback();
+                    break;
                 }
             }
 
             if (exceptioned)
+            {
+                Rollback();
                 throw exception;
+            }
             return Task.FromResult(0);
+        }
+
+
+        public override void Rollback()
+        {
+            //todo: 后续升级为分布式事务
+            foreach (var trans in Transactions.Values)
+            {
+                trans.Rollback();
+            }
+
+            Child?.Rollback();
+            Parent?.Rollback();
         }
 
         /// <summary>
@@ -111,5 +121,7 @@ namespace Evol.Dapper.Uow
             var context = dbContext as DapperDbContext;
             AddDbContext(context);
         }
+
+
     }
 }

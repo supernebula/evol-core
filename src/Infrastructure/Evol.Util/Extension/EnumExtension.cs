@@ -7,9 +7,10 @@ using System.Linq;
 
 namespace Evol.Util.Extension
 { 
-    public class EnumExtension
+    public static class EnumExtension
     {
-        public static string GetDescription<TEnum>(TEnum enumValue) where TEnum : struct
+
+        public static string GetDescription<TEnum>(this TEnum enumValue) where TEnum : struct
         {
             var valDesDic = GetValueDescriptionDic<TEnum>();
             string description;

@@ -79,7 +79,7 @@ namespace Evol.Util.Extension
         /// <param name="leftDigit">左侧保留位置</param>
         /// <param name="symbol">替换符</param>
         /// <returns></returns>
-        public static string DesensMail(this string value, int leftDigit = 2, string symbol = "*")
+        public static string DesensEmail(this string value, int leftDigit = 2, string symbol = "*")
         {
             if (value == null)
                 return null;

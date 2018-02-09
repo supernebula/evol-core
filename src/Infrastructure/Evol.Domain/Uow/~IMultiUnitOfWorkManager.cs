@@ -1,15 +1,15 @@
 ﻿
-namespace Evol.Domain.Uow
-{
-    public interface IMultiUnitOfWorkManager
-    {
+//namespace Evol.Domain.Uow
+//{
+//    public interface IMultiUnitOfWorkManager
+//    {
 
-        IUnitOfWork Current { get; }
-
-
-        IUnitOfWorkToComplete Begin();
+//        IUnitOfWork Current { get; }
 
 
-        IUnitOfWorkToComplete Begin(UnitOfWorkOption option);
-    }
-}
+//        IUnitOfWorkToComplete Begin();
+
+
+//        IUnitOfWorkToComplete Begin(UnitOfWorkOption option);
+//    }
+//}

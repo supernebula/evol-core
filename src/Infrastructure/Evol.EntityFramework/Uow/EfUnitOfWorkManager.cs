@@ -1,6 +1,5 @@
-﻿using Evol.Domain;
-using Evol.Domain.Uow;
-using System;
+﻿using System;
+using Evol.UnitOfWork.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -26,6 +25,9 @@ namespace Evol.EntityFramework.Uow
                 return _current;
             }
         }
+
+        [Obsolete("未实现...")]
+        public Guid Key => throw new NotImplementedException();
 
         public IUnitOfWork Build()
         {

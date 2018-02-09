@@ -1,5 +1,5 @@
 ﻿using Evol.Configuration;
-using Evol.Domain.Uow;
+using Evol.UnitOfWork.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;

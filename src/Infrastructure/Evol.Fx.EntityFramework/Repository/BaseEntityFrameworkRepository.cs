@@ -9,7 +9,7 @@ using System.Data.Entity;
 namespace Evol.Fx.EntityFramework.Repository
 {
     /// <summary>
-    /// 基础仓储
+    /// 基础仓储抽象类
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
@@ -52,21 +52,24 @@ namespace Evol.Fx.EntityFramework.Repository
 
         public Task DeleteAsync(T item)
         {
-            DbSet.Remove(item);
+            if (item is ISoftDelete)
+            {
+                //如果软删除
+                var softItem = (ISoftDelete)item;
+                softItem.DeleteTime = DateTime.Now;
+                softItem.IsDeleted = true;
+                //由工作单元自动保存到数据库
+            }
+            else
+                DbSet.Remove(item);
             return Task.FromResult(1);
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            //方式一: 先创建附加，再删除。一次数据库操作
-            var delObj = new T() { Id = id };
-            DbSet.Attach(delObj);
-            DbSet.Remove(delObj);
-            return Task.FromResult(1);
-
-            ////方式二： 先查找，在删除（EF官方推荐）。两次数据库操作
-            //var item = await DbSet.FindAsync(id);
-            //DbSet.Remove(item);
+            //方式二： 先查找，在删除（EF官方推荐）。两次数据库操作
+            var item = await DbSet.FindAsync(id);
+            await DeleteAsync(item);
         }
 
         public void Save()

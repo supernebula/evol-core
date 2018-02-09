@@ -19,8 +19,8 @@ namespace Evol.Util
                 return;
             }
 
-            Trace.WriteLine(name);
-            Trace.WriteLine(String.Format(format, sw.ElapsedMilliseconds));
+            Debug.WriteLine(name);
+            Debug.WriteLine(String.Format(format, sw.ElapsedMilliseconds));
         }
 
 
@@ -43,8 +43,8 @@ namespace Evol.Util
                 return;
             }
 
-            Trace.WriteLine(name);
-            Trace.WriteLine(string.Format(format, sw.ElapsedMilliseconds, loop));
+            Debug.WriteLine(name);
+            Debug.WriteLine(string.Format(format, sw.ElapsedMilliseconds, loop));
 
 
 

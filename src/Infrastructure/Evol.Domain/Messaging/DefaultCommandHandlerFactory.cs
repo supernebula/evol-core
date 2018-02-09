@@ -14,12 +14,12 @@ namespace Evol.Domain.Messaging
             CommandHandlerActivator = new DefaultCommandHandlerActivator();
         }
 
-        public DefaultCommandHandlerFactory(ICommandHandlerActivator activator)
-        {
-            if (activator == null)
-                throw new ArgumentNullException(nameof(activator));
-            CommandHandlerActivator = activator;
-        }
+        //public DefaultCommandHandlerFactory(ICommandHandlerActivator activator)
+        //{
+        //    if (activator == null)
+        //        throw new ArgumentNullException(nameof(activator));
+        //    CommandHandlerActivator = activator;
+        //}
 
         public ICommandHandler<T> GetHandler<T>() where T : Command
         {

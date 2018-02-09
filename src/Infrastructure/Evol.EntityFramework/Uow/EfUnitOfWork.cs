@@ -1,11 +1,11 @@
-﻿using Evol.Domain.Uow;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using Evol.UnitOfWork.Abstractions;
 
 namespace Evol.EntityFramework.Uow
 {
@@ -129,6 +129,12 @@ namespace Evol.EntityFramework.Uow
         {
             var context = dbContext as DbContext;
             AddDbContext(context);
+        }
+
+        [Obsolete("未实现...")]
+        public override void Rollback()
+        {
+            throw new NotImplementedException();
         }
     }
 }

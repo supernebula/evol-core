@@ -1,20 +1,21 @@
-﻿using Evol.Domain.Uow;
+﻿using Evol.Common.Logging;
+using Evol.Common.IoC;
+using Evol.UnitOfWork.Abstractions;
 using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Evol.Fx.EntityFramework.Uow
 {
     public class EfUnitOfWorkManager : IUnitOfWorkManager
     {
+        public Guid Key { get; private set; }
 
+        private IIoCManager _ioCManager { get; set; }
 
-        private IServiceProvider ServiceProvider { get; set; }
-
-        public EfUnitOfWorkManager(IServiceProvider serviceProvider, ILoggerFactory logger)
+        public EfUnitOfWorkManager(IIoCManager ioCManager, ILoggerFactory logger)
         {
-            ServiceProvider = serviceProvider;
+            _ioCManager = ioCManager;
             logger.CreateLogger<EfUnitOfWorkManager>().LogDebug("CONSTRUCT> EfUnitOfWorkManager");
+            Key = Guid.NewGuid();
         }
 
         public IUnitOfWork _current;
@@ -28,9 +29,27 @@ namespace Evol.Fx.EntityFramework.Uow
 
         public IUnitOfWork Build()
         {
-            if (_current != null)
+            //// 生命周期变更：由每请求唯一工作单元 修改为 每依赖工作单元 20180102
+            //if (_current != null)
+            //    return _current;
+            //_current = _ioCManager.GetService<IUnitOfWork>();
+            //return _current;
+
+            var uow = _ioCManager.GetService<IUnitOfWork>();
+            if (_current == null)
+            {
+                _current = uow;
                 return _current;
-            _current = ServiceProvider.GetService<IUnitOfWork>();
+            }
+
+            if (_current == uow)
+                return _current;
+
+
+            _current.Child = uow;
+            uow.Parent = _current;
+            //设置当前工作单元
+            _current = uow;
             return _current;
         }
     }

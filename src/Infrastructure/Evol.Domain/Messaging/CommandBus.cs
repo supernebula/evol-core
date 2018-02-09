@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Data;
-using Microsoft.Extensions.Logging;
+using Evol.Common.Logging;
 using System.Threading.Tasks;
 using Evol.Domain.Commands;
-using Evol.Domain.Uow;
-using System.Linq;
+using Evol.UnitOfWork.Abstractions;
 
 namespace Evol.Domain.Messaging
 {

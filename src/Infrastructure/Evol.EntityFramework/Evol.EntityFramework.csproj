@@ -11,7 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Evol.Common\Evol.Common.csproj" />
-    <ProjectReference Include="..\Evol.Domain\Evol.Domain.csproj" />
+    <ProjectReference Include="..\Evol.Configuration\Evol.Configuration.csproj" />
+    <ProjectReference Include="..\Evol.UnitOfWork.Abstractions\Evol.UnitOfWork.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
