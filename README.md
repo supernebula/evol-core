@@ -1,4 +1,3 @@
-
 # evol-core
 
 ### 概述
@@ -17,7 +16,7 @@ C#、.NET Standard2、.Net core2.0、Node.Js
 
 ### 技术栈
 
-.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、IoC、EntityFramework、Dapper、UnitOfWork、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
+.Net Standard2.0、.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、IoC、EntityFramework、Dapper、UnitOfWork、MongoDB、Redis、SQL Server、RabbitMQ、MVVM ......
 
 ### 部署
 
