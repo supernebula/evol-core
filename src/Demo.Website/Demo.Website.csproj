@@ -44,6 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Evol.Util\Evol.Util.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
+    <ProjectReference Include="..\Infrastructure\ThEvol.Extensions\Evol.Extensions.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="log\" />

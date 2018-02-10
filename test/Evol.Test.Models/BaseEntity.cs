@@ -11,6 +11,6 @@ namespace Evol.Test.Models
         public DateTime? UpdateTime { get; set; }
         public DateTime? DeleteTime { get; set; }
         public bool SoftDelete { get; set; }
-
+        public bool IsDeleted { get; set; }
     }
 }

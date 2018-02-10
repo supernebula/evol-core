@@ -1,10 +1,4 @@
-﻿using Evol.Domain;
-using Evol.Domain.Uow;
-using Evol.EntityFramework.Repository;
-using Evol.EntityFramework.Uow;
-using Evol.TMovie.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
@@ -20,7 +14,7 @@ namespace Evol.TMovie.ConsoleApp
         {
             Console.WriteLine("startup..");
             _services = new ServiceCollection();
-            new Startup().ConfigureServices(_services);
+            //new Startup().ConfigureServices(_services);
             Console.ReadKey();
 
         }

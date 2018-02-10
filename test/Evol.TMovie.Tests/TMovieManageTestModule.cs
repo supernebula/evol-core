@@ -3,6 +3,8 @@ using Evol.Domain.Dto;
 using Evol.Domain.Ioc;
 using Evol.Configuration.Modules;
 using System.Reflection;
+using Evol.Configuration.IoC;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Manage.Tests
 {
@@ -18,11 +20,11 @@ namespace Evol.TMovie.Manage.Tests
 
         public override void Initailize()
         {
-            DtoObjectMapInitiator.Create(this.GetType().GetTypeInfo().Assembly);
-            _tmTestDependencyRegister.Register(IoCManager.Container, typeof(TMovieManageModule).GetTypeInfo().Assembly);
+            DtoEntityMapInitiator.Create(this.GetType().GetTypeInfo().Assembly);
+            _tmTestDependencyRegister.Register(AppConfig.Current.IoCManager, typeof(TMovieManageModule).GetTypeInfo().Assembly);
             InitDependModule<TMovieManageTestModule>();
             base.Initailize();
-            DtoObjectMapInitiator.Initialize();
+            DtoEntityMapInitiator.Initialize();
         }
     }
 }

@@ -13,15 +13,13 @@ using Microsoft.Extensions.Logging;
 using Demo.Website.Data;
 using Demo.Website.Models;
 using Demo.Website.Services;
-using Evol.Util.Configuration;
-using Evol.Util.Configuration.Json;
-using Evol.Util.Configuration.Xml;
 using NLog.Web;
 using NLog.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using Evol.Web.Middlewares;
+using Evol.Extensions.Configuration;
 
 namespace Demo.Website
 {
@@ -46,9 +44,9 @@ namespace Demo.Website
 
             //添加自定义配置
             var typedBuilder = new TypedConfigurationBuilder();
-            typedBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"))
-            .AddJsonFile<ModuleShip>("moudleShip.json", true, true)
-            .AddXmlFile<AdminArea>("areaCode.xml", true, true);
+            typedBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"));
+            //.AddJsonFile<ModuleShip>("moudleShip.json", true, true)
+            //.AddXmlFile<AdminArea>("areaCode.xml", true, true);
             TypedConfiguration = typedBuilder.Build();
 
         }

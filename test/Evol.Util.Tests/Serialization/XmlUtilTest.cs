@@ -5,6 +5,8 @@ using Evol.Util.Serialization;
 using System.Diagnostics;
 using System.ComponentModel;
 using Evol.Common;
+using Evol.Test.Models;
+using Evol.Util;
 
 namespace Evol.Utilities.Test.Serialization
 {

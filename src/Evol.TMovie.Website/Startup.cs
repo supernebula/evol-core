@@ -56,9 +56,9 @@ namespace Evol.TMovie.Website
             builder.Populate(services);
 
 
-            AppConfig.Init(services);
+            //~~AppConfig.Init(services);
             ConfigureModules(services);
-            AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
+            //~~AppConfig.ConfigServiceProvider(services.BuildServiceProvider());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

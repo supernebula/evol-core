@@ -44,7 +44,7 @@ namespace Evol.TMovie.Manage
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            AppConfig.Init(services);
+            //~~AppConfig.Init(services);
             services.AddDbContext<TMovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TMConnection")));
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), opt => opt.UseRowNumberForPaging())); 
@@ -61,7 +61,7 @@ namespace Evol.TMovie.Manage
             services.AddMvc();
 
             var serviceProvider = services.BuildServiceProvider();
-            AppConfig.ConfigServiceProvider(serviceProvider);
+            //~~AppConfig.ConfigServiceProvider(serviceProvider);
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

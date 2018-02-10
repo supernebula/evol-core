@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Common\Evol.Common.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Util\Evol.Util.csproj" />
+    <ProjectReference Include="..\Evol.Test.Models\Evol.Test.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

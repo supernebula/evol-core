@@ -1,7 +1,7 @@
 using System;
 using Xunit;
-using Evol.Domain.Uow;
 using System.Threading.Tasks;
+using Evol.UnitOfWork.Abstractions;
 
 namespace Evol.Domain.Tests
 {

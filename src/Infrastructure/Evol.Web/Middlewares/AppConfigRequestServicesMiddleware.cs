@@ -1,10 +1,12 @@
 ﻿using Evol.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace Evol.Web.Middlewares
 {
+    [Obsolete("未完成...")]
     public class AppConfigRequestServicesMiddleware
     {
         private readonly RequestDelegate _next;
@@ -16,10 +18,11 @@ namespace Evol.Web.Middlewares
             _next = next;
         }
 
-
+        [Obsolete("未实现...")]
         public async Task Invoke(HttpContext context)
         {
-            AppConfig.ConfigPerRequestServiceProvider(() => context.RequestServices);
+            throw new NotImplementedException();
+            //AppConfig.ConfigPerRequestServiceProvider(() => context.RequestServices);
             await _next.Invoke(context);
         }
     }

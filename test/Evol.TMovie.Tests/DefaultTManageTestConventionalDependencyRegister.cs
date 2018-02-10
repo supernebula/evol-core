@@ -6,15 +6,17 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Evol.Common;
 using Microsoft.AspNetCore.Mvc;
+using Evol.Configuration.IoC;
+using Evol.Common.IoC;
 
 namespace Evol.TMovie.Manage.Tests
 {
     public class DefaultTManageTestConventionalDependencyRegister : IConventionalDependencyRegister
     {
-        public void Register(IServiceCollection container, Assembly assembly)
+        public void Register(IIoCManager ioCManager, Assembly assembly)
         {
             var containerImpls = FindController(assembly);
-            containerImpls.ForEach(p => container.AddTransient(p.Interface, p.Impl));
+            containerImpls.ForEach(p => ioCManager.AddPerDependency(p.Interface, p.Impl));
         }
 
         private List<InterfaceImplPair> FindController(Assembly assembly)

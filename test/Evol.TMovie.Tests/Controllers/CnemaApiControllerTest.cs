@@ -20,7 +20,7 @@ namespace Evol.TMovie.Manage.Tests.Controllers
         public CnemaApiControllerTest(ITestOutputHelper outputHelper)
         {
             output = outputHelper;
-            Startup.Init();
+            //`Startup.Init();
             _apiController = AppConfig.Current.IoCManager.GetService<CinemaApiController>();
 
         }
@@ -40,7 +40,7 @@ namespace Evol.TMovie.Manage.Tests.Controllers
 
         public void Dispose()
         {
-            Startup.Clear();
+            //`Startup.Clear();
           
         }
     }

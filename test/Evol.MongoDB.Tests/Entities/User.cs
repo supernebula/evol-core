@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Evol.Common;
 using Evol.MongoDB.Repository;
+using Evol.Util;
 
 namespace Evol.MongoDB.Test.Entities
 {

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Evol.Common.IoC;
+using System.Diagnostics;
 using Xunit;
 
 namespace Evol.Dapper.Repository.Test
@@ -9,7 +10,7 @@ namespace Evol.Dapper.Repository.Test
 
         public void MyTestInitialize()
         {
-            _dbContextProvider = new DapperDbContextProvider();
+            _dbContextProvider = new DapperDbContextProvider(default(IIoCManager));
         }
         [Fact]
         public void QueryLargeTest()

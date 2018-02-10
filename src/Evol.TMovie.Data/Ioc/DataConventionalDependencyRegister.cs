@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Evol.Common;
+using Evol.Common.IoC;
+using Evol.Configuration.IoC;
 using Evol.Domain.Data;
 using Evol.Domain.Ioc;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,14 +13,13 @@ namespace Evol.TMovie.Data.Ioc
 {
     public class DataConventionalDependencyRegister : IConventionalDependencyRegister
     {
-        public void Register(IServiceCollection container, Assembly assembly)
+        public void Register(IIoCManager ioCManager, Assembly assembly)
         {
             var queryInterfaceImpls = FindQueryEntry(assembly);
-            queryInterfaceImpls.ForEach(p => container.AddTransient(p.Interface, p.Impl));
+            queryInterfaceImpls.ForEach(p => ioCManager.AddPerDependency(p.Interface, p.Impl));
             var repositoryInterfaceImpls = FindRepository(assembly);
-            repositoryInterfaceImpls.ForEach(p => container.AddTransient(p.Interface, p.Impl));
+            repositoryInterfaceImpls.ForEach(p => ioCManager.AddPerDependency(p.Interface, p.Impl));
         }
-
 
         private List<InterfaceImplPair> FindQueryEntry(Assembly assembly)
         {
@@ -38,7 +39,7 @@ namespace Evol.TMovie.Data.Ioc
                 throw ex;
             }
 
-            
+
             var interfaceImpls = new List<InterfaceImplPair>();
             if (impls.Count == 0)
                 return interfaceImpls;

@@ -2,6 +2,8 @@
 using Evol.Domain.Ioc;
 using Evol.Configuration.Modules;
 using Evol.Domain.Dto;
+using Evol.Configuration.IoC;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Domain
 {
@@ -11,16 +13,16 @@ namespace Evol.TMovie.Domain
 
         public TMovieDomainModule()
         {
-            _domainDependencyRegister = new DefualtDomainConventionalDependencyRegister();
+            _domainDependencyRegister = new DefualtCqrsConventionalDependencyRegister();
 
         }
 
         public override void Initailize()
         {
-            DtoObjectMapInitiator.Create(this.GetType().GetTypeInfo().Assembly);
-            _domainDependencyRegister.Register(IoCManager.Container, this.GetType().GetTypeInfo().Assembly); //Assembly.GetExecutingAssembly()
+            DtoEntityMapInitiator.Create(this.GetType().GetTypeInfo().Assembly);
+            _domainDependencyRegister.Register(AppConfig.Current.IoCManager, this.GetType().GetTypeInfo().Assembly);
             base.Initailize();
-            DtoObjectMapInitiator.Initialize();
+            DtoEntityMapInitiator.Initialize();
         }
     }
 }

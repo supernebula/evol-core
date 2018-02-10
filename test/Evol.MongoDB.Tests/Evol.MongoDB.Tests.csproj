@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Evol.TMovie.Domain\Evol.TMovie.Domain.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Common\Evol.Common.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.MongoDB\Evol.MongoDB.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Util\Evol.Util.csproj" />

@@ -3,6 +3,8 @@ using Evol.TMovie.Data.Ioc;
 using Evol.TMovie.Domain;
 using Evol.Domain.Ioc;
 using Evol.Configuration.Modules;
+using Evol.Configuration.IoC;
+using Evol.Configuration;
 
 namespace Evol.TMovie.Data
 {
@@ -18,7 +20,7 @@ namespace Evol.TMovie.Data
 
         public override void Initailize()
         {
-            _dataDependencyRegister.Register(IoCManager.Container, this.GetType().GetTypeInfo().Assembly);
+            _dataDependencyRegister.Register(AppConfig.Current.IoCManager, this.GetType().GetTypeInfo().Assembly);
             base.Initailize();
         }
     }

@@ -1,8 +1,8 @@
 ﻿using Evol.Configuration;
 using Evol.Domain;
 using Evol.Domain.Configuration;
+using Evol.UnitOfWork.Abstractions;
 using Evol.Domain.Messaging;
-using Evol.Domain.Uow;
 using Evol.EntityFramework.Repository;
 using Evol.EntityFramework.Uow;
 using Microsoft.Extensions.DependencyInjection;

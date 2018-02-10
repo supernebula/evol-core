@@ -1,8 +1,8 @@
 ﻿using Evol.Configuration;
 using Evol.Domain.Messaging;
-using Evol.Domain.Uow;
 using Evol.EntityFramework.Repository;
 using Evol.EntityFramework.Uow;
+using Evol.UnitOfWork.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Evol.TMovie.Manage

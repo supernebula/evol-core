@@ -1,12 +1,10 @@
 ﻿using System;
 using Xunit;
 using Evol.EntityFramework.Uow;
-using Evol.Domain.Data;
 using Evol.EntityFramework.Repository.Test.Repositories;
 using Evol.Test.Models;
 using System.ComponentModel;
-using Evol.Domain.Uow;
-using Evol.EntityFramework.Tests;
+using Evol.UnitOfWork.Abstractions;
 
 namespace Evol.EntityFramework.Repository.Test
 {
