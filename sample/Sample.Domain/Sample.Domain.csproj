@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="EventHandlers\" />
+    <Folder Include="Events\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Common\Evol.Common.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Configuration\Evol.Configuration.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.Annotations">
+      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.componentmodel.annotations\4.4.0\ref\netstandard2.0\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

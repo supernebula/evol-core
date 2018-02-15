@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Map\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data.EntityFrameworkCore.Design" Version="6.10.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Common\Evol.Common.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Configuration\Evol.Configuration.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.EntityFrameworkCore.MySql\Evol.EntityFrameworkCore.MySql.csproj" />
+    <ProjectReference Include="..\Sample.Domain\Sample.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
