@@ -76,7 +76,7 @@ namespace Evol.TMovie.Website.ApiControllers
         /// <param name="movieId">movieId</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Route("api/Cinema/Sched")]
+        [Route("api/Cinema/Sched")]  
         public async Task<List<ScheduleViewModel>> Schedule(Guid id, Guid movieId)
         {
             var item = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = id  });
