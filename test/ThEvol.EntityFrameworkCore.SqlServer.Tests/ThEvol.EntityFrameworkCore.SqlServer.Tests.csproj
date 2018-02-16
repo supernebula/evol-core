@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.EntityFrameworkCore.SqlServer\Evol.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\Evol.Test.Models\Evol.Test.Models.csproj" />
+  </ItemGroup>
+
+</Project>
