@@ -51,6 +51,7 @@
     <ProjectReference Include="..\Infrastructure\Evol.Configuration\Evol.Configuration.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
+    <ProjectReference Include="..\Infrastructure\ThEvol.Extensions\Evol.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

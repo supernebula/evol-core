@@ -14,6 +14,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Logging.Abstractions;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Evol.Extensions.Configuration;
+using System.IO;
 
 namespace Evol.TMovie.Website
 {
@@ -34,9 +36,18 @@ namespace Evol.TMovie.Website
 
             builder.AddEnvironmentVariables();
             ConfigurationRoot = builder.Build();
+
+            //添加自定义配置
+            var typedBuilder = new TypedConfigurationBuilder();
+            typedBuilder.SetBasePath(Path.Combine(env.ContentRootPath, "config"));
+            //.AddJsonFile<ModuleShip>("moudleShip.json", true, true)
+            //.AddXmlFile<AdminArea>("areaCode.xml", true, true);
+            TypedConfiguration = typedBuilder.Build();
         }
 
         public IConfigurationRoot ConfigurationRoot { get; }
+
+        public ITypedConfigurationRoot TypedConfiguration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

@@ -21,5 +21,17 @@ namespace Sample.Website
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
+
+
+        //APS.NET Core 1.1
+        //var host = new WebHostBuilder()
+        //.UseKestrel()
+        //.UseAzureAppServices()
+        //.UseContentRoot(Directory.GetCurrentDirectory())
+        //.UseIISIntegration()
+        //.UseStartup<Startup>()
+        //.UseApplicationInsights()
+        //.Build();
+        //host.Run();
     }
 }

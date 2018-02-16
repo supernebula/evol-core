@@ -1,0 +1,16 @@
+﻿{
+  "navbar": [
+    {
+      "name": "baidu",
+      "href": "http://www.baidu.com/"
+    },
+    {
+      "name": "taobao",
+      "href": "http://taobao.com"
+    },
+    {
+      "name": "cnbeta",
+      "href": "http://cnbeta.com"
+    }
+  ]
+}

@@ -8,6 +8,8 @@
     <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="6.10.6" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore.Design" Version="6.10.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\ThEvol.Extensions\Evol.Extensions.csproj" />
     <ProjectReference Include="..\Sample.Domain\Sample.Domain.csproj" />
     <ProjectReference Include="..\Sample.Storage\Sample.Storage.csproj" />
   </ItemGroup>

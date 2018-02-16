@@ -8,6 +8,7 @@ using Evol.Common;
 using Evol.TMovie.Website.Models.CinemaViewModels;
 using Evol.TMovie.Domain.QueryEntries;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
+using Evol.TMovie.Website.Models;
 
 namespace Evol.TMovie.Website.ApiControllers
 {
