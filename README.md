@@ -8,7 +8,7 @@ Based on the c# /.NET Standard/.net core domain-driven web development framework
 
 ### 基本思想
 
-DDD领域驱动设计、CQRS、微服务、并发、跨平台、分布式、支付+竞争
+DDD领域驱动设计、CQRS、微服务、并发、异步、多线程、跨平台、分布式、支付+竞争
 
 ### 语言平台
 
@@ -16,7 +16,8 @@ C#、.NET Standard2.0、.Net core2.0、Node.Js
 
 ### 技术栈
 
-DDD、CQRS、.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MongoDB、Cache、Memcached、Redis、MySql、SQL Server、RabbitMQ、MVVM 、XUnit、AutoMapper......more!
+DDD、CQRS、.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MongoDB、Cache、Memcached、Redis、MySql、SQL Server、RabbitMQ、MVVM 、XUnit、AutoMapper、async、mutDDD、CQRS、.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MongoDB、Cache、Memcached、Redis、MySql、SQL Server、RabbitMQ、MVVM 、XUnit、AutoMapper、async、ThreadPool......more!
+l-Thread......more!
 
 ### 部署
 
