@@ -1,7 +1,6 @@
 ﻿using System;
 using Evol.Fx.EntityFramework.Repository.Test.QueryEntries.Parameters;
-using Evol.Tests.Models;
-using Evol.Tests.Models;
+using Evol.Test.Models;
 
 namespace Evol.Fx.EntityFramework.Repository.Test.QueryEntries
 {

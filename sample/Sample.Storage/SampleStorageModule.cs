@@ -2,16 +2,16 @@
 using Evol.Configuration.Modules;
 using Evol.Configuration.IoC;
 using Evol.Configuration;
-using Evol.TMovie.Domain;
+using Sample.Domain;
 
 namespace Sample.Storage
 {
     [DependOn(typeof(SampleDomainModule))]
-    public class SampleDataModule : AppModule
+    public class SampleStorageModule : AppModule
     {
         private readonly IConventionalDependencyRegister _dataDependencyRegister;
 
-        public SampleDataModule()
+        public SampleStorageModule()
         {
             _dataDependencyRegister = new DataConventionalDependencyRegister();
         }

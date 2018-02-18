@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Evol.Fx.EntityFramework.Repository.Test.Core;
-using Evol.Tests.Models;
+using Evol.Test.Models;
 using System.Data.SqlClient;
 using System;
 

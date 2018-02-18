@@ -3,7 +3,7 @@ using Xunit;
 using Evol.Fx.EntityFramework.Uow;
 using Evol.Domain.Data;
 using Evol.Fx.EntityFramework.Repository.Test.Repositories;
-using Evol.Tests.Models;
+using Evol.Test.Models;
 using System.ComponentModel;
 using Evol.UnitOfWork.Abstractions;
 using Evol.Fx.EntityFramework.Tests;

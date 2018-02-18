@@ -1,5 +1,5 @@
 ﻿using Evol.Fx.EntityFramework.Repository.Test.Core;
-using Evol.Tests.Models;
+using Evol.Test.Models;
 
 namespace Evol.Fx.EntityFramework.Repository.Test.Repositories
 {

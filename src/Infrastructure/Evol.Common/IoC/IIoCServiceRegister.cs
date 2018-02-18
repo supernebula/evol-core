@@ -18,6 +18,6 @@ namespace Evol.Common.IoC
 
         void AddSingleInstance<TInterface, TImpl>() where TImpl : TInterface;
 
-        void AddSingleInstance<TInterface>(TInterface instance);
+        void AddSingleInstance<TInterface>(TInterface instance) where TInterface : class;
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Data.Entity;
 using Xunit;
 using Evol.Fx.EntityFramework.Repository.Test.Core;
-using Evol.Tests.Models;
+using Evol.Test.Models;
 using Evol.Util.Sql;
 
 namespace Evol.Fx.EntityFramework.Repository.Test

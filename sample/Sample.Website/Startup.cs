@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Sample.Storage;
-using Evol.Extensions.Configuration;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace Sample.Website
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IHostingEnvironment env, IConfiguration config)
         {
@@ -37,13 +37,34 @@ namespace Sample.Website
         //public ITypedConfigurationRoot TypedConfiguration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EvolSampleDbContext>(options =>
         options.UseMySQL(Configuration.GetConnectionString("evolsampleConnection")));
-            services.AddMvc();
+            services.AddMvc().AddControllersAsServices();
 
-            // Add application services.
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                // Set the comments path for the Swagger JSON and UI.
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "Sample.Website.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
+
+            // Add application services by autofac
+
+            //为应用配置初始化IocManager
+            IServiceProvider serviceProvider = null;
+            var containerBuilder = new ContainerBuilder();
+            ConfigAppPerInit(containerBuilder, () => serviceProvider);
+            containerBuilder.Populate(services);
+            var container = containerBuilder.Build();
+            ConfigApp();
+            serviceProvider = new AutofacServiceProvider(container);
+
+            return serviceProvider;
 
             ////添加自定义强类型配置到依赖注入
             //foreach (ITypedConfiguration item in TypedConfiguration.Configurations)
@@ -73,6 +94,15 @@ namespace Sample.Website
             }
 
             app.UseStaticFiles();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc(routes =>
             {

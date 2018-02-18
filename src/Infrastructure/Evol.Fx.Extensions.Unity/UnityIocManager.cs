@@ -48,7 +48,7 @@ namespace Evol.Fx.Extensions.Unity
             _container.RegisterInstance(typeof(TInterface), typeof(TImpl));
         }
 
-        public void AddSingleInstance<TInterface>(TInterface instance)
+        public void AddSingleInstance<TInterface>(TInterface instance) where TInterface : class
         {
             _container.RegisterInstance(instance);
         }

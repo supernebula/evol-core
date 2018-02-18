@@ -5,7 +5,7 @@ using Evol.Domain.Dto;
 using Evol.Configuration.IoC;
 using Evol.Configuration;
 
-namespace Evol.TMovie.Domain
+namespace Sample.Domain
 {
     public class SampleDomainModule : AppModule
     {
