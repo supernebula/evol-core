@@ -16,8 +16,7 @@ C#、.NET Standard2.0、.Net core2.0、Node.Js
 
 ### 技术栈
 
-DDD、CQRS、.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MongoDB、Cache、Memcached、Redis、MySql、SQL Server、RabbitMQ、MVVM 、XUnit、AutoMapper、async、mutDDD、CQRS、.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MongoDB、Cache、Memcached、Redis、MySql、SQL Server、RabbitMQ、MVVM 、XUnit、AutoMapper、async、ThreadPool......more!
-l-Thread......more!
+DDD、CQRS、.Net Standard2.0、.Net core2.0、.NetFramework4.6.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MySql、SqlServer、MongoDB、Cache、Memcached、Redis、RabbitMQ、MVVM 、XUnit、AutoMapper、async、ThreadPool......more!
 
 ### 部署
 
