@@ -2,7 +2,7 @@
 
 ### 概述
 
-平台级的基础框架，使用C#，基于.NET Standard2.0 /.NET Core2.0跨平台，领域驱动Web技术开发框架 + 底层架构；提供丰富的组件、类库、工具类、脚手架，提供DDD+CQRS整套的解决方案；
+平台级的基础框架，使用C#，基于.NET Standard2.0 /.NET Core2.0跨平台，领域驱动Web技术开发框架 + 底层架构；提供丰富的组件、类库、工具类、脚手架、第三方适配，提供DDD+CQRS整套的解决方案；
 
 Based on the c# /.NET Standard/.net core domain-driven web development framework；
 
