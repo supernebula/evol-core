@@ -39,6 +39,11 @@ namespace Sample.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.Configure<IISOptions>(options =>
+            {
+                options.ForwardClientCertificate = false;
+            });
+
             services.AddDbContext<EvolSampleDbContext>(options =>
         options.UseMySQL(Configuration.GetConnectionString("evolsampleConnection")));
             services.AddMvc().AddControllersAsServices();
