@@ -10,19 +10,26 @@ using Sample.Domain.QueryEntries;
 using Sample.Domain.QueryEntries.Parameters;
 using Sample.Website.Models.PostViewModels;
 using Sample.Domain.Commands;
+using Evol.Common;
 
 namespace Sample.Website.ApiControllers
 {
     [Produces("application/json")]
     [Route("api/Posts")]
-    public class PostsApiController : Controller
+    public class PostsApiController : BaseApiController
     {
-        public IPostQueryEntry PostQuery { get; private set; }
+        protected IPostQueryEntry PostQuery { get; private set; }
 
-        public ICommentQueryEntry CommentQuery { get; private set; }
+        protected ICommentQueryEntry CommentQuery { get; private set; }
 
-        public ICommandBus CommandBus { get; private set; }
+        protected ICommandBus CommandBus { get; private set; }
 
+        /// <summary>
+        /// 帖子控制器
+        /// </summary>
+        /// <param name="postQuery"></param>
+        /// <param name="commentQuery"></param>
+        /// <param name="commandBus"></param>
         public PostsApiController(IPostQueryEntry postQuery, ICommentQueryEntry commentQuery, ICommandBus commandBus)
         {
             PostQuery = postQuery;
@@ -30,21 +37,43 @@ namespace Sample.Website.ApiControllers
             CommandBus = commandBus;
         }
 
-        #region Post 操作
+        /// <summary>
+        /// 分页获取帖子列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Cinema/[action]")]
+        public async Task<IPaged<PostViewModel>> Paged(int pageIndex = 1, int pageSize = 10, PostQueryParameter param = null)
+        {
+            var result = await PostQuery.PagedAsync(pageIndex, pageSize, param);
+            var paged = result.MapPaged<PostViewModel>();
+            return paged;
+        }
 
-        //// GET: api/PostApi
-        //[HttpGet]
-        //[Route("List")]
-        //public async Task<IEnumerable<PostViewModel>> List(PostQueryParameter param)
-        //{
-        //    var items = await PostQuery.SelectAsync(param);
-        //    var result = items.MapList<PostViewModel>();
-        //    return result;
-        //}
+        /// <summary>
+        /// 获取帖子列表
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IEnumerable<PostViewModel>> List(PostQueryParameter param)
+        {
+            var items = await PostQuery.SelectAsync(param);
+            var result = items.MapList<PostViewModel>();
+            return result;
+        }
 
-        // GET: api/PostApi/5
-        [HttpGet("{id}")]
-        [Route("Item")]
+        /// <summary>
+        /// 获取单条帖子
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{id}")]
         public async Task<PostViewModel> Get(Guid id)
         {
             var item = await PostQuery.FindAsync(id);
@@ -52,68 +81,107 @@ namespace Sample.Website.ApiControllers
             return result;
         }
 
-        // POST: api/PostApi
+        /// <summary>
+        /// 创建帖子
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task Post(PostCreateDto dto)
         {
-            //if (ModelState.IsValid())
-            //    throw new InputError();
+            ValidateModelOrThrow();
             var command = new PostCreateCommand() { Input = dto };
             await CommandBus.SendAsync(command);
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        /// <summary>
+        /// 删除单条帖子
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("{id}")]
         public async Task Delete(ItemDeleteDto dto)
         {
             var command = new PostDeleteCommand() { Input = dto };
             await CommandBus.SendAsync(command);
         }
 
+        #region Comment 操作
+
+        /// <summary>
+        /// 分页获取评论列表
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Comment/[action]")]
+        public async Task<IPaged<CommentViewModel>> Paged(int pageIndex = 1, int pageSize = 10, CommentQueryParameter param = null)
+        {
+            var result = await CommentQuery.PagedAsync(pageIndex, pageSize, param);
+            var paged = result.MapPaged<CommentViewModel>();
+            return paged;
+        }
+
+
+        /// <summary>
+        /// 查询帖子评论列表
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Comment/List")]
+        public async Task<IEnumerable<CommentViewModel>> CommentList(CommentQueryParameter param)
+        {
+            var items = await CommentQuery.SelectAsync(param);
+            var result = items.MapList<CommentViewModel>();
+            return result;
+        }
+
+        /// <summary>
+        /// 获取单条评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Comment/{id}")]
+        public async Task<CommentViewModel> CommentGet(Guid id)
+        {
+            var item = await CommentQuery.FindAsync(id);
+            var result = item.Map<CommentViewModel>();
+            return result;
+        }
+
+        /// <summary>
+        /// 创建评论
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Comment")]
+        public async Task CommentPost(CommentCreateDto dto)
+        {
+            ValidateModelOrThrow();
+            var command = new CommentCreateCommand() { Input = dto };
+            await CommandBus.SendAsync(command);
+        }
+
+        /// <summary>
+        /// 删除评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("Comment/{id}")]
+        public async Task CommentDelete(Guid id)
+        {
+            var dto = new ItemDeleteDto() { Id = id };
+            var command = new CommentDeleteCommand() { Input = dto };
+            await CommandBus.SendAsync(command);
+        }
+
         #endregion
-
-        //#region Comment 操作
-
-        //// GET: api/PostApi
-        //[HttpGet]
-        //[Route("CommentList")]
-        //public async Task<IEnumerable<CommentViewModel>> List(CommentQueryParameter param)
-        //{
-        //    var items = await CommentQuery.SelectAsync(param);
-        //    var result = items.MapList<CommentViewModel>();
-        //    return result;
-        //}
-
-        //// GET: api/PostApi/5
-        //[HttpGet("{id}")]
-        //[Route("Comment")]
-        //public async Task<CommentViewModel> Comment(Guid id)
-        //{
-        //    var item = await CommentQuery.FindAsync(id);
-        //    var result = item.Map<CommentViewModel>();
-        //    return result;
-        //}
-
-        //// POST: api/PostApi
-        //[HttpPost()]
-        //[Route("Comment")]
-        //public async Task Post(CommentCreateDto dto)
-        //{
-        //    //if (ModelState.IsValid())
-        //    //    throw new InputError();
-        //    var command = new CommentCreateCommand() { Input = dto };
-        //    await CommandBus.SendAsync(command);
-        //}
-
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //[Route("Comment")]
-        //public async Task Comment(ItemDeleteDto dto)
-        //{
-        //    var command = new CommentDeleteCommand() { Input = dto };
-        //    await CommandBus.SendAsync(command);
-        //}
-
-        //#endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Evol.Domain.Dto;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +12,6 @@ using Evol.TMovie.Website.Models;
 namespace Evol.TMovie.Website.ApiControllers
 {
     [Produces("application/json")]
-    [Route("api/Cinema")]
     public class CinemaApiController : Controller
     {
         public ICinemaQueryEntry CinemaQuery { get; private set; }
@@ -34,7 +32,7 @@ namespace Evol.TMovie.Website.ApiControllers
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Cinema/Paged")]
+        [Route("api/Cinema/[action]")]
         public async Task<IPaged<CinemaViewModel>> Paged(int pageIndex = 1, int pageSize = 10, CinemaQueryParameter param = null)
         {
             var result = await CinemaQuery.PagedAsync(param, pageIndex, pageSize);
@@ -47,8 +45,9 @@ namespace Evol.TMovie.Website.ApiControllers
         /// </summary>
         /// <param name="id">cinemaId</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public async Task<CinemaViewModel> GetById(Guid id)
+        [HttpGet]
+        [Route("api/Cinema/{id}")]
+        public async Task<CinemaViewModel> Get(Guid id)
         {
             var item = await CinemaQuery.FindAsync(id);
             var value = item.Map<CinemaViewModel>();
@@ -60,8 +59,8 @@ namespace Evol.TMovie.Website.ApiControllers
         /// </summary>
         /// <param name="id">cinemaId</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        [Route("api/Cinema/Show")]
+        [HttpGet]
+        [Route("api/Cinema/[action]/{id}")]
         public async Task<ShowMovieViewModel> Screening(Guid id)
         {
             var items = await CinemaQuery.SelectShowingMoiveAsync(id);
@@ -75,8 +74,8 @@ namespace Evol.TMovie.Website.ApiControllers
         /// <param name="id">cinemaId</param>
         /// <param name="movieId">movieId</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        [Route("api/Cinema/Sched")]  
+        [HttpGet]
+        [Route("api/Cinema/[aciton]")]  
         public async Task<List<ScheduleViewModel>> Schedule(Guid id, Guid movieId)
         {
             var item = await ScheduleQuery.SelectAsync(new ScheduleQueryParameter { CinemaId = id  });
