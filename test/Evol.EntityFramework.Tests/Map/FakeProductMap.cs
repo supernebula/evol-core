@@ -1,4 +1,4 @@
-﻿using Evol.EntityFramework.Configueration;
+﻿using Evol.EntityFrameworkCore.Configuration;
 using Evol.Test.Models;
 using Microsoft.EntityFrameworkCore;
 

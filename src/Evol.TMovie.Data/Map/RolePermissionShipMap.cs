@@ -1,4 +1,4 @@
-﻿using Evol.EntityFramework.Configueration;
+﻿using Evol.EntityFrameworkCore.Configuration;
 using Evol.TMovie.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

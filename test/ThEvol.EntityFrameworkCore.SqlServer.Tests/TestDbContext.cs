@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Evol.EntityFrameworkCore.SqlServer.Configueration;
+using Evol.EntityFrameworkCore.Configuration;
 using System.Reflection;
 
 namespace Evol.EntityFrameworkCore.SqlServer.Tests

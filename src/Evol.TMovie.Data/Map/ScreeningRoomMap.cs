@@ -1,7 +1,7 @@
 ﻿using System;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.Models.Entities;
-using Evol.EntityFramework.Configueration;
+using Evol.EntityFrameworkCore.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace Evol.TMovie.Data.Map

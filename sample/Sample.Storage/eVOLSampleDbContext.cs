@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System;
-using Evol.EntityFrameworkCore.MySql.Configueration;
+using Evol.EntityFrameworkCore.Configuration;
 
 namespace Sample.Storage
 {

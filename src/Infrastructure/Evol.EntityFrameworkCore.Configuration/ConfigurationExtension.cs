@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Evol.EntityFramework.Configueration
+namespace Evol.EntityFrameworkCore.Configuration
 {
     public static class ConfigurationExtension
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using Evol.EntityFramework.Configueration;
+using Evol.EntityFrameworkCore.Configuration;
 using Evol.EntityFramework.Repository.Test.Map;
 
 namespace Evol.EntityFramework.Repository.Test.Core

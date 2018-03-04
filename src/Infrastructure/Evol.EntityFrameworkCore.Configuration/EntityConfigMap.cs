@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Evol.EntityFrameworkCore.MySql.Configueration
+namespace Evol.EntityFrameworkCore.Configuration
 {
     public abstract class EntityConfigMap<TEntity> : EntityConfigMap where TEntity : class
     {

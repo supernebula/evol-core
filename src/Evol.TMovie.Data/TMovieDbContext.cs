@@ -2,7 +2,7 @@
 using System.Reflection;
 using Evol.EntityFramework;
 using System;
-using Evol.EntityFramework.Configueration;
+using Evol.EntityFrameworkCore.Configuration;
 using Evol.TMovie.Data.Map;
 
 namespace Evol.TMovie.Data

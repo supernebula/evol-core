@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Map\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
@@ -17,6 +16,7 @@
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Common\Evol.Common.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Configuration\Evol.Configuration.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.EntityFrameworkCore.Configuration\Evol.EntityFrameworkCore.Configuration.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.EntityFrameworkCore.MySql\Evol.EntityFrameworkCore.MySql.csproj" />
     <ProjectReference Include="..\Sample.Domain\Sample.Domain.csproj" />
   </ItemGroup>

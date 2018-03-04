@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Evol.EntityFrameworkCore.SqlServer.Configueration;
+using Evol.EntityFrameworkCore.Configuration;
 using Evol.Test.Models;
 
 namespace Evol.EntityFrameworkCore.SqlServer.Tests.Map

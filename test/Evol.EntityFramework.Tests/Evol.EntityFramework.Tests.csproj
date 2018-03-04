@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.EntityFrameworkCore.Configuration\Evol.EntityFrameworkCore.Configuration.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.EntityFramework\Evol.EntityFramework.csproj" />
     <ProjectReference Include="..\Evol.Test.Models\Evol.Test.Models.csproj" />
   </ItemGroup>
