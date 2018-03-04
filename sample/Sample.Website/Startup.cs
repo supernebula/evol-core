@@ -63,10 +63,10 @@ namespace Sample.Website
             //为应用配置初始化IocManager
             IServiceProvider serviceProvider = null;
             var containerBuilder = new ContainerBuilder();
-            ConfigAppPerInit(containerBuilder, () => serviceProvider);
             containerBuilder.Populate(services);
-            var container = containerBuilder.Build();
+            ConfigAppPerInit(containerBuilder, () => serviceProvider);
             ConfigApp();
+            var container = containerBuilder.Build();
             serviceProvider = new AutofacServiceProvider(container);
 
             return serviceProvider;

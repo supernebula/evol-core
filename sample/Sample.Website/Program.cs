@@ -19,16 +19,16 @@ namespace Sample.Website
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+                WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseKestrel(options =>
-                {
-                    options.Listen(IPAddress.Loopback, 5000);
-                    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
-                    {
-                        listenOptions.UseHttps("testCert.pfx", "testPassword");
-                    });
-                })
+                //.UseKestrel(options =>
+                //{
+                //    options.Listen(IPAddress.Loopback, 5000);
+                //    options.Listen(IPAddress.Loopback, 5001, listenOptions =>
+                //    {
+                //        listenOptions.UseHttps("testCert.pfx", "testPassword");
+                //    });
+                //})
                 .Build();
 
 
