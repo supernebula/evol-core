@@ -31,6 +31,8 @@ namespace Sample.Website
 
         public IConfiguration Configuration { get; }
 
+        public IContainer AppContainer { get; private set; }
+
         ///// <summary>
         ///// 自定义强类型配置
         ///// </summary>
@@ -39,10 +41,10 @@ namespace Sample.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.Configure<IISOptions>(options =>
-            {
-                options.ForwardClientCertificate = false;
-            });
+            //services.Configure<IISOptions>(options =>
+            //{
+            //    options.ForwardClientCertificate = false;
+            //});
 
             services.AddDbContext<EvolSampleDbContext>(options =>
         options.UseMySQL(Configuration.GetConnectionString("evolsampleConnection")));
@@ -63,12 +65,12 @@ namespace Sample.Website
             //为应用配置初始化IocManager
             IServiceProvider serviceProvider = null;
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.Populate(services);
+
             ConfigAppPerInit(containerBuilder, () => serviceProvider);
             ConfigApp();
-            var container = containerBuilder.Build();
-            serviceProvider = new AutofacServiceProvider(container);
-
+            containerBuilder.Populate(services);
+            AppContainer = containerBuilder.Build();
+            serviceProvider = new AutofacServiceProvider(AppContainer);
             return serviceProvider;
 
             ////添加自定义强类型配置到依赖注入

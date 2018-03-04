@@ -31,12 +31,12 @@ namespace Evol.Extensions.Autofac
 
         public void AddPerRequest(Type @interface, Type Impl)
         {
-            _builder.RegisterType(Impl).As(Impl).InstancePerRequest();
+            _builder.RegisterType(Impl).As(Impl).InstancePerLifetimeScope(); // .InstancePerRequest();
         }
 
         public void AddPerRequest<TInterface, TImpl>() where TImpl : TInterface
         {
-            _builder.RegisterType<TImpl>().As<TInterface>().InstancePerRequest();
+            _builder.RegisterType<TImpl>().As<TInterface>().InstancePerLifetimeScope(); // .InstancePerRequest();
         }
 
         public void AddSingleInstance(Type @interface, Type Impl)
