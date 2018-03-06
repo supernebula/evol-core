@@ -3,7 +3,7 @@ using Sample.Domain.Models.AggregateRoots;
 
 namespace Sample.Domain.Repositories
 {
-    public interface IPostRepository : IRepository<Post>
+    public interface IPostRepository : IRepository<Post, string>
     {
     }
 }

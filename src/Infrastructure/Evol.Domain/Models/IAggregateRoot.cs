@@ -8,4 +8,9 @@ namespace Evol.Domain.Models
     {
         Guid Id { get; set; }
     }
+
+    public interface IAggregateRoot<TKey>
+    {
+        TKey Id { get; set; }
+    }
 }
