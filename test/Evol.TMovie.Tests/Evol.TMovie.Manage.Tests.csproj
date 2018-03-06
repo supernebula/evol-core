@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Evol.TMovie.Data\Evol.TMovie.Data.csproj" />
     <ProjectReference Include="..\..\src\Evol.TMovie.Manage\Evol.TMovie.Manage.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
   </ItemGroup>

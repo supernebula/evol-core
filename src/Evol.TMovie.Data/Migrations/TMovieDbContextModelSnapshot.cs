@@ -18,7 +18,7 @@ namespace Evol.TMovie.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Evol.TMovie.Domain.Models.AggregateRoots.Actor", b =>
@@ -140,7 +140,11 @@ namespace Evol.TMovie.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<float>("Amount");
+                    b.Property<int>("Amount");
+
+                    b.Property<DateTime?>("ClosedTime");
+
+                    b.Property<DateTime?>("CompletedTime");
 
                     b.Property<DateTime>("CreateTime");
 
@@ -148,7 +152,11 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.Property<string>("No");
 
+                    b.Property<int>("PaidAmount");
+
                     b.Property<DateTime?>("PayTime");
+
+                    b.Property<DateTime?>("ReceivedTime");
 
                     b.Property<int>("Status");
 
@@ -241,7 +249,7 @@ namespace Evol.TMovie.Data.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("Evol.TMovie.Domain.Models.AggregateRoots.Screening", b =>
+            modelBuilder.Entity("Evol.TMovie.Domain.Models.AggregateRoots.Schedule", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -266,7 +274,7 @@ namespace Evol.TMovie.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Screening");
+                    b.ToTable("Schedule");
                 });
 
             modelBuilder.Entity("Evol.TMovie.Domain.Models.AggregateRoots.ScreeningRoom", b =>

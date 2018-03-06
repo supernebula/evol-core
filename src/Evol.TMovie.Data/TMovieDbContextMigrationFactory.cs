@@ -28,22 +28,25 @@
 
 
 
-//    //.net core 2.0
-//    /// <summary>
-//    /// Only for use EntityFramework-Migration
-//    /// </summary>
-//    [Obsolete("升级到.net core 2.0 未实现...")]
-//    public class TMovieDbContextMigrationFactory : IDesignTimeDbContextFactory<TMovieDbContext>
-//    {
-//        public TMovieDbContext CreateDbContext(string[] args)
-//        {
-//            var builder = new ConfigurationBuilder()
-//            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-//            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-//            var configuration = builder.Build();
-//            var dbOptionsBuilder = (new DbContextOptionsBuilder()).UseSqlServer(configuration.GetConnectionString("TMConnection"));
-//            return new TMovieDbContext(dbOptionsBuilder.Options);
-//        }
-//    }
-
-//}
+//.net core 2.0
+using Evol.TMovie.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System;
+/// <summary>
+/// Only for use EntityFramework-Migration
+/// </summary>
+//[Obsolete("升级到.net core 2.0 未实现...")]
+public class TMovieDbContextMigrationFactory : IDesignTimeDbContextFactory<TMovieDbContext>
+{
+    public TMovieDbContext CreateDbContext(string[] args)
+    {
+        var builder = new ConfigurationBuilder()
+        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        var configuration = builder.Build();
+        var dbOptionsBuilder = (new DbContextOptionsBuilder<TMovieDbContext>()).UseSqlServer<TMovieDbContext>(configuration.GetConnectionString("TMConnection"));
+        return new TMovieDbContext(dbOptionsBuilder.Options);
+    }
+}

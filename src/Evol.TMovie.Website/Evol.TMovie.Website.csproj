@@ -53,5 +53,10 @@
     <ProjectReference Include="..\Infrastructure\Evol.Web\Evol.Web.csproj" />
     <ProjectReference Include="..\Infrastructure\ThEvol.Extensions\Evol.Extensions.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>
