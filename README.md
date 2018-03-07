@@ -20,7 +20,7 @@ DDD、CQRS、.Net Standard2.0、.Net core2.0、C#、Javascript、Node.Js、MVC�
 
 ### 部署
 
-Window、Linux、Docker
+Window-IIS、Linux-Docker
 
 ### License
 
