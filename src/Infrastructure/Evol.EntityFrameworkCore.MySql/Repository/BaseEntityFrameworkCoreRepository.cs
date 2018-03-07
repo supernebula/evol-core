@@ -13,7 +13,19 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
-    public abstract class BaseEntityFrameworkCoreRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey, new()
+    public abstract class BaseEntityFrameworkCoreRepository<T, TDbContext> : BaseEntityFrameworkCoreRepository<T, Guid, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey, new()
+    {
+        protected BaseEntityFrameworkCoreRepository(IEfCoreDbContextProvider dbContextProvider) : base(dbContextProvider)
+        {
+        }
+    }
+
+    /// <summary>
+    /// 基础仓储抽象类
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TDbContext"></typeparam>
+    public abstract class BaseEntityFrameworkCoreRepository<T, TKey, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey<TKey>, new()
     {
         private TDbContext _context;
 
@@ -63,7 +75,7 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
             return Task.FromResult(1);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(TKey id)
         {
             //方式二： 先查找，在删除（EF官方推荐）。两次数据库操作
             var item = await DbSet.FindAsync(id);
@@ -75,7 +87,7 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
             //wait for Context.SaveChange(),  item is being tracked object
         }
 
-        public async Task<T> FindAsync(Guid id)
+        public async Task<T> FindAsync(TKey id)
         {
             return await DbSet.FindAsync(id);
         }
@@ -85,7 +97,7 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
             return await DbSet.Where(predicate).FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> SelectAsync(Guid[] ids)
+        public async Task<List<T>> SelectAsync(TKey[] ids)
         {
             return await DbSet.Where(e => ids.Contains(e.Id)).ToListAsync();
         }

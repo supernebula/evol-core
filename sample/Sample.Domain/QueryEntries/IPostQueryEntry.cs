@@ -10,7 +10,7 @@ namespace Sample.Domain.QueryEntries
 {
     public interface IPostQueryEntry : IQueryEntry
     {
-        Task<Post> FindAsync(Guid id);
+        Task<Post> FindAsync(string id);
 
         Task<List<Post>> SelectAsync(PostQueryParameter param);
 

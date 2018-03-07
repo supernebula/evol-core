@@ -76,7 +76,7 @@ namespace Sample.Website.ApiControllers
         [Route("{id}")]
         public async Task<PostViewModel> Get(Guid id)
         {
-            var item = await PostQuery.FindAsync(id);
+            var item = await PostQuery.FindAsync(id.ToString());
             var result = item.Map<PostViewModel>();
             return result;
         }
@@ -149,7 +149,7 @@ namespace Sample.Website.ApiControllers
         [Route("Comment/{id}")]
         public async Task<CommentViewModel> CommentGet(Guid id)
         {
-            var item = await CommentQuery.FindAsync(id);
+            var item = await CommentQuery.FindAsync(id.ToString());
             var result = item.Map<CommentViewModel>();
             return result;
         }

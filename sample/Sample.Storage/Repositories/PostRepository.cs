@@ -4,7 +4,7 @@ using Sample.Domain.Repositories;
 
 namespace Sample.Storage.Repositories
 {
-    public class PostRepository : BaseEntityFrameworkCoreRepository<Post, EvolSampleDbContext>, IPostRepository
+    public class PostRepository : BaseEntityFrameworkCoreRepository<Post, string, EvolSampleDbContext>, IPostRepository
     {
         public PostRepository(IEfCoreUnitOfWorkDbContextProvider dbContextProvider) : base(dbContextProvider)
         {

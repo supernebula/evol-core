@@ -8,16 +8,27 @@ using System.Threading.Tasks;
 
 namespace Evol.EntityFrameworkCore.MySql.Repository
 {
-    public abstract class BaseEntityFrameworkCoreQuery<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey, new()
+    public abstract class BaseEntityFrameworkCoreQuery<T, TDbContext> 
+        : BaseEntityFrameworkCoreQuery<T, Guid, TDbContext>
+        where TDbContext : DbContext where T : class, IPrimaryKey, new()
     {
-        private InnerBaseEntityFrameworkRepository<T, TDbContext> innerBaseRepository;
+        public BaseEntityFrameworkCoreQuery(IEfCoreDbContextProvider efDbContextProvider) 
+            : base(efDbContextProvider)
+        {
+        }
+    }
+
+
+    public abstract class BaseEntityFrameworkCoreQuery<T, TKey, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey<TKey>, new()
+    {
+        private InnerBaseEntityFrameworkRepository<T, TKey, TDbContext> innerBaseRepository;
 
         public BaseEntityFrameworkCoreQuery(IEfCoreDbContextProvider efDbContextProvider)
         {
-            innerBaseRepository = new InnerBaseEntityFrameworkRepository<T, TDbContext>(efDbContextProvider);
+            innerBaseRepository = new InnerBaseEntityFrameworkRepository<T, TKey, TDbContext>(efDbContextProvider);
         }
 
-        public async Task<T> FindAsync(Guid id)
+        public async Task<T> FindAsync(TKey id)
         {
             return await innerBaseRepository.FindAsync(id);
         }
@@ -27,7 +38,7 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
             return await innerBaseRepository.FindAsync(predicate);
         }
 
-        public async Task<List<T>> SelectAsync(Guid[] ids)
+        public async Task<List<T>> SelectAsync(TKey[] ids)
         {
             return await innerBaseRepository.SelectAsync(ids);
         }
@@ -73,6 +84,13 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
 
 
     public class InnerBaseEntityFrameworkRepository<T, TDbContext> : BaseEntityFrameworkCoreRepository<T, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey, new()
+    {
+        public InnerBaseEntityFrameworkRepository(IEfCoreDbContextProvider dbContextProvider) : base(dbContextProvider)
+        {
+        }
+    }
+
+    public class InnerBaseEntityFrameworkRepository<T, TKey, TDbContext> : BaseEntityFrameworkCoreRepository<T, TKey, TDbContext> where TDbContext : DbContext where T : class, IPrimaryKey<TKey>, new()
     {
         public InnerBaseEntityFrameworkRepository(IEfCoreDbContextProvider dbContextProvider) : base(dbContextProvider)
         {

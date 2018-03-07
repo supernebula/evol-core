@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sample.Storage.QueryEntries
 {
-    public class PostQueryEntry : BaseEntityFrameworkCoreQuery<Post, EvolSampleDbContext>, IPostQueryEntry
+    public class PostQueryEntry : BaseEntityFrameworkCoreQuery<Post, string, EvolSampleDbContext>, IPostQueryEntry
     {
 
         public PostQueryEntry(IEfCoreDbContextProvider efDbContextProvider) : base(efDbContextProvider)

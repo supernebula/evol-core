@@ -10,7 +10,7 @@ namespace Sample.Domain.QueryEntries
 {
     public interface ICommentQueryEntry : IQueryEntry
     {
-        Task<Comment> FindAsync(Guid id);
+        Task<Comment> FindAsync(string id);
 
         Task<List<Comment>> SelectAsync(CommentQueryParameter param);
 
