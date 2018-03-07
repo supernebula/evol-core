@@ -11,9 +11,10 @@ using System;
 namespace Sample.Storage.Migrations
 {
     [DbContext(typeof(EvolSampleDbContext))]
-    partial class EvolSampleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180307105100_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
