@@ -3,7 +3,7 @@ using System;
 
 namespace Sample.Domain.Models.AggregateRoots
 {
-    public class Post : AggregateRoot<string>
+    public class Post : AggregateRoot<Guid>
     {
 
         public string Title { get; set; }
@@ -12,7 +12,7 @@ namespace Sample.Domain.Models.AggregateRoots
 
         public string Tag { get; set; }
 
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
     }
 }

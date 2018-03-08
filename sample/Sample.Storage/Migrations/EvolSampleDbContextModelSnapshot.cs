@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MySql.Data.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Sample.Domain.Models.Values;
 using Sample.Storage;
 using System;
@@ -17,11 +18,12 @@ namespace Sample.Storage.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
             modelBuilder.Entity("Sample.Domain.Models.AggregateRoots.Post", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content")
@@ -38,7 +40,7 @@ namespace Sample.Storage.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -47,7 +49,7 @@ namespace Sample.Storage.Migrations
 
             modelBuilder.Entity("Sample.Domain.Models.Entities.Comment", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content")
@@ -56,11 +58,11 @@ namespace Sample.Storage.Migrations
 
                     b.Property<DateTime>("CreateTime");
 
-                    b.Property<string>("PostId");
+                    b.Property<Guid>("PostId");
 
                     b.Property<int>("Status");
 
-                    b.Property<string>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 

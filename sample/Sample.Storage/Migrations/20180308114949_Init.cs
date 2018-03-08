@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Sample.Storage.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,12 +12,12 @@ namespace Sample.Storage.Migrations
                 name: "Comment",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Content = table.Column<string>(maxLength: 500, nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
-                    PostId = table.Column<string>(nullable: true),
+                    PostId = table.Column<Guid>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,12 +28,12 @@ namespace Sample.Storage.Migrations
                 name: "Post",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Content = table.Column<string>(maxLength: 1000, nullable: false),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     Tag = table.Column<string>(maxLength: 200, nullable: false),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

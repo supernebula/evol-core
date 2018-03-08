@@ -47,7 +47,7 @@ namespace Sample.Website
             //});
 
             services.AddDbContext<EvolSampleDbContext>(options =>
-        options.UseMySQL(Configuration.GetConnectionString("evolsampleConnection")));
+        options.UseMySql(Configuration.GetConnectionString("evolsampleConnection")));
             services.AddMvc().AddControllersAsServices();
 
             // Register the Swagger generator, defining one or more Swagger documents

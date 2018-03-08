@@ -3,12 +3,13 @@ using Evol.EntityFrameworkCore.MySql.Repository;
 using Sample.Domain.Models.AggregateRoots;
 using Sample.Domain.QueryEntries;
 using Sample.Domain.QueryEntries.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sample.Storage.QueryEntries
 {
-    public class PostQueryEntry : BaseEntityFrameworkCoreQuery<Post, string, EvolSampleDbContext>, IPostQueryEntry
+    public class PostQueryEntry : BaseEntityFrameworkCoreQuery<Post, Guid, EvolSampleDbContext>, IPostQueryEntry
     {
 
         public PostQueryEntry(IEfCoreDbContextProvider efDbContextProvider) : base(efDbContextProvider)

@@ -4,13 +4,13 @@ using System;
 
 namespace Sample.Domain.Models.Entities
 {
-    public class Comment : BaseEntity<string>
+    public class Comment : BaseEntity<Guid>
     {
-        public string PostId { get; set; }
+        public Guid PostId { get; set; }
 
         public string Content { get; set; }
 
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public CommentStatus Status { get; set; }
     }
