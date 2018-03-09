@@ -6,7 +6,7 @@ using Evol.Util;
 
 namespace Evol.Utilities.Test
 {
-    public class IoCUtilityTes
+    public class IoCUtilTest
     {
         [Fact]
         public void GetInterfaceAndClassFromAssemblyTest()

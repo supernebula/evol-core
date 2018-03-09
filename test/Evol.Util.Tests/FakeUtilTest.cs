@@ -9,7 +9,7 @@ namespace Evol.Utilities.Test
 {
 
 
-    public class FakeUtilityTest
+    public class FakeUtilTest
     {
         [Fact]
         public void CreatePersonNameTest()
