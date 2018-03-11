@@ -30,5 +30,6 @@ namespace Evol.Util
             var str2 = regex.Replace(str, string.Empty);
             return str2;
         }
+
     }
 }
