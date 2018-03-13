@@ -3,6 +3,7 @@ using Evol.Configuration.Modules;
 using Evol.Configuration.IoC;
 using Evol.Configuration;
 using Sample.Domain;
+using Evol.Domain.Ioc;
 
 namespace Sample.Storage
 {
@@ -13,7 +14,7 @@ namespace Sample.Storage
 
         public SampleStorageModule()
         {
-            _dataDependencyRegister = new DataConventionalDependencyRegister();
+            _dataDependencyRegister = new DefualtDomainDataConventionalDependencyRegister();
         }
 
         public override void Initailize()

@@ -9,6 +9,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
+using Sample.Website.Core.Filters;
 
 namespace Sample.Website
 {
@@ -48,7 +49,10 @@ namespace Sample.Website
 
             services.AddDbContext<EvolSampleDbContext>(options =>
         options.UseMySql(Configuration.GetConnectionString("evolsampleConnection")));
-            services.AddMvc().AddControllersAsServices();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(FriendExceptionFilterAttribute));
+            }).AddControllersAsServices();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -116,6 +120,14 @@ namespace Sample.Website
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}" 
+                );
             });
         }
     }

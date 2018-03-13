@@ -1,5 +1,10 @@
-﻿using Evol.Domain.Messaging;
+﻿using Evol.Domain.Dto;
+using Evol.Domain.Messaging;
 using Sample.Domain.Commands;
+using Sample.Domain.Models.AggregateRoots;
+using Sample.Domain.Models.Entities;
+using Sample.Domain.QueryEntries;
+using Sample.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,30 +12,46 @@ using System.Threading.Tasks;
 
 namespace Sample.Domain.CommandHandlers
 {
-    class PostCommandHandler :
+    public class PostCommandHandler :
         ICommandHandler<PostCreateCommand>,
         ICommandHandler<PostDeleteCommand>,
         ICommandHandler<CommentCreateCommand>,
         ICommandHandler<CommentDeleteCommand>
     {
-        public Task ExecuteAsync(PostCreateCommand command)
+        private IPostRepository postRepository;
+
+        private ICommentRepository commentRepository;
+
+        public PostCommandHandler(IPostRepository postRepos, ICommentRepository commentRepos)
         {
-            throw new NotImplementedException();
+            postRepository = postRepos;
+            commentRepository = commentRepos;
         }
 
-        public Task ExecuteAsync(PostDeleteCommand command)
+        public async Task ExecuteAsync(PostCreateCommand command)
         {
-            throw new NotImplementedException();
+            var post = command.Input.Map<Post>();
+            post.Id = Guid.NewGuid();
+            post.CreateTime = DateTime.Now;
+            await postRepository.InsertAsync(post);
         }
 
-        public Task ExecuteAsync(CommentCreateCommand command)
+        public async Task ExecuteAsync(PostDeleteCommand command)
         {
-            throw new NotImplementedException();
+            await postRepository.DeleteAsync(command.Input.Id);
         }
 
-        public Task ExecuteAsync(CommentDeleteCommand command)
+        public async Task ExecuteAsync(CommentCreateCommand command)
         {
-            throw new NotImplementedException();
+            var item = command.Input.Map<Comment>();
+            item.Id = Guid.NewGuid();
+            item.CreateTime = DateTime.Now;
+            await commentRepository.InsertAsync(item);
+        }
+
+        public async Task ExecuteAsync(CommentDeleteCommand command)
+        {
+            await commentRepository.DeleteAsync(command.Input.Id);
         }
     }
 }

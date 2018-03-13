@@ -45,7 +45,7 @@ namespace Sample.Website.ApiControllers
         /// <param name="param"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Cinema/[action]")]
+        [Route("[action]")]
         public async Task<IPaged<PostViewModel>> Paged(int pageIndex = 1, int pageSize = 10, PostQueryParameter param = null)
         {
             var result = await PostQuery.PagedAsync(pageIndex, pageSize, param);
@@ -87,10 +87,10 @@ namespace Sample.Website.ApiControllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task Post(PostCreateDto dto)
+        public async Task Post(PostCreateDtoParam param)
         {
             ValidateModelOrThrow();
-            var command = new PostCreateCommand() { Input = dto };
+            var command = new PostCreateCommand() { Input = new PostCreateDto(param) };
             await CommandBus.SendAsync(command);
         }
 

@@ -10,7 +10,10 @@ using Evol.Domain.Service;
 
 namespace Evol.Domain.Ioc
 {
-
+    /// <summary>
+    /// 默认CQRS组件发现和依赖注册器，在系统启动时被调用，注册进Ioc容器；
+    /// 组件有：ICommandHandler<>、IEventHandler<>、IService
+    /// </summary>
     public class DefualtCqrsConventionalDependencyRegister : IConventionalDependencyRegister
     {
         public void Register(IIoCManager _ioCManager, Assembly assembly)
