@@ -57,9 +57,10 @@ namespace Evol.Domain.Ioc
             Func<Type, bool> filter = type =>
             {
                 var tInfo = type.GetTypeInfo();
-                var flag = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && (typeof(IRepository<>)).GetTypeInfo().IsAssignableFrom(type);
-                var flag2 = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && (typeof(IRepository<,>)).GetTypeInfo().IsAssignableFrom(type);
-                return flag && flag2;
+                var flag = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<>));
+                var flag2 = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<,>));
+
+                return flag || flag2;
             };
             var impls = assembly.GetTypes().Where(filter).ToList();
             var interfaceImpls = new List<InterfaceImplPair>();
@@ -67,12 +68,13 @@ namespace Evol.Domain.Ioc
                 return interfaceImpls;
             impls.ForEach(t =>
             {
-                var @interface = t.GetTypeInfo().GetInterfaces().SingleOrDefault(i => 
-                        i.GetTypeInfo().IsGenericType && 
-                        (
-                            (typeof(IRepository<>)).GetTypeInfo().IsAssignableFrom(i) 
-                            || (typeof(IRepository<,>)).GetTypeInfo().IsAssignableFrom(i)
-                        )
+                var @interface = t.GetTypeInfo().GetInterfaces().SingleOrDefault(i =>
+                        {
+                            var interfaces = i.GetTypeInfo().GetInterfaces();
+                            var flag = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<>));
+                            var flag2 = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<,>));
+                            return flag || flag2;
+                        }
                     );
                 interfaceImpls.Add(new InterfaceImplPair() { Interface = @interface, Impl = t });
             });

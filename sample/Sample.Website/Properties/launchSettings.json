@@ -16,15 +16,16 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-    },
-    "Sample.Website": {
-      "commandName": "IIS",
-      "launchBrowser": true,
-      "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:6296/"
+      "Sample.Website": {
+        "commandName": "IIS",
+        "launchBrowser": true,
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "applicationUrl": "http://localhost:6296/"
+      }
     }
   }
 }

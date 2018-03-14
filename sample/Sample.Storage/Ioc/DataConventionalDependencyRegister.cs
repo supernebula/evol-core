@@ -61,7 +61,10 @@ namespace Sample.Storage
                 return interfaceImpls;
             impls.ForEach(t =>
             {
-                var @interface = t.GetTypeInfo().GetInterfaces().SingleOrDefault(i => i.GetTypeInfo().GetInterfaces().Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<>)));
+                var @interface = t.GetTypeInfo().GetInterfaces().SingleOrDefault(i => 
+                        i.GetTypeInfo().GetInterfaces()
+                        .Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<>))
+                    );
                 interfaceImpls.Add(new InterfaceImplPair() { Interface = @interface, Impl = t });
             });
             return interfaceImpls;

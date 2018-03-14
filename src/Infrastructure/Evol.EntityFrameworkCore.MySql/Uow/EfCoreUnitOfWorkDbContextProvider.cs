@@ -5,7 +5,7 @@ using Evol.Common.IoC;
 using Evol.UnitOfWork.Abstractions;
 using Evol.EntityFrameworkCore.MySql.Repository;
 
-namespace Evol.EntityFrameworkCore.SqlServer.Uow
+namespace Evol.EntityFrameworkCore.MySql.Uow
 {
     public class EfCoreUnitOfWorkDbContextProvider : IEfCoreUnitOfWorkDbContextProvider
     {

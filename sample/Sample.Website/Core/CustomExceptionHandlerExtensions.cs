@@ -45,8 +45,19 @@ namespace Sample.Website.Core
                 }
 
                 if (result == null)
-                    return;
+                {
+                    //context.Request.Path = new PathString(errorHandlingPath);
+                    var apiResult = new ApiResult(ex)
+                    {
+                        Code = PlatfamCode.Fail,
+                        Msg = "请求失败",
+                        ErrCode = BusinessCode.BadRequest,
+                        ErrMsg = ex.Message
+                    };
+                    result = JsonUtil.Serialize(apiResult);
+                }
 
+                
                 context.Response.Clear();
                 context.Response.StatusCode = (int)code;
                 await context.Response.WriteAsync(result);
@@ -55,7 +66,7 @@ namespace Sample.Website.Core
 
             return app.UseExceptionHandler(new ExceptionHandlerOptions
             {
-                ExceptionHandlingPath = errorHandlingPath,
+                ExceptionHandlingPath = new PathString(errorHandlingPath),
                 ExceptionHandler = handle
             });
 

@@ -98,11 +98,12 @@ namespace Sample.Website
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseCanContinueExceptionHandler("/Home/Error");
             }
             else
             {
-                app.UseCanContinueExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();
