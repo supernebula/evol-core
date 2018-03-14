@@ -10,6 +10,7 @@ using Autofac.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using Sample.Website.Core.Filters;
+using Sample.Website.Core;
 
 namespace Sample.Website
 {
@@ -51,7 +52,7 @@ namespace Sample.Website
         options.UseMySql(Configuration.GetConnectionString("evolsampleConnection")));
             services.AddMvc(options =>
             {
-                options.Filters.Add(typeof(FriendExceptionFilterAttribute));
+                //options.Filters.Add(typeof(FriendExceptionFilterAttribute));
             }).AddControllersAsServices();
 
             // Register the Swagger generator, defining one or more Swagger documents
@@ -101,7 +102,7 @@ namespace Sample.Website
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseCanContinueExceptionHandler("/Home/Error");
             }
 
             app.UseStaticFiles();

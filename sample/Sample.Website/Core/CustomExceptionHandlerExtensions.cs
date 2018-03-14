@@ -1,59 +1,63 @@
 ﻿using Evol.Common.Exceptions;
+using Evol.Util.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Sample.Website.Core
 {
+    /// <summary>
+    /// ExceptionHandlerMiddleware异常处理中间件扩展
+    /// </summary>
     public static class CustomExceptionHandlerExtensions
     {
-        //
-        // 摘要:
-        //     Adds a middleware to the pipeline that will catch exceptions, log them, and re-execute
-        //     the request in an alternate pipeline. The request will not be re-executed if
-        //     the response has already started.
-        //
-        // 参数:
-        //   app:
-        [Obsolete("未完成...")]
-        public static IApplicationBuilder UseCanContinueExceptionHandler(this IApplicationBuilder app)
+
+        /// <summary>
+        /// 添加自定义的异常处理器，用于ExceptionHandlerMiddleware异常处理中间件
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="errorHandlingPath"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseCanContinueExceptionHandler(this IApplicationBuilder app, string errorHandlingPath)
         {
             RequestDelegate handle = async (context) =>  {
-                try
+                var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                var ex = exceptionHandlerFeature.Error;
+                var code = HttpStatusCode.InternalServerError;
+
+                string result = null;
+                if (ex is InputError)
                 {
-                    var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-                    var ex = exceptionHandlerFeature.Error;
-                    if (ex is InputError)
+                    code = HttpStatusCode.BadRequest;
+                    var error = ex as InputError;
+                    var apiResult = new ApiResult(error.ModelError)
                     {
-                        var contentType = context.Response.ContentType;
-
-                        context.Response.Clear();
-                        context.Features.Set<IExceptionHandlerFeature>(exceptionHandlerFeature);
-                        context.Features.Set<IExceptionHandlerPathFeature>(exceptionHandlerFeature);
-                        context.Response.StatusCode = 500;
-                        context.Response.OnStarting(ClearCacheHeaders, context.Response);
-                    }
-                        
+                        Code = PlatfamCode.Fail,
+                        Msg = "请求失败",
+                        ErrCode = BusinessCode.BadRequest,
+                        ErrMsg = error.Message
+                    };
+                    result = JsonUtil.Serialize(apiResult);
                 }
-                catch (Exception)
-                {
 
-                    throw;
-                }
+                if (result == null)
+                    return;
+
+                context.Response.Clear();
+                context.Response.StatusCode = (int)code;
+                await context.Response.WriteAsync(result);
+                context.Response.OnStarting(ClearCacheHeaders, context.Response);
             };
 
-            var exceptionHandlerOptions = new ExceptionHandlerOptions()
+            return app.UseExceptionHandler(new ExceptionHandlerOptions
             {
-                 ExceptionHandler = handle
-
-            };
-
-            return app;
+                ExceptionHandlingPath = errorHandlingPath,
+                ExceptionHandler = handle
+            });
 
         }
 

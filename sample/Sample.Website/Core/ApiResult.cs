@@ -33,6 +33,11 @@ namespace Sample.Website.Core
         Ok = 200,
 
         /// <summary>
+        /// 客户端错误请求
+        /// </summary>
+        BadRequest = 400,
+
+        /// <summary>
         ///未找到
         /// </summary>
         NotFound = 404,
