@@ -204,13 +204,13 @@ namespace Evol.MongoDB.Test
         public void PagedTest()
         {
             var paged = _userRepository.PagedSelectAsync(e => e.Gender == GenderType.Male, 2, 10).GetAwaiter().GetResult();
-            Trace.WriteLine($"page total:{paged.PageTotal}, record total:{paged.RecordTotal}, page index:{paged.Index}, page size:{paged.Size}");
+            Trace.WriteLine($"page total:{paged.PageTotal}, record total:{paged.RecordTotal}, page index:{paged.PageIndex}, page size:{paged.PageSize}");
             Assert.True(paged.Items.Any());
 
             Expression<Func<User, bool>> express = u => u.Email.Contains(".com");
             FilterDefinition<User> filter = express;
             var paged1 = _userRepository.PagedSelectAsync(e => e.Gender == GenderType.Female, 2, 10).GetAwaiter().GetResult();
-            Trace.WriteLine($"page total:{paged1.PageTotal}, record total:{paged1.RecordTotal}, page index:{paged1.Index}, page size:{paged1.Size}");
+            Trace.WriteLine($"page total:{paged1.PageTotal}, record total:{paged1.RecordTotal}, page index:{paged1.PageIndex}, page size:{paged1.PageSize}");
             Assert.True(paged1.Items.Any());
             Trace.WriteLine($"paged1 count:{paged1.Items.Count()}");
 

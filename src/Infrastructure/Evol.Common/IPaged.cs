@@ -18,9 +18,9 @@ namespace Evol.Common
 
         int RecordTotal { get; }
 
-        int Index { get; }
+        int PageIndex { get; }
 
-        int Size { get; }
+        int PageSize { get; }
 
     }
 }

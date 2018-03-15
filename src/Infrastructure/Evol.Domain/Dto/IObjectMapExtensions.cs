@@ -25,7 +25,7 @@ namespace Evol.Domain.Dto
         public static IPaged<TTo> MapPaged<TTo>(this IPaged source) where TTo : new()
         {
             var toItems = source.Items.MapList<TTo>();
-            var toPaged = new PagedList<TTo>(toItems, source.RecordTotal, source.Index, source.Size);
+            var toPaged = new PagedList<TTo>(toItems, source.RecordTotal, source.PageIndex, source.PageSize);
             return toPaged;
         }
 

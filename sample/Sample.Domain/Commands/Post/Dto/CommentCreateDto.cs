@@ -19,7 +19,7 @@ namespace Sample.Domain.Commands.Dto
 
         public void ConfigMap(MapperConfigurationExpression mapConfig)
         {
-            mapConfig.CreateMap<PostCreateDto, Comment>();
+            mapConfig.CreateMap<CommentCreateDto, Comment>();
         }
     }
 }

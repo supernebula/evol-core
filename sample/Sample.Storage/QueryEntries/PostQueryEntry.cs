@@ -33,7 +33,16 @@ namespace Sample.Storage.QueryEntries
 
         public async Task<List<Post>> SelectAsync(PostQueryParameter param)
         {
-            return await base.SelectAsync(e => e.Title.Contains(param.Title));
+            Func<IQueryable<Post>, IQueryable<Post>> query = (queryable) => {
+                if (param == null)
+                    return queryable;
+                if (!string.IsNullOrWhiteSpace(param.Title))
+                    queryable = queryable.Where(e => e.Title.Contains(param.Title));
+                if (!string.IsNullOrWhiteSpace(param.Key))
+                    queryable = queryable.Where(e => e.Content.Contains(param.Key));
+                return queryable;
+            };
+            return await base.SelectAsync(query);
         }
     }
 }

@@ -15,8 +15,8 @@ namespace Evol.Common
         {
             Items = items ?? throw new ArgumentNullException(nameof(items));
             RecordTotal = total;
-            Index = pageIndex;
-            Size = pageSize;
+            PageIndex = pageIndex;
+            PageSize = pageSize;
             PageTotal = total / pageSize;
             if (total % pageSize > 0)
                 PageTotal++;
@@ -30,9 +30,9 @@ namespace Evol.Common
 
         public int RecordTotal { private set; get; }
 
-        public int Index { private set; get; }
+        public int PageIndex { private set; get; }
 
-        public int Size { private set; get; }
+        public int PageSize { private set; get; }
 
     }
 }
