@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Evol.Common;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Evol.Domain.Dto
@@ -21,17 +22,17 @@ namespace Evol.Domain.Dto
         /// <summary>
         /// Object-object mapping for Paged
         /// </summary>
-        public static IPaged<TTo> MapPaged<TTo>(this IPaged<object> source) where TTo : new()
+        public static IPaged<TTo> MapPaged<TTo>(this IPaged source) where TTo : new()
         {
-            var tos = source.MapList<TTo>();
-            var toPaged = new PagedList<TTo>(tos, source.RecordTotal, source.Index, source.Size);
+            var toItems = source.Items.MapList<TTo>();
+            var toPaged = new PagedList<TTo>(toItems, source.RecordTotal, source.Index, source.Size);
             return toPaged;
         }
 
         /// <summary>
         /// Object-object mapping for Collection
         /// </summary>
-        public static List<TTo> MapList<TTo>(this IEnumerable<object> source) where TTo : new()
+        public static List<TTo> MapList<TTo>(this IEnumerable source) where TTo : new()
         {
             var tos = new List<TTo>();
             foreach (var item in source)

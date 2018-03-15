@@ -8,9 +8,14 @@ using Sample.Website.Models;
 
 namespace Sample.Website.Controllers
 {
-    public class DefaultController : Controller
+    public class HomeController : Controller
     {
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Default()
         {
             return View();
         }

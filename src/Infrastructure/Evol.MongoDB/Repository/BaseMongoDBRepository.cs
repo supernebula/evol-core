@@ -187,14 +187,8 @@ namespace Evol.MongoDB.Repository
                 query = query.Skip((pageIndex - 1)*pageSize);
             var records = await query.Take(pageSize).ToListAsync();
 
-            var pagedList = new PagedList<T>()
-            {
-                PageTotal = pageTotal,
-                RecordTotal = recordTotal,
-                Index = pageIndex,
-                Size = pageSize
-            };
-            pagedList.AddRange(records);
+            var pagedList = new PagedList<T>(records, recordTotal, pageIndex, pageSize);
+
             return pagedList;
         }
 
@@ -219,14 +213,7 @@ namespace Evol.MongoDB.Repository
                 fluent = fluent.Skip((pageIndex - 1) * pageSize);
             var records = await fluent.Limit(pageSize).ToListAsync();
 
-            var pagedList = new PagedList<T>()
-            {
-                PageTotal = (int)pageTotal,
-                RecordTotal = (int)recordTotal,
-                Index = pageIndex,
-                Size = pageSize
-            };
-            pagedList.AddRange(records);
+            var pagedList = new PagedList<T>(records, (int)recordTotal, pageIndex, pageSize);
             return pagedList;
         }
 

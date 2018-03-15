@@ -58,14 +58,14 @@ namespace Evol.MongoDB.Test
         private User FakeItem()
         {
             var paged = _userRepository.PagedSelectAsync(null, 1, 1).GetAwaiter().GetResult();
-            var first = paged.FirstOrDefault();
+            var first = paged.Items.FirstOrDefault();
             return first;
         }
 
         private List<User> FakeItems(int num)
         {
             var paged = _userRepository.PagedSelectAsync(null, 1, num).GetAwaiter().GetResult();
-            var list = paged.ToList();
+            var list = paged.Items.ToList();
             return list;
         }
 
@@ -205,14 +205,14 @@ namespace Evol.MongoDB.Test
         {
             var paged = _userRepository.PagedSelectAsync(e => e.Gender == GenderType.Male, 2, 10).GetAwaiter().GetResult();
             Trace.WriteLine($"page total:{paged.PageTotal}, record total:{paged.RecordTotal}, page index:{paged.Index}, page size:{paged.Size}");
-            Assert.True(paged.Any());
+            Assert.True(paged.Items.Any());
 
             Expression<Func<User, bool>> express = u => u.Email.Contains(".com");
             FilterDefinition<User> filter = express;
             var paged1 = _userRepository.PagedSelectAsync(e => e.Gender == GenderType.Female, 2, 10).GetAwaiter().GetResult();
             Trace.WriteLine($"page total:{paged1.PageTotal}, record total:{paged1.RecordTotal}, page index:{paged1.Index}, page size:{paged1.Size}");
-            Assert.True(paged1.Any());
-            Trace.WriteLine($"paged1 count:{paged1.Count()}");
+            Assert.True(paged1.Items.Any());
+            Trace.WriteLine($"paged1 count:{paged1.Items.Count()}");
 
         }
 

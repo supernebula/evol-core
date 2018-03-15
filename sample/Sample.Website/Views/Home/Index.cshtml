@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles{
+    <style>
+        body {
+            background: #EEE;
+        }
+    </style>
+}
+
+@section Scripts{
+    <script>
+        $(function () {
+            $.getJSON("/api/posts", function (json) { 
+                var model = json.data;
+                var html = '<div class="col-md - 12"><div class="col-md-8" >' + model.title + '</div><div class="col-md-2"></div><div class="col-md-2"></div></div>';
+            });
+
+        });
+    </script>
+
+}
+
+    <div class="row  text-center;" style="font-size:30px; line-height:60px; ">
+        ASP.NET Core Sample Forum Power by Evol
+    </div>
+<div class="row">
+    <div class="col-md-2 row" >
+        <div class="col-md-11" style="height:500px;background-color:#FFF;">Tag</div>
+    </div>
+    <div class="col-md-10" style="height:100%;background-color:#FFF;">
+        <div class="col-md-12" style="background-color:#EEE; line-height:50px;">
+            <div class="col-md-8">帖子</div>
+            <div class="col-md-2">作者</div>
+            <div class="col-md-2">回复/查看</div>
+        </div>
+
+        <div class="col-md-12" style="">
+            <div class="col-md-8">帖子名称一帖子名称一帖子名称一</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="col-md-12" style="">
+            <div class="col-md-8">帖子名称一帖子名称一帖子名称一</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="col-md-12" style="">
+            <div class="col-md-8">帖子名称一帖子名称一帖子名称一</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="col-md-12" style="">
+            <div class="col-md-8">帖子名称一帖子名称一帖子名称一</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+        </div>
+
+    </div>
+</div>
+
