@@ -21,10 +21,11 @@ namespace Evol.Extensions.Autofac.AspnetCore
         public override T GetService<T>()
         {
             var servProvider = ServiceProviderChunk.Invoke();
+            //等价于HttpContext.Current
             var httpContextAccessor = servProvider.GetService<IHttpContextAccessor>();
-            var httpContext = httpContextAccessor.HttpContext;
-            servProvider = httpContext.RequestServices;
+            var currenthttpContext = httpContextAccessor.HttpContext;
 
+            servProvider = currenthttpContext.RequestServices;
             if (servProvider == default(IServiceProvider))
                 return default(T);
             var obj = servProvider.GetService<T>();
@@ -39,10 +40,11 @@ namespace Evol.Extensions.Autofac.AspnetCore
         public override IEnumerable<T> GetServices<T>()
         {
             var servProvider = ServiceProviderChunk.Invoke();
+            //等价于HttpContext.Current
             var httpContextAccessor = servProvider.GetService<IHttpContextAccessor>();
-            var httpContext = httpContextAccessor.HttpContext;
-            servProvider = httpContext.RequestServices;
+            var currenthttpContext = httpContextAccessor.HttpContext;
 
+            servProvider = currenthttpContext.RequestServices;
             if (servProvider == default(IServiceProvider))
                 return default(IEnumerable<T>);
             var objs = servProvider.GetServices<T>();

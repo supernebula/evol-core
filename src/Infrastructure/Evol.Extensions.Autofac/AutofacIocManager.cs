@@ -6,6 +6,9 @@ using Autofac;
 
 namespace Evol.Extensions.Autofac
 {
+    /// <summary>
+    /// Autofac依赖注入管理器，如果用于 Asp.net core web应用，请使用 AspnetCoreAutofacIocManager
+    /// </summary>
     public class AutofacIocManager : IIoCManager, IDisposable
     {
         private readonly ContainerBuilder _builder;

@@ -8,7 +8,7 @@ using Sample.Website.Models;
 
 namespace Sample.Website.Controllers
 {
-    public class HomeController : Controller
+    public class DefaultController : Controller
     {
         public IActionResult Index()
         {
