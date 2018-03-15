@@ -11,12 +11,13 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using Sample.Website.Core.Filters;
 using Sample.Website.Core;
+using Microsoft.AspNetCore.Http;
 
 namespace Sample.Website
 {
     public partial class Startup
     {
-        public Startup(IHostingEnvironment env, IConfiguration config)
+        public Startup(IHostingEnvironment env, IConfiguration config, IHttpContextAccessor HttpContextAccessor)
         {
             HostingEnvironment = env;
             Configuration = config;
@@ -34,6 +35,8 @@ namespace Sample.Website
         public IConfiguration Configuration { get; }
 
         public IContainer AppContainer { get; private set; }
+
+        public IHttpContextAccessor HttpContextAccessor { get; private set; }
 
         ///// <summary>
         ///// 自定义强类型配置
@@ -75,6 +78,8 @@ namespace Sample.Website
             ConfigApp();
             containerBuilder.Populate(services);
             AppContainer = containerBuilder.Build();
+
+
             serviceProvider = new AutofacServiceProvider(AppContainer);
             return serviceProvider;
 

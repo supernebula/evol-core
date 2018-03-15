@@ -4,6 +4,7 @@ using Evol.Domain.Messaging;
 using Evol.EntityFrameworkCore.MySql.Repository;
 using Evol.EntityFrameworkCore.MySql.Uow;
 using Evol.Extensions.Autofac;
+using Evol.Extensions.Autofac.AspnetCore;
 using Evol.UnitOfWork.Abstractions;
 using System;
 
@@ -13,7 +14,7 @@ namespace Sample.Website
     {
         public void ConfigAppPerInit(ContainerBuilder containerBuilder, Func<IServiceProvider> serviceProviderFunc)
         {
-            AppConfig.Init(new AutofacIocManager(containerBuilder, serviceProviderFunc));
+            AppConfig.Init(new AspnetCoreAutofacIocManager(containerBuilder, serviceProviderFunc));
         }
 
         public void ConfigApp()

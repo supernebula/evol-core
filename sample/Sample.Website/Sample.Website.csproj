@@ -13,6 +13,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.1" />
     <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
@@ -24,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Domain\Evol.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Extensions.Autofac.AspnetCore\Evol.Extensions.Autofac.AspnetCore.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Extensions.Autofac\Evol.Extensions.Autofac.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\Evol.Logging.NLog\Evol.Logging.NLog.csproj" />
     <ProjectReference Include="..\..\src\Infrastructure\ThEvol.Extensions\Evol.Extensions.csproj" />

@@ -121,6 +121,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.EntityFrameworkCore.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evol.TMovie.Data", "src\Evol.TMovie.Data\Evol.TMovie.Data.csproj", "{2045A718-D6BD-484C-A71F-711AF5A891FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evol.Extensions.Autofac.AspnetCore", "src\Infrastructure\Evol.Extensions.Autofac.AspnetCore\Evol.Extensions.Autofac.AspnetCore.csproj", "{65ABCD99-E000-49AD-89CC-A82872C51556}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -315,6 +317,10 @@ Global
 		{2045A718-D6BD-484C-A71F-711AF5A891FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2045A718-D6BD-484C-A71F-711AF5A891FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2045A718-D6BD-484C-A71F-711AF5A891FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65ABCD99-E000-49AD-89CC-A82872C51556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65ABCD99-E000-49AD-89CC-A82872C51556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65ABCD99-E000-49AD-89CC-A82872C51556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65ABCD99-E000-49AD-89CC-A82872C51556}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -371,6 +377,7 @@ Global
 		{B2693D79-066F-4D05-96AC-1D5704B6997E} = {77452356-61F9-4D92-BA06-BA5C47C96074}
 		{868084EF-3B0D-49B1-9B0D-0C9C1D75483E} = {77452356-61F9-4D92-BA06-BA5C47C96074}
 		{2045A718-D6BD-484C-A71F-711AF5A891FD} = {8B542B00-87DC-489A-9166-981260EE1AF6}
+		{65ABCD99-E000-49AD-89CC-A82872C51556} = {77452356-61F9-4D92-BA06-BA5C47C96074}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCE97902-2004-4E22-84BB-3C7593359A8B}

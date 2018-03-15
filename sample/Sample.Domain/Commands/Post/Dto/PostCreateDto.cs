@@ -16,6 +16,7 @@ namespace Sample.Domain.Commands.Dto
         {
             Title = param.Title;
             Content = param.Content;
+            Tag = param.Tag;
         }
         public Guid UserId { get; set; }
 
@@ -37,6 +38,7 @@ namespace Sample.Domain.Commands.Dto
         [StringLength(2000, MinimumLength = 10)]
         public string Content { get; set; }
 
+        [Required]
         public string Tag { get; set; }
 
 
