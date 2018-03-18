@@ -29,7 +29,9 @@ Apache License, Version 2.0
 
 ### Contact
 
-Email: supnebula@gmail.com              微信：SuperNebula
+supnebula@gmail.com
+
+微信：SuperNebula
 
 #### More
 
