@@ -6,6 +6,7 @@ using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries.Parameters;
 using Evol.Common;
 using Evol.Domain.Data;
+using Evol.Common.Data;
 
 namespace Evol.TMovie.Domain.QueryEntries
 {

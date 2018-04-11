@@ -6,6 +6,7 @@ using Evol.Common;
 using Evol.Common.IoC;
 using Evol.Configuration.IoC;
 using Evol.Domain.Data;
+using Evol.Common.Data;
 
 namespace Sample.Storage
 {

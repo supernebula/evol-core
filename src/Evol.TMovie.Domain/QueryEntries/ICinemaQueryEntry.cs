@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Evol.Domain.Data;
+using Evol.Common.Data;
 
 namespace Evol.TMovie.Domain.QueryEntries
 {

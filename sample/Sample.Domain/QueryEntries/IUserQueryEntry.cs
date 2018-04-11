@@ -5,6 +5,7 @@ using Sample.Domain.QueryEntries.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Evol.Common.Data;
 
 namespace Sample.Domain.QueryEntries
 {

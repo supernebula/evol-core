@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Evol.Domain.Data
 {
-    public interface IQueryEntry
-    {
-    }
+    //转移到ThEvol.Common项目，ThEvol.Common.Data.IQueryEntry
+    //public interface IQueryEntry
+    //{
+    //}
 }

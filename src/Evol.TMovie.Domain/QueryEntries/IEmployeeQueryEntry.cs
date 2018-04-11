@@ -1,4 +1,5 @@
 ﻿using Evol.Common;
+using Evol.Common.Data;
 using Evol.Domain.Data;
 using Evol.TMovie.Domain.Models.AggregateRoots;
 using Evol.TMovie.Domain.QueryEntries.Parameters;

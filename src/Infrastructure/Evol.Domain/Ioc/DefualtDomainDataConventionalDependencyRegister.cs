@@ -6,6 +6,7 @@ using Evol.Common;
 using Evol.Domain.Data;
 using Evol.Common.IoC;
 using Evol.Configuration.IoC;
+using Evol.Common.Data;
 
 namespace Evol.Domain.Ioc
 {
@@ -56,9 +57,13 @@ namespace Evol.Domain.Ioc
         {
             Func<Type, bool> filter = type =>
             {
+                //var tInfo = type.GetTypeInfo();
+                //var flag = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<>));
+                //var flag2 = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<,>));
+
                 var tInfo = type.GetTypeInfo();
-                var flag = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<>));
-                var flag2 = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<,>));
+                var flag = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRootRepository<>));
+                var flag2 = tInfo.IsPublic && !tInfo.IsAbstract && tInfo.IsClass && tInfo.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IRootRepository<,>));
 
                 return flag || flag2;
             };
@@ -71,8 +76,12 @@ namespace Evol.Domain.Ioc
                 var @interface = t.GetTypeInfo().GetInterfaces().SingleOrDefault(i =>
                         {
                             var interfaces = i.GetTypeInfo().GetInterfaces();
-                            var flag = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<>));
-                            var flag2 = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<,>));
+                            //var flag = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<>));
+                            //var flag2 = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRepository<,>));
+
+                            var flag = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRootRepository<>));
+                            var flag2 = interfaces.Any(i2 => i2.GetTypeInfo().IsGenericType && i2.GetGenericTypeDefinition() == typeof(IRootRepository<,>));
+
                             return flag || flag2;
                         }
                     );

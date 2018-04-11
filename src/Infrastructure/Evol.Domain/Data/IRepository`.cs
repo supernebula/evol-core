@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Evol.Common;
+using Evol.Common.Data;
 
 namespace Evol.Domain.Data
 {
@@ -11,14 +12,14 @@ namespace Evol.Domain.Data
     /// 基础仓储接口
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T,TKey> where T : IPrimaryKey<TKey>
+    public interface IRepository<T> : IRootRepository<T> where T : IPrimaryKey
     {
         /// <summary>
         /// 查找一个
         /// </summary>
         /// <param name="id">主键</param>
         /// <returns></returns>
-        Task<T> FindAsync(TKey id);
+        Task<T> FindAsync(Guid id);
 
         /// <summary>
         /// 查询多个
@@ -32,7 +33,7 @@ namespace Evol.Domain.Data
         /// </summary>
         /// <param name="ids">主键数组</param>
         /// <returns></returns>
-        Task<List<T>> SelectAsync(TKey[] ids);
+        Task<List<T>> SelectAsync(Guid[] ids);
 
         /// <summary>
         /// 查询多个
@@ -80,7 +81,7 @@ namespace Evol.Domain.Data
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteAsync(TKey id);
+        Task DeleteAsync(Guid id);
 
         /// <summary>
         /// 分页查询
