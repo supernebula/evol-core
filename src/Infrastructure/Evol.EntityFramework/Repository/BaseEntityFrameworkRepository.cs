@@ -21,7 +21,7 @@ namespace Evol.EntityFramework.Repository
         //[Dependency]
         public IEfDbContextProvider DbContextProvider { get; set; }
 
-        private DbContext Context
+        protected DbContext Context
         {
             get
             {

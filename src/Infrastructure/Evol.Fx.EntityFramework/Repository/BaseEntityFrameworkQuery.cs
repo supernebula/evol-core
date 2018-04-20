@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -35,6 +36,12 @@ namespace Evol.Fx.EntityFramework.Repository
         protected IQueryable<T> Query()
         {
             return innerBaseRepository.Query();
+        }
+
+        public async Task<List<TR>> SqlQueryAsync<TR>(string sql, params SqlParameter[] parameters)
+        {
+            var result = await innerBaseRepository.SqlQueryAsync<TR>(sql, parameters);
+            return result;
         }
 
         protected async Task<List<T>> SelectAsync(Expression<Func<T, bool>> predicate)

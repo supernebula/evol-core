@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Evol.Common;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace Evol.Fx.EntityFramework.Repository
 {
@@ -20,7 +21,7 @@ namespace Evol.Fx.EntityFramework.Repository
         //[Dependency]
         public IEfDbContextProvider DbContextProvider { get; set; }
 
-        private DbContext Context
+        protected DbContext Context
         {
             get
             {
@@ -108,6 +109,12 @@ namespace Evol.Fx.EntityFramework.Repository
         public IQueryable<T> Query()
         {
             return DbSet.AsQueryable();
+        }
+
+        public async Task<List<TR>> SqlQueryAsync<TR>(string sql, params SqlParameter[] parameters)
+        {
+            var result = await Database.SqlQuery<TR>(sql, parameters).ToListAsync();
+            return result;
         }
 
 

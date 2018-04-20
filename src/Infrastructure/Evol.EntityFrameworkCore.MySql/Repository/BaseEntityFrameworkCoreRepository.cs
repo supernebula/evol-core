@@ -32,7 +32,7 @@ namespace Evol.EntityFrameworkCore.MySql.Repository
         //[Dependency]
         public IEfCoreDbContextProvider DbContextProvider { get; set; }
 
-        private DbContext Context
+        protected DbContext Context
         {
             get
             {
