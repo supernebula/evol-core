@@ -6,6 +6,11 @@ namespace Evol.Fx.Logging.AdapteNLog
 {
     public class NLoggerFactory : ILoggerFactory
     {
+        public void LoadConfiguration(string configFile)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddProvider(ILoggerProvider provider)
         {
             throw new NotImplementedException();
@@ -29,5 +34,7 @@ namespace Evol.Fx.Logging.AdapteNLog
         {
 
         }
+
+
     }
 }

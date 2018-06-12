@@ -10,6 +10,9 @@ namespace Evol.Common.Logging
     //     Evol.Common.Logging.ILogger from the registered Evol.Common.Logging.ILoggerProviders.
     public interface ILoggerFactory : IDisposable
     {
+
+        void LoadConfiguration(string configFile);
+
         ////
         //// 摘要:
         ////     Adds an Evol.Common.Logging.ILoggerProvider to the logging system.
