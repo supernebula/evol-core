@@ -9,7 +9,7 @@ Based on the c# /.NET Standard 2.1/.net core 2.1 domain-driven web development f
 
 ### 基本思想
 
-DDD领域驱动设计、CQRS、微服务、并发、异步、多线程、跨平台、分布式、支付+竞争
+DDD领域驱动设计、领域事件、CQRS、微服务、并发、异步、多线程、跨平台、分布式、支付+竞争
 
 ### 语言平台
 
