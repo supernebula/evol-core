@@ -1,11 +1,11 @@
-
+﻿
 # evol-core
 
 ### 概述
 
-evolve-framework，跨平台领域驱动Web开发框架，基于.NET Standard2.0 /.NET Core2.0；提供丰富的组件、类库、工具类、脚手架、第三方适配等，提供DDD+CQRS整套的解决方案；提供示例项目；支持Docker容器化部署。
+evolve-framework，基于.NET Standard 2.1 /.NET Core 2.1跨平台，领域驱动Web开发框架；提供丰富的组件、类库、工具类、脚手架、第三方适配等，提供DDD+CQRS整套的解决方案；提供示例项目；支持Docker容器化部署。
 
-Based on the c# /.NET Standard/.net core domain-driven web development framework；
+Based on the c# /.NET Standard 2.1/.net core 2.1 domain-driven web development framework；
 
 ### 基本思想
 
@@ -13,11 +13,11 @@ DDD领域驱动设计、CQRS、微服务、并发、异步、多线程、跨平�
 
 ### 语言平台
 
-C#、.NET Standard2.0、.Net core2.0、Node.Js
+C#、.NET Standard 2.1、.Net core2.1、Node.Js
 
 ### 技术栈
 
-DDD、CQRS、.Net Standard2.0、.Net core2.0、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MySql、SqlServer、MongoDB、Cache、Memcached、Redis、RabbitMQ、MVVM 、XUnit、AutoMapper、async、ThreadPool......more!
+DDD、CQRS、.Net Standard 2.1、.Net core 2.1、C#、Javascript、Node.Js、MVC、WebAPI、IoC、Logging、EntityFramework、Dapper、UnitOfWork、MySql、SqlServer、MongoDB、Cache、Memcached、Redis、RabbitMQ、MVVM 、XUnit、AutoMapper、async、ThreadPool......more!
 
 ### 部署
 
