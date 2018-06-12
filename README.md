@@ -31,8 +31,6 @@ Apache License, Version 2.0
 
 supnebula@gmail.com
 
-微信：SuperNebula
-
 #### More
 
    [了解.NetStandard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
