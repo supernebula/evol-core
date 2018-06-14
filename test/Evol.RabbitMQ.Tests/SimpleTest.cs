@@ -37,7 +37,7 @@ namespace Evol.RabbitMQ.Tests
         {
             try
             {
-                for (int i = 0; i < 200; i++)
+                for (int i = 0; i < 50000000; i++)
                 {
                     MessageSend.Instance.Send(i + "Hello World! " + DateTime.Now.ToString());
                     Thread.Sleep(100);
