@@ -26,9 +26,16 @@ namespace Evol.NLog.Tests
 
 
         [Fact]
-        public void FileLogInsertTest()
+        public void MongoLogInsertTest()
         {
+            var log1 = loggerFactory.CreateLogger("visit.audit");
+            log1.LogInformation("database log test:" + nameof(MongoTest.FileLogTest));
 
+            var log2 = loggerFactory.CreateLogger("ex.normal");
+            log2.LogInformation("database log test:" + nameof(MongoTest.FileLogTest));
+
+            var log3 = loggerFactory.CreateLogger("operate.manage");
+            log3.LogInformation("database log test:" + nameof(MongoTest.FileLogTest));
         }
     }
 }
