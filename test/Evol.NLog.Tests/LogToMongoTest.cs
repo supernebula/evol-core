@@ -6,36 +6,31 @@ using System.IO;
 
 namespace Evol.NLog.Tests
 {
-    public class MongoTest
+    public class LogToMongoTest
     {
         private ILoggerFactory loggerFactory;
 
-        public MongoTest()
+        public LogToMongoTest()
         {
             loggerFactory = new NLoggerFactory();
             var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nlog.config");
             loggerFactory.LoadConfiguration(configPath);
         }
 
+        /// <summary>
+        /// 将日志插入到MongoDB
+        /// </summary>
         [Fact]
-        public void FileLogTest()
-        {
-            var log = loggerFactory.CreateLogger("visitAudit");
-            log.LogInformation("test" + nameof(MongoTest.FileLogTest));
-        }
-
-
-        [Fact]
-        public void MongoLogInsertTest()
+        public void InsertLogToMongoTest()
         {
             var log1 = loggerFactory.CreateLogger("visit.audit");
-            log1.LogInformation("database log test:" + nameof(MongoTest.FileLogTest));
+            log1.LogInformation("visit log test:" + nameof(LogToMongoTest.InsertLogToMongoTest));
 
             var log2 = loggerFactory.CreateLogger("ex.normal");
-            log2.LogInformation("database log test:" + nameof(MongoTest.FileLogTest));
+            log2.LogInformation("exception log test:" + nameof(LogToMongoTest.InsertLogToMongoTest));
 
             var log3 = loggerFactory.CreateLogger("operate.manage");
-            log3.LogInformation("database log test:" + nameof(MongoTest.FileLogTest));
+            log3.LogBasicOperate(BasicOperateLogType.Insert, "0.0.0.0", "original value1", "current value1", "remark1", "0000000000000000", "username1");
         }
     }
 }

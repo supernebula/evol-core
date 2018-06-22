@@ -155,6 +155,33 @@ namespace Evol.Logging.AdapteNLog
             _nlog.Warn(exception, message, args);
         }
 
+        internal void Log(LogEventInfo logEvent)
+        {
+            _nlog.Log(logEvent);
+        }
+
+        /// <summary>
+        /// 记录基本操作日志
+        /// </summary>
+        /// <param name="operateType">操作类型 <see cref="BasicOperateLogType"/></param>
+        /// <param name="ip">操作人IP</param>
+        /// <param name="original">原始值</param>
+        /// <param name="current">当前值</param>
+        /// <param name="remark">备注</param>
+        /// <param name="userId">操作人编号</param>
+        /// <param name="username">操作人名称</param>
+        public void LogBasicOperate(BasicOperateLogType operateType, string ip, string original, string current, string remark, string userId, string username, object logLevel = null)
+        {
+            LogEventInfo logEvent = new LogEventInfo(logLevel as LogLevel ?? LogLevel.Info, "", operateType.ToString());
+            logEvent.Properties["id"] = Guid.NewGuid().ToString();
+            logEvent.Properties["operateType"] = operateType;
+            logEvent.Properties["ip"] = ip;
+            logEvent.Properties["original"] = original;
+            logEvent.Properties["current"] = current;
+            logEvent.Properties["remark"] = remark;
+            Log(logEvent);
+        }
+
 
     }
 }

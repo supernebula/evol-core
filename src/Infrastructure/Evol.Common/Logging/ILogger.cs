@@ -55,5 +55,17 @@ namespace Evol.Common.Logging
         void LogWarning(Exception exception, string message, params object[] args);
 
         void LogWarning(EventId eventId, Exception exception, string message, params object[] args);
+
+        /// <summary>
+        /// 记录基本操作日志
+        /// </summary>
+        /// <param name="operateType">操作类型 <see cref="BasicOperateLogType"/></param>
+        /// <param name="ip">操作人IP</param>
+        /// <param name="original">原始值</param>
+        /// <param name="current">当前值</param>
+        /// <param name="remark">备注</param>
+        /// <param name="userId">操作人编号</param>
+        /// <param name="username">操作人名称</param>
+        void LogBasicOperate(BasicOperateLogType operateType, string ip, string original, string current, string remark, string userId, string username, object logLevel = null);
     }
 }
