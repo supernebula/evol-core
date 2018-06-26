@@ -64,8 +64,23 @@ namespace Evol.Common.Logging
         /// <param name="original">原始值</param>
         /// <param name="current">当前值</param>
         /// <param name="remark">备注</param>
-        /// <param name="userId">操作人编号</param>
-        /// <param name="username">操作人名称</param>
-        void LogBasicOperate(BasicOperateLogType operateType, string ip, string original, string current, string remark, string userId, string username, object logLevel = null);
+        /// <param name="operatorId">操作人编号</param>
+        /// <param name="operatorName">操作人名称</param>
+        void LogBasicOperate(BasicOperateLogType operateType, string remoteAddr, string host, string original, string current, string remark, string operatorId, string operatorName, object logLevel = null);
+
+        /// <summary>
+        /// 记录访问审计日志
+        /// </summary>
+        /// <param name="host">服务器主机IP</param>
+        /// <param name="remoteAddr">用户实际IP</param>
+        /// <param name="httpReferer">来源url</param>
+        /// <param name="httpMethod">http请求方式</param>
+        /// <param name="http">http协议</param>
+        /// <param name="request">请求地址</param>
+        /// <param name="bodyLength">响应长度</param>
+        /// <param name="userAgent">UserAgent</param>
+        /// <param name="elapsedMs">UserAgent</param>
+        /// <param name="user">用户</param>
+        void LogVisit(string hostAddr, string hostName, string remoteAddr, string httpReferer, string httpMethod, string http, string requestUri, string userAgent, long elapsedMs);
     }
 }

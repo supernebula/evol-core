@@ -38,7 +38,18 @@ namespace Evol.Fx.Web.Filters
         {
             _stopWatch.Stop();
             var elapsed =  _stopWatch.ElapsedMilliseconds;
-            _logger.LogTrace("");
+            var request = filterContext.RequestContext.HttpContext.Request;
+
+            var hostAddr = request.ServerVariables.Get("Local_Addr").ToString();
+            var hostName = request.ServerVariables.Get("Server_Name").ToString();
+            var remoteAddr = request.ServerVariables.Get("Remote_Addr").ToString();
+            var httpReferer = request.ServerVariables.Get("Http_Referer").ToString();
+            var httpMethod = request.ServerVariables.Get("Http_Referer").ToString();
+            var httpVersion = request.ServerVariables.Get("Http_Referer").ToString();
+            var requestUri = request.Url.AbsoluteUri;
+            var UserAgent = request.ServerVariables.Get("HTTP_USER_AGENT").ToString();
+
+            _logger.LogVisit(hostAddr, hostName, remoteAddr, httpReferer,httpMethod, httpVersion, requestUri, UserAgent, elapsed);
             base.OnResultExecuted(filterContext);
         }
     }

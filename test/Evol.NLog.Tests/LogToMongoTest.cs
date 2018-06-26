@@ -30,7 +30,7 @@ namespace Evol.NLog.Tests
             log2.LogInformation("exception log test:" + nameof(LogToMongoTest.InsertLogToMongoTest));
 
             var log3 = loggerFactory.CreateLogger("operate.manage");
-            log3.LogBasicOperate(BasicOperateLogType.Insert, "0.0.0.0", "original value1", "current value1", "remark1", "0000000000000000", "username1");
+            log3.LogBasicOperate(BasicOperateLogType.Insert ,"0.0.0.0", "0.0.0.0", "original value1", "current value1", "remark1", "0000000000000000", "username1");
         }
     }
 }
