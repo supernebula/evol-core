@@ -3,7 +3,7 @@
 
 ### 概述
 
-evolve-framework，基于.NET Standard 2.1 /.NET Core 2.1跨平台，领域驱动Web开发框架；提供丰富的组件、类库、工具类、脚手架、第三方适配等，提供DDD+CQRS整套的解决方案；最大限度的满足设计模式的最佳实践，单元测试覆盖全面；提供示例项目；支持Docker容器化部署；已应用在多个生产环境。
+evolve-framework，基于.NET Standard 2.1 /.NET Core 2.1跨平台，领域驱动Web开发框架；提供丰富的组件、类库、工具类、脚手架、第三方适配等，提供DDD+CQRS整套的解决方案；最大限度的满足设计模式的最佳实践，单元测试覆盖全面；提供示例项目；支持Docker容器化部署；已应用在生产环境。
 
 Based on the c# /.NET Standard 2.1/.net core 2.1 domain-driven web development framework；
 
