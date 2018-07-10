@@ -66,7 +66,7 @@ namespace Evol.Common.Logging
         /// <param name="remark">备注</param>
         /// <param name="operatorId">操作人编号</param>
         /// <param name="operatorName">操作人名称</param>
-        void LogBasicOperate(BasicOperateLogType operateType, string remoteAddr, string host, string original, string current, string remark, string operatorId, string operatorName, object logLevel = null);
+        void LogBasicOperate(BasicOperateLogType operateType, string remoteAddr, string host, string operatorId, string operatorName, string original = "", string current = "", string remark = "");
 
         /// <summary>
         /// 记录访问审计日志
@@ -81,6 +81,7 @@ namespace Evol.Common.Logging
         /// <param name="userAgent">UserAgent</param>
         /// <param name="elapsedMs">UserAgent</param>
         /// <param name="user">用户</param>
-        void LogVisit(string hostAddr, string hostName, string remoteAddr, string httpReferer, string httpMethod, string http, string requestUri, string userAgent, long elapsedMs);
+        /// <param name="lbAppId">再使用负载均时，当前应用唯一编号</param>
+        void LogVisit(string hostAddr, string hostName, string remoteAddr, string httpReferer, string httpMethod, string http, string requestUri, string userAgent, long elapsedMs, string lbAppId = null);
     }
 }

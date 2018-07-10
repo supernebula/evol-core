@@ -170,33 +170,36 @@ namespace Evol.Fx.Logging.AdapteNLog
         /// <param name="remark">备注</param>
         /// <param name="operatorId">操作人编号</param>
         /// <param name="operatorName">操作人名称</param>
-        public void LogBasicOperate(BasicOperateLogType operateType, string remoteAddr, string host, string original, string current, string remark, string operatorId, string operatorName, object logLevel = null)
-        {
-            LogEventInfo logEvent = new LogEventInfo(logLevel as LogLevel ?? LogLevel.Info, "", operateType.ToString());
-            logEvent.Properties["id"] = Guid.NewGuid().ToString();
-            logEvent.Properties["operateType"] = operateType;
-            logEvent.Properties["remoteAddr"] = remoteAddr;
-            logEvent.Properties["host"] = host;
-            logEvent.Properties["original"] = original;
-            logEvent.Properties["current"] = current;
-            logEvent.Properties["remark"] = remark;
-            logEvent.Properties["userId"] = operatorId;
-            logEvent.Properties["username"] = operatorName;
-            Log(logEvent);
-        }
-
-        public void LogVisit(string hostAddr, string hostName, string remoteAddr, string httpReferer, string httpMethod, string http, string requestUri, string userAgent, long elapsedMs)
+        public void LogBasicOperate(BasicOperateLogType operateType, string remoteAddr, string host, string operatorId, string operatorName, string original = "", string current = "", string remark = "")
         {
             LogEventInfo logEvent = new LogEventInfo();
+            logEvent.Level = LogLevel.Trace;
             logEvent.Properties["id"] = Guid.NewGuid().ToString();
-            logEvent.Properties["hostAddr"] = hostAddr;
-            logEvent.Properties["hostName"] = hostName;
-            logEvent.Properties["RemoteAddr"] = remoteAddr;
-            logEvent.Properties["httpReferer"] = httpReferer;
-            logEvent.Properties["method"] = httpMethod;
-            logEvent.Properties["http"] = http;
-            logEvent.Properties["requestUri"] = requestUri;
-            logEvent.Properties["userAgent"] = userAgent;
+            logEvent.Properties["operateType"] = operateType;
+            logEvent.Properties["remoteAddr"] = remoteAddr ?? "";
+            logEvent.Properties["host"] = host ?? "";
+            logEvent.Properties["original"] = original ?? "";
+            logEvent.Properties["current"] = current ?? "";
+            logEvent.Properties["remark"] = remark ?? "";
+            logEvent.Properties["operatorId"] = operatorId ?? "";
+            logEvent.Properties["operator"] = operatorName ?? "";
+            Log(logEvent);
+        }
+        public void LogVisit(string hostAddr, string hostName, string remoteAddr, string requestPath, string httpMethod, string http, string requestUri, string userAgent, long elapsedMs, string lbAppId)
+        {
+            LogEventInfo logEvent = new LogEventInfo();
+            logEvent.Level = LogLevel.Trace;
+            logEvent.Properties["id"] = Guid.NewGuid().ToString();
+            logEvent.Properties["hostAddr"] = hostAddr ?? "";
+            logEvent.Properties["hostName"] = hostName ?? "";
+            logEvent.Properties["RemoteAddr"] = remoteAddr ?? "";
+            logEvent.Properties["requestPath"] = requestPath ?? "";
+            logEvent.Properties["requestUri"] = requestUri ?? "";
+            logEvent.Properties["http"] = http ?? "";
+            logEvent.Properties["method"] = httpMethod ?? "";
+            logEvent.Properties["elapsedMs"] = elapsedMs;
+            logEvent.Properties["userAgent"] = userAgent ?? "";
+            logEvent.Properties["lbAppId"] = lbAppId ?? "";
             Log(logEvent);
         }
     }
