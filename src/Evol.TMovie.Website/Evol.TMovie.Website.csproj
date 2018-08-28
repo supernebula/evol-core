@@ -4,9 +4,11 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <!--
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
+  -->
 
   <PropertyGroup>
     <UserSecretsId>aspnet-Evol.Cinema.Website-ae5e8a9f-d541-445f-9414-64f2afe5adaf</UserSecretsId>

@@ -43,3 +43,7 @@ NAME                DESCRIPTION           STARS     OFFICIAL   AUTOMATED
 microsoft/dotnet   sean's docker repos         0
 ```
 
+管理全局包、缓存和临时文件夹
+
+https://docs.microsoft.com/zh-cn/nuget/consume-packages/managing-the-global-packages-and-cache-folders
+
