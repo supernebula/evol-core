@@ -11,6 +11,7 @@ using Sample.Domain.QueryEntries.Parameters;
 using Sample.Website.Models.PostViewModels;
 using Sample.Domain.Commands;
 using Evol.Common;
+using Evol.Common.Exceptions;
 
 namespace Sample.Website.ApiControllers
 {
@@ -90,6 +91,8 @@ namespace Sample.Website.ApiControllers
         public async Task Post(PostCreateDtoParam param)
         {
             ValidateModelOrThrow();
+            //PostQuery.SelectAsync(title)
+                throw new InputError("title 不能重复！");
             var command = new PostCreateCommand() { Input = new PostCreateDto(param) };
             await CommandBus.SendAsync(command);
         }
