@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.Mongo</name>
+    </assembly>
+    <members>
+        <member name="M:NLog.Mongo.ExceptionHelper.MarkAsLoggedToInternalLogger(System.Exception)">
+            <summary>
+            Mark this exception as logged to the <see cref="T:NLog.Common.InternalLogger"/>.
+            </summary>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NLog.Mongo.ExceptionHelper.IsLoggedToInternalLogger(System.Exception)">
+            <summary>
+            Is this exception logged to the <see cref="T:NLog.Common.InternalLogger"/>? 
+            </summary>
+            <param name="exception"></param>
+            <returns><c>true</c>if the <paramref name="exception"/> has been logged to the <see cref="T:NLog.Common.InternalLogger"/>.</returns>
+        </member>
+        <member name="M:NLog.Mongo.ExceptionHelper.MustBeRethrown(System.Exception)">
+            <summary>
+            Determines whether the exception must be rethrown and logs the error to the <see cref="T:NLog.Common.InternalLogger"/> if <see cref="M:NLog.Mongo.ExceptionHelper.IsLoggedToInternalLogger(System.Exception)"/> is <c>false</c>.
+            
+            Advised to log first the error to the <see cref="T:NLog.Common.InternalLogger"/> before calling this method.
+            </summary>
+            <param name="exception">The exception to check.</param>
+            <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:NLog.Mongo.ExceptionHelper.MustBeRethrownImmediately(System.Exception)">
+            <summary>
+            Determines whether the exception must be rethrown immediately, without logging the error to the <see cref="T:NLog.Common.InternalLogger"/>.
+            
+            Only used this method in special cases.
+            </summary>
+            <param name="exception">The exception to check.</param>
+            <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:NLog.Mongo.MongoConvert">
+            <summary>
+            Convert string values to Mongo <see cref="T:MongoDB.Bson.BsonValue"/>.
+            </summary>
+        </member>
+        <member name="M:NLog.Mongo.MongoConvert.TryBoolean(System.String,MongoDB.Bson.BsonValue@)">
+            <summary>Try to convert the string to a <see cref="T:MongoDB.Bson.BsonBoolean"/>.</summary>
+            <param name="value">The value to convert.</param>
+            <param name="bsonValue">The BsonValue result.</param>
+            <returns><c>true</c> if the value was converted; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NLog.Mongo.MongoConvert.TryDateTime(System.String,MongoDB.Bson.BsonValue@)">
+            <summary>Try to convert the string to a <see cref="T:MongoDB.Bson.BsonDateTime"/>.</summary>
+            <param name="value">The value to convert.</param>
+            <param name="bsonValue">The BsonValue result.</param>
+            <returns><c>true</c> if the value was converted; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NLog.Mongo.MongoConvert.TryDouble(System.String,MongoDB.Bson.BsonValue@)">
+            <summary>Try to convert the string to a <see cref="T:MongoDB.Bson.BsonDouble"/>.</summary>
+            <param name="value">The value to convert.</param>
+            <param name="bsonValue">The BsonValue result.</param>
+            <returns><c>true</c> if the value was converted; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NLog.Mongo.MongoConvert.TryInt32(System.String,MongoDB.Bson.BsonValue@)">
+            <summary>Try to convert the string to a <see cref="T:MongoDB.Bson.BsonInt32"/>.</summary>
+            <param name="value">The value to convert.</param>
+            <param name="bsonValue">The BsonValue result.</param>
+            <returns><c>true</c> if the value was converted; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:NLog.Mongo.MongoConvert.TryInt64(System.String,MongoDB.Bson.BsonValue@)">
+            <summary>Try to convert the string to a <see cref="T:MongoDB.Bson.BsonInt64"/>.</summary>
+            <param name="value">The value to convert.</param>
+            <param name="bsonValue">The BsonValue result.</param>
+            <returns><c>true</c> if the value was converted; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="T:NLog.Mongo.MongoField">
+            <summary>
+            A configuration item for MongoDB target.
+            </summary>
+        </member>
+        <member name="M:NLog.Mongo.MongoField.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Mongo.MongoField"/> class.
+            </summary>
+        </member>
+        <member name="M:NLog.Mongo.MongoField.#ctor(System.String,NLog.Layouts.Layout)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Mongo.MongoField"/> class.
+            </summary>
+            <param name="name">The name of the field.</param>
+            <param name="layout">The layout used to generate the value for the field.</param>
+        </member>
+        <member name="M:NLog.Mongo.MongoField.#ctor(System.String,NLog.Layouts.Layout,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Mongo.MongoField" /> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="layout">The layout.</param>
+            <param name="bsonType">The bson type.</param>
+        </member>
+        <member name="P:NLog.Mongo.MongoField.Name">
+            <summary>
+            Gets or sets the name of the MongoDB field.
+            </summary>
+            <value>
+            The name of the MongoDB field.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoField.Layout">
+            <summary>
+            Gets or sets the layout used to generate the value for the field.
+            </summary>
+            <value>
+            The layout used to generate the value for the field.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoField.BsonType">
+            <summary>
+            Gets or sets the bson type of the field. Possible values are Boolean, DateTime, Double, Int32, Int64 and String
+            </summary>
+            <value>
+            The bson type of the field..
+            </value>
+        </member>
+        <member name="T:NLog.Mongo.MongoTarget">
+            <summary>
+            NLog message target for MongoDB.
+            </summary>
+        </member>
+        <member name="M:NLog.Mongo.MongoTarget.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Mongo.MongoTarget"/> class.
+            </summary>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.Fields">
+            <summary>
+            Gets the fields collection.
+            </summary>
+            <value>
+            The fields.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.Properties">
+            <summary>
+            Gets the properties collection.
+            </summary>
+            <value>
+            The properties.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.ConnectionString">
+            <summary>
+            Gets or sets the connection string name string.
+            </summary>
+            <value>
+            The connection name string.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.ConnectionName">
+            <summary>
+            Gets or sets the name of the connection.
+            </summary>
+            <value>
+            The name of the connection.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.IncludeDefaults">
+            <summary>
+            Gets or sets a value indicating whether to use the default document format.
+            </summary>
+            <value>
+              <c>true</c> to use the default document format; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.DatabaseName">
+            <summary>
+            Gets or sets the name of the database.
+            </summary>
+            <value>
+            The name of the database.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.CollectionName">
+            <summary>
+            Gets or sets the name of the collection.
+            </summary>
+            <value>
+            The name of the collection.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.CappedCollectionSize">
+            <summary>
+            Gets or sets the size in bytes of the capped collection.
+            </summary>
+            <value>
+            The size of the capped collection.
+            </value>
+        </member>
+        <member name="P:NLog.Mongo.MongoTarget.CappedCollectionMaxItems">
+            <summary>
+            Gets or sets the capped collection max items.
+            </summary>
+            <value>
+            The capped collection max items.
+            </value>
+        </member>
+        <member name="M:NLog.Mongo.MongoTarget.InitializeTarget">
+            <summary>
+            Initializes the target. Can be used by inheriting classes
+            to initialize logging.
+            </summary>
+            <exception cref="T:NLog.NLogConfigurationException">Can not resolve MongoDB ConnectionString. Please make sure the ConnectionString property is set.</exception>
+        </member>
+        <member name="M:NLog.Mongo.MongoTarget.Write(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
+            <summary>
+            Writes an array of logging events to the log target. By default it iterates on all
+            events and passes them to "Write" method. Inheriting classes can use this method to
+            optimize batch writes.
+            </summary>
+            <param name="logEvents">Logging events to be written out.</param>
+        </member>
+        <member name="M:NLog.Mongo.MongoTarget.Write(NLog.LogEventInfo)">
+            <summary>
+            Writes logging event to the log target.
+            classes.
+            </summary>
+            <param name="logEvent">Logging event to be written out.</param>
+        </member>
+    </members>
+</doc>

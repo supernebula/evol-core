@@ -155,6 +155,55 @@ namespace Evol.Logging.AdapteNLog
             _nlog.Warn(exception, message, args);
         }
 
+        internal void Log(LogEventInfo logEvent)
+        {
+            _nlog.Log(logEvent);
+        }
+
+        /// <summary>
+        /// 记录基本操作日志
+        /// </summary>
+        /// <param name="operateType">操作类型 <see cref="BasicOperateLogType"/></param>
+        /// <param name="ip">操作人IP</param>
+        /// <param name="original">原始值</param>
+        /// <param name="current">当前值</param>
+        /// <param name="remark">备注</param>
+        /// <param name="operatorId">操作人编号</param>
+        /// <param name="operatorName">操作人名称</param>
+        public void LogBasicOperate(BasicOperateLogType operateType, string remoteAddr, string host, string operatorId, string operatorName, string original = "", string current = "", string remark = "")
+        {
+            LogEventInfo logEvent = new LogEventInfo();
+            logEvent.Level = LogLevel.Trace;
+            logEvent.Properties["id"] = Guid.NewGuid().ToString();
+            logEvent.Properties["operateType"] = operateType;
+            logEvent.Properties["remoteAddr"] = remoteAddr ?? "";
+            logEvent.Properties["host"] = host ?? "";
+            logEvent.Properties["original"] = original ?? "none";
+            logEvent.Properties["current"] = current ?? "none";
+            logEvent.Properties["remark"] = remark ?? "none";
+            logEvent.Properties["operatorId"] = operatorId ?? "";
+            logEvent.Properties["operator"] = operatorName ?? "";
+            Log(logEvent);
+        }
+
+        public void LogVisit(string hostAddr, string hostName, string remoteAddr, string requestPath, string httpMethod, string http, string requestUri, string userAgent, long elapsedMs, string lbAppId)
+        {
+            LogEventInfo logEvent = new LogEventInfo();
+            logEvent.Level = LogLevel.Trace;
+            logEvent.Properties["id"] = Guid.NewGuid().ToString();
+            logEvent.Properties["hostAddr"] = hostAddr ?? "";
+            logEvent.Properties["hostName"] = hostName ?? "";
+            logEvent.Properties["RemoteAddr"] = remoteAddr ?? "";
+            logEvent.Properties["requestPath"] = requestPath ?? "";
+            logEvent.Properties["requestUri"] = requestUri ?? "";
+            logEvent.Properties["http"] = http ?? "";
+            logEvent.Properties["method"] = httpMethod ?? "";
+            logEvent.Properties["elapsedMs"] = elapsedMs;
+            logEvent.Properties["userAgent"] = userAgent ?? "";
+            logEvent.Properties["lbAppId"] = lbAppId ?? "";
+            Log(logEvent);
+        }
+
 
     }
 }

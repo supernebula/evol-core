@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.0" />
+    <PackageReference Include="NLog.Config" Version="4.5.9" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Common\Evol.Common.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Evol.Logging.NLog\Evol.Logging.NLog.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="NLog.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="innlog\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NLog.Mongo">
+      <HintPath>..\..\lib\NLog.Mongo\netstandard2.0\NLog.Mongo.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
