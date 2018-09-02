@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Xunit.Abstractions;
 using Nest;
 using Elasticsearch.Net;
 using System.Collections.Generic;
@@ -45,6 +46,10 @@ namespace Evol.Elasticsearch.Tests
     public class ElasticTest
     {
         string searchID = "searchID1";
+
+
+
+
 
         private ElasticClient GetEsClient()
         {
