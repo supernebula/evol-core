@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using Evol.Util.Serialization;
 using Xunit.Abstractions;
 using System.Text;
+using Evol.Elasticsearch.Model.Tests;
 
 namespace Evol.Elasticsearch.Tests
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using Xunit;
 using Xunit.Abstractions;
+using Evol.Elasticsearch.Model.Tests;
 
 namespace Evol.Elasticsearch.Tests
 {

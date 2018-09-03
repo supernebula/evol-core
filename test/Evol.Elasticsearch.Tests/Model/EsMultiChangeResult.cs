@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Evol.Elasticsearch.Tests
+namespace Evol.Elasticsearch.Model.Tests
 {
     [DataContract]
     public class EsMultiChangeResult

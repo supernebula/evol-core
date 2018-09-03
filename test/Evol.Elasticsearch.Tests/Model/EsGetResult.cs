@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Evol.Elasticsearch.Tests
+namespace Evol.Elasticsearch.Model.Tests
 {
     [DataContract]
     public class EsGetResult<T>
