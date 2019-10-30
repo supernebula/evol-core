@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Evol.Util.Serialization;
 using System.Diagnostics;
+using Xunit.Abstractions;
+using Evol.Utilities.Test.Serialization.ThermModel;
 
 namespace Evol.Utilities.Test.Serialization
 {
@@ -35,6 +37,13 @@ namespace Evol.Utilities.Test.Serialization
 
     public class JsonUtilTest
     {
+        private readonly ITestOutputHelper output;
+
+        public JsonUtilTest(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
         [Fact]
         public void ExceptionSerializerTest()
         {
@@ -66,6 +75,16 @@ namespace Evol.Utilities.Test.Serialization
             dic = null;
 
            // var json = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(dic);
+        }
+
+        [Fact]
+        public void AliIotPayloadDesTest()
+        {
+            var json = "{\"deviceType\":\"TemperatureHumidityDetector\",\"iotId\":\"Xz0l9ZIXluEr9wrGKp9L000100\",\"requestId\":\"123\",\"productKey\":\"a1lH5vdBSs8\",\"gmtCreate\":1572404537493,\"deviceName\":\"therm10001\",\"items\":{\"CurrentHumidity\":{\"value\":20.9,\"time\":1572404537496},\"CurrentTemperature\":{\"value\":12.99,\"time\":1572404537496},\"GeoLocation\":{\"value\":{\"CoordinateSystem\":1,\"Latitude\":3.19,\"Longitude\":-9.41,\"Altitude\":7922.42},\"time\":1572404537496}}}";
+
+            //var json = "{\"deviceType\":\"TemperatureHumidityDetector\",\"iotId\":\"Xz0l9ZIXluEr9wrGKp9L000100\",\"requestId\":\"123\",\"productKey\":\"a1lH5vdBSs8\",\"gmtCreate\":1572404537493,\"deviceName\":\"therm10001\",\"items\":{\"CurrentHumidity\":{\"value\":20.9,\"time\":1572404537496},\"CurrentTemperature\":{\"value\":12.99,\"time\":1572404537496},\"GeoLocation\":{\"time\":1572404537496}}}";
+
+            var payload = JsonUtil.Deserialize<Payload>(json);
         }
     }
 }
