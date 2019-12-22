@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Evol.Util
 {
@@ -10,6 +11,24 @@ namespace Evol.Util
             var sw = new Stopwatch();
             sw.Start();
             action.Invoke();
+            sw.Stop();
+
+            if (output != null)
+            {
+                output.Invoke(name);
+                output.Invoke(String.Format(format, sw.ElapsedMilliseconds));
+                return;
+            }
+
+            Debug.WriteLine(name);
+            Debug.WriteLine(String.Format(format, sw.ElapsedMilliseconds));
+        }
+
+        public static async Task WatchAsync(string name, Func<Task> action, Action<string> output = null, string format = "当前操作耗时，毫秒: {0}")
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            await action.Invoke();
             sw.Stop();
 
             if (output != null)
