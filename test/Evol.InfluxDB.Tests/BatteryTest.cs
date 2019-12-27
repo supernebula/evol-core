@@ -1,8 +1,12 @@
 ﻿using AdysTech.InfluxDB.Client.Net;
 using Evol.InfluxDB.Tests.Model;
+using Evol.InfluxDB.Tests.Repository;
 using Evol.Util;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using Xunit;
@@ -58,7 +62,21 @@ namespace Evol.InfluxDB.Tests
             {
                 TimeMonitor.Watch(nameof(TestGetInfluxDBNames), () =>
                 {
-                    client.CreateDatabaseAsync("charge");
+                    client.CreateDatabaseAsync(dbName);
+                    var dbNames = client.GetInfluxDBNamesAsync().Result;
+                    var temp = dbNames;
+                }, output.WriteLine);
+            }
+        }
+
+        [Fact]
+        public void DeleteInfluxDatabaseTest()
+        {
+            using (InfluxDBClient client = new InfluxDBClient(influxUrl, dbUName, dbpwd))
+            {
+                TimeMonitor.Watch(nameof(TestGetInfluxDBNames), () =>
+                {
+                    client.CreateDatabaseAsync(dbName);
                     var dbNames = client.GetInfluxDBNamesAsync().Result;
                     var temp = dbNames;
                 }, output.WriteLine);
@@ -78,6 +96,8 @@ namespace Evol.InfluxDB.Tests
             }
         }
 
+
+
         [Fact]
         public void TestPostPoints()
         {
@@ -90,7 +110,7 @@ namespace Evol.InfluxDB.Tests
 
                 var points = new List<IInfluxDatapoint>();
 
-                var item = new CarBattery();
+                var item = new CarBatteryPoint();
                 item.DeviceNumber = "";
                 item.CustomerCode = "";
                 item.DeviceWays = "";
@@ -130,6 +150,71 @@ namespace Evol.InfluxDB.Tests
                 //Assert.Fail($"Unexpected exception of type {e.GetType()} caught: {e.Message}");
                 return;
             }
+        }
+
+
+        [Fact]
+        public void InsertBatteryPointsTest()
+        {
+            //var now = DateTime.Now;
+            //var utcNow = DateTime.UtcNow;
+            //var convertUtc = TimeZone.CurrentTimeZone.ToUniversalTime(now);
+
+           // var config = new ConfigurationBuilder()
+           //.AddJsonFile("appsettings.json")
+           //.Build();
+           // var connectionString = config["Data:CXEntities:ConnectionString"];
+
+           // var connStr = ConfigurationManager.ConnectionStrings["CXEntities"]?.ConnectionString;
+           // string conString = Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString(this.Configuration, "DefaultConnection");
+
+           // return;
+
+            var client = new InfluxDBClient(influxUrl, dbUName, dbpwd);
+
+            var batteryRepos = new CarBatteryRepository();
+            var batteries = batteryRepos.Query("SELECT * FROM carbattery").ToList();
+
+            //return;
+            batteries.ForEach(e =>
+            {
+                var item = new CarBatteryPoint();
+                item.DeviceNumber = NoEmptyValue(e.DeviceNumber, "DeviceNumber");
+                item.CustomerCode = NoEmptyValue(e.CustomerCode, "CustomerCode");
+                item.DeviceWays = NoEmptyValue(e.DeviceWays, "DeviceWays");
+                item.TransactionID = NoEmptyValue(e.TransactionID, "TransactionID");
+                item.VIN = NoEmptyValue(e.VIN, "VIN");
+                item.RVOL = e.RVOL;
+                item.RCUR = e.RCUR;
+                item.Ptemp = e.Ptemp;
+                item.Ntemp = e.Ntemp;
+                item.BATType = e.BATType;
+                item.BATPOW = e.BATPOW;
+                item.Capacity = e.Capacity;
+                item.MaxCVol = e.MaxCVol;
+                item.MaxCCur = e.MaxCCur;
+                item.SigleMaxVol = e.SigleMaxVol;
+                item.SigleMinVol = e.SigleMinVol;
+                item.StartSigleMaxVol = e.StartSigleMaxVol;
+                item.StartSigleMinVol = e.StartSigleMinVol;
+                item.EndSigleMaxVol = e.EndSigleMaxVol;
+                item.EndSigleMinVol = e.EndSigleMinVol;
+                item.MaxTemp = e.MaxTemp;
+                item.StartVol = e.StartVol;
+                var utcTime = TimeZone.CurrentTimeZone.ToUniversalTime(e.CreateDate);
+                item.CreateDate = utcTime;
+                item.MeasurementName = measurementName;
+                item.Precision = TimePrecision.Nanoseconds;
+                var r = client.PostPointAsync(dbName, item).Result;
+                output.WriteLine("add point:" + e.Id);
+            });
+        }
+
+        private string NoEmptyValue(string value, string defualtValue)
+        {
+            if (String.IsNullOrWhiteSpace(value))
+                return defualtValue;
+            return value;
         }
 
 
