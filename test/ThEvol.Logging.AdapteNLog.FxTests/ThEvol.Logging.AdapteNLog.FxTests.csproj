@@ -75,6 +75,8 @@
   <ItemGroup>
     <Compile Include="BasicTest.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Encrypts\ChargingCodeHelp.cs" />
+    <Compile Include="Encrypts\ChargingCodeTest.cs" />
     <Compile Include="LogDataTest.cs" />
     <Compile Include="LogTestDbContext.cs" />
     <Compile Include="Map\ActionLogMap.cs" />

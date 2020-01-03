@@ -25,5 +25,18 @@ namespace Evol.Util.Tests
             output.WriteLine(str);
             Assert.Equal("123", str);
         }
+
+        [Fact]
+        public void IntBiteConvertTest()
+        {
+            short num = 345;
+            var bytes = BitConverter.GetBytes(num);
+            var hexStr = num.ToString("X2");
+            output.WriteLine(num + "=" + hexStr);
+            foreach (var _byte in bytes)
+            {
+                var str = _byte.ToString("0x");
+            }
+        }
     }
 }
