@@ -1,6 +1,12 @@
 ﻿
 # evol-core
 
+.Net Core 还处在快速迭代期， .NET 6  LTS，再继续更新；
+
+### .NET Roadmap
+
+![.NET Roadmap](https://devblogs.microsoft.com/dotnet/wp-content/uploads/sites/10/2019/05/dotnet_schedule.png)
+
 ### 概述
 
 evolve-framework，基于.NET Standard 2.1 /.NET Core 2.1跨平台，领域驱动Web开发框架；提供丰富的组件、类库、工具类、脚手架、第三方适配等，提供DDD+CQRS整套的解决方案；最大限度的满足设计模式的最佳实践，单元测试覆盖全面；提供示例项目；支持Docker容器化部署；已应用在生产环境。
